@@ -836,6 +836,7 @@ namespace SrP_ClassroomInq
                         PrefsShowing = false;
                         PrefsClicked = false;
                         PrefsTimesClicked = 0;
+                        SavePrefs(); //when hiding the panel save the preferences
                         if (DesireDM)
                         {
                             if (!DMPanelShowing)
@@ -862,6 +863,7 @@ namespace SrP_ClassroomInq
                     PrefsShowing = false;
                     PrefsClicked = false;
                     PrefsTimesClicked = 0;
+                    SavePrefs(); //when hiding the panel save the preferences
                     if (DesireDM)
                     {
                         if (!DMPanelShowing)
@@ -879,7 +881,7 @@ namespace SrP_ClassroomInq
                     {
                         timer.Enabled = false; //all done
                     }
-                }
+                }                
             }
 
 
@@ -1238,6 +1240,13 @@ namespace SrP_ClassroomInq
 
             Properties.Settings.Default.Reload(); //load the key..
             SecretKey = Properties.Settings.Default.key;
+
+            /*Check the state of previous settings and reset them*/
+            chkbxLameMode.Checked = Properties.Settings.Default.Animations == true ? true : false;
+            chkbxRXSound.Checked = Properties.Settings.Default.SoundRX == true ? true : false;
+            chkbxTXSound.Checked = Properties.Settings.Default.SoundTX == true ? true : false;
+            /***************************************************/
+
             string[] tmpstring = new string[classSize];
             try
             {
@@ -1321,6 +1330,7 @@ namespace SrP_ClassroomInq
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             SerialPort.Close(); //tie up loose ends..
+            SavePrefs();
 
             if (StuMgmtShowing)
             {
@@ -1878,5 +1888,12 @@ namespace SrP_ClassroomInq
             return SuccessOfSending; //lets sender know if sending succeeded
         }
 
+        private void SavePrefs()
+        {
+            Properties.Settings.Default.Animations = chkbxLameMode.Checked;
+            Properties.Settings.Default.SoundRX = chkbxRXSound.Checked;
+            Properties.Settings.Default.SoundTX = chkbxTXSound.Checked;
+            Properties.Settings.Default.Save();
+        }
    }
 }

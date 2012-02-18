@@ -5,5 +5,14 @@
     <Setting Name="key" Type="System.String" Scope="User">
       <Value Profile="(Default)">this-isn't-secure</Value>
     </Setting>
+    <Setting Name="Animations" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SoundRX" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SoundTX" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

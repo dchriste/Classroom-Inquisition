@@ -34,5 +34,41 @@ namespace SrP_ClassroomInq.Properties {
                 this["key"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Animations {
+            get {
+                return ((bool)(this["Animations"]));
+            }
+            set {
+                this["Animations"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SoundRX {
+            get {
+                return ((bool)(this["SoundRX"]));
+            }
+            set {
+                this["SoundRX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SoundTX {
+            get {
+                return ((bool)(this["SoundTX"]));
+            }
+            set {
+                this["SoundTX"] = value;
+            }
+        }
     }
 }
