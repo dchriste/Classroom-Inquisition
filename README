@@ -1,3 +1,23 @@
-This is my ReadMe, perhaps it will have content someday.
+/**********************************************************************
+Classroom Inquisition is a Student / Teacher communication application
+which allows full-text submission of questions and full-text responses
+from teachers in an aesthetically pleasing and generally intuitive way.
+**********************************************************************/
+
+Developed by: David Christensen
+For: Senior Design Capstone Project
+Main Language: C# (.Net4)
+
+This repo is designed more for version control and aid in backing up 
+my code in a logical manner than anything else. If you feel that I 
+could add something, I would prefer more suggestions than your 
+actually writing to help with the project (as it isn't finished, and
+it is an individual project). Upon its completion I will most likely
+GPL the software.
+
+Thanks for checking out my project, 
 
 --dchriste
+
+ps Be kind as I've taught myself half of what's here and know that it
+probably isn't the proper way of going about things.
