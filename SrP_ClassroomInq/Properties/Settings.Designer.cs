@@ -70,5 +70,29 @@ namespace SrP_ClassroomInq.Properties {
                 this["SoundTX"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool HoverRead {
+            get {
+                return ((bool)(this["HoverRead"]));
+            }
+            set {
+                this["HoverRead"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ClickRead {
+            get {
+                return ((bool)(this["ClickRead"]));
+            }
+            set {
+                this["ClickRead"] = value;
+            }
+        }
     }
 }

@@ -74,6 +74,13 @@ namespace SrP_ClassroomInq.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap reply_arrow {
+            get {
+                object obj = ResourceManager.GetObject("reply_arrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap user_comment {
             get {
                 object obj = ResourceManager.GetObject("user_comment", resourceCulture);

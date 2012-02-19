@@ -38,6 +38,7 @@ namespace SrP_ClassroomInq
                            "\x15","\x16","\x17","\x18","\x19","\x1A","\x1B","\x1C","\x1D","\x1E",
                             };
         bool[] Q_status = new bool[classSize]; //records the read status of a question
+        bool[] Q_Replied = new bool[classSize]; //records if the question has been replied to
         string[] Q_sender = new string[classSize]; // records the name of the sender of each question
         string brdcst_addr = "\x01";
 
@@ -96,6 +97,7 @@ namespace SrP_ClassroomInq
 		System.Windows.Forms.Button[] clear_arr = new System.Windows.Forms.Button[classSize]; //add const for max_lns
 		System.Windows.Forms.TextBox[] txtbx_reply_arr = new System.Windows.Forms.TextBox[classSize]; //add const for max_lns
 		System.Windows.Forms.Label[] lbl_arr = new System.Windows.Forms.Label[classSize]; //add const for max_lns
+        System.Windows.Forms.PictureBox[] picbx_arr = new System.Windows.Forms.PictureBox[classSize];
         System.Drawing.Point origingrouparr = new System.Drawing.Point(6, -13); //originally 6,19 but this gives questions an entering animation
         System.Drawing.Point tempgrouparr = new System.Drawing.Point(6, 19);
         System.Drawing.Point tempreplyarr = new System.Drawing.Point(230, 98);
@@ -103,6 +105,7 @@ namespace SrP_ClassroomInq
         System.Drawing.Point tempcleararr = new System.Drawing.Point(23, 98);
         System.Drawing.Point txtbx_reply_temp = new System.Drawing.Point(23, 32);
         System.Drawing.Point lbl_arr_temp = new System.Drawing.Point(0, -13);
+        System.Drawing.Point picbx_arr_tmp = new System.Drawing.Point(2, 9);
         #endregion
 
         #endregion
@@ -122,7 +125,7 @@ namespace SrP_ClassroomInq
             reply_arr[NumQuestions].Location = tempreplyarr;
             reply_arr[NumQuestions].Name = "reply_arr_" + NumQuestions.ToString();
             reply_arr[NumQuestions].Size = new System.Drawing.Size(67, 25);
-            reply_arr[NumQuestions].TabIndex = 4;
+            reply_arr[NumQuestions].TabIndex = 2;
             reply_arr[NumQuestions].Text = "Repl&y";
             reply_arr[NumQuestions].UseVisualStyleBackColor = true;
             reply_arr[NumQuestions].Click += new System.EventHandler(this.btnRepl_Click);
@@ -147,7 +150,7 @@ namespace SrP_ClassroomInq
             clear_arr[NumQuestions].Location = tempcleararr;
             clear_arr[NumQuestions].Name = "clear_arr_" + NumQuestions.ToString();
             clear_arr[NumQuestions].Size = new System.Drawing.Size(67, 25);
-            clear_arr[NumQuestions].TabIndex = 2;
+            clear_arr[NumQuestions].TabIndex = 4;
             clear_arr[NumQuestions].Text = "Clea&r";
             clear_arr[NumQuestions].UseVisualStyleBackColor = true;
             clear_arr[NumQuestions].Click += new System.EventHandler(this.btnCLR_Click);
@@ -185,12 +188,23 @@ namespace SrP_ClassroomInq
             lbl_arr[NumQuestions].Text = "***" + "          " + question + "  -" + tempString2; //passed to this function by the sender, eventually add the name of student here            
             lbl_arr[NumQuestions].Click += new System.EventHandler(this.lbl_question_Click);
             lbl_arr[NumQuestions].MouseMove += new System.Windows.Forms.MouseEventHandler(this.lbl_question_MouseMove);
+
+            picbx_arr[NumQuestions] = new PictureBox();
+            picbx_arr[NumQuestions].Image = global::SrP_ClassroomInq.Properties.Resources.reply_arrow;
+            picbx_arr[NumQuestions].Location = picbx_arr_tmp;
+            picbx_arr[NumQuestions].Name = "picbx_arr_" + NumQuestions.ToString();
+            picbx_arr[NumQuestions].Size = new System.Drawing.Size(24, 20); //half the actual image size
+            picbx_arr[NumQuestions].SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            picbx_arr[NumQuestions].TabIndex = 0;
+            picbx_arr[NumQuestions].TabStop = false;
+            picbx_arr[NumQuestions].Visible = false; //set to visible after marked read
            
             group_arr[NumQuestions].Controls.Add(reply_arr[NumQuestions]);
             group_arr[NumQuestions].Controls.Add(close_arr[NumQuestions]);
             group_arr[NumQuestions].Controls.Add(clear_arr[NumQuestions]);
             group_arr[NumQuestions].Controls.Add(txtbx_reply_arr[NumQuestions]);
             group_arr[NumQuestions].Controls.Add(lbl_arr[NumQuestions]);
+            group_arr[NumQuestions].Controls.Add(picbx_arr[NumQuestions]);
             MoveCtrlsDown(); //move ctrls for lifo operation
             grpbxFeed.Controls.Add(group_arr[NumQuestions]);
 
@@ -1179,6 +1193,13 @@ namespace SrP_ClassroomInq
                         timer.Enabled = true; // hide the send button   
                     }
                     AckRXd = false; //reset
+
+                    if (!Q_Replied[lbl_ID])
+                    {
+                        Q_Replied[lbl_ID] = true;
+                        picbx_arr[lbl_ID].BringToFront();//to display on the label
+                        picbx_arr[lbl_ID].Visible = true; //come out from hiding
+                    }
              //   }
               //  else
              //   {
@@ -1195,6 +1216,10 @@ namespace SrP_ClassroomInq
 
 		private void lbl_question_Click(object sender, EventArgs e)
 		{
+            if (rdbtnClick.Checked)
+            {
+                UnreadDecrement(sender);
+            }
 			for (int i = 0; i < lbl_arr.Length - 1; i++) //loop through to find the clicked one
 			{
 				if ( sender.Equals(lbl_arr[i])){
@@ -1242,9 +1267,11 @@ namespace SrP_ClassroomInq
             SecretKey = Properties.Settings.Default.key;
 
             /*Check the state of previous settings and reset them*/
-            chkbxLameMode.Checked = Properties.Settings.Default.Animations == true ? true : false;
-            chkbxRXSound.Checked = Properties.Settings.Default.SoundRX == true ? true : false;
-            chkbxTXSound.Checked = Properties.Settings.Default.SoundTX == true ? true : false;
+            chkbxLameMode.Checked = Properties.Settings.Default.Animations;
+            chkbxRXSound.Checked = Properties.Settings.Default.SoundRX;
+            chkbxTXSound.Checked = Properties.Settings.Default.SoundTX;
+            rdbtnClick.Checked = Properties.Settings.Default.ClickRead;
+            rdbtnHover.Checked = Properties.Settings.Default.HoverRead;
             /***************************************************/
 
             string[] tmpstring = new string[classSize];
@@ -1264,7 +1291,10 @@ namespace SrP_ClassroomInq
                 }
                 i = j = 0;
             }
-            catch { }
+            catch 
+            {
+                MessageBox.Show("Student Data File is missing!");
+            }
 
 		}
 
@@ -1410,34 +1440,10 @@ namespace SrP_ClassroomInq
 
         private void lbl_question_MouseMove(object sender, MouseEventArgs e)
         {
-            //UnreadCount needs smartly decremented here
-            for (int i = 0; i < lbl_arr.Length - 1; i++) //loop through to find the clicked one
+            if (rdbtnHover.Checked)
             {
-                if (sender.Equals(lbl_arr[i]))
-                {
-                    lbl_ID_2 = i;
-                }
+                UnreadDecrement(sender);
             }
-
-            if (Q_status[lbl_ID_2] != true) //if status is true then it has already been read
-            {
-                Q_status[lbl_ID_2] = true;
-                UnreadCount--;
-                lbl_arr[lbl_ID_2].Text = lbl_arr[lbl_ID_2].Text.TrimStart('*').TrimStart(' '); //removes unread indicator in the label
-
-                if (UnreadCount > 0)
-                {
-                    picbxStatus.Visible = false;
-                    tlstrplbl_Unread.Text = "Unread " + UnreadCount.ToString();
-                    tlstrplbl_Unread.Visible = true;
-                }
-                else
-                {
-                    picbxStatus.Visible = true;
-                    tlstrplbl_Unread.Visible = false;
-                }
-            }
-         
         }
 
         private void directMessageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1516,8 +1522,7 @@ namespace SrP_ClassroomInq
         {
             txtbxDM.ResetText();
         }
-        
-
+ 
         private void btnDM_Send_Click(object sender, EventArgs e)
         {
             //send stuff obviously
@@ -1562,7 +1567,8 @@ namespace SrP_ClassroomInq
         private void generalFAQToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FAQClicked = true;
-            timer.Enabled = true;  
+            timer.Enabled = true;
+            PanelFAQ.Focus();
         }
 
         private void lnklblFAQ_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -1893,7 +1899,40 @@ namespace SrP_ClassroomInq
             Properties.Settings.Default.Animations = chkbxLameMode.Checked;
             Properties.Settings.Default.SoundRX = chkbxRXSound.Checked;
             Properties.Settings.Default.SoundTX = chkbxTXSound.Checked;
+            Properties.Settings.Default.ClickRead = rdbtnClick.Checked;
+            Properties.Settings.Default.HoverRead = rdbtnHover.Checked;
             Properties.Settings.Default.Save();
         }
-   }
-}
+
+        private void UnreadDecrement(object sender)
+        {
+            //UnreadCount needs smartly decremented here
+            for (int i = 0; i < lbl_arr.Length - 1; i++) //loop through to find the clicked one
+            {
+                if (sender.Equals(lbl_arr[i]))
+                {
+                    lbl_ID_2 = i;
+                }
+            }
+
+            if (Q_status[lbl_ID_2] != true) //if status is true then it has already been read
+            {
+                Q_status[lbl_ID_2] = true;
+                UnreadCount--;
+                lbl_arr[lbl_ID_2].Text = lbl_arr[lbl_ID_2].Text.TrimStart('*').TrimStart(' '); //removes unread indicator in the label
+
+                if (UnreadCount > 0)
+                {
+                    picbxStatus.Visible = false;
+                    tlstrplbl_Unread.Text = "Unread " + UnreadCount.ToString();
+                    tlstrplbl_Unread.Visible = true;
+                }
+                else
+                {
+                    picbxStatus.Visible = true;
+                    tlstrplbl_Unread.Visible = false;
+                }
+            }
+        }
+   } //end of partial class
+} //end of namespace

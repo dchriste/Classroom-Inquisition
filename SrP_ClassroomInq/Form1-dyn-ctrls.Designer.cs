@@ -123,6 +123,9 @@
             this.btnCLSStudents = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.timer_ControlsCreate = new System.Windows.Forms.Timer(this.components);
+            this.grpbxUnread = new System.Windows.Forms.GroupBox();
+            this.rdbtnHover = new System.Windows.Forms.RadioButton();
+            this.rdbtnClick = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.PanelPrefs.SuspendLayout();
@@ -135,6 +138,7 @@
             this.PanelStudents.SuspendLayout();
             this.grpbxEDITStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.grpbxUnread.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -628,6 +632,7 @@
             // 
             this.PanelPrefs.AutoScroll = true;
             this.PanelPrefs.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelPrefs.Controls.Add(this.grpbxUnread);
             this.PanelPrefs.Controls.Add(this.chkbxLameMode);
             this.PanelPrefs.Controls.Add(this.btnStuMgmt_Prefs);
             this.PanelPrefs.Controls.Add(this.chkbxTXSound);
@@ -990,6 +995,39 @@
             this.timer_ControlsCreate.Interval = 1000;
             this.timer_ControlsCreate.Tick += new System.EventHandler(this.timer_ControlsCreate_Tick);
             // 
+            // grpbxUnread
+            // 
+            this.grpbxUnread.Controls.Add(this.rdbtnClick);
+            this.grpbxUnread.Controls.Add(this.rdbtnHover);
+            this.grpbxUnread.Location = new System.Drawing.Point(165, 81);
+            this.grpbxUnread.Name = "grpbxUnread";
+            this.grpbxUnread.Size = new System.Drawing.Size(158, 72);
+            this.grpbxUnread.TabIndex = 6;
+            this.grpbxUnread.TabStop = false;
+            this.grpbxUnread.Text = "Mark as Read by:";
+            // 
+            // rdbtnHover
+            // 
+            this.rdbtnHover.AutoSize = true;
+            this.rdbtnHover.Location = new System.Drawing.Point(31, 19);
+            this.rdbtnHover.Name = "rdbtnHover";
+            this.rdbtnHover.Size = new System.Drawing.Size(89, 17);
+            this.rdbtnHover.TabIndex = 0;
+            this.rdbtnHover.TabStop = true;
+            this.rdbtnHover.Text = "Mouse Hover";
+            this.rdbtnHover.UseVisualStyleBackColor = true;
+            // 
+            // rdbtnClick
+            // 
+            this.rdbtnClick.AutoSize = true;
+            this.rdbtnClick.Location = new System.Drawing.Point(31, 42);
+            this.rdbtnClick.Name = "rdbtnClick";
+            this.rdbtnClick.Size = new System.Drawing.Size(83, 17);
+            this.rdbtnClick.TabIndex = 1;
+            this.rdbtnClick.TabStop = true;
+            this.rdbtnClick.Text = "Mouse Click";
+            this.rdbtnClick.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1035,6 +1073,8 @@
             this.grpbxEDITStudents.ResumeLayout(false);
             this.grpbxEDITStudents.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.grpbxUnread.ResumeLayout(false);
+            this.grpbxUnread.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1135,6 +1175,9 @@
         private System.Windows.Forms.Button btnStuMgmt_Prefs;
         private System.Windows.Forms.CheckBox chkbxLameMode;
         private System.Windows.Forms.Timer timer_ControlsCreate;
+        private System.Windows.Forms.GroupBox grpbxUnread;
+        private System.Windows.Forms.RadioButton rdbtnClick;
+        private System.Windows.Forms.RadioButton rdbtnHover;
     }
 }
 

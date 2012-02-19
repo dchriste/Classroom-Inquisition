@@ -128,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Background.bmp" />
+    <None Include="Resources\reply-arrow.png" />
     <Content Include="user_comment.ico" />
   </ItemGroup>
   <ItemGroup>
