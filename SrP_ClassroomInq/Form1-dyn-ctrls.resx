@@ -1394,7 +1394,13 @@
      c) Compose your message in the text box and click send to, 
          well send of course
 
+2) How do I change a student's name as it appears in the program?
+     a) Go to Preferences and then click Student Management
+     b) Select the desired student and click edit
+     c) When you're finished click done
 
+3) How can I submit a bug?
+     a) submit your bug at: 
 
 
 
@@ -1405,8 +1411,8 @@
   <data name="pictureBox3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAtgAAABaCAYAAACCNCH/AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBwAA
-        CwcBtnMLwAAAI0lJREFUeF7tnYmfLUV1x9+b9+ZtoKKioIKI7KIIuIGgoCiLoCgKKq4gCCqICwi44E5C
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBgAA
+        CwYBZDTpJAAAI0lJREFUeF7tnYmfLUV1x9+b9+ZtoKKioIKI7KIIuIGgoCiLoCgKKq4gCCqICwi44E5C
         Ykg0iVHUSEKiMWTTrP9dp78zllP3THVXVffpe3vu++XzmY/h3e7qqlPfqjp16pxT+/ft29e0f/o/SUAS
         kAQkAUlAEpAEJAFJQBJwkgAKtv4kAzEgBsSAGBADYkAMiAEx4MOAlGttMMSAGBADYkAMiAExIAbEgCMD
         EqajMLXr89n1SY6SoxgQA2JADIgBMbCXGZCCLQVbDIgBMSAGxIAYEANiQAw4MiBhOgpzL++0VHdZCsSA

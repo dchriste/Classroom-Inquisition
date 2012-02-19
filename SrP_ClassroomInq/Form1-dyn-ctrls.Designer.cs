@@ -91,6 +91,9 @@
             this.serialCOMcmbbx = new System.Windows.Forms.ComboBox();
             this.timer_SerialRead = new System.Windows.Forms.Timer(this.components);
             this.PanelPrefs = new System.Windows.Forms.Panel();
+            this.grpbxUnread = new System.Windows.Forms.GroupBox();
+            this.rdbtnClick = new System.Windows.Forms.RadioButton();
+            this.rdbtnHover = new System.Windows.Forms.RadioButton();
             this.chkbxLameMode = new System.Windows.Forms.CheckBox();
             this.btnStuMgmt_Prefs = new System.Windows.Forms.Button();
             this.chkbxTXSound = new System.Windows.Forms.CheckBox();
@@ -123,12 +126,11 @@
             this.btnCLSStudents = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.timer_ControlsCreate = new System.Windows.Forms.Timer(this.components);
-            this.grpbxUnread = new System.Windows.Forms.GroupBox();
-            this.rdbtnHover = new System.Windows.Forms.RadioButton();
-            this.rdbtnClick = new System.Windows.Forms.RadioButton();
+            this.lnklblIssues = new System.Windows.Forms.LinkLabel();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.PanelPrefs.SuspendLayout();
+            this.grpbxUnread.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbxPrefs)).BeginInit();
             this.DirectMsgPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -138,7 +140,6 @@
             this.PanelStudents.SuspendLayout();
             this.grpbxEDITStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.grpbxUnread.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -207,7 +208,7 @@
             this.normalToolStripMenuItem,
             this.quizToolStripMenuItem});
             this.modesToolStripMenuItem.Name = "modesToolStripMenuItem";
-            this.modesToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.modesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.modesToolStripMenuItem.Text = "Modes";
             // 
             // attedanceToolStripMenuItem
@@ -239,7 +240,7 @@
             // anonymousToolStripMenuItem
             // 
             this.anonymousToolStripMenuItem.Name = "anonymousToolStripMenuItem";
-            this.anonymousToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.anonymousToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.anonymousToolStripMenuItem.Text = "Anonymous";
             // 
             // showNamesToolStripMenuItem
@@ -247,7 +248,7 @@
             this.showNamesToolStripMenuItem.Checked = true;
             this.showNamesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.showNamesToolStripMenuItem.Name = "showNamesToolStripMenuItem";
-            this.showNamesToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.showNamesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.showNamesToolStripMenuItem.Text = "Show Names";
             // 
             // PrefsToolStripMenuItem
@@ -403,20 +404,20 @@
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.undoToolStripMenuItem.Text = "&Undo";
             // 
             // redoToolStripMenuItem
             // 
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.redoToolStripMenuItem.Text = "&Redo";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(147, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
             // 
             // cutToolStripMenuItem
             // 
@@ -424,7 +425,7 @@
             this.cutToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cutToolStripMenuItem.Text = "Cu&t";
             // 
             // copyToolStripMenuItem
@@ -433,7 +434,7 @@
             this.copyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.copyToolStripMenuItem.Text = "&Copy";
             // 
             // pasteToolStripMenuItem
@@ -442,18 +443,18 @@
             this.pasteToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.pasteToolStripMenuItem.Text = "&Paste";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(147, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
             // 
             // selectAllToolStripMenuItem
             // 
             this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.selectAllToolStripMenuItem.Text = "Select &All";
             // 
             // toolsToolStripMenuItem
@@ -645,6 +646,39 @@
             this.PanelPrefs.Size = new System.Drawing.Size(355, 432);
             this.PanelPrefs.TabIndex = 6;
             // 
+            // grpbxUnread
+            // 
+            this.grpbxUnread.Controls.Add(this.rdbtnClick);
+            this.grpbxUnread.Controls.Add(this.rdbtnHover);
+            this.grpbxUnread.Location = new System.Drawing.Point(165, 81);
+            this.grpbxUnread.Name = "grpbxUnread";
+            this.grpbxUnread.Size = new System.Drawing.Size(158, 72);
+            this.grpbxUnread.TabIndex = 6;
+            this.grpbxUnread.TabStop = false;
+            this.grpbxUnread.Text = "Mark as Read by:";
+            // 
+            // rdbtnClick
+            // 
+            this.rdbtnClick.AutoSize = true;
+            this.rdbtnClick.Location = new System.Drawing.Point(31, 42);
+            this.rdbtnClick.Name = "rdbtnClick";
+            this.rdbtnClick.Size = new System.Drawing.Size(83, 17);
+            this.rdbtnClick.TabIndex = 1;
+            this.rdbtnClick.TabStop = true;
+            this.rdbtnClick.Text = "Mouse Click";
+            this.rdbtnClick.UseVisualStyleBackColor = true;
+            // 
+            // rdbtnHover
+            // 
+            this.rdbtnHover.AutoSize = true;
+            this.rdbtnHover.Location = new System.Drawing.Point(31, 19);
+            this.rdbtnHover.Name = "rdbtnHover";
+            this.rdbtnHover.Size = new System.Drawing.Size(89, 17);
+            this.rdbtnHover.TabIndex = 0;
+            this.rdbtnHover.TabStop = true;
+            this.rdbtnHover.Text = "Mouse Hover";
+            this.rdbtnHover.UseVisualStyleBackColor = true;
+            // 
             // chkbxLameMode
             // 
             this.chkbxLameMode.Location = new System.Drawing.Point(18, 159);
@@ -815,6 +849,7 @@
             // 
             this.PanelFAQ.AutoScroll = true;
             this.PanelFAQ.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelFAQ.Controls.Add(this.lnklblIssues);
             this.PanelFAQ.Controls.Add(this.lblFAQ);
             this.PanelFAQ.Controls.Add(this.lnklblFAQ);
             this.PanelFAQ.Controls.Add(this.txtbxFAQ);
@@ -838,12 +873,14 @@
             // lnklblFAQ
             // 
             this.lnklblFAQ.AutoSize = true;
+            this.lnklblFAQ.LinkColor = System.Drawing.Color.Gold;
             this.lnklblFAQ.Location = new System.Drawing.Point(117, 467);
             this.lnklblFAQ.Name = "lnklblFAQ";
             this.lnklblFAQ.Size = new System.Drawing.Size(153, 13);
             this.lnklblFAQ.TabIndex = 3;
             this.lnklblFAQ.TabStop = true;
             this.lnklblFAQ.Text = "bondslaveofJesus@gmail.com ";
+            this.lnklblFAQ.VisitedLinkColor = System.Drawing.Color.Chocolate;
             this.lnklblFAQ.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnklblFAQ_LinkClicked);
             // 
             // txtbxFAQ
@@ -995,38 +1032,18 @@
             this.timer_ControlsCreate.Interval = 1000;
             this.timer_ControlsCreate.Tick += new System.EventHandler(this.timer_ControlsCreate_Tick);
             // 
-            // grpbxUnread
+            // lnklblIssues
             // 
-            this.grpbxUnread.Controls.Add(this.rdbtnClick);
-            this.grpbxUnread.Controls.Add(this.rdbtnHover);
-            this.grpbxUnread.Location = new System.Drawing.Point(165, 81);
-            this.grpbxUnread.Name = "grpbxUnread";
-            this.grpbxUnread.Size = new System.Drawing.Size(158, 72);
-            this.grpbxUnread.TabIndex = 6;
-            this.grpbxUnread.TabStop = false;
-            this.grpbxUnread.Text = "Mark as Read by:";
-            // 
-            // rdbtnHover
-            // 
-            this.rdbtnHover.AutoSize = true;
-            this.rdbtnHover.Location = new System.Drawing.Point(31, 19);
-            this.rdbtnHover.Name = "rdbtnHover";
-            this.rdbtnHover.Size = new System.Drawing.Size(89, 17);
-            this.rdbtnHover.TabIndex = 0;
-            this.rdbtnHover.TabStop = true;
-            this.rdbtnHover.Text = "Mouse Hover";
-            this.rdbtnHover.UseVisualStyleBackColor = true;
-            // 
-            // rdbtnClick
-            // 
-            this.rdbtnClick.AutoSize = true;
-            this.rdbtnClick.Location = new System.Drawing.Point(31, 42);
-            this.rdbtnClick.Name = "rdbtnClick";
-            this.rdbtnClick.Size = new System.Drawing.Size(83, 17);
-            this.rdbtnClick.TabIndex = 1;
-            this.rdbtnClick.TabStop = true;
-            this.rdbtnClick.Text = "Mouse Click";
-            this.rdbtnClick.UseVisualStyleBackColor = true;
+            this.lnklblIssues.AutoSize = true;
+            this.lnklblIssues.LinkColor = System.Drawing.Color.Gold;
+            this.lnklblIssues.Location = new System.Drawing.Point(138, 252);
+            this.lnklblIssues.Name = "lnklblIssues";
+            this.lnklblIssues.Size = new System.Drawing.Size(73, 13);
+            this.lnklblIssues.TabIndex = 5;
+            this.lnklblIssues.TabStop = true;
+            this.lnklblIssues.Text = "GitHub-Issues";
+            this.lnklblIssues.VisitedLinkColor = System.Drawing.Color.Chocolate;
+            this.lnklblIssues.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnklblIssues_LinkClicked);
             // 
             // Form1
             // 
@@ -1061,6 +1078,8 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.PanelPrefs.ResumeLayout(false);
+            this.grpbxUnread.ResumeLayout(false);
+            this.grpbxUnread.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbxPrefs)).EndInit();
             this.DirectMsgPanel.ResumeLayout(false);
             this.DirectMsgPanel.PerformLayout();
@@ -1073,8 +1092,6 @@
             this.grpbxEDITStudents.ResumeLayout(false);
             this.grpbxEDITStudents.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.grpbxUnread.ResumeLayout(false);
-            this.grpbxUnread.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1178,6 +1195,7 @@
         private System.Windows.Forms.GroupBox grpbxUnread;
         private System.Windows.Forms.RadioButton rdbtnClick;
         private System.Windows.Forms.RadioButton rdbtnHover;
+        private System.Windows.Forms.LinkLabel lnklblIssues;
     }
 }
 

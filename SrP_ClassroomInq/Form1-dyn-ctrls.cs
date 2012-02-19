@@ -320,15 +320,15 @@ namespace SrP_ClassroomInq
                 {
                     StuMgmtClicked = true;
                     timer.Enabled = true;
+                }                
+                else if (FAQShowing)
+                {
+                    FAQClicked = true;
+                    timer.Enabled = true;
                 }
                 else if (PrefsShowing)
                 {
                     PrefsClicked = true;
-                    timer.Enabled = true;
-                }
-                else if (FAQShowing)
-                {
-                    FAQClicked = true;
                     timer.Enabled = true;
                 }
                 else if (DMPanelShowing)
@@ -1933,6 +1933,15 @@ namespace SrP_ClassroomInq
                     tlstrplbl_Unread.Visible = false;
                 }
             }
+        }
+
+        private void lnklblIssues_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("https://github.com/dchriste/Classroom-Inquisition/issues");
+            }
+            catch { }
         }
    } //end of partial class
 } //end of namespace
