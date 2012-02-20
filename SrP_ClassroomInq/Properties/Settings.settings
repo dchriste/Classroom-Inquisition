@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="key" Type="System.String" Scope="User">
-      <Value Profile="(Default)">this-isn't-secure</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="Animations" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -19,6 +19,9 @@
     </Setting>
     <Setting Name="ClickRead" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="iv" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

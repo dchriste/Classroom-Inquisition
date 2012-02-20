@@ -25,7 +25,7 @@ namespace SrP_ClassroomInq.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("this-isn\'t-secure")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public string key {
             get {
                 return ((string)(this["key"]));
@@ -92,6 +92,18 @@ namespace SrP_ClassroomInq.Properties {
             }
             set {
                 this["ClickRead"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string iv {
+            get {
+                return ((string)(this["iv"]));
+            }
+            set {
+                this["iv"] = value;
             }
         }
     }

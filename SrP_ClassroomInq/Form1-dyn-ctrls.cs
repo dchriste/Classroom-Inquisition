@@ -48,7 +48,8 @@ namespace SrP_ClassroomInq
         string tempString = "";
         string tempString2 = "";
         string RX_Data = "";
-        string SecretKey;
+        static byte[] SecretKey;
+        static byte[] SecretIV;
         SoundPlayer JukeBox = new System.Media.SoundPlayer(); //for alert tone
         bool WeGotData = false;
 		public const int classSize = 50;  //will be max questions handled at once
@@ -1264,7 +1265,8 @@ namespace SrP_ClassroomInq
             //auto fill feed box or something... for testing if needed
 
             Properties.Settings.Default.Reload(); //load the key..
-            SecretKey = Properties.Settings.Default.key;
+            SecretKey = ASCIIEncoding.ASCII.GetBytes(Properties.Settings.Default.key);
+            SecretIV = ASCIIEncoding.ASCII.GetBytes(Properties.Settings.Default.iv);
 
             /*Check the state of previous settings and reset them*/
             chkbxLameMode.Checked = Properties.Settings.Default.Animations;
@@ -1587,18 +1589,18 @@ namespace SrP_ClassroomInq
             //open StuMgmtPanel
             if (StuMgmtTimesClicked == 0)
             {
-                //try
-                //{
-                //    if (File.Exists(EncryptedData))
-                //    {
-                //        DecryptFile(EncryptedData, PlainData, SecretKey);
-                //        File.Delete(EncryptedData); //remove old encrypted data, on panel open
-                //    }
-                //}
-                //catch (Exception E)
-                //{
-                //    MessageBox.Show("Decrypt failed..." + Environment.NewLine + E);
-                //}
+                try
+                {
+                    if (File.Exists(EncryptedData))
+                    {
+                        DecryptFile(EncryptedData, PlainData);
+                        //File.Delete(EncryptedData); //remove old encrypted data, on panel open
+                    }
+                }
+                catch (Exception E)
+                {
+                    MessageBox.Show("Decrypt failed..." + Environment.NewLine + E);
+                }
                 try
                 {
                     using (StreamReader sr = File.OpenText(PlainData))
@@ -1659,82 +1661,106 @@ namespace SrP_ClassroomInq
                 sw.Flush();
                 sw.Close();
             }
-            
-            ////get key for file encryption
-            //SecretKey = GenerateKey();
 
-            ////for additional security pin the key
-            //GCHandle gch = GCHandle.Alloc(SecretKey, GCHandleType.Pinned);
+            //get key for file encryption
+            GenerateKey();
 
-            ////encrypt away!
-            //EncryptFile(PlainData, EncryptedData, SecretKey);
+            //for additional security pin the key
+            GCHandle gch = GCHandle.Alloc(SecretKey, GCHandleType.Pinned);
 
-            //Properties.Settings.Default.key = SecretKey;
-            //Properties.Settings.Default.Save();
+            //encrypt away!
+            EncryptFile(PlainData, EncryptedData);
 
-            //ZeroMemory(gch.AddrOfPinnedObject(), SecretKey.Length);
-            ////SecretKey.Remove(0); //starting with first character, zero the string
-            //gch.Free();
+            Properties.Settings.Default.key = ASCIIEncoding.ASCII.GetString(SecretKey);
+            Properties.Settings.Default.Save();
+
+            ZeroMemory(gch.AddrOfPinnedObject(), SecretKey.Length);
+            //SecretKey.Remove(0); //starting with first character, zero the string
+            gch.Free();
 
             //File.Delete(PlainData); //get rid of the unencrypted data
         }
 
-        //courtesy of msdn: http://support.microsoft.com/kb/307010
+        //Adapted from msdn: http://msdn.microsoft.com/en-us/library/system.security.cryptography.aescryptoserviceprovider.aspx
         #region Crypto from Msdn
-        static string GenerateKey()
+        static void GenerateKey()
         {
             //create an instance of Symetric Algorithm. Key and IV are generated automatically.
-            DESCryptoServiceProvider desCrypto = (DESCryptoServiceProvider)DESCryptoServiceProvider.Create();
-
-            //Use the Automatically generated key for encryption..
-            return ASCIIEncoding.ASCII.GetString(desCrypto.Key); 
+            AesCryptoServiceProvider aesCrypto = (AesCryptoServiceProvider)AesCryptoServiceProvider.Create();
+            SecretKey = aesCrypto.Key;
+            SecretIV = aesCrypto.IV;
         }
 
-        static void EncryptFile(string sInputFilename, string sOutputFilename, string sKey)
+        static void EncryptFile(string sInputFilename, string sOutputFilename)
         {
+            byte[] output;
+
             //input filestream
             FileStream fsInput = new FileStream(sInputFilename, FileMode.Open, FileAccess.Read);
             //output filestream
             FileStream fsEncrypted = new FileStream(sOutputFilename, FileMode.Create, FileAccess.Write);
 
             //actual crypto provider to be used on the file
-            DESCryptoServiceProvider DES = new DESCryptoServiceProvider();
+            AesCryptoServiceProvider AES = new AesCryptoServiceProvider();
 
             //give the cryptographic provider the secret key and init vector otherwise it will make them up...
-            DES.Key = ASCIIEncoding.ASCII.GetBytes(sKey);
-            DES.IV = ASCIIEncoding.ASCII.GetBytes(sKey);
+            AES.Key = SecretKey;
+            AES.IV = SecretIV;
 
             //create a cryptostream class using the previous cryptographic provider and existing filestream obj
-            ICryptoTransform desencrypt = DES.CreateEncryptor();
-            CryptoStream cryptoctream = new CryptoStream(fsEncrypted, desencrypt, CryptoStreamMode.Write);
+            ICryptoTransform AesEncrypt = AES.CreateEncryptor(AES.Key, AES.IV);
 
-            //read in the input and write the encypted output file by passing it to cryptostream
-            byte[] bytearrayinput = new byte[fsInput.Length];
-            fsInput.Read(bytearrayinput, 0, bytearrayinput.Length);
-            cryptoctream.Write(bytearrayinput, 0, bytearrayinput.Length);
+            using (MemoryStream msEncrypt = new MemoryStream())
+            {
+                using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, AesEncrypt, CryptoStreamMode.Write))
+                {
+                    using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                    {
+                        //write all data to stream
+                        swEncrypt.Write(fsInput);
+                    }
+                    fsInput.Close();
+                    output = msEncrypt.ToArray();
+                }
+            }
 
+            foreach(byte bite in output) 
+            {
+                fsEncrypted.WriteByte(bite); //write encrypted cipher to file
+            }
+            fsEncrypted.Close();
         }
 
-        static void DecryptFile(string sInputFilename, string sOutputFilename, string sKey)
+        static void DecryptFile(string sInputFilename, string sOutputFilename)
         {
-            DESCryptoServiceProvider DES = new DESCryptoServiceProvider();
-            DES.Key = ASCIIEncoding.ASCII.GetBytes(sKey);
-            DES.IV = ASCIIEncoding.ASCII.GetBytes(sKey);
+            string output = null;
+            AesCryptoServiceProvider AES = new AesCryptoServiceProvider();
+            AES.Key = SecretKey;
+            AES.IV = SecretIV;
 
+            
             //create file stream to read the encrypted file back
             FileStream fsread = new FileStream(sInputFilename, FileMode.Open, FileAccess.Read);
 
             //create aes decryptor from the aes instance
-            ICryptoTransform desdecrypt = DES.CreateDecryptor();
+            ICryptoTransform AesDecrypt = AES.CreateDecryptor(AES.Key, AES.IV);
 
-            //create crypto stream set to read and do a aes decryption transform on incoming bytes
-            CryptoStream cryptostreamDecr = new CryptoStream(fsread, desdecrypt, CryptoStreamMode.Read);
+            using (MemoryStream msDecrypt = new MemoryStream())
+            {
+                using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, AesDecrypt, CryptoStreamMode.Read))
+                {
+                    using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                    {
+                        //read the decrypted bytes from the stream and place them in a string
+                        output = srDecrypt.ReadToEnd();
+                    }
+                }
+            }
 
-            //prints the contents of the decrypted file
-            StreamWriter fsDecrypted = new StreamWriter(sOutputFilename);
-            fsDecrypted.Write(new StreamReader(cryptostreamDecr).ReadToEnd());
-            fsDecrypted.Flush();
-            fsDecrypted.Close();
+            using (StreamWriter fsDecrypted = new StreamWriter(sOutputFilename))
+            {
+                fsDecrypted.Write(output);
+            }
         }
 
         //  Call this function to remove the key from memory after use for security.
@@ -1901,6 +1927,8 @@ namespace SrP_ClassroomInq
             Properties.Settings.Default.SoundTX = chkbxTXSound.Checked;
             Properties.Settings.Default.ClickRead = rdbtnClick.Checked;
             Properties.Settings.Default.HoverRead = rdbtnHover.Checked;
+            Properties.Settings.Default.key = ASCIIEncoding.ASCII.GetString(SecretKey);
+            Properties.Settings.Default.iv = ASCIIEncoding.ASCII.GetString(SecretIV);
             Properties.Settings.Default.Save();
         }
 
