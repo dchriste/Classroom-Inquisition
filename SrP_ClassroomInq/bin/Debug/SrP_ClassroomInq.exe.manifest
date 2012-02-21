@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SrP_ClassroomInq.exe" size="752128">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SrP_ClassroomInq.exe" size="753152">
       <assemblyIdentity name="SrP_ClassroomInq" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>RqPcnt/mti9+xT+4mi/DSyMIRyY=</dsig:DigestValue>
+        <dsig:DigestValue>VoxltdgmP5fsMoh7b7TfFrSutWY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

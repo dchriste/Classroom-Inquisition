@@ -41,7 +41,7 @@ namespace SrP_ClassroomInq
         bool[] Q_Replied = new bool[classSize]; //records if the question has been replied to
         string[] Q_sender = new string[classSize]; // records the name of the sender of each question
         string brdcst_addr = "\x01";
-
+        string[] logFiles = new string[classSize];
         string EncryptedData = @"StudentInfo_Encrypted.txt";
         string PlainData = @"StudentInfo.txt";
         string[] portNames = new string[10];
@@ -1188,18 +1188,20 @@ namespace SrP_ClassroomInq
                // {
                     if (SendMsg(txtbx_reply_arr[lbl_ID].Text.TrimEnd('\x0A'), addr)) //SendMsg returns true for a successful send
                     {
+                        LogQandA(txtbx_reply_arr[lbl_ID].Text.TrimEnd('\x0A'), true, addr); //log message
                         txtbx_reply_arr[lbl_ID].Clear();
                         btnCLS_WASclicked = true; //close question
-                        timer.Enabled = true; // hide the send button   
-                    }
-                    AckRXd = false; //reset
+                        timer.Enabled = true; // hide the send button
 
-                    if (!Q_Replied[lbl_ID])
-                    {
-                        Q_Replied[lbl_ID] = true;
-                        picbx_arr[lbl_ID].BringToFront();//to display on the label
-                        picbx_arr[lbl_ID].Visible = true; //come out from hiding
+                        if (!Q_Replied[lbl_ID])
+                        {
+                            Q_Replied[lbl_ID] = true;
+                            picbx_arr[lbl_ID].BringToFront();//to display on the label
+                            picbx_arr[lbl_ID].Visible = true; //come out from hiding
+                        }
                     }
+                    //AckRXd = false; //reset
+                    
              //   }
               //  else
              //   {
@@ -1535,6 +1537,7 @@ namespace SrP_ClassroomInq
                 //{
                     if (SendMsg(txtbxDM.Text, addr)) //Sending Function, returns true if send succeeds
                     {
+                        LogQandA(txtbxDM.Text, true, addr);
                         txtbxDM.ResetText(); //clear the textbox after sending
                         DMclicked = true; //to close the direct message panel
                         timer.Enabled = true;
@@ -1860,6 +1863,7 @@ namespace SrP_ClassroomInq
             {
                 if (ix > jx) // we haven't made all the controls yet
                 {
+                    LogQandA(Qs_to_create[jx], false, Q_sender[jx]);
                     MakeCtrls(Qs_to_create[jx++]); //make controls and increment creation counter
                 }
                 else
@@ -1942,6 +1946,65 @@ namespace SrP_ClassroomInq
                 System.Diagnostics.Process.Start("https://github.com/dchriste/Classroom-Inquisition/issues");
             }
             catch { }
+        }
+
+        private bool LogQandA(string dialog, bool teacher, string recipient)
+        {
+            bool success = false;
+            byte student = 0;
+            string name2write = "";
+            try
+            {
+                for (int i = 0; i < Students_ID.Length; i++) //loop to find student name by comparing addresses
+                {
+                    if (String.CompareOrdinal(addr_tbl[i], recipient) == 0) //CompareOrdinal Compares Numerical value
+                    {
+                        name2write = Students_Name[i]; //student name
+                        student = (byte)i; //for use as a index below
+                        break;
+                    }
+                }
+
+                //make the generic filename
+                logFiles[student] = @".logs\Student" + (student + 1).ToString() + "-log.txt"; //Student#-log.txt in hidden folder .logs
+
+                if (File.Exists(logFiles[student]) == false)
+                {
+                    using (FileStream fs = File.Create(logFiles[student]))
+                    {
+                        fs.Close();
+                    }
+                }
+
+                if (!teacher)
+                {
+                    //then I have the name already from the loop above.
+                }
+                else
+                {
+                    name2write = "Teacher";
+                }
+
+                using (StreamWriter sw = File.AppendText(logFiles[student]))
+                {
+                    sw.NewLine = "\x0A"; //sets the writeline terminator
+                    sw.WriteLine(name2write + " ( " + DateTime.Now.ToString("HH:mm:ss") + "  |  " + DateTime.Today.Date.ToString("d") + " )" + ":" + "\x0A" + dialog + "\x0A");  //this will leave one blank line between each message
+                    /*Example:
+                     * Teacher (13:10:12  |  4/1/2012):
+                     * It's okay johnny, you're dad will be here soon.. April Fools!
+                     * ...
+                     * */
+                    sw.Flush();
+                    sw.Close();
+                }
+                success = true;
+            }
+            catch
+            {
+                success = false;
+                MessageBox.Show("Log creation // writing failed!!!");
+            }
+            return success;
         }
    } //end of partial class
 } //end of namespace
