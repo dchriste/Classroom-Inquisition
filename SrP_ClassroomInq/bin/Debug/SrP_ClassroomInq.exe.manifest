@@ -43,24 +43,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SrP_ClassroomInq.exe" size="753152">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SrP_ClassroomInq.exe" size="811008">
       <assemblyIdentity name="SrP_ClassroomInq" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>VoxltdgmP5fsMoh7b7TfFrSutWY=</dsig:DigestValue>
+        <dsig:DigestValue>+mDG9Q1fVmtQB6a2b9ZLC8IDOl4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="SrP_ClassroomInq.exe.config" size="1448">
+  <file name="SrP_ClassroomInq.exe.config" size="1570">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>pKa2rU0rgIjc3HqQXa8AUg3zYgs=</dsig:DigestValue>
+      <dsig:DigestValue>yRQfwoHsXQXFmyrVkd4GznbU5ss=</dsig:DigestValue>
     </hash>
   </file>
   <file name="user_comment.ico" size="67646">

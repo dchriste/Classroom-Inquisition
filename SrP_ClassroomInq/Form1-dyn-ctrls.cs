@@ -26,6 +26,7 @@ namespace SrP_ClassroomInq
             PanelFAQ.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
             PanelPrefs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
             DirectMsgPanel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
+            PanelConvView.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
 		}
         #region Initialization
 
@@ -57,6 +58,8 @@ namespace SrP_ClassroomInq
 		byte j = 0;
         byte x = 0;
         byte iAck = 0;
+        static int logHistoryLength = 500; //this could be a preference, it determines the amount shown in conversation viewer
+        string[] logTmpString = new string[logHistoryLength];
         int ix = 0; //only for serial tick timer...
         int jx = 0; //only for the make controls timer
         string addr = "\xFF";
@@ -78,6 +81,9 @@ namespace SrP_ClassroomInq
         bool DMPanelShowing = new bool();
         bool PrefsShowing = new bool();
         bool PrefsClicked = new bool();
+        bool ConvViewClicked = false;
+        bool ConvViewShowing = false;
+        byte ConvViewTimesClicked = 0;
 		bool textbox1WASclicked = new bool();
 		bool grpbxRPL_WASclicked = new bool();
 		bool btnCLS_WASclicked = new bool();
@@ -98,6 +104,8 @@ namespace SrP_ClassroomInq
 		System.Windows.Forms.TextBox[] txtbx_reply_arr = new System.Windows.Forms.TextBox[classSize]; //add const for max_lns
 		System.Windows.Forms.Label[] lbl_arr = new System.Windows.Forms.Label[classSize]; //add const for max_lns
         System.Windows.Forms.PictureBox[] picbx_arr = new System.Windows.Forms.PictureBox[classSize];
+        System.Windows.Forms.PictureBox[] picbx_ConvView_arr = new System.Windows.Forms.PictureBox[classSize];
+        System.Windows.Forms.ToolTip[] tt_picbxCV_arr = new System.Windows.Forms.ToolTip[classSize];
         System.Drawing.Point origingrouparr = new System.Drawing.Point(6, -13); //originally 6,19 but this gives questions an entering animation
         System.Drawing.Point tempgrouparr = new System.Drawing.Point(6, 19);
         System.Drawing.Point tempreplyarr = new System.Drawing.Point(230, 98);
@@ -106,6 +114,7 @@ namespace SrP_ClassroomInq
         System.Drawing.Point txtbx_reply_temp = new System.Drawing.Point(23, 32);
         System.Drawing.Point lbl_arr_temp = new System.Drawing.Point(0, -13);
         System.Drawing.Point picbx_arr_tmp = new System.Drawing.Point(2, 9);
+        System.Drawing.Point picbx_ConvView_tmp = new System.Drawing.Point(296, 7);
         #endregion
 
         #endregion
@@ -184,8 +193,15 @@ namespace SrP_ClassroomInq
             lbl_arr[NumQuestions].Location = lbl_arr_temp;
             lbl_arr[NumQuestions].Name = "lbl_arr_" + NumQuestions.ToString(); 
             lbl_arr[NumQuestions].Size = new System.Drawing.Size(330, 15);
-            lbl_arr[NumQuestions].TabIndex = 0;            
-            lbl_arr[NumQuestions].Text = "***" + "          " + question + "  -" + tempString2; //passed to this function by the sender, eventually add the name of student here            
+            lbl_arr[NumQuestions].TabIndex = 0;
+            if (showNamesToolStripMenuItem.Checked)
+            {
+                lbl_arr[NumQuestions].Text = "***" + "          " + question + "  -" + tempString2; //passed to this function by the sender, eventually add the name of student here   
+            }
+            else
+            {
+                lbl_arr[NumQuestions].Text = "***" + "          " + question; //passed to this function by the sender, eventually add the name of student here   
+            }
             lbl_arr[NumQuestions].Click += new System.EventHandler(this.lbl_question_Click);
             lbl_arr[NumQuestions].MouseMove += new System.Windows.Forms.MouseEventHandler(this.lbl_question_MouseMove);
 
@@ -193,18 +209,43 @@ namespace SrP_ClassroomInq
             picbx_arr[NumQuestions].Image = global::SrP_ClassroomInq.Properties.Resources.reply_arrow;
             picbx_arr[NumQuestions].Location = picbx_arr_tmp;
             picbx_arr[NumQuestions].Name = "picbx_arr_" + NumQuestions.ToString();
-            picbx_arr[NumQuestions].Size = new System.Drawing.Size(24, 20); //half the actual image size
+            picbx_arr[NumQuestions].Size = new System.Drawing.Size(24, 20); 
             picbx_arr[NumQuestions].SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             picbx_arr[NumQuestions].TabIndex = 0;
             picbx_arr[NumQuestions].TabStop = false;
             picbx_arr[NumQuestions].Visible = false; //set to visible after marked read
-           
+
+            picbx_ConvView_arr[NumQuestions] = new PictureBox();
+            picbx_ConvView_arr[NumQuestions].Image = global::SrP_ClassroomInq.Properties.Resources.bubbles2;
+            picbx_ConvView_arr[NumQuestions].Location = picbx_ConvView_tmp;
+            picbx_ConvView_arr[NumQuestions].Name = "picbx_ConvView_arr_" + NumQuestions.ToString();
+            picbx_ConvView_arr[NumQuestions].Size = new System.Drawing.Size(30, 24); 
+            picbx_ConvView_arr[NumQuestions].SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            picbx_ConvView_arr[NumQuestions].TabIndex = 0;
+            picbx_ConvView_arr[NumQuestions].TabStop = false;
+            picbx_ConvView_arr[NumQuestions].Visible = true; //set to visible after marked read
+            picbx_ConvView_arr[NumQuestions].Click += new System.EventHandler(this.ConvViewPic_Click);
+            picbx_ConvView_arr[NumQuestions].MouseEnter += new System.EventHandler(this.picbx_CV_MouseEnter);
+            picbx_ConvView_arr[NumQuestions].MouseLeave += new System.EventHandler(this.picbx_CV_MouseLeave);
+
+            tt_picbxCV_arr[NumQuestions] = new ToolTip();
+            tt_picbxCV_arr[NumQuestions].BackColor = System.Drawing.Color.Black;
+            tt_picbxCV_arr[NumQuestions].ForeColor = System.Drawing.Color.DarkGoldenrod;
+            tt_picbxCV_arr[NumQuestions].IsBalloon = true;
+            tt_picbxCV_arr[NumQuestions].ToolTipTitle = "Click the icon!";
+            tt_picbxCV_arr[NumQuestions].AutoPopDelay = 2500;
+            tt_picbxCV_arr[NumQuestions].InitialDelay = 300;
+            tt_picbxCV_arr[NumQuestions].ReshowDelay = 1000;
+            tt_picbxCV_arr[NumQuestions].UseFading = true;
+            tt_picbxCV_arr[NumQuestions].UseAnimation = true;
+
             group_arr[NumQuestions].Controls.Add(reply_arr[NumQuestions]);
             group_arr[NumQuestions].Controls.Add(close_arr[NumQuestions]);
             group_arr[NumQuestions].Controls.Add(clear_arr[NumQuestions]);
             group_arr[NumQuestions].Controls.Add(txtbx_reply_arr[NumQuestions]);
             group_arr[NumQuestions].Controls.Add(lbl_arr[NumQuestions]);
             group_arr[NumQuestions].Controls.Add(picbx_arr[NumQuestions]);
+            group_arr[NumQuestions].Controls.Add(picbx_ConvView_arr[NumQuestions]);
             MoveCtrlsDown(); //move ctrls for lifo operation
             grpbxFeed.Controls.Add(group_arr[NumQuestions]);
 
@@ -229,7 +270,7 @@ namespace SrP_ClassroomInq
             NumQuestions++; //increment number of ctrls
         }
 
-        public string HandleBCKSPC(string RAW_DATA) // this works as of 10-25-11
+        public string HandleBCKSPC(string RAW_DATA) 
         {
             string tmpString = RAW_DATA;
             string finalString = "";
@@ -316,11 +357,16 @@ namespace SrP_ClassroomInq
             }
             else if (e.KeyChar == (char)27) //escape key
             {
-                if (StuMgmtShowing)
+                if (ConvViewShowing)
+                {
+                    ConvViewClicked = true;
+                    timer.Enabled = true;
+                }
+                else if (StuMgmtShowing)
                 {
                     StuMgmtClicked = true;
                     timer.Enabled = true;
-                }                
+                }
                 else if (FAQShowing)
                 {
                     FAQClicked = true;
@@ -1145,8 +1191,88 @@ namespace SrP_ClassroomInq
                     }
                 }
             }
+            #endregion
 
-
+            #region Conversation Viewer Animation
+            if ((PanelConvView.Location.Y < 1) && (ConvViewClicked == true) && (ConvViewTimesClicked == 0) && (ConvViewShowing == false))
+            {
+                if (!chkbxLameMode.Checked)
+                {
+                    if (x < 10)
+                    {
+                        PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y + 25, PanelConvView.Size.Width, PanelConvView.Size.Height);
+                        x++;
+                    }
+                    else if (x < 20)
+                    {
+                        PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y + 15, PanelConvView.Size.Width, PanelConvView.Size.Height);
+                        x++;
+                    }
+                    else if (x < 30)
+                    {
+                        PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y + 13, PanelConvView.Size.Width, PanelConvView.Size.Height);
+                        x++;
+                    }
+                    else
+                    {
+                        x = 0;
+                        ConvViewShowing = true;
+                        ConvViewClicked = false;
+                        ConvViewTimesClicked = 1;
+                        timer.Enabled = false;
+                        PanelConvView.Focus();
+                    }
+                }
+                else //no animations
+                {
+                    PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y + 530, PanelConvView.Size.Width, PanelConvView.Size.Height);
+                    ConvViewShowing = true;
+                    ConvViewClicked = false;
+                    ConvViewTimesClicked = 1;
+                    timer.Enabled = false;
+                    PanelConvView.Focus();
+                }
+            }
+            else if( (PanelConvView.Location.Y > -531) && (ConvViewClicked == true) && (ConvViewTimesClicked == 1) && (ConvViewShowing == true))
+            {
+                if (!chkbxLameMode.Checked)
+                {
+                    if (x < 10)
+                    {
+                        PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y - 13, PanelConvView.Size.Width, PanelConvView.Size.Height);
+                        x++;
+                    }
+                    else if (x < 20)
+                    {
+                        PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y - 15, PanelConvView.Size.Width, PanelConvView.Size.Height);
+                        x++;
+                    }
+                    else if (x < 30)
+                    {
+                        PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y - 25, PanelConvView.Size.Width, PanelConvView.Size.Height);
+                        x++;
+                    }
+                    else
+                    {
+                        x = 0;
+                        ConvViewShowing = false;
+                        ConvViewClicked = false;
+                        ConvViewTimesClicked = 0;
+                        timer.Enabled = false; //all done
+                        
+                    }
+                }
+                else //no animations
+                {
+                    PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y - 530, PanelConvView.Size.Width, PanelConvView.Size.Height);
+                    ConvViewShowing = false;
+                    ConvViewClicked = false;
+                    ConvViewTimesClicked = 0;
+                    timer.Enabled = false; //all done
+                    
+                }
+             }
+                        
             #endregion
         }//end of timer_Tick
 
@@ -1274,6 +1400,8 @@ namespace SrP_ClassroomInq
             chkbxTXSound.Checked = Properties.Settings.Default.SoundTX;
             rdbtnClick.Checked = Properties.Settings.Default.ClickRead;
             rdbtnHover.Checked = Properties.Settings.Default.HoverRead;
+            chkbxTooltips.Checked = Properties.Settings.Default.Tooltips;
+            showNamesToolStripMenuItem.Checked = Properties.Settings.Default.ShowNames;
             /***************************************************/
 
             string[] tmpstring = new string[classSize];
@@ -1290,6 +1418,11 @@ namespace SrP_ClassroomInq
                         Students_ID[i++] = tmpstring[1]; //store ID's
                     }
                     sr.Close();
+                }
+                lstbxStudents.Items.Clear();
+                for (j = 0; j < i; j++)
+                {
+                    lstbxStudents.Items.Add(Students_Name[j]); //intialize the lstbx
                 }
                 i = j = 0;
             }
@@ -1865,6 +1998,7 @@ namespace SrP_ClassroomInq
                 {
                     LogQandA(Qs_to_create[jx], false, Q_sender[jx]);
                     MakeCtrls(Qs_to_create[jx++]); //make controls and increment creation counter
+                    picbx_ConvView_arr[jx-1].BringToFront(); //shows the "show conv view pic"
                 }
                 else
                 {
@@ -1905,6 +2039,8 @@ namespace SrP_ClassroomInq
             Properties.Settings.Default.SoundTX = chkbxTXSound.Checked;
             Properties.Settings.Default.ClickRead = rdbtnClick.Checked;
             Properties.Settings.Default.HoverRead = rdbtnHover.Checked;
+            Properties.Settings.Default.Tooltips = chkbxTooltips.Checked;
+            Properties.Settings.Default.ShowNames = showNamesToolStripMenuItem.Checked;
             Properties.Settings.Default.Save();
         }
 
@@ -1966,7 +2102,7 @@ namespace SrP_ClassroomInq
                 }
 
                 //make the generic filename
-                logFiles[student] = @".logs\Student" + (student + 1).ToString() + "-log.txt"; //Student#-log.txt in hidden folder .logs
+                logFiles[student] = @".logs\Student" + student.ToString() + "-log.txt"; //Student#-log.txt in hidden folder .logs
 
                 if (File.Exists(logFiles[student]) == false)
                 {
@@ -2006,5 +2142,127 @@ namespace SrP_ClassroomInq
             }
             return success;
         }
+
+        private void btnCLS_ConvView_Click(object sender, EventArgs e)
+        {
+            //hide the conversation view...
+            ConvViewClicked = true;
+            timer.Enabled = true;
+        }
+
+        private void btnConvView_Click(object sender, EventArgs e)
+        {
+            //show the conversation viewer for the selected student.....
+            string[] tmpstring = new string[logHistoryLength];
+            if (lstbxStudents.SelectedIndex == -1)
+            {
+                MessageBox.Show("You haven't selected a Student to read yet.");
+            }
+            else
+            {
+                try
+                {
+                    if (File.Exists(@".logs\Student" + lstbxStudents.SelectedIndex.ToString() + "-log.txt"))
+                    {
+                        i = 0;
+                        using (StreamReader sr = File.OpenText(@".logs\Student" + lstbxStudents.SelectedIndex.ToString() + "-log.txt")) //dynamically pick the logfile
+                        {
+                            string tempstr = "";
+                            while ((tempstr = sr.ReadLine()) != null)
+                            {
+                                tmpstring = tempstr.Split('\x0A'); //divvy it up by newline
+                                logTmpString[i] = tmpstring[0]; //weird error where tmpstring is only using index 0...this fixes it
+                                i++;
+                            }
+                            sr.Close();
+                            lstbxConvView.Items.Clear(); //clean up last view
+                            for (j = 0; j < (i - 1); j++)
+                            {
+                                lstbxConvView.Items.Add(logTmpString[j]); //repopulate the lstbx
+                            }
+                            i = j = 0;
+                        }
+                    }
+                    else
+                    {
+                        lstbxConvView.Items.Clear();
+                        lstbxConvView.Items.Add("There isn't a conversation to view with this student.");
+                    }
+                }
+                catch (Exception E)
+                {
+                    MessageBox.Show("This is embarassing..there were Errors..." + Environment.NewLine + E);
+                }
+                ConvViewClicked = true;
+                timer.Enabled = true;
+            }
+        }
+
+        private void lstbxConvView_MouseLeave(object sender, EventArgs e)
+        {
+            PanelConvView.Focus();
+        }
+
+        private void ConvViewPic_Click(object sender, EventArgs e)
+        {
+            /*Figure out who sent the message and select their student in mgmt for even call to work*/
+            byte student = 0;
+            for (int i = 0; i < picbx_ConvView_arr.Length - 1; i++) //loop through to find the clicked one
+            {
+                if (sender.Equals(picbx_ConvView_arr[i]))
+                {
+                    student = (byte) i; 
+                    break;
+                }
+            }
+            for (int i = 0; i < Students_ID.Length; i++) //loop to find student name by comparing addresses
+            {
+                if (String.CompareOrdinal(addr_tbl[i], Q_sender[student]) == 0) //CompareOrdinal Compares Numerical value
+                {
+                    lstbxStudents.SetSelected(i, true); //selects the correct item so the next event call succeeds
+                    break;
+                }
+            }
+            /****************************************/
+            btnConvView_Click(sender, e);
+        }
+
+        private void picbx_CV_MouseEnter(object sender, EventArgs e)
+        {
+            if (chkbxTooltips.Checked)
+            {
+                byte student = 0;
+                for (int i = 0; i < picbx_ConvView_arr.Length - 1; i++) //loop through to find the clicked one
+                {
+                    if (sender.Equals(picbx_ConvView_arr[i]))
+                    {
+                        student = (byte)i;
+                        break;
+                    }
+                }
+                /*The below is a workaround for a tooltip bug which doesn't set the relative location until after showing*/
+                tt_picbxCV_arr[student].Show("To open the Conversation Viewer", picbx_ConvView_arr[student], 29, 20, 1);
+                tt_picbxCV_arr[student].Show("To open the Conversation Viewer", picbx_ConvView_arr[student], 29, 20, 5000);
+                /*********************************************************************************************************/
+            }
+        }
+
+        private void picbx_CV_MouseLeave(object sender, EventArgs e)
+        {
+            if (chkbxTooltips.Checked)
+            {
+                byte student = 0;
+                for (int i = 0; i < picbx_ConvView_arr.Length - 1; i++) //loop through to find the clicked one
+                {
+                    if (sender.Equals(picbx_ConvView_arr[i]))
+                    {
+                        student = (byte)i;
+                        break;
+                    }
+                }
+                tt_picbxCV_arr[student].Hide(picbx_ConvView_arr[student]); //make it hide if your not hovering
+            }
+        }
+
    } //end of partial class
-} //end of namespace
+} //end of namespace    

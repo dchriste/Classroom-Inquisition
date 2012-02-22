@@ -67,6 +67,13 @@ namespace SrP_ClassroomInq.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap bubbles2 {
+            get {
+                object obj = ResourceManager.GetObject("bubbles2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap comment_bubble {
             get {
                 object obj = ResourceManager.GetObject("comment_bubble", resourceCulture);

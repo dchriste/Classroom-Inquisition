@@ -40,7 +40,6 @@
             this.classVoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.normalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.anonymousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PrefsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,6 +90,7 @@
             this.serialCOMcmbbx = new System.Windows.Forms.ComboBox();
             this.timer_SerialRead = new System.Windows.Forms.Timer(this.components);
             this.PanelPrefs = new System.Windows.Forms.Panel();
+            this.chkbxTooltips = new System.Windows.Forms.CheckBox();
             this.grpbxUnread = new System.Windows.Forms.GroupBox();
             this.rdbtnClick = new System.Windows.Forms.RadioButton();
             this.rdbtnHover = new System.Windows.Forms.RadioButton();
@@ -110,12 +110,14 @@
             this.picbxStatus = new System.Windows.Forms.PictureBox();
             this.btnCLS = new System.Windows.Forms.Button();
             this.PanelFAQ = new System.Windows.Forms.Panel();
+            this.lnklblIssues = new System.Windows.Forms.LinkLabel();
             this.lblFAQ = new System.Windows.Forms.Label();
             this.lnklblFAQ = new System.Windows.Forms.LinkLabel();
             this.txtbxFAQ = new System.Windows.Forms.TextBox();
             this.btnFAQcls = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.PanelStudents = new System.Windows.Forms.Panel();
+            this.btnConvView = new System.Windows.Forms.Button();
             this.grpbxEDITStudents = new System.Windows.Forms.GroupBox();
             this.btnDoneStudents = new System.Windows.Forms.Button();
             this.lblStudentsName = new System.Windows.Forms.Label();
@@ -126,7 +128,10 @@
             this.btnCLSStudents = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.timer_ControlsCreate = new System.Windows.Forms.Timer(this.components);
-            this.lnklblIssues = new System.Windows.Forms.LinkLabel();
+            this.PanelConvView = new System.Windows.Forms.Panel();
+            this.lstbxConvView = new System.Windows.Forms.ListBox();
+            this.btnCLS_ConvView = new System.Windows.Forms.Button();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.PanelPrefs.SuspendLayout();
@@ -140,6 +145,8 @@
             this.PanelStudents.SuspendLayout();
             this.grpbxEDITStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.PanelConvView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -176,6 +183,8 @@
             // 
             // broadcastToolStripMenuItem
             // 
+            this.broadcastToolStripMenuItem.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.broadcastToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.broadcastToolStripMenuItem.Name = "broadcastToolStripMenuItem";
             this.broadcastToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
             this.broadcastToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
@@ -184,6 +193,8 @@
             // 
             // directMessageToolStripMenuItem
             // 
+            this.directMessageToolStripMenuItem.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.directMessageToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.directMessageToolStripMenuItem.Name = "directMessageToolStripMenuItem";
             this.directMessageToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.directMessageToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
@@ -192,9 +203,9 @@
             // 
             // viewToolStripMenuItem
             // 
+            this.viewToolStripMenuItem.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.modesToolStripMenuItem,
-            this.anonymousToolStripMenuItem,
             this.showNamesToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(41, 21);
@@ -202,54 +213,65 @@
             // 
             // modesToolStripMenuItem
             // 
+            this.modesToolStripMenuItem.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.modesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.attedanceToolStripMenuItem,
             this.classVoteToolStripMenuItem,
             this.normalToolStripMenuItem,
             this.quizToolStripMenuItem});
+            this.modesToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.modesToolStripMenuItem.Name = "modesToolStripMenuItem";
-            this.modesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.modesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.modesToolStripMenuItem.Text = "Modes";
             // 
             // attedanceToolStripMenuItem
             // 
+            this.attedanceToolStripMenuItem.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.attedanceToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.attedanceToolStripMenuItem.Name = "attedanceToolStripMenuItem";
             this.attedanceToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.attedanceToolStripMenuItem.Text = "Attedance";
             // 
             // classVoteToolStripMenuItem
             // 
+            this.classVoteToolStripMenuItem.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.classVoteToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.classVoteToolStripMenuItem.Name = "classVoteToolStripMenuItem";
             this.classVoteToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.classVoteToolStripMenuItem.Text = "Class Vote";
             // 
             // normalToolStripMenuItem
             // 
+            this.normalToolStripMenuItem.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.normalToolStripMenuItem.Checked = true;
             this.normalToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.normalToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.normalToolStripMenuItem.Name = "normalToolStripMenuItem";
             this.normalToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.normalToolStripMenuItem.Text = "Normal";
             // 
             // quizToolStripMenuItem
             // 
+            this.quizToolStripMenuItem.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.quizToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.quizToolStripMenuItem.Name = "quizToolStripMenuItem";
             this.quizToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.quizToolStripMenuItem.Text = "Quiz";
             // 
-            // anonymousToolStripMenuItem
-            // 
-            this.anonymousToolStripMenuItem.Name = "anonymousToolStripMenuItem";
-            this.anonymousToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.anonymousToolStripMenuItem.Text = "Anonymous";
-            // 
             // showNamesToolStripMenuItem
             // 
+            this.showNamesToolStripMenuItem.AutoToolTip = true;
+            this.showNamesToolStripMenuItem.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.showNamesToolStripMenuItem.Checked = true;
+            this.showNamesToolStripMenuItem.CheckOnClick = true;
             this.showNamesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showNamesToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.showNamesToolStripMenuItem.Name = "showNamesToolStripMenuItem";
-            this.showNamesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.showNamesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.showNamesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.showNamesToolStripMenuItem.Text = "Show Names";
+            this.showNamesToolStripMenuItem.ToolTipText = "Toggles Name Appending on Message Receive\r\n(The names aren\'t toggled back on by t" +
+                "his)";
             // 
             // PrefsToolStripMenuItem
             // 
@@ -271,6 +293,8 @@
             // 
             // generalFAQToolStripMenuItem
             // 
+            this.generalFAQToolStripMenuItem.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.generalFAQToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.generalFAQToolStripMenuItem.Name = "generalFAQToolStripMenuItem";
             this.generalFAQToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.generalFAQToolStripMenuItem.Text = "General FAQ";
@@ -278,6 +302,8 @@
             // 
             // aboutToolStripMenuItem
             // 
+            this.aboutToolStripMenuItem.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.aboutToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.aboutToolStripMenuItem.Text = "About";
@@ -404,20 +430,20 @@
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.undoToolStripMenuItem.Text = "&Undo";
             // 
             // redoToolStripMenuItem
             // 
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.redoToolStripMenuItem.Text = "&Redo";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(147, 6);
             // 
             // cutToolStripMenuItem
             // 
@@ -425,7 +451,7 @@
             this.cutToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.cutToolStripMenuItem.Text = "Cu&t";
             // 
             // copyToolStripMenuItem
@@ -434,7 +460,7 @@
             this.copyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.copyToolStripMenuItem.Text = "&Copy";
             // 
             // pasteToolStripMenuItem
@@ -443,18 +469,18 @@
             this.pasteToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.pasteToolStripMenuItem.Text = "&Paste";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(147, 6);
             // 
             // selectAllToolStripMenuItem
             // 
             this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.selectAllToolStripMenuItem.Text = "Select &All";
             // 
             // toolsToolStripMenuItem
@@ -633,6 +659,7 @@
             // 
             this.PanelPrefs.AutoScroll = true;
             this.PanelPrefs.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelPrefs.Controls.Add(this.chkbxTooltips);
             this.PanelPrefs.Controls.Add(this.grpbxUnread);
             this.PanelPrefs.Controls.Add(this.chkbxLameMode);
             this.PanelPrefs.Controls.Add(this.btnStuMgmt_Prefs);
@@ -645,6 +672,16 @@
             this.PanelPrefs.Name = "PanelPrefs";
             this.PanelPrefs.Size = new System.Drawing.Size(355, 432);
             this.PanelPrefs.TabIndex = 6;
+            // 
+            // chkbxTooltips
+            // 
+            this.chkbxTooltips.Location = new System.Drawing.Point(18, 198);
+            this.chkbxTooltips.Name = "chkbxTooltips";
+            this.chkbxTooltips.Size = new System.Drawing.Size(130, 33);
+            this.chkbxTooltips.TabIndex = 7;
+            this.chkbxTooltips.Text = "Tooltips on Questions";
+            this.chkbxTooltips.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkbxTooltips.UseVisualStyleBackColor = true;
             // 
             // grpbxUnread
             // 
@@ -861,6 +898,19 @@
             this.PanelFAQ.Size = new System.Drawing.Size(361, 497);
             this.PanelFAQ.TabIndex = 7;
             // 
+            // lnklblIssues
+            // 
+            this.lnklblIssues.AutoSize = true;
+            this.lnklblIssues.LinkColor = System.Drawing.Color.Gold;
+            this.lnklblIssues.Location = new System.Drawing.Point(138, 252);
+            this.lnklblIssues.Name = "lnklblIssues";
+            this.lnklblIssues.Size = new System.Drawing.Size(73, 13);
+            this.lnklblIssues.TabIndex = 5;
+            this.lnklblIssues.TabStop = true;
+            this.lnklblIssues.Text = "GitHub-Issues";
+            this.lnklblIssues.VisitedLinkColor = System.Drawing.Color.Chocolate;
+            this.lnklblIssues.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnklblIssues_LinkClicked);
+            // 
             // lblFAQ
             // 
             this.lblFAQ.AutoSize = true;
@@ -923,6 +973,7 @@
             // 
             this.PanelStudents.AutoScroll = true;
             this.PanelStudents.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelStudents.Controls.Add(this.btnConvView);
             this.PanelStudents.Controls.Add(this.grpbxEDITStudents);
             this.PanelStudents.Controls.Add(this.btnCLRStudents);
             this.PanelStudents.Controls.Add(this.btnEDTStudents);
@@ -930,17 +981,28 @@
             this.PanelStudents.Controls.Add(this.btnCLSStudents);
             this.PanelStudents.Controls.Add(this.pictureBox3);
             this.PanelStudents.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.PanelStudents.Location = new System.Drawing.Point(12, 535);
+            this.PanelStudents.Location = new System.Drawing.Point(15, 535);
             this.PanelStudents.Name = "PanelStudents";
             this.PanelStudents.Size = new System.Drawing.Size(361, 497);
             this.PanelStudents.TabIndex = 9;
+            // 
+            // btnConvView
+            // 
+            this.btnConvView.BackColor = System.Drawing.Color.Black;
+            this.btnConvView.Location = new System.Drawing.Point(191, 99);
+            this.btnConvView.Name = "btnConvView";
+            this.btnConvView.Size = new System.Drawing.Size(127, 23);
+            this.btnConvView.TabIndex = 6;
+            this.btnConvView.Text = "Conversation Viewer";
+            this.btnConvView.UseVisualStyleBackColor = false;
+            this.btnConvView.Click += new System.EventHandler(this.btnConvView_Click);
             // 
             // grpbxEDITStudents
             // 
             this.grpbxEDITStudents.Controls.Add(this.btnDoneStudents);
             this.grpbxEDITStudents.Controls.Add(this.lblStudentsName);
             this.grpbxEDITStudents.Controls.Add(this.txtbxStudentsName);
-            this.grpbxEDITStudents.Location = new System.Drawing.Point(150, 125);
+            this.grpbxEDITStudents.Location = new System.Drawing.Point(150, 178);
             this.grpbxEDITStudents.Name = "grpbxEDITStudents";
             this.grpbxEDITStudents.Size = new System.Drawing.Size(200, 142);
             this.grpbxEDITStudents.TabIndex = 5;
@@ -978,7 +1040,7 @@
             // btnCLRStudents
             // 
             this.btnCLRStudents.BackColor = System.Drawing.Color.Black;
-            this.btnCLRStudents.Location = new System.Drawing.Point(265, 90);
+            this.btnCLRStudents.Location = new System.Drawing.Point(265, 139);
             this.btnCLRStudents.Name = "btnCLRStudents";
             this.btnCLRStudents.Size = new System.Drawing.Size(75, 23);
             this.btnCLRStudents.TabIndex = 4;
@@ -989,7 +1051,7 @@
             // btnEDTStudents
             // 
             this.btnEDTStudents.BackColor = System.Drawing.Color.Black;
-            this.btnEDTStudents.Location = new System.Drawing.Point(168, 90);
+            this.btnEDTStudents.Location = new System.Drawing.Point(168, 139);
             this.btnEDTStudents.Name = "btnEDTStudents";
             this.btnEDTStudents.Size = new System.Drawing.Size(75, 23);
             this.btnEDTStudents.TabIndex = 3;
@@ -1032,18 +1094,55 @@
             this.timer_ControlsCreate.Interval = 1000;
             this.timer_ControlsCreate.Tick += new System.EventHandler(this.timer_ControlsCreate_Tick);
             // 
-            // lnklblIssues
+            // PanelConvView
             // 
-            this.lnklblIssues.AutoSize = true;
-            this.lnklblIssues.LinkColor = System.Drawing.Color.Gold;
-            this.lnklblIssues.Location = new System.Drawing.Point(138, 252);
-            this.lnklblIssues.Name = "lnklblIssues";
-            this.lnklblIssues.Size = new System.Drawing.Size(73, 13);
-            this.lnklblIssues.TabIndex = 5;
-            this.lnklblIssues.TabStop = true;
-            this.lnklblIssues.Text = "GitHub-Issues";
-            this.lnklblIssues.VisitedLinkColor = System.Drawing.Color.Chocolate;
-            this.lnklblIssues.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnklblIssues_LinkClicked);
+            this.PanelConvView.AutoScroll = true;
+            this.PanelConvView.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelConvView.Controls.Add(this.lstbxConvView);
+            this.PanelConvView.Controls.Add(this.btnCLS_ConvView);
+            this.PanelConvView.Controls.Add(this.pictureBox4);
+            this.PanelConvView.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.PanelConvView.Location = new System.Drawing.Point(0, -530);
+            this.PanelConvView.Name = "PanelConvView";
+            this.PanelConvView.Size = new System.Drawing.Size(384, 524);
+            this.PanelConvView.TabIndex = 10;
+            // 
+            // lstbxConvView
+            // 
+            this.lstbxConvView.BackColor = System.Drawing.Color.Black;
+            this.lstbxConvView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lstbxConvView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lstbxConvView.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.lstbxConvView.FormattingEnabled = true;
+            this.lstbxConvView.Items.AddRange(new object[] {
+            "Conversation Viewer for ClassroomInq"});
+            this.lstbxConvView.Location = new System.Drawing.Point(12, 73);
+            this.lstbxConvView.Name = "lstbxConvView";
+            this.lstbxConvView.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.lstbxConvView.Size = new System.Drawing.Size(361, 403);
+            this.lstbxConvView.TabIndex = 3;
+            this.lstbxConvView.MouseLeave += new System.EventHandler(this.lstbxConvView_MouseLeave);
+            // 
+            // btnCLS_ConvView
+            // 
+            this.btnCLS_ConvView.BackColor = System.Drawing.Color.Black;
+            this.btnCLS_ConvView.Location = new System.Drawing.Point(153, 486);
+            this.btnCLS_ConvView.Name = "btnCLS_ConvView";
+            this.btnCLS_ConvView.Size = new System.Drawing.Size(75, 23);
+            this.btnCLS_ConvView.TabIndex = 1;
+            this.btnCLS_ConvView.Text = "Close";
+            this.btnCLS_ConvView.UseVisualStyleBackColor = false;
+            this.btnCLS_ConvView.Click += new System.EventHandler(this.btnCLS_ConvView_Click);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::SrP_ClassroomInq.Properties.Resources.Background;
+            this.pictureBox4.Location = new System.Drawing.Point(32, 17);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(321, 50);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 0;
+            this.pictureBox4.TabStop = false;
             // 
             // Form1
             // 
@@ -1052,6 +1151,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(384, 550);
             this.ControlBox = false;
+            this.Controls.Add(this.PanelConvView);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.PanelFAQ);
             this.Controls.Add(this.DirectMsgPanel);
@@ -1064,6 +1164,7 @@
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.serialCOMcmbbx);
+            this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.DarkGoldenrod;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1092,6 +1193,8 @@
             this.grpbxEDITStudents.ResumeLayout(false);
             this.grpbxEDITStudents.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.PanelConvView.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1121,7 +1224,6 @@
         private System.Windows.Forms.ToolStripMenuItem classVoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem normalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quizToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem anonymousToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showNamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusBlank;
         private System.Windows.Forms.ToolStripMenuItem generalFAQToolStripMenuItem;
@@ -1196,6 +1298,12 @@
         private System.Windows.Forms.RadioButton rdbtnClick;
         private System.Windows.Forms.RadioButton rdbtnHover;
         private System.Windows.Forms.LinkLabel lnklblIssues;
+        private System.Windows.Forms.Panel PanelConvView;
+        private System.Windows.Forms.Button btnCLS_ConvView;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.ListBox lstbxConvView;
+        private System.Windows.Forms.Button btnConvView;
+        private System.Windows.Forms.CheckBox chkbxTooltips;
     }
 }
 

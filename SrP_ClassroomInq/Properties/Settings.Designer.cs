@@ -94,5 +94,29 @@ namespace SrP_ClassroomInq.Properties {
                 this["ClickRead"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Tooltips {
+            get {
+                return ((bool)(this["Tooltips"]));
+            }
+            set {
+                this["Tooltips"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowNames {
+            get {
+                return ((bool)(this["ShowNames"]));
+            }
+            set {
+                this["ShowNames"] = value;
+            }
+        }
     }
 }

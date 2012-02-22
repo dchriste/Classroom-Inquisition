@@ -1,0 +1,20 @@
+/*********************************************************************
+This is a plain changelog for Classroom Inquisition. I
+hope to keep it up to date; however, there aren't promises
+currently. 
+
+--dchriste
+**********************************************************************/
+
+CHANGELOG created on 2/22/12
+
+/*** Version 1.2 committed 2/22/12 ***/
+added conversation viewer
+added open conversation icon on each question
+added tooltip for icon
+added preference to toggle tooltip
+altered menubar menu color scheme
+made show names pref (in view) work.. (not a toggle)
+
+/*** Versions prior to this may be seen through closed issues on: ***/
+/*** https://github.com/dchriste/Classroom-Inquisition/issues	  ***/
