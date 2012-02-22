@@ -92,14 +92,16 @@
             // 
             // labelVersion
             // 
+            this.labelVersion.BackColor = System.Drawing.Color.Black;
             this.labelVersion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelVersion.ForeColor = System.Drawing.Color.DarkGoldenrod;
             this.labelVersion.Location = new System.Drawing.Point(152, 32);
             this.labelVersion.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelVersion.MaximumSize = new System.Drawing.Size(0, 17);
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.Size = new System.Drawing.Size(290, 17);
             this.labelVersion.TabIndex = 0;
-            this.labelVersion.Text = "Version: 1.0.0";
+            this.labelVersion.Text = "Version: 1.2.1";
             this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelCopyright
@@ -154,8 +156,10 @@
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(463, 341);
             this.Controls.Add(this.tableLayoutPanel);
+            this.ForeColor = System.Drawing.Color.DarkGoldenrod;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

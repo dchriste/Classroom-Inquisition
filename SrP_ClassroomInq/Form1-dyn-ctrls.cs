@@ -266,7 +266,12 @@ namespace SrP_ClassroomInq
                 picbxStatus.Visible = true;
                 tlstrplbl_Unread.Visible = false;
             }
-
+            if (chkbxNotify.Checked)
+            {
+                trayICON.BalloonTipTitle = tempString2 + " asked:";
+                trayICON.BalloonTipText = question;
+                trayICON.ShowBalloonTip(1250); //show for 1.25 seconds
+            }
             NumQuestions++; //increment number of ctrls
         }
 
@@ -1402,6 +1407,7 @@ namespace SrP_ClassroomInq
             rdbtnHover.Checked = Properties.Settings.Default.HoverRead;
             chkbxTooltips.Checked = Properties.Settings.Default.Tooltips;
             showNamesToolStripMenuItem.Checked = Properties.Settings.Default.ShowNames;
+            chkbxNotify.Checked = Properties.Settings.Default.Notify;
             /***************************************************/
 
             string[] tmpstring = new string[classSize];
@@ -2041,6 +2047,7 @@ namespace SrP_ClassroomInq
             Properties.Settings.Default.HoverRead = rdbtnHover.Checked;
             Properties.Settings.Default.Tooltips = chkbxTooltips.Checked;
             Properties.Settings.Default.ShowNames = showNamesToolStripMenuItem.Checked;
+            Properties.Settings.Default.Notify = chkbxNotify.Checked;
             Properties.Settings.Default.Save();
         }
 
@@ -2263,6 +2270,6 @@ namespace SrP_ClassroomInq
                 tt_picbxCV_arr[student].Hide(picbx_ConvView_arr[student]); //make it hide if your not hovering
             }
         }
-
+        
    } //end of partial class
 } //end of namespace    

@@ -90,6 +90,7 @@
             this.serialCOMcmbbx = new System.Windows.Forms.ComboBox();
             this.timer_SerialRead = new System.Windows.Forms.Timer(this.components);
             this.PanelPrefs = new System.Windows.Forms.Panel();
+            this.chkbxNotify = new System.Windows.Forms.CheckBox();
             this.chkbxTooltips = new System.Windows.Forms.CheckBox();
             this.grpbxUnread = new System.Windows.Forms.GroupBox();
             this.rdbtnClick = new System.Windows.Forms.RadioButton();
@@ -624,7 +625,7 @@
             this.trayICON.BalloonTipText = "Raising Hands is a thing of the past.";
             this.trayICON.BalloonTipTitle = "Classroom Inq.";
             this.trayICON.Icon = ((System.Drawing.Icon)(resources.GetObject("trayICON.Icon")));
-            this.trayICON.Text = "Classroom Inq.";
+            this.trayICON.Text = "Dbl Click to Minimize!";
             this.trayICON.Visible = true;
             this.trayICON.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.trayICON_MouseDoubleClick);
             // 
@@ -659,6 +660,7 @@
             // 
             this.PanelPrefs.AutoScroll = true;
             this.PanelPrefs.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelPrefs.Controls.Add(this.chkbxNotify);
             this.PanelPrefs.Controls.Add(this.chkbxTooltips);
             this.PanelPrefs.Controls.Add(this.grpbxUnread);
             this.PanelPrefs.Controls.Add(this.chkbxLameMode);
@@ -672,6 +674,18 @@
             this.PanelPrefs.Name = "PanelPrefs";
             this.PanelPrefs.Size = new System.Drawing.Size(355, 432);
             this.PanelPrefs.TabIndex = 6;
+            // 
+            // chkbxNotify
+            // 
+            this.chkbxNotify.Checked = true;
+            this.chkbxNotify.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkbxNotify.Location = new System.Drawing.Point(18, 237);
+            this.chkbxNotify.Name = "chkbxNotify";
+            this.chkbxNotify.Size = new System.Drawing.Size(130, 33);
+            this.chkbxNotify.TabIndex = 8;
+            this.chkbxNotify.Text = "Notifications in Tray";
+            this.chkbxNotify.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkbxNotify.UseVisualStyleBackColor = true;
             // 
             // chkbxTooltips
             // 
@@ -1304,6 +1318,7 @@
         private System.Windows.Forms.ListBox lstbxConvView;
         private System.Windows.Forms.Button btnConvView;
         private System.Windows.Forms.CheckBox chkbxTooltips;
+        private System.Windows.Forms.CheckBox chkbxNotify;
     }
 }
 

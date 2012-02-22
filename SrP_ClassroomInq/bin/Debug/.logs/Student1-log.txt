@@ -22,3 +22,24 @@ testing the tooltip
 Professor Jones ( 03:40:08  |  2/22/2012 ):
 Hey there partner
 
+Teacher ( 15:49:54  |  2/22/2012 ):
+testing
+
+Professor Jones ( 15:50:07  |  2/22/2012 ):
+HEythere
+
+Teacher ( 15:51:04  |  2/22/2012 ):
+Replied
+
+Professor Jones ( 15:54:56  |  2/22/2012 ):
+Hey there
+
+Professor Jones ( 16:07:52  |  2/22/2012 ):
+Hey you
+
+Professor Jones ( 16:16:33  |  2/22/2012 ):
+Here i am 
+
+Professor Jones ( 16:17:54  |  2/22/2012 ):
+Hey there
+

@@ -118,5 +118,17 @@ namespace SrP_ClassroomInq.Properties {
                 this["ShowNames"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Notify {
+            get {
+                return ((bool)(this["Notify"]));
+            }
+            set {
+                this["Notify"] = value;
+            }
+        }
     }
 }

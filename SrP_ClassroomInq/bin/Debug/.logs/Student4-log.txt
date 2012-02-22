@@ -7,3 +7,6 @@ This IS a test
 Student  5 ( 02:58:44  |  2/22/2012 ):
 blah de blah
 
+Student  5 ( 16:15:52  |  2/22/2012 ):
+Testing the notifications
+
