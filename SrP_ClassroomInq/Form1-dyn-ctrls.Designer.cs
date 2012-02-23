@@ -1,6 +1,6 @@
 ﻿namespace SrP_ClassroomInq
 {
-    partial class Form1
+    partial class frmClassrromInq
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClassrromInq));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.sendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.broadcastToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -130,11 +130,11 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.timer_ControlsCreate = new System.Windows.Forms.Timer(this.components);
             this.PanelConvView = new System.Windows.Forms.Panel();
+            this.btnCV_Refresh = new System.Windows.Forms.Button();
+            this.btnCV_Print = new System.Windows.Forms.Button();
             this.lstbxConvView = new System.Windows.Forms.ListBox();
             this.btnCLS_ConvView = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.btnCV_Print = new System.Windows.Forms.Button();
-            this.btnCV_Refresh = new System.Windows.Forms.Button();
             this.Printer = new System.Drawing.Printing.PrintDocument();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -1126,6 +1126,28 @@
             this.PanelConvView.Size = new System.Drawing.Size(384, 524);
             this.PanelConvView.TabIndex = 10;
             // 
+            // btnCV_Refresh
+            // 
+            this.btnCV_Refresh.BackColor = System.Drawing.Color.Black;
+            this.btnCV_Refresh.Location = new System.Drawing.Point(274, 486);
+            this.btnCV_Refresh.Name = "btnCV_Refresh";
+            this.btnCV_Refresh.Size = new System.Drawing.Size(75, 23);
+            this.btnCV_Refresh.TabIndex = 5;
+            this.btnCV_Refresh.Text = "Refresh";
+            this.btnCV_Refresh.UseVisualStyleBackColor = false;
+            this.btnCV_Refresh.Click += new System.EventHandler(this.btnCV_Refresh_Click);
+            // 
+            // btnCV_Print
+            // 
+            this.btnCV_Print.BackColor = System.Drawing.Color.Black;
+            this.btnCV_Print.Location = new System.Drawing.Point(21, 486);
+            this.btnCV_Print.Name = "btnCV_Print";
+            this.btnCV_Print.Size = new System.Drawing.Size(75, 23);
+            this.btnCV_Print.TabIndex = 4;
+            this.btnCV_Print.Text = "Print";
+            this.btnCV_Print.UseVisualStyleBackColor = false;
+            this.btnCV_Print.Click += new System.EventHandler(this.btnCV_Print_Click);
+            // 
             // lstbxConvView
             // 
             this.lstbxConvView.BackColor = System.Drawing.Color.Black;
@@ -1163,41 +1185,18 @@
             this.pictureBox4.TabIndex = 0;
             this.pictureBox4.TabStop = false;
             // 
-            // btnCV_Print
-            // 
-            this.btnCV_Print.BackColor = System.Drawing.Color.Black;
-            this.btnCV_Print.Location = new System.Drawing.Point(21, 486);
-            this.btnCV_Print.Name = "btnCV_Print";
-            this.btnCV_Print.Size = new System.Drawing.Size(75, 23);
-            this.btnCV_Print.TabIndex = 4;
-            this.btnCV_Print.Text = "Print";
-            this.btnCV_Print.UseVisualStyleBackColor = false;
-            this.btnCV_Print.Click += new System.EventHandler(this.btnCV_Print_Click);
-            // 
-            // btnCV_Refresh
-            // 
-            this.btnCV_Refresh.BackColor = System.Drawing.Color.Black;
-            this.btnCV_Refresh.Location = new System.Drawing.Point(274, 486);
-            this.btnCV_Refresh.Name = "btnCV_Refresh";
-            this.btnCV_Refresh.Size = new System.Drawing.Size(75, 23);
-            this.btnCV_Refresh.TabIndex = 5;
-            this.btnCV_Refresh.Text = "Refresh";
-            this.btnCV_Refresh.UseVisualStyleBackColor = false;
-            this.btnCV_Refresh.Click += new System.EventHandler(this.btnCV_Refresh_Click);
-            // 
             // Printer
             // 
             this.Printer.DocumentName = "Student-Conversation";
             this.Printer.OriginAtMargins = true;
             this.Printer.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.Printer_PrintPage);
             // 
-            // Form1
+            // frmClassrromInq
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(384, 550);
-            this.ControlBox = false;
             this.Controls.Add(this.PanelConvView);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.PanelFAQ);
@@ -1217,8 +1216,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
-            this.Name = "Form1";
-            this.Text = " Classroom Inquisition";
+            this.MinimizeBox = false;
+            this.Name = "frmClassrromInq";
+            this.Text = " Classroom Inquisition  |  Home";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);

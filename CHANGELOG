@@ -8,15 +8,20 @@ currently.
 
 CHANGELOG created on 2/22/12
 
-/*** Version 1.2.2 committed 2/22 ***/
+/*** Version 1.2.2.1 committed 2/23 ***/
+added title-bar cues (informational)
+added close button to title-bar w/form closing safe-guards
+added icon to title-bar
+
+/*** Version 1.2.2.0 committed 2/22 ***/
 added Printing to Conversation view
 added refresh to Conversation view
 
-/*** Version 1.2.1 committed 2/22 ***/
+/*** Version 1.2.1.0 committed 2/22 ***/
 added Systray Notifications on message recieve
 added preference to disable this ^^
 
-/*** Version 1.2 committed 2/22/12 ***/
+/*** Version 1.2.0.0 committed 2/22/12 ***/
 added conversation viewer
 added open conversation icon on each question
 added tooltip for icon

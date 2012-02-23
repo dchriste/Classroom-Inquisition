@@ -10,3 +10,9 @@ blah de blah
 Student  5 ( 16:15:52  |  2/22/2012 ):
 Testing the notifications
 
+Student  5 ( 02:51:11  |  2/23/2012 ):
+Testing the Unread Count
+
+Student  5 ( 02:53:56  |  2/23/2012 ):
+Hey 
+

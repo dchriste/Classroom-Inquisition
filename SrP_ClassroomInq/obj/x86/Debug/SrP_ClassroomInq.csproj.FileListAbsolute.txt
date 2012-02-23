@@ -67,7 +67,6 @@ F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Debug\SrP_Classroom
 F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Debug\SrP_ClassroomInq.pdb
 F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Debug\ResolveAssemblyReference.cache
 F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Debug\SrP_ClassroomInq.AboutBox_CI.resources
-F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Debug\SrP_ClassroomInq.Form1.resources
 F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Debug\SrP_ClassroomInq.Properties.Resources.resources
 F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Debug\GenerateResource.read.1.tlog
 F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Debug\GenerateResource.write.1.tlog
@@ -78,3 +77,4 @@ F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\bin\Debug\SrP_ClassroomInq.
 F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Debug\SrP_ClassroomInq.TrustInfo.xml
 F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Debug\SrP_ClassroomInq.exe.manifest
 F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Debug\SrP_ClassroomInq.application
+F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Debug\SrP_ClassroomInq.frmClassrromInq.resources
