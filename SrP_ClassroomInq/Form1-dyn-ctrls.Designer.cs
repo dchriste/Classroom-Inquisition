@@ -133,6 +133,9 @@
             this.lstbxConvView = new System.Windows.Forms.ListBox();
             this.btnCLS_ConvView = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.btnCV_Print = new System.Windows.Forms.Button();
+            this.btnCV_Refresh = new System.Windows.Forms.Button();
+            this.Printer = new System.Drawing.Printing.PrintDocument();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.PanelPrefs.SuspendLayout();
@@ -1112,6 +1115,8 @@
             // 
             this.PanelConvView.AutoScroll = true;
             this.PanelConvView.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelConvView.Controls.Add(this.btnCV_Refresh);
+            this.PanelConvView.Controls.Add(this.btnCV_Print);
             this.PanelConvView.Controls.Add(this.lstbxConvView);
             this.PanelConvView.Controls.Add(this.btnCLS_ConvView);
             this.PanelConvView.Controls.Add(this.pictureBox4);
@@ -1157,6 +1162,34 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 0;
             this.pictureBox4.TabStop = false;
+            // 
+            // btnCV_Print
+            // 
+            this.btnCV_Print.BackColor = System.Drawing.Color.Black;
+            this.btnCV_Print.Location = new System.Drawing.Point(21, 486);
+            this.btnCV_Print.Name = "btnCV_Print";
+            this.btnCV_Print.Size = new System.Drawing.Size(75, 23);
+            this.btnCV_Print.TabIndex = 4;
+            this.btnCV_Print.Text = "Print";
+            this.btnCV_Print.UseVisualStyleBackColor = false;
+            this.btnCV_Print.Click += new System.EventHandler(this.btnCV_Print_Click);
+            // 
+            // btnCV_Refresh
+            // 
+            this.btnCV_Refresh.BackColor = System.Drawing.Color.Black;
+            this.btnCV_Refresh.Location = new System.Drawing.Point(274, 486);
+            this.btnCV_Refresh.Name = "btnCV_Refresh";
+            this.btnCV_Refresh.Size = new System.Drawing.Size(75, 23);
+            this.btnCV_Refresh.TabIndex = 5;
+            this.btnCV_Refresh.Text = "Refresh";
+            this.btnCV_Refresh.UseVisualStyleBackColor = false;
+            this.btnCV_Refresh.Click += new System.EventHandler(this.btnCV_Refresh_Click);
+            // 
+            // Printer
+            // 
+            this.Printer.DocumentName = "Student-Conversation";
+            this.Printer.OriginAtMargins = true;
+            this.Printer.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.Printer_PrintPage);
             // 
             // Form1
             // 
@@ -1319,6 +1352,9 @@
         private System.Windows.Forms.Button btnConvView;
         private System.Windows.Forms.CheckBox chkbxTooltips;
         private System.Windows.Forms.CheckBox chkbxNotify;
+        private System.Windows.Forms.Button btnCV_Refresh;
+        private System.Windows.Forms.Button btnCV_Print;
+        private System.Drawing.Printing.PrintDocument Printer;
     }
 }
 

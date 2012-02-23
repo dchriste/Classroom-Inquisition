@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Media;
 using System.Text;
@@ -29,6 +30,10 @@ namespace SrP_ClassroomInq
             PanelConvView.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
 		}
         #region Initialization
+
+        public StreamReader Stream2Print;
+        public Font PrintFont;
+        byte PrintingTimesThrough = 0;
 
         string[] Students_Name = new string[classSize];
         string[] Students_ID = new string[classSize];
@@ -2269,6 +2274,120 @@ namespace SrP_ClassroomInq
                 }
                 tt_picbxCV_arr[student].Hide(picbx_ConvView_arr[student]); //make it hide if your not hovering
             }
+        }
+
+        private void btnCV_Print_Click(object sender, EventArgs e)
+        {
+            //helped by: http://msdn.microsoft.com/en-us/library/system.drawing.printing.printdocument(v=vs.100).aspx
+            if (File.Exists(@".logs\Student" + lstbxStudents.SelectedIndex.ToString() + "-log.txt"))
+            {
+                try
+                {
+                    Stream2Print = new StreamReader(@".logs\Student" + lstbxStudents.SelectedIndex.ToString() + "-log.txt"); //dynamically pick the logfile
+
+                    //print the currently showing log file
+                    PrintFont = new Font("Arial", 12);
+                    Printer.DocumentName = "ClassroomInq_Conversation";
+                    Printer.OriginAtMargins = true;
+                    Printer.Print();
+                }
+                catch (Exception E)
+                {
+                    MessageBox.Show("This is embarassing..there were Errors..." + Environment.NewLine + E);
+                }
+                finally
+                {
+                    Stream2Print.Close();
+                }
+            }
+            else
+            {
+                lstbxConvView.Items.Clear();
+                lstbxConvView.Items.Add("There isn't a conversation to print.");
+            }
+            
+        }
+
+        private void btnCV_Refresh_Click(object sender, EventArgs e)
+        {
+            //re-read the log file showing to see if there were changes and update
+            string[] tmpstring = new string[logHistoryLength];
+           
+            try
+            {
+                if (File.Exists(@".logs\Student" + lstbxStudents.SelectedIndex.ToString() + "-log.txt"))
+                {
+                    i = 0;
+                    using (StreamReader sr = File.OpenText(@".logs\Student" + lstbxStudents.SelectedIndex.ToString() + "-log.txt")) //dynamically pick the logfile
+                    {
+                        string tempstr = "";
+                        while ((tempstr = sr.ReadLine()) != null)
+                        {
+                            tmpstring = tempstr.Split('\x0A'); //divvy it up by newline
+                            logTmpString[i] = tmpstring[0]; //weird error where tmpstring is only using index 0...this fixes it
+                            i++;
+                        }
+                        sr.Close();
+                        lstbxConvView.Items.Clear(); //clean up last view
+                        for (j = 0; j < (i - 1); j++)
+                        {
+                            lstbxConvView.Items.Add(logTmpString[j]); //repopulate the lstbx
+                        }
+                        lstbxConvView.Refresh();
+                        i = j = 0;
+                    }
+                }
+                else
+                {
+                    lstbxConvView.Items.Clear();
+                    lstbxConvView.Items.Add("There isn't a conversation to view with this student.");
+                }
+            }
+            catch (Exception E)
+            {
+                MessageBox.Show("This is embarassing..there were Errors..." + Environment.NewLine + E);
+            }
+        }
+
+        private void Printer_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            //adapted from:  http://msdn.microsoft.com/en-us/library/system.drawing.printing.printdocument(v=vs.100).aspx
+            float linesPerPage = 0;
+            float yPosition = 0;
+            int count = 0;
+            float leftMargin = e.MarginBounds.Left;
+            float topMargin = e.MarginBounds.Top / 3;
+
+            string line = null;
+
+            
+                try
+                {                    
+                    // Calculate the number of lines per page.
+                    linesPerPage = e.MarginBounds.Height / PrintFont.GetHeight(e.Graphics);
+
+                    // Print each line of the file.
+                    while ((count < linesPerPage) && ((line = Stream2Print.ReadLine()) != null))
+                    {
+                        yPosition = topMargin + (count * PrintFont.GetHeight(e.Graphics));
+                        e.Graphics.DrawString(line, PrintFont, Brushes.Black, leftMargin, yPosition, new StringFormat());
+                        count++;
+                    }
+                    // If more lines exist, print another page.
+                    if (line != null)
+                    {
+                        e.HasMorePages = true;
+                    }
+                    else
+                    {
+                        e.HasMorePages = false;
+                    }
+                }
+                catch (Exception E)
+                {
+                    MessageBox.Show("Printing Failed!");
+                }
+    
         }
         
    } //end of partial class

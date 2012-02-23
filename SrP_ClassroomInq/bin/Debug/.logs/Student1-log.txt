@@ -43,3 +43,9 @@ Here i am
 Professor Jones ( 16:17:54  |  2/22/2012 ):
 Hey there
 
+Professor Jones ( 23:06:40  |  2/22/2012 ):
+Testing resume layout functionality.
+
+Teacher ( 23:08:06  |  2/22/2012 ):
+It works alright!
+
