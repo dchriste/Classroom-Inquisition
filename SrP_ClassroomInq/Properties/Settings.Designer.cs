@@ -130,5 +130,17 @@ namespace SrP_ClassroomInq.Properties {
                 this["Notify"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CtrlHide {
+            get {
+                return ((bool)(this["CtrlHide"]));
+            }
+            set {
+                this["CtrlHide"] = value;
+            }
+        }
     }
 }

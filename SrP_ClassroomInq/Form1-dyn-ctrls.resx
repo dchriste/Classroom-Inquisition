@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+    <value>120, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="newToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -240,13 +240,13 @@
 </value>
   </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>126, 17</value>
+    <value>229, 17</value>
   </metadata>
   <metadata name="timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>236, 17</value>
+    <value>339, 17</value>
   </metadata>
   <metadata name="trayICON.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>313, 10</value>
+    <value>416, 17</value>
   </metadata>
   <data name="trayICON.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1381,10 +1381,10 @@
 </value>
   </data>
   <metadata name="SerialPort.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>404, 11</value>
+    <value>513, 17</value>
   </metadata>
   <metadata name="timer_SerialRead.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>499, 11</value>
+    <value>612, 17</value>
   </metadata>
   <data name="txtbxFAQ.Text" xml:space="preserve">
     <value>1) How do I compose a direct message to a specific student?
@@ -1411,8 +1411,8 @@
   <data name="pictureBox3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAtgAAABaCAYAAACCNCH/AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK/QAA
-        Cv0BS5xZCwAAI0lJREFUeF7tnYmfLUV1x9+b9+ZtoKKioIKI7KIIuIGgoCiLoCgKKq4gCCqICwi44E5C
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK+wAA
+        CvsBy58dkAAAI0lJREFUeF7tnYmfLUV1x9+b9+ZtoKKioIKI7KIIuIGgoCiLoCgKKq4gCCqICwi44E5C
         Ykg0iVHUSEKiMWTTrP9dp78zllP3THVXVffpe3vu++XzmY/h3e7qqlPfqjp16pxT+/ft29e0f/o/SUAS
         kAQkAUlAEpAEJAFJQBJwkgAKtv4kAzEgBsSAGBADYkAMiAEx4MOAlGttMMSAGBADYkAMiAExIAbEgCMD
         EqajMLXr89n1SY6SoxgQA2JADIgBMbCXGZCCLQVbDIgBMSAGxIAYEANiQAw4MiBhOgpzL++0VHdZCsSA
@@ -1567,10 +1567,13 @@
 </value>
   </data>
   <metadata name="timer_ControlsCreate.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>635, 11</value>
+    <value>748, 17</value>
   </metadata>
   <metadata name="Printer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>792, 11</value>
+    <value>905, 17</value>
+  </metadata>
+  <metadata name="cntxtMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>38</value>

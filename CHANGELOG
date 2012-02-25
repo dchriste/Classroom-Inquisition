@@ -8,6 +8,14 @@ currently.
 
 CHANGELOG created on 2/22/12
 
+/*** Version 1.2.3.0 committed 2/25 ***/
+added connect on startup for single serial-port machines
+added ability to "delete" a question...
+added ability to "undelete" most recent delete
+added context menus for question label/grpbx to delete question
+added context shortcuts at home when context click on the feedbx
+added hidden context shortcut for avoiding the quit dialog
+
 /*** Version 1.2.2.1 committed 2/23 ***/
 added title-bar cues (informational)
 added close button to title-bar w/form closing safe-guards

@@ -22,6 +22,7 @@ namespace SrP_ClassroomInq
         public frmClassrromInq()
 		{
 			InitializeComponent();
+            
             textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys); // so you can send with enter in the main txtbx
             PanelStudents.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
             PanelFAQ.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
@@ -33,7 +34,6 @@ namespace SrP_ClassroomInq
 
         public StreamReader Stream2Print;
         public Font PrintFont;
-        byte PrintingTimesThrough = 0;
 
         string[] Students_Name = new string[classSize];
         string[] Students_ID = new string[classSize];
@@ -97,6 +97,11 @@ namespace SrP_ClassroomInq
         bool timeout_ack = false;
         int old_lblID = 0;
         bool DesireID = false;
+        bool DeleteQuestion = false;
+        bool Question_Deleted = false;
+        bool Request_Undo = false;
+        bool sudo_kill = false;
+        byte Del_ID = 255;
         int new_lblID = 0;
 		int lbl_ID = 0;
         int lbl_ID_2 = 0;// for unread counter
@@ -110,7 +115,7 @@ namespace SrP_ClassroomInq
 		System.Windows.Forms.Label[] lbl_arr = new System.Windows.Forms.Label[classSize]; //add const for max_lns
         System.Windows.Forms.PictureBox[] picbx_arr = new System.Windows.Forms.PictureBox[classSize];
         System.Windows.Forms.PictureBox[] picbx_ConvView_arr = new System.Windows.Forms.PictureBox[classSize];
-        System.Windows.Forms.ToolTip[] tt_picbxCV_arr = new System.Windows.Forms.ToolTip[classSize];
+        System.Windows.Forms.ToolTip[] tt_picbxCV_arr = new System.Windows.Forms.ToolTip[classSize];        
         System.Drawing.Point origingrouparr = new System.Drawing.Point(6, -13); //originally 6,19 but this gives questions an entering animation
         System.Drawing.Point tempgrouparr = new System.Drawing.Point(6, 19);
         System.Drawing.Point tempreplyarr = new System.Drawing.Point(230, 98);
@@ -185,6 +190,7 @@ namespace SrP_ClassroomInq
             group_arr[NumQuestions].Size = new System.Drawing.Size(328, 32);
             group_arr[NumQuestions].TabIndex = 2;
             group_arr[NumQuestions].TabStop = false;
+            group_arr[NumQuestions].MouseDown +=new MouseEventHandler(group_arr_MouseDown);
 
             lbl_arr[NumQuestions] = new Label();
             lbl_arr[NumQuestions].AutoSize = false;
@@ -206,7 +212,7 @@ namespace SrP_ClassroomInq
             {
                 lbl_arr[NumQuestions].Text = "***" + "          " + question; //passed to this function by the sender, eventually add the name of student here   
             }
-            lbl_arr[NumQuestions].Click += new System.EventHandler(this.lbl_question_Click);
+            lbl_arr[NumQuestions].MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbl_question_MouseDown);
             lbl_arr[NumQuestions].MouseMove += new System.Windows.Forms.MouseEventHandler(this.lbl_question_MouseMove);
 
             picbx_arr[NumQuestions] = new PictureBox();
@@ -286,52 +292,59 @@ namespace SrP_ClassroomInq
             char tmp=' ';
             char tmp_response=' ';
             strARRAY = tmpString.Split('\b');
-
-            foreach (string str in strARRAY){
-                if (finalString.Length > 1)
-                {
-                    finalString = finalString.Substring(0, (finalString.Length - 1)) + str; //remove char to delete and concat strings
-                }
-                else if (finalString == "")
-                {
-                    finalString = str; // initial value
-                }
-                else
-                {
-                    finalString += str.Substring(0, (str.Length -1)); // if you fudge and backspace the second letter you type
-                }
-            }
-
-            tmp = finalString[1]; //this should be the address
-            tmp_response = finalString[2]; //if this is a flowcontrol string otherwise this would be the first char of the message
-            finalString = finalString.TrimStart('\x02'); //clean up rx'd string start of transmit char
-            finalString = finalString.TrimEnd('\x03'); //trim end of transmit
-
-            if ((tmp_response != 0x05) && (tmp_response != 0x06)) //if not enq or ack
+            if (RAW_DATA.Length > 5)//contains at least stx,addr,msg,etx,LF
             {
-                Q_sender[NumQuestions] = tmp.ToString().TrimStart('\x27').TrimEnd('\x27'); //the trims are to fix the mess ToString makes of the unprintable char
-                finalString = finalString.TrimStart(tmp); //trim off the address
-
-                for (int i = 0; i < Students_ID.Length; i++)
+                foreach (string str in strARRAY)
                 {
-                    if (String.CompareOrdinal(addr_tbl[i], Q_sender[NumQuestions]) == 0) //CompareOrdinal Compares Numerical value
+                    if (finalString.Length > 1)
                     {
-                        tempString2 = Students_Name[i];
-                        break;
+                        finalString = finalString.Substring(0, (finalString.Length - 1)) + str; //remove char to delete and concat strings
+                    }
+                    else if (finalString == "")
+                    {
+                        finalString = str; // initial value
+                    }
+                    else
+                    {
+                        finalString += str.Substring(0, (str.Length - 1)); // if you fudge and backspace the second letter you type
                     }
                 }
-                return finalString;
+
+                tmp = finalString[1]; //this should be the address
+                tmp_response = finalString[2]; //if this is a flowcontrol string otherwise this would be the first char of the message
+                finalString = finalString.TrimStart('\x02'); //clean up rx'd string start of transmit char
+                finalString = finalString.TrimEnd('\x03'); //trim end of transmit
+
+                if ((tmp_response != 0x05) && (tmp_response != 0x06)) //if not enq or ack
+                {
+                    Q_sender[NumQuestions] = tmp.ToString().TrimStart('\x27').TrimEnd('\x27'); //the trims are to fix the mess ToString makes of the unprintable char
+                    finalString = finalString.TrimStart(tmp); //trim off the address
+
+                    for (int i = 0; i < Students_ID.Length; i++)
+                    {
+                        if (String.CompareOrdinal(addr_tbl[i], Q_sender[NumQuestions]) == 0) //CompareOrdinal Compares Numerical value
+                        {
+                            tempString2 = Students_Name[i];
+                            break;
+                        }
+                    }
+                    return finalString;
+                }
+                else // the string received is part of the flow control
+                {
+                    if (tmp_response == 0x05) //enq has been received
+                    {
+                        FlowCtrl_Send(tmp.ToString().TrimStart('\x27').TrimEnd('\x27'), "ack"); //ack the enq
+                    }
+                    else //ack is received
+                    {
+                        AckRXd = true; //proceed with the sending
+                    }
+                    return "";
+                }
             }
-            else // the string received is part of the flow control
+            else
             {
-                if (tmp_response == 0x05) //enq has been received
-                {
-                    FlowCtrl_Send(tmp.ToString().TrimStart('\x27').TrimEnd('\x27'), "ack"); //ack the enq
-                }
-                else //ack is received
-                {
-                    AckRXd = true; //proceed with the sending
-                }
                 return "";
             }
         }
@@ -411,6 +424,9 @@ namespace SrP_ClassroomInq
 
 		private void trayICON_MouseDoubleClick(object sender, MouseEventArgs e)
 		{
+            trayICON.BalloonTipTitle ="Classroom Inquistion";
+            trayICON.BalloonTipText = "Raising Hands is a thing of the past";
+
 			if (FormWindowState.Minimized == this.WindowState)
 			{
 				this.Show();
@@ -602,7 +618,7 @@ namespace SrP_ClassroomInq
 			#region Destroy Reply
             if(grpbxFeed.Controls.Count > 0) //allows textbox click with no questions
             { 
-                if ((group_arr[lbl_ID].Height > 31) && (btnCLS_WASclicked == true))// if open and clicked
+                if ((group_arr[lbl_ID].Height > 31) && (btnCLS_WASclicked == true))// if open and clicked 31 so that it makes it to else
                 {
                     Point tmp = new Point(); // for dynamic moving of all controls below the clicked one
                     if (!chkbxLameMode.Checked)
@@ -647,7 +663,7 @@ namespace SrP_ClassroomInq
                             }
                             else
                             {
-                                lbl_ID = new_lblID;
+                                lbl_ID = new_lblID; //open other question
                                 grpbxRPL_WASclicked = true;
                                 DesireID = false;
                             }
@@ -676,12 +692,98 @@ namespace SrP_ClassroomInq
                         {
                             lbl_ID = new_lblID;
                             grpbxRPL_WASclicked = true;
+                            DesireID = false;
                         }
                     }
                 }
 				//textBox1.AppendText(group_arr[lbl_ID].Height.ToString() + Environment.NewLine); //troubleshooting
 			}
 			#endregion
+
+            #region Delete Question
+            if (DeleteQuestion) //keeps things from being upset when Del_ID is intialized to 255 (so as not to delete the first question that comes in....
+            {
+                if ((group_arr[Del_ID].Height > 0) && (DeleteQuestion == true))// if open and clicked
+                {
+                    Point tmp = new Point(); // for dynamic moving of all controls below the clicked one
+                    if (!chkbxLameMode.Checked)
+                    {
+                        group_arr[Del_ID].SetBounds(group_arr[Del_ID].Location.X, group_arr[Del_ID].Location.Y, group_arr[Del_ID].Size.Width, group_arr[Del_ID].Size.Height - 5);
+                        if (Del_ID != 0)
+                        {
+                            for (int x = Del_ID - 1; x >= 0; x--)
+                            {
+                                tmp.X = group_arr[x].Location.X;
+                                tmp.Y = group_arr[x].Location.Y - 5;
+                                group_arr[x].Location = tmp;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        group_arr[Del_ID].SetBounds(group_arr[Del_ID].Location.X, group_arr[Del_ID].Location.Y, group_arr[Del_ID].Size.Width, 0);
+                        for (int x = Del_ID - 1; x >= 0; x--)
+                        {
+                            tmp.X = group_arr[x].Location.X;
+                            tmp.Y = group_arr[x].Location.Y - group_arr[Del_ID].Size.Height;
+                            group_arr[x].Location = tmp;
+                        }
+                    }
+                }
+                else if (DeleteQuestion)
+                {
+                    btnCLS_WASclicked = false; //needed if you delete an open question
+                    timesClicked = 0; //reset
+
+                    DeleteQuestion = false;
+                    Question_Deleted = true;
+                    timer.Enabled = false;
+                    group_arr[Del_ID].Hide(); //real deleting would mess up a lot of numbers in status arrays etc..
+                }
+            }
+            #endregion
+
+            #region Undo Delete Question
+            if (Request_Undo && Question_Deleted) //keeps things from being upset when Del_ID is intialized to 255 (so as not to delete the first question that comes in....
+            {
+                if ((group_arr[Del_ID].Height < 32) && (Request_Undo == true))// if open and clicked
+                {
+                    Point tmp = new Point(); // for dynamic moving of all controls below the clicked one
+                    if (!chkbxLameMode.Checked)
+                    {
+                        group_arr[Del_ID].SetBounds(group_arr[Del_ID].Location.X, group_arr[Del_ID].Location.Y, group_arr[Del_ID].Size.Width, group_arr[Del_ID].Size.Height + 4);
+                        if (Del_ID != 0)
+                        {
+                            for (int x = Del_ID - 1; x >= 0; x--)
+                            {
+                                tmp.X = group_arr[x].Location.X;
+                                tmp.Y = group_arr[x].Location.Y + 4;
+                                group_arr[x].Location = tmp;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (Del_ID != 0)
+                        {
+                            group_arr[Del_ID].SetBounds(group_arr[Del_ID].Location.X, group_arr[Del_ID].Location.Y, group_arr[Del_ID].Size.Width, 32);
+                            for (int x = Del_ID - 1; x >= 0; x--)
+                            {
+                                tmp.X = group_arr[x].Location.X;
+                                tmp.Y = group_arr[x].Location.Y + 32;
+                                group_arr[x].Location = tmp;
+                            }
+                        }
+                    }
+                }
+                else if (Request_Undo)
+                {
+                    Question_Deleted = false;
+                    Request_Undo = false;
+                    timer.Enabled = false;
+                }
+            }
+            #endregion
 
             #region MoveCtrlsDown
             if ((NEW_grpbx == true))
@@ -1413,41 +1515,53 @@ namespace SrP_ClassroomInq
 
         }
 
-		private void lbl_question_Click(object sender, EventArgs e)
+		private void lbl_question_MouseDown(object sender, MouseEventArgs e)
 		{
-            if (rdbtnClick.Checked)
-            {
-                UnreadDecrement(sender);
-            }
-			for (int i = 0; i < lbl_arr.Length - 1; i++) //loop through to find the clicked one
-			{
-				if ( sender.Equals(lbl_arr[i])){
-                    old_lblID = lbl_ID; //save in case a separate question is clicked
-                    new_lblID = i; //store new to use later
-				}
-			}
+            bool rightClick = (e.Button == System.Windows.Forms.MouseButtons.Right);
+            bool leftClick = (e.Button == System.Windows.Forms.MouseButtons.Left);
             
-            if (timesClicked == 0)
-            {
-                grpbxRPL_WASclicked = true;
-                timesClicked = 1;
-                lbl_ID = new_lblID; //there isn't possibly one open yet
-            }
-            else
-            {
-                if (old_lblID == new_lblID)
+            for (int i = 0; i < lbl_arr.Length - 1; i++) //loop through to find the clicked one
                 {
-                    btnCLS_WASclicked = true; //second click closes question.
-                    timesClicked = 0;
+                    if (sender.Equals(lbl_arr[i]))
+                    {
+                        old_lblID = lbl_ID; //save in case a separate question is clicked
+                        new_lblID = i; //store new to use later
+                    }
+                }
+            
+            if (rightClick)
+            {
+                //show context menu at mouse click location aligned right
+                cntxtMenu.Show(lbl_arr[new_lblID], e.Location, LeftRightAlignment.Right);
+            }
+            else if (leftClick)
+            {
+                if (rdbtnClick.Checked)
+                {
+                    UnreadDecrement(sender);
+                }
+                if (timesClicked == 0)
+                {
+                    grpbxRPL_WASclicked = true;
+                    timesClicked = 1;
+                    lbl_ID = new_lblID; //there isn't possibly one open yet
                 }
                 else
                 {
-                    DesireID = true; //queue dynamic animations
-                    btnCLS_WASclicked = true; //second click closes question.
-                    //the animation will use lbl_ID which is the old one still
+                    if (old_lblID == new_lblID)
+                    {
+                        btnCLS_WASclicked = true; //second click closes question.
+                        timesClicked = 0;
+                    }
+                    else
+                    {
+                        DesireID = true; //queue dynamic animations
+                        btnCLS_WASclicked = true; //second click closes question.
+                        //the animation will use lbl_ID which is the old one still
+                    }
                 }
+                timer.Enabled = true;
             }
-            timer.Enabled = true;
 		}
 
 		private void btnCLS_Click(object sender, EventArgs e)
@@ -1459,7 +1573,7 @@ namespace SrP_ClassroomInq
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-            
+            serialCOMcmbbx_Click(sender, e);//pre-load the combobox         
             //auto fill feed box or something... for testing if needed
 
             Properties.Settings.Default.Reload(); //load the key..
@@ -1474,6 +1588,7 @@ namespace SrP_ClassroomInq
             chkbxTooltips.Checked = Properties.Settings.Default.Tooltips;
             showNamesToolStripMenuItem.Checked = Properties.Settings.Default.ShowNames;
             chkbxNotify.Checked = Properties.Settings.Default.Notify;
+            chkbxCtrlHide.Checked = Properties.Settings.Default.CtrlHide;
             /***************************************************/
 
             string[] tmpstring = new string[classSize];
@@ -1535,11 +1650,18 @@ namespace SrP_ClassroomInq
 
         private void serialCOMcmbbx_Click(object sender, EventArgs e)
         {
+            byte tmp = 0;
             serialCOMcmbbx.Items.Clear();
             portNames = System.IO.Ports.SerialPort.GetPortNames();
             foreach (string name in portNames)
             {
                 serialCOMcmbbx.Items.Add(name);
+                tmp++;
+            }
+            if (tmp == 1) //there's only 1 serial port, let's connect
+            {
+                serialCOMcmbbx.SelectedIndex = 0; //choose the first one
+                serialCOMcmbbx_SelectedIndexChanged(sender, e);
             }
         }
 
@@ -1566,27 +1688,35 @@ namespace SrP_ClassroomInq
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string message = "Leaving so soon?";
+            if (!sudo_kill)
+            {
+                string message = "Leaving so soon?";
 
-            string caption = "Are you Sure you want to do that...?";
+                string caption = "Are you Sure you want to do that...?";
 
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-            DialogResult result;
-            result = MessageBox.Show(this, message, caption, buttons, MessageBoxIcon.Question);
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result;
+                result = MessageBox.Show(this, message, caption, buttons, MessageBoxIcon.Question);
 
-            if (result == DialogResult.Yes)
-            {                
-                SerialPort.Close(); //tie up loose ends..
-                SavePrefs();
-
-                if (StuMgmtShowing)
+                if (result == DialogResult.Yes)
                 {
-                    SaveStudentData(); //if the panel is showing, on close, save data
+                    SerialPort.Close(); //tie up loose ends..
+                    SavePrefs();
+
+                    if (StuMgmtShowing)
+                    {
+                        SaveStudentData(); //if the panel is showing, on close, save data
+                    }
+                }
+                else
+                {
+                    e.Cancel = true;
                 }
             }
             else
             {
-                e.Cancel = true;
+                SerialPort.Close(); //tie up loose ends..
+                SavePrefs();
             }
         }
 
@@ -2129,6 +2259,7 @@ namespace SrP_ClassroomInq
             Properties.Settings.Default.Tooltips = chkbxTooltips.Checked;
             Properties.Settings.Default.ShowNames = showNamesToolStripMenuItem.Checked;
             Properties.Settings.Default.Notify = chkbxNotify.Checked;
+            Properties.Settings.Default.CtrlHide = chkbxCtrlHide.Checked;
             Properties.Settings.Default.Save();
         }
 
@@ -2466,6 +2597,147 @@ namespace SrP_ClassroomInq
                 }
     
         }
-        
+
+        private void muItmDelete_Click(object sender, EventArgs e)
+        {
+            byte student = (byte)new_lblID;
+            string caption = "";
+
+            for (i = 0; i < Students_Name.Length - 1; i++)
+            {
+                if (String.CompareOrdinal(addr_tbl[i], Q_sender[student]) == 0) 
+                {
+                    student = (byte) i;//lock in the name by looking up address
+                    break; //otherwise the loop runs too far
+                }
+            }
+            
+
+            string message = "Are you sure you want to Delete this?";
+
+            caption = "About to Delete Question from " + Students_Name[student];
+
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result;
+            result = MessageBox.Show(this, message, caption, buttons, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                //delete the question
+                DeleteQuestion = true;
+                Del_ID = (byte)new_lblID;
+                timer.Enabled = true;
+            }
+            else
+            {
+                //question still exists
+            }
+        }
+
+        private void cntxtMenu_arr_Popup(object sender, EventArgs e)
+        {
+            cntxtMenu.MenuItems.Clear();//make clean for new context menu
+
+           if (cntxtMenu.SourceControl == lbl_arr[new_lblID]) //if a question label is context clicked
+           {
+               cntxtMenu.MenuItems.Add(muItmDelete); //add context menu for delete
+           }
+           else if (cntxtMenu.SourceControl == group_arr[new_lblID])
+           {
+               cntxtMenu.MenuItems.Add(muItmDelete); //add context menu for delete
+           }
+           else if (cntxtMenu.SourceControl == grpbxFeed)
+           {
+               if (ModifierKeys == System.Windows.Forms.Keys.Shift)
+               {
+                   cntxtMenu.MenuItems.Add(muItmQuit); //hidden quit option ;)
+               }
+               else
+               {
+                   if (Question_Deleted)
+                   {
+                       cntxtMenu.MenuItems.Add(muItmUndo);
+                   }
+                   cntxtMenu.MenuItems.Add(muItmDM);
+                   cntxtMenu.MenuItems.Add(muItmFAQ);
+                   cntxtMenu.MenuItems.Add(muItmPrefs);
+               }
+           }
+           
+        }
+
+        private void group_arr_MouseDown(object sender, MouseEventArgs e)
+        {
+            bool rightClick = (e.Button == System.Windows.Forms.MouseButtons.Right);
+            bool leftClick = (e.Button == System.Windows.Forms.MouseButtons.Left);
+
+            byte student = 0;
+
+            for (int i = 0; i < lbl_arr.Length - 1; i++) //loop through to find the clicked one
+            {
+                if (sender.Equals(lbl_arr[i]))
+                {
+                    student = (byte) i; 
+                    break;
+                }
+            }
+
+            if (rightClick)
+            {
+                //show context menu at mouse click location aligned right
+                cntxtMenu.Show(group_arr[student], e.Location, LeftRightAlignment.Right);
+            }
+        }
+
+        private void grpbxFeed_MouseDown(object sender, MouseEventArgs e)
+        {
+            bool rightClick = (e.Button == System.Windows.Forms.MouseButtons.Right);
+            bool leftClick = (e.Button == System.Windows.Forms.MouseButtons.Left);
+
+            if (rightClick)
+            {
+                //show context menu at mouse click location aligned right
+                cntxtMenu.Show(grpbxFeed, e.Location, LeftRightAlignment.Right);
+            }
+        }
+
+        private void muItmPrefs_Click(object sender, EventArgs e)
+        {
+            PrefsClicked = true;
+            timer.Enabled = true;
+        }
+
+        private void muItmDM_Click(object sender, EventArgs e)
+        {
+            DMclicked = true;
+            timer.Enabled = true;
+        }
+
+        private void muItmFAQ_Click(object sender, EventArgs e)
+        {
+            FAQClicked = true;
+            timer.Enabled = true;
+        }
+
+        private void muItmQuit_Click(object sender, EventArgs e)
+        {
+            sudo_kill = true; //bypass are you sure...
+            this.Close(); //will be caught and confirmed on Form_closing
+        }
+
+        private void chkbxCtrlHide_CheckedChanged(object sender, EventArgs e)
+        {
+            SrP_ClassroomInq.frmClassrromInq.ActiveForm.ControlBox = !chkbxCtrlHide.Checked; //toggles control
+            SrP_ClassroomInq.frmClassrromInq.ActiveForm.Refresh();
+        }
+
+        private void muItmUndo_Click(object sender, EventArgs e)
+        {
+            //Del_ID is still the ID of the most recently deleted Item
+            Request_Undo = true;
+            timer.Enabled = true;
+            group_arr[Del_ID].Show();
+        }
+
    } //end of partial class
 } //end of namespace    

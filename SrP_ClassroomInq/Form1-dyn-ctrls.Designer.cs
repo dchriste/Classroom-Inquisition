@@ -136,6 +136,14 @@
             this.btnCLS_ConvView = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.Printer = new System.Drawing.Printing.PrintDocument();
+            this.cntxtMenu = new System.Windows.Forms.ContextMenu();
+            this.muItmDelete = new System.Windows.Forms.MenuItem();
+            this.muItmPrefs = new System.Windows.Forms.MenuItem();
+            this.muItmDM = new System.Windows.Forms.MenuItem();
+            this.muItmFAQ = new System.Windows.Forms.MenuItem();
+            this.muItmQuit = new System.Windows.Forms.MenuItem();
+            this.muItmUndo = new System.Windows.Forms.MenuItem();
+            this.chkbxCtrlHide = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.PanelPrefs.SuspendLayout();
@@ -640,6 +648,7 @@
             this.grpbxFeed.Name = "grpbxFeed";
             this.grpbxFeed.Size = new System.Drawing.Size(355, 432);
             this.grpbxFeed.TabIndex = 5;
+            this.grpbxFeed.MouseDown += new System.Windows.Forms.MouseEventHandler(this.grpbxFeed_MouseDown);
             // 
             // serialCOMcmbbx
             // 
@@ -663,6 +672,7 @@
             // 
             this.PanelPrefs.AutoScroll = true;
             this.PanelPrefs.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelPrefs.Controls.Add(this.chkbxCtrlHide);
             this.PanelPrefs.Controls.Add(this.chkbxNotify);
             this.PanelPrefs.Controls.Add(this.chkbxTooltips);
             this.PanelPrefs.Controls.Add(this.grpbxUnread);
@@ -1191,6 +1201,57 @@
             this.Printer.OriginAtMargins = true;
             this.Printer.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.Printer_PrintPage);
             // 
+            // cntxtMenu
+            // 
+            this.cntxtMenu.Popup += new System.EventHandler(this.cntxtMenu_arr_Popup);
+            // 
+            // muItmDelete
+            // 
+            this.muItmDelete.Index = -1;
+            this.muItmDelete.Text = "Delete this question?";
+            this.muItmDelete.Click += new System.EventHandler(this.muItmDelete_Click);
+            // 
+            // muItmPrefs
+            // 
+            this.muItmPrefs.Index = -1;
+            this.muItmPrefs.Text = "Preferences";
+            this.muItmPrefs.Click += new System.EventHandler(this.muItmPrefs_Click);
+            // 
+            // muItmDM
+            // 
+            this.muItmDM.Index = -1;
+            this.muItmDM.Text = "Direct Message";
+            this.muItmDM.Click += new System.EventHandler(this.muItmDM_Click);
+            // 
+            // muItmFAQ
+            // 
+            this.muItmFAQ.Index = -1;
+            this.muItmFAQ.Text = "FAQ";
+            this.muItmFAQ.Click += new System.EventHandler(this.muItmFAQ_Click);
+            // 
+            // muItmQuit
+            // 
+            this.muItmQuit.Index = -1;
+            this.muItmQuit.Text = "sudo killall ClassroomInq";
+            this.muItmQuit.Click += new System.EventHandler(this.muItmQuit_Click);
+            // 
+            // muItmUndo
+            // 
+            this.muItmUndo.Index = -1;
+            this.muItmUndo.Text = "Undo Delete";
+            this.muItmUndo.Click += new System.EventHandler(this.muItmUndo_Click);
+            // 
+            // chkbxCtrlHide
+            // 
+            this.chkbxCtrlHide.Location = new System.Drawing.Point(18, 276);
+            this.chkbxCtrlHide.Name = "chkbxCtrlHide";
+            this.chkbxCtrlHide.Size = new System.Drawing.Size(130, 33);
+            this.chkbxCtrlHide.TabIndex = 9;
+            this.chkbxCtrlHide.Text = "Hide \'X\' in title bar";
+            this.chkbxCtrlHide.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkbxCtrlHide.UseVisualStyleBackColor = true;
+            this.chkbxCtrlHide.CheckedChanged += new System.EventHandler(this.chkbxCtrlHide_CheckedChanged);
+            // 
             // frmClassrromInq
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1355,6 +1416,14 @@
         private System.Windows.Forms.Button btnCV_Refresh;
         private System.Windows.Forms.Button btnCV_Print;
         private System.Drawing.Printing.PrintDocument Printer;
+        private System.Windows.Forms.MenuItem muItmDelete;
+        private System.Windows.Forms.ContextMenu cntxtMenu;
+        private System.Windows.Forms.MenuItem muItmPrefs;
+        private System.Windows.Forms.MenuItem muItmDM;
+        private System.Windows.Forms.MenuItem muItmFAQ;
+        private System.Windows.Forms.MenuItem muItmQuit;
+        private System.Windows.Forms.MenuItem muItmUndo;
+        private System.Windows.Forms.CheckBox chkbxCtrlHide;
     }
 }
 
