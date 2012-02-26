@@ -78,7 +78,8 @@
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusBlank = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.sb_send_status = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlstrplbl_Unread = new System.Windows.Forms.ToolStripStatusLabel();
@@ -90,6 +91,7 @@
             this.serialCOMcmbbx = new System.Windows.Forms.ComboBox();
             this.timer_SerialRead = new System.Windows.Forms.Timer(this.components);
             this.PanelPrefs = new System.Windows.Forms.Panel();
+            this.chkbxCtrlHide = new System.Windows.Forms.CheckBox();
             this.chkbxNotify = new System.Windows.Forms.CheckBox();
             this.chkbxTooltips = new System.Windows.Forms.CheckBox();
             this.grpbxUnread = new System.Windows.Forms.GroupBox();
@@ -143,7 +145,7 @@
             this.muItmFAQ = new System.Windows.Forms.MenuItem();
             this.muItmQuit = new System.Windows.Forms.MenuItem();
             this.muItmUndo = new System.Windows.Forms.MenuItem();
-            this.chkbxCtrlHide = new System.Windows.Forms.CheckBox();
+            this.muItmName = new System.Windows.Forms.MenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.PanelPrefs.SuspendLayout();
@@ -275,7 +277,6 @@
             this.showNamesToolStripMenuItem.AutoToolTip = true;
             this.showNamesToolStripMenuItem.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.showNamesToolStripMenuItem.Checked = true;
-            this.showNamesToolStripMenuItem.CheckOnClick = true;
             this.showNamesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.showNamesToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.showNamesToolStripMenuItem.Name = "showNamesToolStripMenuItem";
@@ -284,6 +285,7 @@
             this.showNamesToolStripMenuItem.Text = "Show Names";
             this.showNamesToolStripMenuItem.ToolTipText = "Toggles Name Appending on Message Receive\r\n(The names aren\'t toggled back on by t" +
                 "his)";
+            this.showNamesToolStripMenuItem.Click += new System.EventHandler(this.showNamesToolStripMenuItem_Click);
             // 
             // PrefsToolStripMenuItem
             // 
@@ -572,7 +574,8 @@
             this.statusStrip1.AutoSize = false;
             this.statusStrip1.BackColor = System.Drawing.SystemColors.ControlText;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusBlank,
+            this.toolStripStatusLabel3,
+            this.toolStripStatusLabel2,
             this.sb_send_status,
             this.toolStripStatusLabel1,
             this.tlstrplbl_Unread});
@@ -583,18 +586,25 @@
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusBlank
+            // toolStripStatusLabel3
             // 
-            this.toolStripStatusBlank.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
-            this.toolStripStatusBlank.Name = "toolStripStatusBlank";
-            this.toolStripStatusBlank.Size = new System.Drawing.Size(16, 17);
-            this.toolStripStatusBlank.Text = "   ";
+            this.toolStripStatusLabel3.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(16, 17);
+            this.toolStripStatusLabel3.Text = "   ";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(16, 17);
+            this.toolStripStatusLabel2.Text = "   ";
             // 
             // sb_send_status
             // 
             this.sb_send_status.AutoSize = false;
             this.sb_send_status.BackColor = System.Drawing.SystemColors.ControlText;
-            this.sb_send_status.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
+            this.sb_send_status.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
             this.sb_send_status.ForeColor = System.Drawing.Color.DarkGoldenrod;
             this.sb_send_status.Name = "sb_send_status";
             this.sb_send_status.Size = new System.Drawing.Size(167, 17);
@@ -687,6 +697,17 @@
             this.PanelPrefs.Name = "PanelPrefs";
             this.PanelPrefs.Size = new System.Drawing.Size(355, 432);
             this.PanelPrefs.TabIndex = 6;
+            // 
+            // chkbxCtrlHide
+            // 
+            this.chkbxCtrlHide.Location = new System.Drawing.Point(18, 276);
+            this.chkbxCtrlHide.Name = "chkbxCtrlHide";
+            this.chkbxCtrlHide.Size = new System.Drawing.Size(130, 33);
+            this.chkbxCtrlHide.TabIndex = 9;
+            this.chkbxCtrlHide.Text = "Hide \'X\' in title bar";
+            this.chkbxCtrlHide.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkbxCtrlHide.UseVisualStyleBackColor = true;
+            this.chkbxCtrlHide.CheckedChanged += new System.EventHandler(this.chkbxCtrlHide_CheckedChanged);
             // 
             // chkbxNotify
             // 
@@ -1241,16 +1262,11 @@
             this.muItmUndo.Text = "Undo Delete";
             this.muItmUndo.Click += new System.EventHandler(this.muItmUndo_Click);
             // 
-            // chkbxCtrlHide
+            // muItmName
             // 
-            this.chkbxCtrlHide.Location = new System.Drawing.Point(18, 276);
-            this.chkbxCtrlHide.Name = "chkbxCtrlHide";
-            this.chkbxCtrlHide.Size = new System.Drawing.Size(130, 33);
-            this.chkbxCtrlHide.TabIndex = 9;
-            this.chkbxCtrlHide.Text = "Hide \'X\' in title bar";
-            this.chkbxCtrlHide.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chkbxCtrlHide.UseVisualStyleBackColor = true;
-            this.chkbxCtrlHide.CheckedChanged += new System.EventHandler(this.chkbxCtrlHide_CheckedChanged);
+            this.muItmName.Index = -1;
+            this.muItmName.Text = "Toggle Name";
+            this.muItmName.Click += new System.EventHandler(this.muItmName_Click);
             // 
             // frmClassrromInq
             // 
@@ -1333,7 +1349,6 @@
         private System.Windows.Forms.ToolStripMenuItem normalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quizToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showNamesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusBlank;
         private System.Windows.Forms.ToolStripMenuItem generalFAQToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Timer timer_SerialRead;
@@ -1423,7 +1438,10 @@
         private System.Windows.Forms.MenuItem muItmFAQ;
         private System.Windows.Forms.MenuItem muItmQuit;
         private System.Windows.Forms.MenuItem muItmUndo;
+        private System.Windows.Forms.MenuItem muItmName;
         private System.Windows.Forms.CheckBox chkbxCtrlHide;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
     }
 }
 

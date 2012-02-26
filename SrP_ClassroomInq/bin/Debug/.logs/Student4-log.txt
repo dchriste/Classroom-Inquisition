@@ -43,3 +43,15 @@ Another
 Student  5 ( 04:35:53  |  2/25/2012 ):
 Yeah buddy
 
+Student  5 ( 01:53:50  |  2/26/2012 ):
+Testing name toggle
+
+Student  5 ( 01:55:00  |  2/26/2012 ):
+Again!!
+
+Student  5 ( 02:15:25  |  2/26/2012 ):
+Hey me three!!!
+
+Student  5 ( 02:19:18  |  2/26/2012 ):
+Toggling names is cool
+

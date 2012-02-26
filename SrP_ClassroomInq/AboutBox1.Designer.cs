@@ -101,7 +101,7 @@
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.Size = new System.Drawing.Size(290, 17);
             this.labelVersion.TabIndex = 0;
-            this.labelVersion.Text = "Version: 1.2.3";
+            this.labelVersion.Text = "Version: 1.2.4";
             this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelCopyright
@@ -113,7 +113,7 @@
             this.labelCopyright.Name = "labelCopyright";
             this.labelCopyright.Size = new System.Drawing.Size(290, 17);
             this.labelCopyright.TabIndex = 21;
-            this.labelCopyright.Text = "Licensed under GPL";
+            this.labelCopyright.Text = "Licensed under GPL Version 2";
             this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // textBoxDescription

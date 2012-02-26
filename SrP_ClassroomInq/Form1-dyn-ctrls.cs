@@ -45,7 +45,8 @@ namespace SrP_ClassroomInq
                             };
         bool[] Q_status = new bool[classSize]; //records the read status of a question
         bool[] Q_Replied = new bool[classSize]; //records if the question has been replied to
-        string[] Q_sender = new string[classSize]; // records the name of the sender of each question
+        bool[] Q_NameShowing = new bool[classSize];
+        string[] Q_sender = new string[classSize]; // records the addr of the sender of each question
         string brdcst_addr = "\x01";
         string[] logFiles = new string[classSize];
         string EncryptedData = @"StudentInfo_Encrypted.txt";
@@ -102,6 +103,7 @@ namespace SrP_ClassroomInq
         bool Request_Undo = false;
         bool sudo_kill = false;
         byte Del_ID = 255;
+        byte timesThrough = 0;
         int new_lblID = 0;
 		int lbl_ID = 0;
         int lbl_ID_2 = 0;// for unread counter
@@ -129,13 +131,15 @@ namespace SrP_ClassroomInq
 
         #endregion
         
+        /*This method allows for the moving down of controls when a new control is added*/
         public void MoveCtrlsDown()
         {
             //move grpbxs down if new question received to implement LIFO
                 NEW_grpbx = true;
                 timer.Enabled = true;            
         }
-
+        
+        /*This method makes the controls for the new question dynamically upon receiving the quesiton*/
         public void MakeCtrls(string question){
             reply_arr[NumQuestions] = new System.Windows.Forms.Button();
             reply_arr[NumQuestions].BackColor = System.Drawing.Color.Black;
@@ -206,11 +210,13 @@ namespace SrP_ClassroomInq
             lbl_arr[NumQuestions].TabIndex = 0;
             if (showNamesToolStripMenuItem.Checked)
             {
-                lbl_arr[NumQuestions].Text = "***" + "          " + question + "  -" + tempString2; //passed to this function by the sender, eventually add the name of student here   
+                lbl_arr[NumQuestions].Text = "***" + "          " + question + "  -" + tempString2; 
+                Q_NameShowing[NumQuestions] = true; //flag for name visibility
             }
             else
             {
-                lbl_arr[NumQuestions].Text = "***" + "          " + question; //passed to this function by the sender, eventually add the name of student here   
+                lbl_arr[NumQuestions].Text = "***" + "          " + question;
+                Q_NameShowing[NumQuestions] = false;
             }
             lbl_arr[NumQuestions].MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbl_question_MouseDown);
             lbl_arr[NumQuestions].MouseMove += new System.Windows.Forms.MouseEventHandler(this.lbl_question_MouseMove);
@@ -283,7 +289,8 @@ namespace SrP_ClassroomInq
             }
             NumQuestions++; //increment number of ctrls
         }
-
+        
+        /*This method handles the backspace character, formats questions, and fills arrays for later use*/
         public string HandleBCKSPC(string RAW_DATA) 
         {
             string tmpString = RAW_DATA;
@@ -349,6 +356,7 @@ namespace SrP_ClassroomInq
             }
         }
         
+        /*This method allows for key presses to be detected and used even by controls which don't have keypress events*/
         private void CheckKeys(object sender, System.Windows.Forms.KeyPressEventArgs e)
 
         {
@@ -405,14 +413,14 @@ namespace SrP_ClassroomInq
                 }
             }
         }
-
-		#region Click Events
-		
+        
+        /*This is the method which quits the app from the menu bar*/
 		private void quitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
             this.Close(); // there is a prompt in form closing
 		}
-
+        
+        /*This method determines what happens when you click the broadcast box*/
 		private void textBox1_MouseClick(object sender, MouseEventArgs e)
 		{
 			timer.Enabled = true;
@@ -421,7 +429,8 @@ namespace SrP_ClassroomInq
             textBox1.Clear();        
 			
 		}
-
+        
+        /*This method allows for minimize to tray functionality*/
 		private void trayICON_MouseDoubleClick(object sender, MouseEventArgs e)
 		{
             trayICON.BalloonTipTitle ="Classroom Inquistion";
@@ -441,8 +450,7 @@ namespace SrP_ClassroomInq
 
 		}
 
-		#endregion Click Events
-
+        /*This method does all the animation for the application*/
 		private void timer_Tick(object sender, EventArgs e)
 		{
 			#region Send Button
@@ -941,7 +949,7 @@ namespace SrP_ClassroomInq
 
             #endregion
 
-            #region Prefs Animate default coordinates (395,80)
+            #region Prefs Animate 
 
             if ((PanelPrefs.Location.X > 14) && (PrefsClicked == true) && (PrefsTimesClicked == 0) && (PrefsShowing == false))
             {
@@ -1018,7 +1026,7 @@ namespace SrP_ClassroomInq
                         PrefsShowing = false;
                         PrefsClicked = false;
                         PrefsTimesClicked = 0;
-                        SavePrefs(); //when hiding the panel save the preferences                        
+                       // SavePrefs(); //when hiding the panel save the preferences                        
                         if (DesireDM)
                         {
                             if (!DMPanelShowing)
@@ -1046,7 +1054,7 @@ namespace SrP_ClassroomInq
                     PrefsShowing = false;
                     PrefsClicked = false;
                     PrefsTimesClicked = 0;
-                    SavePrefs(); //when hiding the panel save the preferences
+                    //SavePrefs(); //when hiding the panel save the preferences
                     frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
                     if (DesireDM)
                     {
@@ -1451,7 +1459,8 @@ namespace SrP_ClassroomInq
                         
             #endregion
         }//end of timer_Tick
-
+        
+        /*This clears the question repl box of the specifically clicked question*/
 		private void btnCLR_Click(object sender, EventArgs e)
 		{
             if ((NumQuestions - 1) > 0)
@@ -1468,7 +1477,8 @@ namespace SrP_ClassroomInq
                 txtbx_reply_arr[0].ResetText(); 
             }
 		}
-
+        
+        /*This handles the replies for every question in the feed box*/
         private void btnRepl_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < lbl_arr.Length - 1; i++) //loop through to find the clicked one
@@ -1517,7 +1527,8 @@ namespace SrP_ClassroomInq
 
 
         }
-
+        
+        /*This allows the click to open/close questions as well as mark read and show context menus*/
 		private void lbl_question_MouseDown(object sender, MouseEventArgs e)
 		{
             bool rightClick = (e.Button == System.Windows.Forms.MouseButtons.Right);
@@ -1566,14 +1577,16 @@ namespace SrP_ClassroomInq
                 timer.Enabled = true;
             }
 		}
-
+        
+        /*Closes the question which it relates to*/
 		private void btnCLS_Click(object sender, EventArgs e)
 		{
 			timer.Enabled = true;
 			btnCLS_WASclicked = true;
             timesClicked = 0;
 		}
-
+       
+        /*This method loads up prefs and other things needed to be initialized at startup*/
 		private void Form1_Load(object sender, EventArgs e)
 		{
             serialCOMcmbbx_Click(sender, e);//pre-load the combobox         
@@ -1622,7 +1635,8 @@ namespace SrP_ClassroomInq
             }
 
 		}
-
+        
+        /*This method shows the PrefsPanel*/
         private void PrefsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if ((StuMgmtShowing == true) && (FAQShowing == false) && (DMPanelShowing == false)) 
@@ -1650,7 +1664,8 @@ namespace SrP_ClassroomInq
                 timer.Enabled = true;
             } 
         }
-
+        
+        /*This method fills the serial port combo box and auto selects a port if there's only one*/
         private void serialCOMcmbbx_Click(object sender, EventArgs e)
         {
             byte tmp = 0;
@@ -1667,7 +1682,8 @@ namespace SrP_ClassroomInq
                 serialCOMcmbbx_SelectedIndexChanged(sender, e);
             }
         }
-
+       
+        /*Attempts to open the selected port from the combobox*/
         private void serialCOMcmbbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (SerialPort.IsOpen == true)  //make sure we don't try to open a port that is already
@@ -1688,7 +1704,8 @@ namespace SrP_ClassroomInq
 
 
         }
-
+        
+        /*This method runs while the form is still running but close has been issued, allows cancel of close*/
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!sudo_kill)
@@ -1722,14 +1739,16 @@ namespace SrP_ClassroomInq
                 SavePrefs();
             }
         }
-
+        
+        /*This shows the about information in a separate dialog*/
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Show About Information
             AboutBox_CI About = new AboutBox_CI();
             About.ShowDialog();
         }
-
+        
+        /*This sends a broadcast message from the broadcast box*/
         private void btnSend_Click(object sender, EventArgs e)
         {
             if ((textBox1.Text != "") && (textBox1.Text != Environment.NewLine))
@@ -1747,7 +1766,8 @@ namespace SrP_ClassroomInq
                 MessageBox.Show("You Haven't typed a message  yet..");
             }
         }
-
+        
+        /*This is a timer which polls the serial port to see if there is data*/
         private void timer_SerialRead_Tick(object sender, EventArgs e) //my very own SerialDataRX'd event
         {
             string tmp_str = "";
@@ -1770,7 +1790,7 @@ namespace SrP_ClassroomInq
                     WeGotData = true;
                     tempString = null;
                 }
-                                
+
                 if (WeGotData != false)
                 {
                     //we just had data, call some event
@@ -1787,12 +1807,25 @@ namespace SrP_ClassroomInq
                         timer_ControlsCreate.Enabled = true;
                     }
                     WeGotData = false;
-                    
+
+                }
+                else
+                {
+                    if (sb_send_status.Text == "Message Sent")
+                    {
+                        timesThrough++; 
+                        if (timesThrough >= 5) //~500ms
+                        {
+                            sb_send_status.Text = "Ready to Communicate"; //reset the status bar
+                            timesThrough = 0;
+                        }
+                    }
                 }
                 
             }
         }
-
+        
+        /*This allows for unread decrement by mouse hover*/
         private void lbl_question_MouseMove(object sender, MouseEventArgs e)
         {
             if (rdbtnHover.Checked)
@@ -1800,7 +1833,8 @@ namespace SrP_ClassroomInq
                 UnreadDecrement(sender);
             }
         }
-
+        
+        /*This opens the direct message panel*/
         private void directMessageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if ((StuMgmtShowing == true) && (PrefsShowing == true))
@@ -1828,13 +1862,15 @@ namespace SrP_ClassroomInq
                 timer.Enabled = true;
             }
         }
-
+        
+        /*This closes the direct message panel*/
         private void btnDM_Cls_Click(object sender, EventArgs e)
         {
             DMclicked = true;
             timer.Enabled = true;
         }
-
+        
+        /*This opens the broadcast box*/
         private void broadcastToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if ((FAQShowing == false) && (StuMgmtShowing == false))
@@ -1859,25 +1895,30 @@ namespace SrP_ClassroomInq
                 timer.Enabled = true;
             }
         }
-
+        
+        /*This closes the broadcast box*/
         private void btnCLS_Click_1(object sender, EventArgs e)
         {
             textbox1WASclicked = true;
             timer.Enabled = true;
             grpbxFeed.Focus();
         }
-
+        
+        /*This closes preferences*/
         private void btnPrefs_Cls_Click(object sender, EventArgs e)
         {
+            SavePrefs();
             PrefsClicked = true;
             timer.Enabled = true;
         }
-
+        
+        /*Clears the Direct message box*/
         private void btnDM_Clr_Click(object sender, EventArgs e)
         {
             txtbxDM.ResetText();
         }
- 
+        
+        /*This sends a direct message to the student selected in the DMcombobx*/
         private void btnDM_Send_Click(object sender, EventArgs e)
         {
             //send stuff obviously
@@ -1908,7 +1949,8 @@ namespace SrP_ClassroomInq
             }
             
         }
-
+        
+        /*Closes the FAQ Panel*/
         private void btnFAQcls_Click(object sender, EventArgs e)
         {
             FAQClicked = true;
@@ -1919,14 +1961,16 @@ namespace SrP_ClassroomInq
                 PanelStudents.Focus();
             }
         }
-
+        
+        /*Opens the FAQ Panel, button in the Help menu*/
         private void generalFAQToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FAQClicked = true;
             timer.Enabled = true;
             PanelFAQ.Focus();
         }
-
+        
+        /*This allows the emailing of the developer*/
         private void lnklblFAQ_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
@@ -1935,7 +1979,8 @@ namespace SrP_ClassroomInq
             }
             catch { }
         }
-
+        
+        /*This shows the Student Management Center and propigates the listbox from the data file*/
         private void btnStuMgmt_Prefs_Click(object sender, EventArgs e)
         {
             string[] tmpstring = new string[classSize];
@@ -1987,7 +2032,8 @@ namespace SrP_ClassroomInq
             StuMgmtClicked = true;
             timer.Enabled = true;
         }
-
+        
+        /*This closes the Student Management Center*/
         private void btnCLSStudents_Click(object sender, EventArgs e)
         {
             StuMgmtClicked = true;
@@ -1996,7 +2042,8 @@ namespace SrP_ClassroomInq
             SaveStudentData();
             PanelPrefs.Focus();
         }
-
+        
+        /*This saves the information which may have been changed about the students in StuMgmt*/
         private void SaveStudentData()
         {
            
@@ -2098,7 +2145,8 @@ namespace SrP_ClassroomInq
         public static extern bool ZeroMemory(IntPtr Destination, int Length);
 
         #endregion
-
+        
+        /*This allows the editing of student names*/
         private void btnEDTStudents_Click(object sender, EventArgs e)
         {
             //edit the currently selected student in Listbox, messagebox to select one if they haven't yet
@@ -2114,7 +2162,8 @@ namespace SrP_ClassroomInq
             }
             
         }
-
+        
+        /*This allows for the resetting of the name to default*/
         private void btnCLRStudents_Click(object sender, EventArgs e)
         {
             //reset the student name element to the default StudentNum...
@@ -2131,7 +2180,8 @@ namespace SrP_ClassroomInq
             }
             PanelStudents.Focus(); //for esc to work
         }
-
+        
+        /*This completes the rename*/
         private void btnDoneStudents_Click(object sender, EventArgs e)
         {
             //save the changes made in the textbox to the name back into the "database"
@@ -2144,7 +2194,8 @@ namespace SrP_ClassroomInq
 
             PanelStudents.Focus();
         }
-
+        
+        /*Propigates the combobx from the student data file*/
         private void cmbxDM_Click(object sender, EventArgs e)
         {
             string[] tmpstring = new string[classSize];
@@ -2176,7 +2227,8 @@ namespace SrP_ClassroomInq
             }
             
         }
-
+        
+        /*This selects to student to be messaged and set the address variable appropriately*/
         private void cmbxDM_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbxDM.SelectedIndex != -1)
@@ -2185,7 +2237,8 @@ namespace SrP_ClassroomInq
             }
             DirectMsgPanel.Focus(); //so esc key will work
         }
-
+        
+        /*This is intended to provide a software flow control (but isn't used yet...)*/
         private void FlowCtrl_Send(string Address_Student,string desire)
         {
             //0x05 = Enquiry 0x06= Acknowledgement
@@ -2209,7 +2262,8 @@ namespace SrP_ClassroomInq
             }
         
         }
-
+        
+        /*This creates the controls in a timely manner so that they don't get created on top of one another */
         private void timer_ControlsCreate_Tick(object sender, EventArgs e) //this event goes off when timer enabled, every 1 seconds
         {
             if (Qs_to_Make)
@@ -2218,6 +2272,7 @@ namespace SrP_ClassroomInq
                 {
                     LogQandA(Qs_to_create[jx], false, Q_sender[jx]);
                     MakeCtrls(Qs_to_create[jx++]); //make controls and increment creation counter
+                    sb_send_status.Text = "New Message Received!";
                     picbx_ConvView_arr[jx-1].BringToFront(); //shows the "show conv view pic"
                 }
                 else
@@ -2228,9 +2283,11 @@ namespace SrP_ClassroomInq
             else //No more changes to make!
             {
                 timer_ControlsCreate.Enabled = false;
+                sb_send_status.Text = "Ready to Communicate";
             }            
         }
-
+        
+        /*The method is responsible for sending all the serial messages*/
         private bool SendMsg(string Message2Send, string Address2Send)
         {
             bool SuccessOfSending = new bool();
@@ -2249,9 +2306,11 @@ namespace SrP_ClassroomInq
                 MessageBox.Show("You must select a COM port before sending communications.");
                 SuccessOfSending = false;
             }
+            sb_send_status.Text = SuccessOfSending ? "Message Sent" : "Message Sending Failed!"; 
             return SuccessOfSending; //lets sender know if sending succeeded
         }
-
+        
+        /*Save the preferences whenever called*/
         private void SavePrefs()
         {
             Properties.Settings.Default.Animations = chkbxLameMode.Checked;
@@ -2265,7 +2324,8 @@ namespace SrP_ClassroomInq
             Properties.Settings.Default.CtrlHide = chkbxCtrlHide.Checked;
             Properties.Settings.Default.Save();
         }
-
+        
+        /*This method decrements the unread count smartly*/
         private void UnreadDecrement(object sender)
         {
             char tmp = (char)UnreadCount; //contains old value
@@ -2297,7 +2357,8 @@ namespace SrP_ClassroomInq
                 }
             }
         }
-
+        
+        /*This allows the user to submit issues from the FAQ*/
         private void lnklblIssues_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
@@ -2306,7 +2367,8 @@ namespace SrP_ClassroomInq
             }
             catch { }
         }
-
+        
+        /*This method logs all questions and answers*/
         private bool LogQandA(string dialog, bool teacher, string recipient)
         {
             bool success = false;
@@ -2365,14 +2427,16 @@ namespace SrP_ClassroomInq
             }
             return success;
         }
-
+        
+        /*This closes the conversation view*/
         private void btnCLS_ConvView_Click(object sender, EventArgs e)
         {
             //hide the conversation view...
             ConvViewClicked = true;
             timer.Enabled = true;
         }
-
+        
+        /*This opens and fills the conversation view*/
         private void btnConvView_Click(object sender, EventArgs e)
         {
             //show the conversation viewer for the selected student.....
@@ -2420,12 +2484,14 @@ namespace SrP_ClassroomInq
                 timer.Enabled = true;
             }
         }
-
+        
+        /*Allows for esc key to be able to exit the panel normally, see checkkeys()*/
         private void lstbxConvView_MouseLeave(object sender, EventArgs e)
         {
             PanelConvView.Focus();
         }
-
+        
+        /*This method allows for conversation view to be opened dynamically per question*/
         private void ConvViewPic_Click(object sender, EventArgs e)
         {
             /*Figure out who sent the message and select their student in mgmt for even call to work*/
@@ -2449,7 +2515,8 @@ namespace SrP_ClassroomInq
             /****************************************/
             btnConvView_Click(sender, e);
         }
-
+        
+        /*This method dynamically shows tooltips for questions when the mouse enters the cv pic*/
         private void picbx_CV_MouseEnter(object sender, EventArgs e)
         {
             if (chkbxTooltips.Checked)
@@ -2469,7 +2536,8 @@ namespace SrP_ClassroomInq
                 /*********************************************************************************************************/
             }
         }
-
+        
+        /*This method dynamically hides tooltips for questions when the mouse leaves the cv pic*/
         private void picbx_CV_MouseLeave(object sender, EventArgs e)
         {
             if (chkbxTooltips.Checked)
@@ -2486,7 +2554,8 @@ namespace SrP_ClassroomInq
                 tt_picbxCV_arr[student].Hide(picbx_ConvView_arr[student]); //make it hide if your not hovering
             }
         }
-
+        
+        /*This method preps the printstream for the print page method use later*/
         private void btnCV_Print_Click(object sender, EventArgs e)
         {
             //helped by: http://msdn.microsoft.com/en-us/library/system.drawing.printing.printdocument(v=vs.100).aspx
@@ -2518,7 +2587,8 @@ namespace SrP_ClassroomInq
             }
             
         }
-
+        
+        /*This method allows the refresh of the conversation view*/
         private void btnCV_Refresh_Click(object sender, EventArgs e)
         {
             //re-read the log file showing to see if there were changes and update
@@ -2559,7 +2629,8 @@ namespace SrP_ClassroomInq
                 MessageBox.Show("This is embarassing..there were Errors..." + Environment.NewLine + E);
             }
         }
-
+        
+        /*This method allows the teacher to print a conversation log file if he/she so chooses*/
         private void Printer_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             //adapted from:  http://msdn.microsoft.com/en-us/library/system.drawing.printing.printdocument(v=vs.100).aspx
@@ -2600,7 +2671,8 @@ namespace SrP_ClassroomInq
                 }
     
         }
-
+        
+        /*This method allows the user to delete a question from the feed*/
         private void muItmDelete_Click(object sender, EventArgs e)
         {
             byte student = (byte)new_lblID;
@@ -2636,17 +2708,20 @@ namespace SrP_ClassroomInq
                 //question still exists
             }
         }
-
+        
+        /*This method builds the context menu based on which control is desiring a context menu*/
         private void cntxtMenu_arr_Popup(object sender, EventArgs e)
         {
             cntxtMenu.MenuItems.Clear();//make clean for new context menu
 
            if (cntxtMenu.SourceControl == lbl_arr[new_lblID]) //if a question label is context clicked
            {
+               cntxtMenu.MenuItems.Add(muItmName);//add the toggle name
                cntxtMenu.MenuItems.Add(muItmDelete); //add context menu for delete
            }
            else if (cntxtMenu.SourceControl == group_arr[new_lblID])
            {
+               cntxtMenu.MenuItems.Add(muItmName);//add the toggle name
                cntxtMenu.MenuItems.Add(muItmDelete); //add context menu for delete
            }
            else if (cntxtMenu.SourceControl == grpbxFeed)
@@ -2668,7 +2743,8 @@ namespace SrP_ClassroomInq
            }
            
         }
-
+        
+        /*This method is intended to be an extension of the mousedown for lbl_arr incase there is a mis-click*/
         private void group_arr_MouseDown(object sender, MouseEventArgs e)
         {
             bool rightClick = (e.Button == System.Windows.Forms.MouseButtons.Right);
@@ -2691,7 +2767,8 @@ namespace SrP_ClassroomInq
                 cntxtMenu.Show(group_arr[student], e.Location, LeftRightAlignment.Right);
             }
         }
-
+        
+        /*This method is detecting mouse clicks and show the context menus*/
         private void grpbxFeed_MouseDown(object sender, MouseEventArgs e)
         {
             bool rightClick = (e.Button == System.Windows.Forms.MouseButtons.Right);
@@ -2703,37 +2780,43 @@ namespace SrP_ClassroomInq
                 cntxtMenu.Show(grpbxFeed, e.Location, LeftRightAlignment.Right);
             }
         }
-
+        
+        /*This method allows for the showing of PanelPrefs from the home context menu*/
         private void muItmPrefs_Click(object sender, EventArgs e)
         {
             PrefsClicked = true;
             timer.Enabled = true;
         }
-
+        
+        /*This method allows for the showing of PanelDM from the home context menu*/
         private void muItmDM_Click(object sender, EventArgs e)
         {
             DMclicked = true;
             timer.Enabled = true;
         }
-
+        
+        /*This method allows for the showing of PanelFAQ from the home context menu*/
         private void muItmFAQ_Click(object sender, EventArgs e)
         {
             FAQClicked = true;
             timer.Enabled = true;
         }
-
+        
+        /*This method allows for a secret quit option availble only to those who know where tis*/
         private void muItmQuit_Click(object sender, EventArgs e)
         {
             sudo_kill = true; //bypass are you sure...
             this.Close(); //will be caught and confirmed on Form_closing
         }
-
+        
+        /*This method allows for the hiding of the window close control and, inseparably, the icon*/
         private void chkbxCtrlHide_CheckedChanged(object sender, EventArgs e)
         {
             SrP_ClassroomInq.frmClassrromInq.ActiveForm.ControlBox = !chkbxCtrlHide.Checked; //toggles control
             SrP_ClassroomInq.frmClassrromInq.ActiveForm.Refresh();
         }
-
+        
+        /*Method to call the Undo Delete Animation/Action*/
         private void muItmUndo_Click(object sender, EventArgs e)
         {
             //Del_ID is still the ID of the most recently deleted Item
@@ -2741,6 +2824,79 @@ namespace SrP_ClassroomInq
             timer.Enabled = true;
             group_arr[Del_ID].Show();
         }
+        
+        /*Method for individual name toggling on click of context menu item*/
+        private void muItmName_Click(object sender, EventArgs e)
+        {
+            byte student = (byte)new_lblID;
+            for (i = 0; i < Students_Name.Length - 1; i++)
+            {
+                if (String.CompareOrdinal(addr_tbl[i], Q_sender[student]) == 0)
+                {
+                    student = (byte)i;//lock in the name by looking up address
+                    break; //otherwise the loop runs too far
+                }
+            }
 
+            if (Q_NameShowing[new_lblID]) //toggle name off
+            {
+                //replace method returns the new string
+                lbl_arr[new_lblID].Text = lbl_arr[new_lblID].Text.Replace((" -" + Students_Name[student]), "");
+                Q_NameShowing[new_lblID] = false;
+            }
+            else
+            {
+                lbl_arr[new_lblID].Text += " -" + Students_Name[student]; //append name
+                Q_NameShowing[new_lblID] = true;
+            }
+
+        }
+        
+        /*Mehtod for the global toggling of name by view\ShowNames menu item*/
+        private void showNamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //toggle all name values to true or false and change those who need changed
+            byte student = 0;
+            showNamesToolStripMenuItem.Checked = !showNamesToolStripMenuItem.Checked; //toggle the value
+
+            if (showNamesToolStripMenuItem.Checked)
+            {
+                for (int i = 0; i < NumQuestions; i++) //go through all the questions
+                {
+                    if (Q_NameShowing[i] == false) //toggle the false ones
+                    {
+                        for (j = 0; j < Students_Name.Length - 1; j++)
+                        {
+                            if (String.CompareOrdinal(addr_tbl[j], Q_sender[i]) == 0)
+                            {
+                                student = (byte)j;//lock in the name by looking up address
+                                break; //otherwise the loop runs too far
+                            }
+                        }
+                        lbl_arr[i].Text += " -" + Students_Name[student]; //append name
+                        Q_NameShowing[i] = true;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < NumQuestions; i++) //go through all the questions
+                {
+                    if (Q_NameShowing[i] == true) //toggle the true ones
+                    {
+                        for (j = 0; j < Students_Name.Length - 1; j++)
+                        {
+                            if (String.CompareOrdinal(addr_tbl[j], Q_sender[i]) == 0)
+                            {
+                                student = (byte)j;//lock in the name by looking up address
+                                break; //otherwise the loop runs too far
+                            }
+                        } 
+                        lbl_arr[i].Text = lbl_arr[i].Text.Replace((" -" + Students_Name[student]), "");
+                        Q_NameShowing[i] = false;
+                    }
+                }
+            }
+        }
    } //end of partial class
 } //end of namespace    
