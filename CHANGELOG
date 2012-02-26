@@ -8,6 +8,13 @@ currently.
 
 CHANGELOG created on 2/22/12
 
+/*** Version 1.2.4.0 committed 2/26 ***/
+added undo ability notifier
+added show names individual context menu toggle
+added show nams global functionality
+added method descriptions in source
+added status bar notifications (in app) for send/receive
+
 /*** Version 1.2.3.0 committed 2/25 ***/
 added connect on startup for single serial-port machines
 added ability to "delete" a question...
