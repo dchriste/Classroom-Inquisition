@@ -739,6 +739,9 @@ namespace SrP_ClassroomInq
                     Question_Deleted = true;
                     timer.Enabled = false;
                     group_arr[Del_ID].Hide(); //real deleting would mess up a lot of numbers in status arrays etc..
+                    trayICON.BalloonTipTitle = "Undo Delete by";
+                    trayICON.BalloonTipText = "Right click Feed (grey) & choose Undo Delete";
+                    trayICON.ShowBalloonTip(1200);
                 }
             }
             #endregion
