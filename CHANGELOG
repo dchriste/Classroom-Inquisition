@@ -8,10 +8,17 @@ currently.
 
 CHANGELOG created on 2/22/12
 
+/*** Version 1.3 committed 3/2 ***/
+added Quiz Maker
+added Quiz Mode (known bugs with delete question)
+added delete for quiz mode
+added context menu for undelete^^
+added systray notify about undo possibility for quiz maker
+
 /*** Version 1.2.4.0 committed 2/26 ***/
 added undo ability notifier
 added show names individual context menu toggle
-added show nams global functionality
+added show names global functionality
 added method descriptions in source
 added status bar notifications (in app) for send/receive
 
@@ -33,7 +40,7 @@ added Printing to Conversation view
 added refresh to Conversation view
 
 /*** Version 1.2.1.0 committed 2/22 ***/
-added Systray Notifications on message recieve
+added Systray Notifications on message receive
 added preference to disable this ^^
 
 /*** Version 1.2.0.0 committed 2/22/12 ***/

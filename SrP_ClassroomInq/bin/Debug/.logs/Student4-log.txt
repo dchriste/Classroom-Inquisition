@@ -55,3 +55,9 @@ Hey me three!!!
 Student  5 ( 02:19:18  |  2/26/2012 ):
 Toggling names is cool
 
+Student  5 ( 15:52:09  |  2/27/2012 ):
+Hey tooltip
+
+Teacher ( 15:53:02  |  2/27/2012 ):
+repl
+

@@ -91,6 +91,7 @@
             this.serialCOMcmbbx = new System.Windows.Forms.ComboBox();
             this.timer_SerialRead = new System.Windows.Forms.Timer(this.components);
             this.PanelPrefs = new System.Windows.Forms.Panel();
+            this.btnQuizMaker = new System.Windows.Forms.Button();
             this.chkbxCtrlHide = new System.Windows.Forms.CheckBox();
             this.chkbxNotify = new System.Windows.Forms.CheckBox();
             this.chkbxTooltips = new System.Windows.Forms.CheckBox();
@@ -140,12 +141,27 @@
             this.Printer = new System.Drawing.Printing.PrintDocument();
             this.cntxtMenu = new System.Windows.Forms.ContextMenu();
             this.muItmDelete = new System.Windows.Forms.MenuItem();
+            this.muItmQuizDelete = new System.Windows.Forms.MenuItem();
             this.muItmPrefs = new System.Windows.Forms.MenuItem();
             this.muItmDM = new System.Windows.Forms.MenuItem();
             this.muItmFAQ = new System.Windows.Forms.MenuItem();
             this.muItmQuit = new System.Windows.Forms.MenuItem();
             this.muItmUndo = new System.Windows.Forms.MenuItem();
             this.muItmName = new System.Windows.Forms.MenuItem();
+            this.PanelQuizMaker = new System.Windows.Forms.Panel();
+            this.btnQMDel = new System.Windows.Forms.Button();
+            this.btnAddQM = new System.Windows.Forms.Button();
+            this.btnQMclr = new System.Windows.Forms.Button();
+            this.txtbxQM = new System.Windows.Forms.TextBox();
+            this.btnQMEdit = new System.Windows.Forms.Button();
+            this.lstbxQuizMaker = new System.Windows.Forms.ListBox();
+            this.btnQuizMode = new System.Windows.Forms.Button();
+            this.btnQMcls = new System.Windows.Forms.Button();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.PanelQuizMode = new System.Windows.Forms.Panel();
+            this.pnlQuiz = new System.Windows.Forms.Panel();
+            this.btnExitQuiz = new System.Windows.Forms.Button();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.PanelPrefs.SuspendLayout();
@@ -161,6 +177,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.PanelConvView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.PanelQuizMode.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -182,7 +201,7 @@
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.menuStrip1.ShowItemToolTips = true;
             this.menuStrip1.Size = new System.Drawing.Size(384, 25);
-            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // sendToolStripMenuItem
@@ -283,8 +302,8 @@
             this.showNamesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.showNamesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.showNamesToolStripMenuItem.Text = "Show Names";
-            this.showNamesToolStripMenuItem.ToolTipText = "Toggles Name Appending on Message Receive\r\n(The names aren\'t toggled back on by t" +
-                "his)";
+            this.showNamesToolStripMenuItem.ToolTipText = "Toggles Name Appending on Message Receive\r\n                 (This Applies Globall" +
+                "y.)";
             this.showNamesToolStripMenuItem.Click += new System.EventHandler(this.showNamesToolStripMenuItem_Click);
             // 
             // PrefsToolStripMenuItem
@@ -635,7 +654,7 @@
             this.btnSend.Location = new System.Drawing.Point(277, 80);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(75, 29);
-            this.btnSend.TabIndex = 4;
+            this.btnSend.TabIndex = 2;
             this.btnSend.Text = "Send Msg";
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Visible = false;
@@ -666,7 +685,7 @@
             this.serialCOMcmbbx.Location = new System.Drawing.Point(160, 84);
             this.serialCOMcmbbx.Name = "serialCOMcmbbx";
             this.serialCOMcmbbx.Size = new System.Drawing.Size(64, 21);
-            this.serialCOMcmbbx.TabIndex = 6;
+            this.serialCOMcmbbx.TabIndex = 0;
             this.serialCOMcmbbx.Text = "  Port?";
             this.serialCOMcmbbx.Visible = false;
             this.serialCOMcmbbx.SelectedIndexChanged += new System.EventHandler(this.serialCOMcmbbx_SelectedIndexChanged);
@@ -682,6 +701,7 @@
             // 
             this.PanelPrefs.AutoScroll = true;
             this.PanelPrefs.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelPrefs.Controls.Add(this.btnQuizMaker);
             this.PanelPrefs.Controls.Add(this.chkbxCtrlHide);
             this.PanelPrefs.Controls.Add(this.chkbxNotify);
             this.PanelPrefs.Controls.Add(this.chkbxTooltips);
@@ -697,6 +717,18 @@
             this.PanelPrefs.Name = "PanelPrefs";
             this.PanelPrefs.Size = new System.Drawing.Size(355, 432);
             this.PanelPrefs.TabIndex = 6;
+            // 
+            // btnQuizMaker
+            // 
+            this.btnQuizMaker.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.btnQuizMaker.BackColor = System.Drawing.Color.Black;
+            this.btnQuizMaker.Location = new System.Drawing.Point(220, 198);
+            this.btnQuizMaker.Name = "btnQuizMaker";
+            this.btnQuizMaker.Size = new System.Drawing.Size(103, 23);
+            this.btnQuizMaker.TabIndex = 10;
+            this.btnQuizMaker.Text = "Quiz Maker";
+            this.btnQuizMaker.UseVisualStyleBackColor = false;
+            this.btnQuizMaker.Click += new System.EventHandler(this.btnQuizMaker_Click);
             // 
             // chkbxCtrlHide
             // 
@@ -1232,6 +1264,12 @@
             this.muItmDelete.Text = "Delete this question?";
             this.muItmDelete.Click += new System.EventHandler(this.muItmDelete_Click);
             // 
+            // muItmQuizDelete
+            // 
+            this.muItmQuizDelete.Index = -1;
+            this.muItmQuizDelete.Text = "Undo Delete";
+            this.muItmQuizDelete.Click += new System.EventHandler(this.muItmQuizDelete_Click);
+            // 
             // muItmPrefs
             // 
             this.muItmPrefs.Index = -1;
@@ -1268,12 +1306,176 @@
             this.muItmName.Text = "Toggle Name";
             this.muItmName.Click += new System.EventHandler(this.muItmName_Click);
             // 
+            // PanelQuizMaker
+            // 
+            this.PanelQuizMaker.AutoScroll = true;
+            this.PanelQuizMaker.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelQuizMaker.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.PanelQuizMaker.Location = new System.Drawing.Point(400, 0);
+            this.PanelQuizMaker.Controls.Add(btnAddQM);
+            this.PanelQuizMaker.Controls.Add(btnQMDel);
+            this.PanelQuizMaker.Controls.Add(btnQMclr);
+            this.PanelQuizMaker.Controls.Add(txtbxQM);
+            this.PanelQuizMaker.Controls.Add(btnQMcls);
+            this.PanelQuizMaker.Controls.Add(btnQMEdit);
+            this.PanelQuizMaker.Controls.Add(lstbxQuizMaker);
+            this.PanelQuizMaker.Controls.Add(pictureBox5);
+            this.PanelQuizMaker.Controls.Add(btnQuizMode);
+            this.PanelQuizMaker.Name = "PanelQuizMaker";
+            this.PanelQuizMaker.Size = new System.Drawing.Size(384, 524);
+            this.PanelQuizMaker.TabIndex = 11;
+            // 
+            // btnQMDel
+            // 
+            this.btnQMDel.BackColor = System.Drawing.Color.Black;
+            this.btnQMDel.Location = new System.Drawing.Point(252, 423);
+            this.btnQMDel.Name = "btnQMDel";
+            this.btnQMDel.Size = new System.Drawing.Size(60, 23);
+            this.btnQMDel.TabIndex = 10;
+            this.btnQMDel.Text = "Delete";
+            this.btnQMDel.UseVisualStyleBackColor = false;
+            this.btnQMDel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnQMDel_MouseDown);
+            // 
+            // btnAddQM
+            // 
+            this.btnAddQM.BackColor = System.Drawing.Color.Black;
+            this.btnAddQM.Location = new System.Drawing.Point(162, 423);
+            this.btnAddQM.Name = "btnAddQM";
+            this.btnAddQM.Size = new System.Drawing.Size(60, 23);
+            this.btnAddQM.TabIndex = 8;
+            this.btnAddQM.Text = "Add";
+            this.btnAddQM.UseVisualStyleBackColor = false;
+            this.btnAddQM.Click += new System.EventHandler(this.btnAddQM_Click);
+            // 
+            // btnQMclr
+            // 
+            this.btnQMclr.BackColor = System.Drawing.Color.Black;
+            this.btnQMclr.Location = new System.Drawing.Point(72, 423);
+            this.btnQMclr.Name = "btnQMclr";
+            this.btnQMclr.Size = new System.Drawing.Size(60, 23);
+            this.btnQMclr.TabIndex = 9;
+            this.btnQMclr.Text = "Clear";
+            this.btnQMclr.UseVisualStyleBackColor = false;
+            this.btnQMclr.Click += new System.EventHandler(this.btnQMclr_Click);
+            // 
+            // txtbxQM
+            // 
+            this.txtbxQM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtbxQM.Location = new System.Drawing.Point(12, 380);
+            this.txtbxQM.Name = "txtbxQM";
+            this.txtbxQM.Size = new System.Drawing.Size(358, 20);
+            this.txtbxQM.TabIndex = 7;
+            this.txtbxQM.Text = "^^^^ Select a question to edit. ^^^^";
+            this.txtbxQM.Click += new System.EventHandler(this.txtbxQM_Click);
+            // 
+            // btnQMEdit
+            // 
+            this.btnQMEdit.BackColor = System.Drawing.Color.Black;
+            this.btnQMEdit.Location = new System.Drawing.Point(142, 333);
+            this.btnQMEdit.Name = "btnQMEdit";
+            this.btnQMEdit.Size = new System.Drawing.Size(101, 23);
+            this.btnQMEdit.TabIndex = 6;
+            this.btnQMEdit.Text = "Edit Quiz";
+            this.btnQMEdit.UseVisualStyleBackColor = false;
+            this.btnQMEdit.Click += new System.EventHandler(this.btnQMEdit_Click);
+            // 
+            // lstbxQuizMaker
+            // 
+            this.lstbxQuizMaker.BackColor = System.Drawing.Color.Black;
+            this.lstbxQuizMaker.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.lstbxQuizMaker.FormattingEnabled = true;
+            this.lstbxQuizMaker.Items.AddRange(new object[] {
+            "Quiz Questions",
+            "Will go here"});
+            this.lstbxQuizMaker.Location = new System.Drawing.Point(15, 78);
+            this.lstbxQuizMaker.Name = "lstbxQuizMaker";
+            this.lstbxQuizMaker.Size = new System.Drawing.Size(355, 251);
+            this.lstbxQuizMaker.TabIndex = 5;
+            // 
+            // btnQuizMode
+            // 
+            this.btnQuizMode.BackColor = System.Drawing.Color.Black;
+            this.btnQuizMode.Location = new System.Drawing.Point(21, 486);
+            this.btnQuizMode.Name = "btnQuizMode";
+            this.btnQuizMode.Size = new System.Drawing.Size(110, 23);
+            this.btnQuizMode.TabIndex = 4;
+            this.btnQuizMode.Text = "Enter Quiz Mode";
+            this.btnQuizMode.UseVisualStyleBackColor = false;
+            this.btnQuizMode.Click += new System.EventHandler(this.btnQuizMode_Click);
+            // 
+            // btnQMcls
+            // 
+            this.btnQMcls.BackColor = System.Drawing.Color.Black;
+            this.btnQMcls.Location = new System.Drawing.Point(252, 486);
+            this.btnQMcls.Name = "btnQMcls";
+            this.btnQMcls.Size = new System.Drawing.Size(111, 23);
+            this.btnQMcls.TabIndex = 1;
+            this.btnQMcls.Text = "Close Quiz Maker";
+            this.btnQMcls.UseVisualStyleBackColor = false;
+            this.btnQMcls.Click += new System.EventHandler(this.btnQMcls_Click);
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::SrP_ClassroomInq.Properties.Resources.Background;
+            this.pictureBox5.Location = new System.Drawing.Point(32, 17);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(321, 50);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 0;
+            this.pictureBox5.TabStop = false;
+            // 
+            // PanelQuizMode
+            // 
+            this.PanelQuizMode.AutoScroll = true;
+            this.PanelQuizMode.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelQuizMode.Controls.Add(this.pnlQuiz);
+            this.PanelQuizMode.Controls.Add(this.btnExitQuiz);
+            this.PanelQuizMode.Controls.Add(this.pictureBox6);
+            this.PanelQuizMode.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.PanelQuizMode.Location = new System.Drawing.Point(-400, 0);
+            this.PanelQuizMode.Name = "PanelQuizMode";
+            this.PanelQuizMode.Size = new System.Drawing.Size(384, 524);
+            this.PanelQuizMode.TabIndex = 12;
+            // 
+            // pnlQuiz
+            // 
+            this.pnlQuiz.AutoScroll = true;
+            this.pnlQuiz.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.pnlQuiz.Location = new System.Drawing.Point(12, 78);
+            this.pnlQuiz.Name = "pnlQuiz";
+            this.pnlQuiz.Size = new System.Drawing.Size(361, 402);
+            this.pnlQuiz.TabIndex = 2;
+            // 
+            // btnExitQuiz
+            // 
+            this.btnExitQuiz.BackColor = System.Drawing.Color.Black;
+            this.btnExitQuiz.Location = new System.Drawing.Point(137, 486);
+            this.btnExitQuiz.Name = "btnExitQuiz";
+            this.btnExitQuiz.Size = new System.Drawing.Size(111, 23);
+            this.btnExitQuiz.TabIndex = 1;
+            this.btnExitQuiz.Text = "Exit Quiz Mode";
+            this.btnExitQuiz.UseVisualStyleBackColor = false;
+            this.btnExitQuiz.Click += new System.EventHandler(this.btnExitQuiz_Click);
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::SrP_ClassroomInq.Properties.Resources.Background;
+            this.pictureBox6.Location = new System.Drawing.Point(32, 17);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(321, 50);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 0;
+            this.pictureBox6.TabStop = false;
+            // 
             // frmClassrromInq
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(384, 550);
+            this.Controls.Add(this.PanelQuizMode);
+            this.Controls.Add(this.PanelQuizMaker);
             this.Controls.Add(this.PanelConvView);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.PanelFAQ);
@@ -1319,6 +1521,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.PanelConvView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            this.PanelQuizMode.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1432,6 +1637,7 @@
         private System.Windows.Forms.Button btnCV_Print;
         private System.Drawing.Printing.PrintDocument Printer;
         private System.Windows.Forms.MenuItem muItmDelete;
+        private System.Windows.Forms.MenuItem muItmQuizDelete;
         private System.Windows.Forms.ContextMenu cntxtMenu;
         private System.Windows.Forms.MenuItem muItmPrefs;
         private System.Windows.Forms.MenuItem muItmDM;
@@ -1442,6 +1648,21 @@
         private System.Windows.Forms.CheckBox chkbxCtrlHide;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.Button btnQuizMaker;
+        private System.Windows.Forms.Panel PanelQuizMaker;
+        private System.Windows.Forms.Button btnQuizMode;
+        private System.Windows.Forms.Button btnQMcls;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Button btnQMDel;
+        private System.Windows.Forms.Button btnAddQM;
+        private System.Windows.Forms.Button btnQMclr;
+        private System.Windows.Forms.TextBox txtbxQM;
+        private System.Windows.Forms.Button btnQMEdit;
+        private System.Windows.Forms.ListBox lstbxQuizMaker;
+        private System.Windows.Forms.Panel PanelQuizMode;
+        private System.Windows.Forms.Panel pnlQuiz;
+        private System.Windows.Forms.Button btnExitQuiz;
+        private System.Windows.Forms.PictureBox pictureBox6;
     }
 }
 

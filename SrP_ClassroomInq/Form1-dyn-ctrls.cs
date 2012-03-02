@@ -71,6 +71,7 @@ namespace SrP_ClassroomInq
         string addr = "\xFF";
         byte NumQuestions = 0;
         byte UnreadCount = 0;
+        bool EDTClicked = false;
         byte timesClicked = 0; //allows for double click of question
         byte DMtimesClicked = 0;
         byte PrefsTimesClicked = 0;
@@ -90,6 +91,12 @@ namespace SrP_ClassroomInq
         bool ConvViewClicked = false;
         bool ConvViewShowing = false;
         byte ConvViewTimesClicked = 0;
+        bool QuizMakerShowing = false;
+        bool QuizMakerClicked = false;
+        byte QuizMakerTimesClicked = 0;
+        bool QuizModeShowing = false;
+        bool QuizModeClicked = false;
+        byte QuizModeTimesClicked = 0;
 		bool textbox1WASclicked = new bool();
 		bool grpbxRPL_WASclicked = new bool();
 		bool btnCLS_WASclicked = new bool();
@@ -100,6 +107,8 @@ namespace SrP_ClassroomInq
         bool DesireID = false;
         bool DeleteQuestion = false;
         bool Question_Deleted = false;
+        bool QuizQuestionDel = false;
+        int QuizDelID = 255;
         bool Request_Undo = false;
         bool sudo_kill = false;
         byte Del_ID = 255;
@@ -117,7 +126,13 @@ namespace SrP_ClassroomInq
 		System.Windows.Forms.Label[] lbl_arr = new System.Windows.Forms.Label[classSize]; //add const for max_lns
         System.Windows.Forms.PictureBox[] picbx_arr = new System.Windows.Forms.PictureBox[classSize];
         System.Windows.Forms.PictureBox[] picbx_ConvView_arr = new System.Windows.Forms.PictureBox[classSize];
-        System.Windows.Forms.ToolTip[] tt_picbxCV_arr = new System.Windows.Forms.ToolTip[classSize];        
+        System.Windows.Forms.ToolTip[] tt_picbxCV_arr = new System.Windows.Forms.ToolTip[classSize];
+        /*This is for the quiz mode*/
+        System.Windows.Forms.Panel[] PanelQuestion_arr = new System.Windows.Forms.Panel[classSize]; //limits number of quiz questions
+        System.Windows.Forms.Button[] btnQuizQuestionSend_arr = new System.Windows.Forms.Button[classSize];// ^^
+        System.Windows.Forms.Label[] lblQuestionNum_arr = new System.Windows.Forms.Label[classSize];
+        System.Windows.Forms.TextBox[] txtbxQuestion_arr = new System.Windows.Forms.TextBox[classSize];
+        /**************************/
         System.Drawing.Point origingrouparr = new System.Drawing.Point(6, -13); //originally 6,19 but this gives questions an entering animation
         System.Drawing.Point tempgrouparr = new System.Drawing.Point(6, 19);
         System.Drawing.Point tempreplyarr = new System.Drawing.Point(230, 98);
@@ -127,6 +142,12 @@ namespace SrP_ClassroomInq
         System.Drawing.Point lbl_arr_temp = new System.Drawing.Point(0, -13);
         System.Drawing.Point picbx_arr_tmp = new System.Drawing.Point(2, 9);
         System.Drawing.Point picbx_ConvView_tmp = new System.Drawing.Point(296, 7);
+        /*This is for quiz mode*/
+        System.Drawing.Point lblQuestionNum_arr_tmp = new System.Drawing.Point(5, 21);
+        System.Drawing.Point txtbxQuestion_arr_tmp = new System.Drawing.Point(32, 13);
+        System.Drawing.Point btnQuizQuestionSend_arr_tmp = new System.Drawing.Point(288, 13);
+        System.Drawing.Point PanelQuestion_arr_tmp = new System.Drawing.Point(7, 6);
+        /***********************/
         #endregion
 
         #endregion
@@ -1458,6 +1479,178 @@ namespace SrP_ClassroomInq
              }
                         
             #endregion
+
+            #region Quiz Maker Animate
+
+            if ((PanelQuizMaker.Location.X > -1) && (QuizMakerClicked == true) && (QuizMakerTimesClicked == 0) && (QuizMakerShowing == false))
+            {
+                if (!chkbxLameMode.Checked)
+                {
+                    if (x < 10)
+                    {
+                        PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X - 20, PanelQuizMaker.Location.Y, PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
+                        x++;
+                    }
+                    else if (x < 20)
+                    {
+                        PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X - 12, PanelQuizMaker.Location.Y, PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
+                        x++;
+                    }
+                    else if (x < 30)
+                    {
+                        PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X - 8, PanelQuizMaker.Location.Y, PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
+                        x++;
+                    }
+                    else
+                    {
+                        x = 0;
+                        QuizMakerShowing = true;
+                        QuizMakerClicked = false;
+                        QuizMakerTimesClicked = 1;
+                        timer.Enabled = false;
+                        PanelQuizMaker.Focus();
+                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Quiz Maker";
+                    }
+                }
+                else //no animations
+                {
+                    PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X - 400, PanelQuizMaker.Location.Y, PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
+                    QuizMakerShowing = true;
+                    QuizMakerClicked = false;
+                    QuizMakerTimesClicked = 1;
+                    timer.Enabled = false;
+                    PanelQuizMaker.Focus();
+                    frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Quiz Maker";
+                }
+            }
+            else if ((PanelQuizMaker.Location.X < 401) && (QuizMakerClicked == true) && (QuizMakerTimesClicked == 1) && (QuizMakerShowing == true))
+            {
+                if (!chkbxLameMode.Checked)
+                {
+                    if (x < 10)
+                    {
+                        PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X + 8, PanelQuizMaker.Location.Y, PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
+                        x++;
+                    }
+                    else if (x < 20)
+                    {
+                        PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X + 12, PanelQuizMaker.Location.Y, PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
+                        x++;
+                    }
+                    else if (x < 30)
+                    {
+                        PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X + 20, PanelQuizMaker.Location.Y, PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
+                        x++;
+                    }
+                    else
+                    {
+                        x = 0;
+                        QuizMakerShowing = false;
+                        QuizMakerClicked = false;
+                        QuizMakerTimesClicked = 0;                       
+                        timer.Enabled = false; //all done
+                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                    }
+                }
+                else //no animations, boo!
+                {
+                    PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X + 400, PanelQuizMaker.Location.Y, PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
+                    QuizMakerShowing = false;
+                    QuizMakerClicked = false;
+                    QuizMakerTimesClicked = 0;
+                    frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                    timer.Enabled = false;
+                }
+            }
+
+
+            #endregion
+
+            #region Quiz Mode Animate
+            if ((PanelQuizMode.Location.X < 1) && (QuizModeClicked == true) && (QuizModeTimesClicked == 0) && (QuizModeShowing == false))
+            {
+                if (!chkbxLameMode.Checked)
+                {
+                    if (x < 10)
+                    {
+                        PanelQuizMode.SetBounds(PanelQuizMode.Location.X + 20, PanelQuizMode.Location.Y, PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
+                        x++;
+                    }
+                    else if (x < 20)
+                    {
+                        PanelQuizMode.SetBounds(PanelQuizMode.Location.X + 12, PanelQuizMode.Location.Y, PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
+                        x++;
+                    }
+                    else if (x < 30)
+                    {
+                        PanelQuizMode.SetBounds(PanelQuizMode.Location.X + 8, PanelQuizMode.Location.Y, PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
+                        x++;
+                    }
+                    else
+                    {
+                        x = 0;
+                        QuizModeShowing = true;
+                        QuizModeClicked = false;
+                        QuizModeTimesClicked = 1;
+                        timer.Enabled = false;
+                        PanelQuizMode.Focus();
+                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Quiz Mode";
+                    }
+                }
+                else //no animations
+                {
+                    PanelQuizMode.SetBounds(PanelQuizMode.Location.X + 400, PanelQuizMode.Location.Y, PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
+                    QuizModeShowing = true;
+                    QuizModeClicked = false;
+                    QuizModeTimesClicked = 1;
+                    timer.Enabled = false;
+                    PanelQuizMode.Focus();
+                    frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Quiz Mode";
+                }
+            }
+            else if ((PanelQuizMode.Location.X > -401) && (QuizModeClicked == true) && (QuizModeTimesClicked == 1) && (QuizModeShowing == true))
+            {
+                if (!chkbxLameMode.Checked)
+                {
+                    if (x < 10)
+                    {
+                        PanelQuizMode.SetBounds(PanelQuizMode.Location.X - 8, PanelQuizMode.Location.Y, PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
+                        x++;
+                    }
+                    else if (x < 20)
+                    {
+                        PanelQuizMode.SetBounds(PanelQuizMode.Location.X - 12, PanelQuizMode.Location.Y, PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
+                        x++;
+                    }
+                    else if (x < 30)
+                    {
+                        PanelQuizMode.SetBounds(PanelQuizMode.Location.X - 20, PanelQuizMode.Location.Y, PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
+                        x++;
+                    }
+                    else
+                    {
+                        x = 0;
+                        QuizModeShowing = false;
+                        QuizModeClicked = false;
+                        QuizModeTimesClicked = 0;                       
+                        timer.Enabled = false; //all done
+                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                    }
+                }
+                else //no animations, boo!
+                {
+                    PanelQuizMode.SetBounds(PanelQuizMode.Location.X - 400, PanelQuizMode.Location.Y, PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
+                    QuizModeShowing = false;
+                    QuizModeClicked = false;
+                    QuizModeTimesClicked = 0;
+                    frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                    timer.Enabled = false;
+                }
+            }
+
+
+            #endregion
+
         }//end of timer_Tick
         
         /*This clears the question repl box of the specifically clicked question*/
@@ -1634,6 +1827,33 @@ namespace SrP_ClassroomInq
                 MessageBox.Show("Student Data File is missing!");
             }
 
+            try
+            {
+                if (File.Exists(@".data\QuizMaker.txt"))
+                {
+                    i = 0;
+                    using (StreamReader sr = File.OpenText(@".data\QuizMaker.txt"))
+                    {
+                        string tempstr = "";
+                        while ((tempstr = sr.ReadLine()) != null)
+                        {
+                            tmpstring = tempstr.Split('\x0A'); //divvy it up by newline
+                            logTmpString[i] = tmpstring[0]; //weird error where tmpstring is only using index 0...this fixes it
+                            i++;
+                        }
+                        sr.Close();
+                        for (j = 0; j <= (i - 1); j++)
+                        {
+                            MakeQuizQuestion(logTmpString[j], j); //populate quiz from data file
+                        }
+                        i = j = 0;
+                    }
+                }
+            }
+            catch 
+            {
+                MessageBox.Show("Oh No's....Quiz file reading broke!!");
+            }
 		}
         
         /*This method shows the PrefsPanel*/
@@ -1726,6 +1946,23 @@ namespace SrP_ClassroomInq
                     if (StuMgmtShowing)
                     {
                         SaveStudentData(); //if the panel is showing, on close, save data
+                    }
+                    if (QuizMakerShowing) // you'll want to save whatever changes they've made
+                    {
+                        try
+                        {
+                            using (StreamWriter sw = new StreamWriter(@".data\QuizMaker.txt"))
+                            {
+                                //build and write the strings for the data file
+                                for (int i = 0; i < lstbxQuizMaker.Items.Count; i++)
+                                {
+                                    sw.WriteLine(lstbxQuizMaker.Items[i]);
+                                }
+                                sw.Flush();
+                                sw.Close();
+                            }
+                        }
+                        catch {}
                     }
                 }
                 else
@@ -2741,6 +2978,10 @@ namespace SrP_ClassroomInq
                    cntxtMenu.MenuItems.Add(muItmPrefs);
                }
            }
+           else if (cntxtMenu.SourceControl == btnQMDel)
+           {
+               cntxtMenu.MenuItems.Add(muItmQuizDelete);
+           }
            
         }
         
@@ -2852,7 +3093,7 @@ namespace SrP_ClassroomInq
 
         }
         
-        /*Mehtod for the global toggling of name by view\ShowNames menu item*/
+        /*Method for the global toggling of name by view\ShowNames menu item*/
         private void showNamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //toggle all name values to true or false and change those who need changed
@@ -2897,6 +3138,298 @@ namespace SrP_ClassroomInq
                     }
                 }
             }
+        }
+
+        /*This method opens the quiz maker (via animation)*/
+        private void btnQuizMaker_Click(object sender, EventArgs e)
+        {
+            //this should bring in QuizMaker
+            string[] tmpstring = new string[logHistoryLength];
+            try
+            {
+                if (File.Exists(@".data\QuizMaker.txt"))
+                {
+                    i = 0;
+                    using (StreamReader sr = File.OpenText(@".data\QuizMaker.txt")) 
+                    {
+                        string tempstr = "";
+                        while ((tempstr = sr.ReadLine()) != null)
+                        {
+                            tmpstring = tempstr.Split('\x0A'); //divvy it up by newline
+                            logTmpString[i] = tmpstring[0]; //weird error where tmpstring is only using index 0...this fixes it
+                            i++;
+                        }
+                        sr.Close();
+                        lstbxQuizMaker.Items.Clear();
+                        for (j = 0; j <= (i - 1); j++)
+                        {
+                            lstbxQuizMaker.Items.Add(logTmpString[j]); //repopulate the lstbx
+                        }
+                        i = j = 0;
+                    }
+                }
+                else
+                {
+                    //file was deleted for some reason...
+                    using (FileStream fs = File.Create(@".data\QuizMaker.txt")) //make a file please
+                    {
+                        fs.Close();
+                    }
+
+                    lstbxQuizMaker.Items.Clear(); 
+                    //maybe tell the teacher the quiz file was gone?
+                }
+            }
+            catch (Exception E)
+            {
+                MessageBox.Show("This is embarassing..there were Errors..." + Environment.NewLine + E);
+            }
+            QuizMakerClicked = true;
+            timer.Enabled = true;
+        }
+
+        /*This method closes the quiz maker (via animation)*/
+        private void btnQMcls_Click(object sender, EventArgs e)
+        {
+            //hide quiz maker
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(@".data\QuizMaker.txt"))
+                {
+                    //build and write the strings for the data file
+                    for (int i = 0; i < lstbxQuizMaker.Items.Count; i++)
+                    {
+                        sw.WriteLine(lstbxQuizMaker.Items[i]);
+                    }
+                    sw.Flush();
+                    sw.Close();
+                }
+            }
+            catch 
+            {
+                MessageBox.Show("He's dead Jim!");
+            }
+
+            QuizMakerClicked = true;
+            timer.Enabled = true;
+        }
+
+        /*This Allows for the editing of existing questions*/
+        private void btnQMEdit_Click(object sender, EventArgs e)
+        {
+            //edit the currently selected question in Listbox, messagebox to select one if they haven't yet
+            if (!EDTClicked)
+            {
+                if (lstbxQuizMaker.SelectedIndex == -1)
+                {
+                    MessageBox.Show("You haven't selected a Question to edit yet.");
+                }
+                else
+                {
+                    txtbxQM.Text = lstbxQuizMaker.Items[lstbxQuizMaker.SelectedIndex].ToString();
+                    txtbxQM.Focus();
+                    btnQMEdit.Text = "Done"; //multipurpose the button
+                    EDTClicked = true;
+                }                
+            }
+            else
+            {
+                //second time clicked, they're done..
+                if ((txtbxQM.Text.Trim() != "") && (txtbxQM.Text != "^^^^ Select a question to edit. ^^^^"))
+                {
+                    lstbxQuizMaker.Items.Insert(lstbxQuizMaker.SelectedIndex, txtbxQM.Text);
+                    lstbxQuizMaker.Items.RemoveAt(lstbxQuizMaker.SelectedIndex);
+                    txtbxQM.Text = "^^^^ Select a question to edit. ^^^^";
+                    lstbxQuizMaker.Refresh();
+                    btnQMEdit.Text = "Edit";
+                    EDTClicked = false;
+                }
+                else
+                {
+                    MessageBox.Show("You must type a question!");
+                    txtbxQM.Text = "^^^^ Select a question to edit. ^^^^";
+                    btnQMEdit.Text = "Edit";
+                    EDTClicked = false;
+                }
+            }
+        }
+
+        /*Allows for the deleting of a question*/
+        private void btnQMDel_MouseDown(object sender, MouseEventArgs e)
+        {
+            Point tmp = new Point();
+            bool rightClick = (e.Button == System.Windows.Forms.MouseButtons.Right);
+            bool leftClick = (e.Button == System.Windows.Forms.MouseButtons.Left);
+
+            if (rightClick)
+            {
+                //show context menu for undo delete, if something has been deleted
+                if (QuizQuestionDel)
+                    cntxtMenu.Show(btnQMDel, e.Location, LeftRightAlignment.Right);
+            }
+            else
+            {
+                if (lstbxQuizMaker.SelectedIndex != -1) //something is actually selected
+                {
+                    QuizDelID = lstbxQuizMaker.SelectedIndex; //to save the ID but also to simplify the code
+                    lstbxQuizMaker.Items.RemoveAt(QuizDelID);
+                    PanelQuestion_arr_tmp.Y -= 63; //move up on delete
+                    
+                    QuizQuestionDel = true;
+                    trayICON.BalloonTipTitle = "Undo Delete by";
+                    trayICON.BalloonTipText = "Right click Delete Button";
+                    trayICON.ShowBalloonTip(1200);
+                }
+            }
+        }
+
+        /*Clears the rename textbox*/
+        private void btnQMclr_Click(object sender, EventArgs e)
+        {
+            txtbxQM.Clear();
+        }
+
+        /*Allows you to add a new question*/
+        private void btnAddQM_Click(object sender, EventArgs e)
+        {
+            if ((txtbxQM.Text.Trim() != "") && (txtbxQM.Text != "^^^^ Select a question to edit. ^^^^"))
+            {
+                lstbxQuizMaker.Items.Add(txtbxQM.Text);
+                lstbxQuizMaker.Refresh();
+                txtbxQM.Text = "^^^^ Select a question to edit. ^^^^";
+            }
+            else
+            {
+                MessageBox.Show("You must type a question!");
+            }
+        }
+
+        /*This method clears the textbox if it's clicked with nothing or default inside*/
+        private void txtbxQM_Click(object sender, EventArgs e)
+        {
+            if ((txtbxQM.Text.Trim() != "") && (txtbxQM.Text != "^^^^ Select a question to edit. ^^^^"))
+            {
+                //there's something there
+            }
+            else
+            {
+                txtbxQM.Clear();
+            }
+        }
+
+        /*Method to create questions on the quiz*/
+        private bool MakeQuizQuestion(string question, int number)
+        {
+            bool success = false;
+            int index = number;
+            try
+            {
+                // 
+                // lblQuestionNum_*
+                // 
+                lblQuestionNum_arr[index] = new Label();
+                lblQuestionNum_arr[index].AutoSize = true;
+                lblQuestionNum_arr[index].Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                lblQuestionNum_arr[index].Location = lblQuestionNum_arr_tmp;
+                lblQuestionNum_arr[index].Name = "lblQuestionNum_arr_" + number.ToString();
+                lblQuestionNum_arr[index].Size = new System.Drawing.Size(23, 20);
+                lblQuestionNum_arr[index].TabIndex = 0;
+                lblQuestionNum_arr[index].Text = (number + 1).ToString() + ")";
+                // 
+                // txtbxQuestion_*
+                // 
+                txtbxQuestion_arr[index] = new TextBox();
+                txtbxQuestion_arr[index].BackColor = System.Drawing.SystemColors.ControlDarkDark;
+                txtbxQuestion_arr[index].BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                txtbxQuestion_arr[index].ForeColor = System.Drawing.Color.DarkGoldenrod;
+                txtbxQuestion_arr[index].Location = txtbxQuestion_arr_tmp;
+                txtbxQuestion_arr[index].Multiline = true;
+                txtbxQuestion_arr[index].Name = "txtbxQuestion_arr_" + number.ToString();
+                txtbxQuestion_arr[index].ReadOnly = true;
+                txtbxQuestion_arr[index].Size = new System.Drawing.Size(252, 37);
+                txtbxQuestion_arr[index].TabIndex = 1;
+                txtbxQuestion_arr[index].Text = question;
+                txtbxQuestion_arr[index].TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+                // 
+                // btnQuizQuestionSend_*
+                // 
+                btnQuizQuestionSend_arr[index] = new Button();
+                btnQuizQuestionSend_arr[index].Location = btnQuizQuestionSend_arr_tmp;
+                btnQuizQuestionSend_arr[index].Name = "btnQuizQuestionSend_arr_" + number.ToString();
+                btnQuizQuestionSend_arr[index].Size = new System.Drawing.Size(36, 37);
+                btnQuizQuestionSend_arr[index].TabIndex = 2;
+                btnQuizQuestionSend_arr[index].Text = "Ask";
+                btnQuizQuestionSend_arr[index].UseVisualStyleBackColor = true;
+                // 
+                // PanelQuestion_arr_*
+                // 
+                PanelQuestion_arr[index] = new Panel();
+                PanelQuestion_arr[index].BackColor = System.Drawing.Color.Black;
+                PanelQuestion_arr[index].Controls.Add(btnQuizQuestionSend_arr[number]);
+                PanelQuestion_arr[index].Controls.Add(txtbxQuestion_arr[number]);
+                PanelQuestion_arr[index].Controls.Add(lblQuestionNum_arr[number]);
+                PanelQuestion_arr[index].Location = PanelQuestion_arr_tmp;
+                PanelQuestion_arr[index].Name = "PanelQuestion_arr_" + number.ToString();
+                PanelQuestion_arr[index].Size = new System.Drawing.Size(330, 63);
+                PanelQuestion_arr[index].TabIndex = 0;
+
+                pnlQuiz.Controls.Add(PanelQuestion_arr[index]); //add new question to container
+
+                PanelQuestion_arr_tmp.Y += 63; //move down for next question
+                success = true;
+            }
+            catch 
+            {
+                success = false;
+            }
+
+            return success;
+        }
+
+        /*Closes Quiz mode*/
+        private void btnExitQuiz_Click(object sender, EventArgs e)
+        {
+            //exit quiz mode
+            QuizModeClicked = true;
+            timer.Enabled = true;
+        }
+
+        /*Opens quiz mode*/
+        private void btnQuizMode_Click(object sender, EventArgs e)
+        {
+            //make quiz here
+            for (int i = 0; i < lstbxQuizMaker.Items.Count; i++)
+            {
+                try
+                {
+                    PanelQuestion_arr[i].Dispose(); //get rid of old questions
+                    PanelQuestion_arr_tmp.Y -= 63; //move up on delete
+                }
+                catch
+                {
+                    break;
+                }
+            }
+
+            for (int i = 0; i < lstbxQuizMaker.Items.Count; i++)
+            {
+                MakeQuizQuestion(lstbxQuizMaker.Items[i].ToString(), i); //make new questions
+            }
+
+            //enter into quiz mode
+            QuizModeClicked = true;
+            timer.Enabled = true;
+        }
+
+        /*Allows for Undoing the delete of a question*/
+        private void muItmQuizDelete_Click(object sender, EventArgs e)
+        {
+            //Undo the delete of a question from quiz            
+            lstbxQuizMaker.Items.Insert(QuizDelID, txtbxQuestion_arr[QuizDelID].Text);
+            lstbxQuizMaker.SelectedIndex = QuizDelID;
+            PanelQuestion_arr_tmp.Y += 63; //move up on delete
+
+            QuizQuestionDel = false;
         }
    } //end of partial class
 } //end of namespace    

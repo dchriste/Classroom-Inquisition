@@ -97,3 +97,6 @@ Student 6 ( 02:15:39  |  2/26/2012 ):
 Student 6 ( 02:19:09  |  2/26/2012 ):
 Test Message
 
+Student 6 ( 15:48:59  |  2/27/2012 ):
+Hey professor
+
