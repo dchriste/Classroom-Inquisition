@@ -4,6 +4,7 @@ var NAVTREE =
     [ "Class List", "annotated.html", [
       [ "SrP_ClassroomInq::AboutBox_CI", "class_sr_p___classroom_inq_1_1_about_box___c_i.html", null ],
       [ "SrP_ClassroomInq::Form1", "class_sr_p___classroom_inq_1_1_form1.html", null ],
+      [ "SrP_ClassroomInq::frmClassrromInq", "class_sr_p___classroom_inq_1_1frm_classrrom_inq.html", null ],
       [ "SrP_ClassroomInq::Program", "class_sr_p___classroom_inq_1_1_program.html", null ],
       [ "SrP_ClassroomInq::Properties::Resources", "class_sr_p___classroom_inq_1_1_properties_1_1_resources.html", null ],
       [ "SrP_ClassroomInq::Properties::Settings", "class_sr_p___classroom_inq_1_1_properties_1_1_settings.html", null ]
