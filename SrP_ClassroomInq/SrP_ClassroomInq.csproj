@@ -26,7 +26,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <SupportUrl>https://github.com/dchriste/Classroom-Inquisition</SupportUrl>
     <PublisherName>Classroom Inquisition</PublisherName>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.3.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>

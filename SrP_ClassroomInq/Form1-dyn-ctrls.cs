@@ -1823,18 +1823,30 @@ namespace SrP_ClassroomInq
             string[] tmpstring = new string[classSize];
             try
             {
-                using (StreamReader sr = File.OpenText(PlainData))
+                try
                 {
-                    string tempstr = "";
-                    while ((tempstr = sr.ReadLine()) != null)
+                    using (StreamReader sr = File.OpenText(PlainData))
                     {
-                        tempstr = tempstr.TrimEnd('\x0A');
-                        tmpstring = tempstr.Split(',');// first item in tmp string should always be name
-                        Students_Name[i] = tmpstring[0]; // store student names as they are read from file
-                        Students_ID[i++] = tmpstring[1]; //store ID's
+                        string tempstr = "";
+                        while ((tempstr = sr.ReadLine()) != null)
+                        {
+                            tempstr = tempstr.TrimEnd('\x0A');
+                            tmpstring = tempstr.Split(',');// first item in tmp string should always be name
+                            Students_Name[i] = tmpstring[0]; // store student names as they are read from file
+                            Students_ID[i++] = tmpstring[1]; //store ID's
+                        }
+                        sr.Close();
                     }
-                    sr.Close();
                 }
+                catch (DirectoryNotFoundException dirEx)
+                {
+                    Directory.CreateDirectory(@".data"); //in case the directory didn't exist
+                }
+                catch (FileNotFoundException fileEx)
+                {
+                    File.Create(PlainData); //recreate the file
+                }
+
                 lstbxStudents.Items.Clear();
                 for (j = 0; j < i; j++)
                 {
@@ -1844,12 +1856,12 @@ namespace SrP_ClassroomInq
             }
             catch 
             {
-                MessageBox.Show("Student Data File is missing!");
+                MessageBox.Show("Stuff's not right....");
             }
 
             try
             {
-                if (File.Exists(@".data\Quiz\QuizMaker.txt"))
+                try
                 {
                     i = 0;
                     using (StreamReader sr = File.OpenText(@".data\Quiz\QuizMaker.txt"))
@@ -1868,6 +1880,14 @@ namespace SrP_ClassroomInq
                         }
                         i = j = 0;
                     }
+                }
+                catch (DirectoryNotFoundException dirEx)
+                {
+                    Directory.CreateDirectory(@".data/Quiz"); // recreate the directory
+                }
+                catch (FileNotFoundException fileEX)
+                {
+                    File.Create(@".data\Quiz\QuizMaker.txt"); // recreate the quiz maker file
                 }
             }
             catch 
@@ -2653,15 +2673,24 @@ namespace SrP_ClassroomInq
 
                 //make the generic filename
                 logFiles[student] = @".logs\Student" + student.ToString() + "-log.txt"; //Student#-log.txt in hidden folder .logs
-
-                if (File.Exists(logFiles[student]) == false)
+                if (Directory.Exists(@".logs"))
                 {
-                    using (FileStream fs = File.Create(logFiles[student]))
+                    if (File.Exists(logFiles[student]) == false)
+                    {
+                        using (FileStream fs = File.Create(logFiles[student]))
+                        {
+                            fs.Close();
+                        }
+                    }
+                }
+                else
+                {
+                    Directory.CreateDirectory(@".logs");
+                    using (FileStream fs = File.Create(logFiles[student])) //if folder is gone so was the file
                     {
                         fs.Close();
                     }
                 }
-
                 if (!teacher)
                 {
                     //then I have the name already from the loop above.
