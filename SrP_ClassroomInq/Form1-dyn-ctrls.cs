@@ -49,13 +49,14 @@ namespace SrP_ClassroomInq
         string[] Q_sender = new string[classSize]; // records the addr of the sender of each question
         string brdcst_addr = "\x01";
         string[] logFiles = new string[classSize];
-        string EncryptedData = @"StudentInfo_Encrypted.txt";
-        string PlainData = @"StudentInfo.txt";
+        string EncryptedData = @".data\StudentInfo_Encrypted.txt";
+        string PlainData = @".data\StudentInfo.txt";
         string[] portNames = new string[10];
         string tempString = "";
         string tempString2 = "";
         string RX_Data = "";
         string SecretKey;
+        string StateMachine = "Normal"; //inital state
         SoundPlayer JukeBox = new System.Media.SoundPlayer(); //for alert tone
         bool WeGotData = false;
 		public const int classSize = 50;  //will be max questions handled at once
@@ -109,6 +110,7 @@ namespace SrP_ClassroomInq
         bool Question_Deleted = false;
         bool QuizQuestionDel = false;
         int QuizDelID = 255;
+        string QzQuestionDel = "";
         bool Request_Undo = false;
         bool sudo_kill = false;
         byte Del_ID = 255;
@@ -345,17 +347,35 @@ namespace SrP_ClassroomInq
 
                 if ((tmp_response != 0x05) && (tmp_response != 0x06)) //if not enq or ack
                 {
-                    Q_sender[NumQuestions] = tmp.ToString().TrimStart('\x27').TrimEnd('\x27'); //the trims are to fix the mess ToString makes of the unprintable char
-                    finalString = finalString.TrimStart(tmp); //trim off the address
-
-                    for (int i = 0; i < Students_ID.Length; i++)
-                    {
-                        if (String.CompareOrdinal(addr_tbl[i], Q_sender[NumQuestions]) == 0) //CompareOrdinal Compares Numerical value
-                        {
-                            tempString2 = Students_Name[i];
+                    switch(StateMachine){
+                        
+                        case("Quiz"):
+                            finalString = finalString.TrimStart(tmp); //trim off the address
+                            for (int i = 0; i < Students_ID.Length; i++)
+                            {
+                                if (String.CompareOrdinal(addr_tbl[i], tmp.ToString().TrimStart('\x27').TrimEnd('\x27')) == 0) //CompareOrdinal Compares Numerical value
+                                {
+                                    tempString2 = Students_Name[i];
+                                    break;
+                                }
+                            }
                             break;
-                        }
+
+                        case("Normal"):
+                        default:
+                            Q_sender[NumQuestions] = tmp.ToString().TrimStart('\x27').TrimEnd('\x27'); //the trims are to fix the mess ToString makes of the unprintable char
+                            finalString = finalString.TrimStart(tmp); //trim off the address
+                            for (int i = 0; i < Students_ID.Length; i++)
+                            {
+                                if (String.CompareOrdinal(addr_tbl[i], Q_sender[NumQuestions]) == 0) //CompareOrdinal Compares Numerical value
+                                {
+                                    tempString2 = Students_Name[i];
+                                    break;
+                                }
+                            }
+                        break;
                     }
+                    
                     return finalString;
                 }
                 else // the string received is part of the flow control
@@ -1829,10 +1849,10 @@ namespace SrP_ClassroomInq
 
             try
             {
-                if (File.Exists(@".data\QuizMaker.txt"))
+                if (File.Exists(@".data\Quiz\QuizMaker.txt"))
                 {
                     i = 0;
-                    using (StreamReader sr = File.OpenText(@".data\QuizMaker.txt"))
+                    using (StreamReader sr = File.OpenText(@".data\Quiz\QuizMaker.txt"))
                     {
                         string tempstr = "";
                         while ((tempstr = sr.ReadLine()) != null)
@@ -1951,7 +1971,7 @@ namespace SrP_ClassroomInq
                     {
                         try
                         {
-                            using (StreamWriter sw = new StreamWriter(@".data\QuizMaker.txt"))
+                            using (StreamWriter sw = new StreamWriter(@".data\Quiz\QuizMaker.txt"))
                             {
                                 //build and write the strings for the data file
                                 for (int i = 0; i < lstbxQuizMaker.Items.Count; i++)
@@ -2016,10 +2036,8 @@ namespace SrP_ClassroomInq
                 {
                     tempString = SerialPort.ReadLine();
                 }
-                catch (Exception E)
-                {
-                    //hopefully we don't freeze up now
-                }
+                catch {}
+
                 if (tempString != null)
                 {
                     //MessageBox.Show(tempString); //testing
@@ -2037,11 +2055,21 @@ namespace SrP_ClassroomInq
                     {
                         //if "" is true then the string received was a flwctrl string, and it's taken care of
                     }
-                    else // we can make controls because this was a question
+                    else // we can decide what to do based on program state
                     {
-                        Qs_to_create[ix++] = tmp_str; //store and increment pointer
-                        Qs_to_Make = true; //set the flag
-                        timer_ControlsCreate.Enabled = true;
+                        switch (StateMachine)
+                        {
+                            case("Quiz"):
+                                RecordQuizData(tmp_str, tempString2); //question, student's name
+                                break;
+
+                            case("Normal"): //normal is the default
+                            default:
+                                 Qs_to_create[ix++] = tmp_str; //store and increment pointer
+                                 Qs_to_Make = true; //set the flag
+                                 timer_ControlsCreate.Enabled = true;
+                                 break;                            
+                        }
                     }
                     WeGotData = false;
 
@@ -3147,10 +3175,10 @@ namespace SrP_ClassroomInq
             string[] tmpstring = new string[logHistoryLength];
             try
             {
-                if (File.Exists(@".data\QuizMaker.txt"))
+                if (File.Exists(@".data\Quiz\QuizMaker.txt"))
                 {
                     i = 0;
-                    using (StreamReader sr = File.OpenText(@".data\QuizMaker.txt")) 
+                    using (StreamReader sr = File.OpenText(@".data\Quiz\QuizMaker.txt")) 
                     {
                         string tempstr = "";
                         while ((tempstr = sr.ReadLine()) != null)
@@ -3171,7 +3199,7 @@ namespace SrP_ClassroomInq
                 else
                 {
                     //file was deleted for some reason...
-                    using (FileStream fs = File.Create(@".data\QuizMaker.txt")) //make a file please
+                    using (FileStream fs = File.Create(@".data\Quiz\QuizMaker.txt")) //make a file please
                     {
                         fs.Close();
                     }
@@ -3194,7 +3222,7 @@ namespace SrP_ClassroomInq
             //hide quiz maker
             try
             {
-                using (StreamWriter sw = new StreamWriter(@".data\QuizMaker.txt"))
+                using (StreamWriter sw = new StreamWriter(@".data\Quiz\QuizMaker.txt"))
                 {
                     //build and write the strings for the data file
                     for (int i = 0; i < lstbxQuizMaker.Items.Count; i++)
@@ -3227,6 +3255,7 @@ namespace SrP_ClassroomInq
                 else
                 {
                     txtbxQM.Text = lstbxQuizMaker.Items[lstbxQuizMaker.SelectedIndex].ToString();
+                    txtbxQM.TextAlign = HorizontalAlignment.Left;
                     txtbxQM.Focus();
                     btnQMEdit.Text = "Done"; //multipurpose the button
                     EDTClicked = true;
@@ -3239,25 +3268,23 @@ namespace SrP_ClassroomInq
                 {
                     lstbxQuizMaker.Items.Insert(lstbxQuizMaker.SelectedIndex, txtbxQM.Text);
                     lstbxQuizMaker.Items.RemoveAt(lstbxQuizMaker.SelectedIndex);
-                    txtbxQM.Text = "^^^^ Select a question to edit. ^^^^";
                     lstbxQuizMaker.Refresh();
-                    btnQMEdit.Text = "Edit";
-                    EDTClicked = false;
                 }
                 else
                 {
-                    MessageBox.Show("You must type a question!");
-                    txtbxQM.Text = "^^^^ Select a question to edit. ^^^^";
-                    btnQMEdit.Text = "Edit";
-                    EDTClicked = false;
+                    MessageBox.Show("You must type a question!");                    
                 }
+
+                txtbxQM.Text = "^^^^ Select a question to edit. ^^^^";
+                txtbxQM.TextAlign = HorizontalAlignment.Center;
+                btnQMEdit.Text = "Edit";
+                EDTClicked = false;
             }
         }
 
         /*Allows for the deleting of a question*/
         private void btnQMDel_MouseDown(object sender, MouseEventArgs e)
         {
-            Point tmp = new Point();
             bool rightClick = (e.Button == System.Windows.Forms.MouseButtons.Right);
             bool leftClick = (e.Button == System.Windows.Forms.MouseButtons.Left);
 
@@ -3272,13 +3299,24 @@ namespace SrP_ClassroomInq
                 if (lstbxQuizMaker.SelectedIndex != -1) //something is actually selected
                 {
                     QuizDelID = lstbxQuizMaker.SelectedIndex; //to save the ID but also to simplify the code
+                    QzQuestionDel = lstbxQuizMaker.Items[QuizDelID].ToString();// save question
                     lstbxQuizMaker.Items.RemoveAt(QuizDelID);
-                    PanelQuestion_arr_tmp.Y -= 63; //move up on delete
-                    
+                    if (EDTClicked) //we're in edit mode
+                    {
+                        //resets textbx in case you were editing the question you deleted
+                        txtbxQM.Text = "^^^^ Select a question to edit. ^^^^";
+                        txtbxQM.TextAlign = HorizontalAlignment.Center;
+                        btnQMEdit.Text = "Edit";
+                        EDTClicked = false; //reset flag
+                    }
                     QuizQuestionDel = true;
                     trayICON.BalloonTipTitle = "Undo Delete by";
                     trayICON.BalloonTipText = "Right click Delete Button";
                     trayICON.ShowBalloonTip(1200);
+                }
+                else
+                {
+                    MessageBox.Show("Select a question to Delete!");
                 }
             }
         }
@@ -3287,20 +3325,31 @@ namespace SrP_ClassroomInq
         private void btnQMclr_Click(object sender, EventArgs e)
         {
             txtbxQM.Clear();
+            txtbxQM.TextAlign = HorizontalAlignment.Left;
         }
 
         /*Allows you to add a new question*/
         private void btnAddQM_Click(object sender, EventArgs e)
         {
-            if ((txtbxQM.Text.Trim() != "") && (txtbxQM.Text != "^^^^ Select a question to edit. ^^^^"))
+            if (!EDTClicked)
             {
-                lstbxQuizMaker.Items.Add(txtbxQM.Text);
-                lstbxQuizMaker.Refresh();
-                txtbxQM.Text = "^^^^ Select a question to edit. ^^^^";
+                if ((txtbxQM.Text.Trim() != "") && (txtbxQM.Text != "^^^^ Select a question to edit. ^^^^"))
+                {
+                    lstbxQuizMaker.Items.Add(txtbxQM.Text);
+                    lstbxQuizMaker.Refresh();
+                    txtbxQM.Text = "^^^^ Select a question to edit. ^^^^";
+
+                    txtbxQM.TextAlign = HorizontalAlignment.Center;
+                }
+                else
+                {
+                    MessageBox.Show("You must type a question!");
+                }
             }
             else
             {
-                MessageBox.Show("You must type a question!");
+                //add was accidentally clicked while in edit mode, perform edit action instead
+                btnQMEdit_Click(sender, e);
             }
         }
 
@@ -3314,6 +3363,7 @@ namespace SrP_ClassroomInq
             else
             {
                 txtbxQM.Clear();
+                txtbxQM.TextAlign = HorizontalAlignment.Left;
             }
         }
 
@@ -3360,6 +3410,7 @@ namespace SrP_ClassroomInq
                 btnQuizQuestionSend_arr[index].TabIndex = 2;
                 btnQuizQuestionSend_arr[index].Text = "Ask";
                 btnQuizQuestionSend_arr[index].UseVisualStyleBackColor = true;
+                btnQuizQuestionSend_arr[index].MouseClick += new MouseEventHandler(btnQuizAsk_Click);
                 // 
                 // PanelQuestion_arr_*
                 // 
@@ -3392,24 +3443,17 @@ namespace SrP_ClassroomInq
             //exit quiz mode
             QuizModeClicked = true;
             timer.Enabled = true;
+            quitToolStripMenuItem.Checked = false; //it won't uncheck itself
+            StateMachine = "Normal";
+            normalToolStripMenuItem.Checked = true;
         }
 
         /*Opens quiz mode*/
         private void btnQuizMode_Click(object sender, EventArgs e)
         {
-            //make quiz here
-            for (int i = 0; i < lstbxQuizMaker.Items.Count; i++)
-            {
-                try
-                {
-                    PanelQuestion_arr[i].Dispose(); //get rid of old questions
-                    PanelQuestion_arr_tmp.Y -= 63; //move up on delete
-                }
-                catch
-                {
-                    break;
-                }
-            }
+            pnlQuiz.Controls.Clear(); //get rid of old questions
+            PanelQuestion_arr_tmp.X = 7;//default coordinates
+            PanelQuestion_arr_tmp.Y = 6;// ^^
 
             for (int i = 0; i < lstbxQuizMaker.Items.Count; i++)
             {
@@ -3417,19 +3461,87 @@ namespace SrP_ClassroomInq
             }
 
             //enter into quiz mode
-            QuizModeClicked = true;
-            timer.Enabled = true;
+            quitToolStripMenuItem_Click(sender, e);
         }
 
         /*Allows for Undoing the delete of a question*/
         private void muItmQuizDelete_Click(object sender, EventArgs e)
         {
             //Undo the delete of a question from quiz            
-            lstbxQuizMaker.Items.Insert(QuizDelID, txtbxQuestion_arr[QuizDelID].Text);
+            lstbxQuizMaker.Items.Insert(QuizDelID, QzQuestionDel);
             lstbxQuizMaker.SelectedIndex = QuizDelID;
-            PanelQuestion_arr_tmp.Y += 63; //move up on delete
 
             QuizQuestionDel = false;
+        }
+
+        /*Method for the sending of questions via broadcast*/
+        private void btnQuizAsk_Click(object sender, EventArgs e)
+        {
+            byte question = 0;
+            
+            for (int i = 0; i <  btnQuizQuestionSend_arr.Length - 1; i++) //loop through to find the clicked one
+            {
+                if (sender.Equals(btnQuizQuestionSend_arr[i]))
+                {
+                    question = (byte) i; 
+                    break;
+                }
+            }
+
+            if(txtbxQuestion_arr[question].Text.Trim() != "")
+            {
+                SendMsg(txtbxQuestion_arr[question].Text, brdcst_addr);
+                RecordQuizData(txtbxQuestion_arr[question].Text, "Teacher");
+            }
+        }
+
+        /*This allows the toggling of state in menubar, also shows the quiz*/
+        private void quizToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string file2write = @".data/Quiz/QuizData.txt";
+
+            if (File.Exists(file2write) == true)
+            {
+                File.Move(file2write, @".data/Quiz/QuizData-oldQuiz.txt");//move to a backup                    
+            }
+            using (FileStream fs = File.Create(file2write))
+            {
+                fs.Close();
+            }
+
+            quitToolStripMenuItem.Checked = true;
+            normalToolStripMenuItem.Checked = false;
+            classVoteToolStripMenuItem.Checked = false;
+            attedanceToolStripMenuItem.Checked = false;
+            StateMachine = "Quiz"; //program state
+
+            QuizModeClicked = true;
+            timer.Enabled = true;
+        }
+
+        /*This method allows for the recording of questions and answers for the quiz*/
+        private void RecordQuizData(string question, string name_sender)
+        {
+            string file2write = @".data/Quiz/QuizData.txt";
+            try
+            {      
+                using (StreamWriter sw = File.AppendText(file2write))
+                {
+                    sw.NewLine = "\x0A"; //sets the writeline terminator
+                    sw.WriteLine(name_sender + " ( " + DateTime.Now.ToString("HH:mm:ss") + "  |  " + DateTime.Today.Date.ToString("d") + " )" + ":" + "\x0A" + question + "\x0A");  //this will leave one blank line between each message
+                    /*Example:
+                     * Teacher (13:10:12  |  4/1/2012):
+                     * What is the factorial of 100?
+                     * ...
+                     * */
+                    sw.Flush();
+                    sw.Close();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Quiz Log Creation // Writing Failed!!!");
+            }
         }
    } //end of partial class
 } //end of namespace    

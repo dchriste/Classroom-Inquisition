@@ -149,15 +149,15 @@
             this.muItmUndo = new System.Windows.Forms.MenuItem();
             this.muItmName = new System.Windows.Forms.MenuItem();
             this.PanelQuizMaker = new System.Windows.Forms.Panel();
-            this.btnQMDel = new System.Windows.Forms.Button();
             this.btnAddQM = new System.Windows.Forms.Button();
+            this.btnQMDel = new System.Windows.Forms.Button();
             this.btnQMclr = new System.Windows.Forms.Button();
             this.txtbxQM = new System.Windows.Forms.TextBox();
+            this.btnQMcls = new System.Windows.Forms.Button();
             this.btnQMEdit = new System.Windows.Forms.Button();
             this.lstbxQuizMaker = new System.Windows.Forms.ListBox();
-            this.btnQuizMode = new System.Windows.Forms.Button();
-            this.btnQMcls = new System.Windows.Forms.Button();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.btnQuizMode = new System.Windows.Forms.Button();
             this.PanelQuizMode = new System.Windows.Forms.Panel();
             this.pnlQuiz = new System.Windows.Forms.Panel();
             this.btnExitQuiz = new System.Windows.Forms.Button();
@@ -177,6 +177,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.PanelConvView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.PanelQuizMaker.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.PanelQuizMode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -288,8 +289,9 @@
             this.quizToolStripMenuItem.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.quizToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.quizToolStripMenuItem.Name = "quizToolStripMenuItem";
-            this.quizToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.quizToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.quizToolStripMenuItem.Text = "Quiz";
+            this.quizToolStripMenuItem.Click += new System.EventHandler(this.quizToolStripMenuItem_Click);
             // 
             // showNamesToolStripMenuItem
             // 
@@ -1310,31 +1312,20 @@
             // 
             this.PanelQuizMaker.AutoScroll = true;
             this.PanelQuizMaker.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelQuizMaker.Controls.Add(this.btnAddQM);
+            this.PanelQuizMaker.Controls.Add(this.btnQMDel);
+            this.PanelQuizMaker.Controls.Add(this.btnQMclr);
+            this.PanelQuizMaker.Controls.Add(this.txtbxQM);
+            this.PanelQuizMaker.Controls.Add(this.btnQMcls);
+            this.PanelQuizMaker.Controls.Add(this.btnQMEdit);
+            this.PanelQuizMaker.Controls.Add(this.lstbxQuizMaker);
+            this.PanelQuizMaker.Controls.Add(this.pictureBox5);
+            this.PanelQuizMaker.Controls.Add(this.btnQuizMode);
             this.PanelQuizMaker.ForeColor = System.Drawing.Color.DarkGoldenrod;
             this.PanelQuizMaker.Location = new System.Drawing.Point(400, 0);
-            this.PanelQuizMaker.Controls.Add(btnAddQM);
-            this.PanelQuizMaker.Controls.Add(btnQMDel);
-            this.PanelQuizMaker.Controls.Add(btnQMclr);
-            this.PanelQuizMaker.Controls.Add(txtbxQM);
-            this.PanelQuizMaker.Controls.Add(btnQMcls);
-            this.PanelQuizMaker.Controls.Add(btnQMEdit);
-            this.PanelQuizMaker.Controls.Add(lstbxQuizMaker);
-            this.PanelQuizMaker.Controls.Add(pictureBox5);
-            this.PanelQuizMaker.Controls.Add(btnQuizMode);
             this.PanelQuizMaker.Name = "PanelQuizMaker";
             this.PanelQuizMaker.Size = new System.Drawing.Size(384, 524);
             this.PanelQuizMaker.TabIndex = 11;
-            // 
-            // btnQMDel
-            // 
-            this.btnQMDel.BackColor = System.Drawing.Color.Black;
-            this.btnQMDel.Location = new System.Drawing.Point(252, 423);
-            this.btnQMDel.Name = "btnQMDel";
-            this.btnQMDel.Size = new System.Drawing.Size(60, 23);
-            this.btnQMDel.TabIndex = 10;
-            this.btnQMDel.Text = "Delete";
-            this.btnQMDel.UseVisualStyleBackColor = false;
-            this.btnQMDel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnQMDel_MouseDown);
             // 
             // btnAddQM
             // 
@@ -1346,6 +1337,17 @@
             this.btnAddQM.Text = "Add";
             this.btnAddQM.UseVisualStyleBackColor = false;
             this.btnAddQM.Click += new System.EventHandler(this.btnAddQM_Click);
+            // 
+            // btnQMDel
+            // 
+            this.btnQMDel.BackColor = System.Drawing.Color.Black;
+            this.btnQMDel.Location = new System.Drawing.Point(252, 423);
+            this.btnQMDel.Name = "btnQMDel";
+            this.btnQMDel.Size = new System.Drawing.Size(60, 23);
+            this.btnQMDel.TabIndex = 10;
+            this.btnQMDel.Text = "Delete";
+            this.btnQMDel.UseVisualStyleBackColor = false;
+            this.btnQMDel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnQMDel_MouseDown);
             // 
             // btnQMclr
             // 
@@ -1366,7 +1368,19 @@
             this.txtbxQM.Size = new System.Drawing.Size(358, 20);
             this.txtbxQM.TabIndex = 7;
             this.txtbxQM.Text = "^^^^ Select a question to edit. ^^^^";
+            this.txtbxQM.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtbxQM.Click += new System.EventHandler(this.txtbxQM_Click);
+            // 
+            // btnQMcls
+            // 
+            this.btnQMcls.BackColor = System.Drawing.Color.Black;
+            this.btnQMcls.Location = new System.Drawing.Point(252, 486);
+            this.btnQMcls.Name = "btnQMcls";
+            this.btnQMcls.Size = new System.Drawing.Size(111, 23);
+            this.btnQMcls.TabIndex = 1;
+            this.btnQMcls.Text = "Close Quiz Maker";
+            this.btnQMcls.UseVisualStyleBackColor = false;
+            this.btnQMcls.Click += new System.EventHandler(this.btnQMcls_Click);
             // 
             // btnQMEdit
             // 
@@ -1392,6 +1406,16 @@
             this.lstbxQuizMaker.Size = new System.Drawing.Size(355, 251);
             this.lstbxQuizMaker.TabIndex = 5;
             // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::SrP_ClassroomInq.Properties.Resources.Background;
+            this.pictureBox5.Location = new System.Drawing.Point(32, 17);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(321, 50);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 0;
+            this.pictureBox5.TabStop = false;
+            // 
             // btnQuizMode
             // 
             this.btnQuizMode.BackColor = System.Drawing.Color.Black;
@@ -1402,27 +1426,6 @@
             this.btnQuizMode.Text = "Enter Quiz Mode";
             this.btnQuizMode.UseVisualStyleBackColor = false;
             this.btnQuizMode.Click += new System.EventHandler(this.btnQuizMode_Click);
-            // 
-            // btnQMcls
-            // 
-            this.btnQMcls.BackColor = System.Drawing.Color.Black;
-            this.btnQMcls.Location = new System.Drawing.Point(252, 486);
-            this.btnQMcls.Name = "btnQMcls";
-            this.btnQMcls.Size = new System.Drawing.Size(111, 23);
-            this.btnQMcls.TabIndex = 1;
-            this.btnQMcls.Text = "Close Quiz Maker";
-            this.btnQMcls.UseVisualStyleBackColor = false;
-            this.btnQMcls.Click += new System.EventHandler(this.btnQMcls_Click);
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = global::SrP_ClassroomInq.Properties.Resources.Background;
-            this.pictureBox5.Location = new System.Drawing.Point(32, 17);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(321, 50);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 0;
-            this.pictureBox5.TabStop = false;
             // 
             // PanelQuizMode
             // 
@@ -1521,6 +1524,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.PanelConvView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.PanelQuizMaker.ResumeLayout(false);
+            this.PanelQuizMaker.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.PanelQuizMode.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();

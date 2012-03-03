@@ -8,6 +8,14 @@ currently.
 
 CHANGELOG created on 2/22/12
 
+/*** Version 1.3.0.1 committed 3/3 ***/
+fixed delete functionality in Quiz Maker
+Quiz Maker UI improvements
+added Quiz mode sending
+added StateMachine for sending and receiving
+made view\modes reflect state
+added QuizData recording and backup
+
 /*** Version 1.3 committed 3/2 ***/
 added Quiz Maker
 added Quiz Mode (known bugs with delete question)
