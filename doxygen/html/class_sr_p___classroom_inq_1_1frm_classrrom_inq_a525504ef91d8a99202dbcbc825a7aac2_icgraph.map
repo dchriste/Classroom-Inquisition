@@ -1,0 +1,13 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a5703a99c40db13bca956c2204fbb1205" title="SrP_ClassroomInq.frmClassrromInq.CheckKeys" alt="" coords="769,5,1074,32"/>
+<area shape="rect" id="node11" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a65ba92a7bf3839c796abc965f5524b0f" title="SrP_ClassroomInq.frmClassrromInq.btnRepl_Click" alt="" coords="363,56,682,83"/>
+<area shape="rect" id="node15" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a42ab065ed95503b1313dbed6395cde09" title="SrP_ClassroomInq.frmClassrromInq.btnSend_Click" alt="" coords="361,107,684,133"/>
+<area shape="rect" id="node17" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#ad2f643a739ae01acd4348b4fc6308c8c" title="SrP_ClassroomInq.frmClassrromInq.btnDM_Send_Click" alt="" coords="347,157,698,184"/>
+<area shape="rect" id="node19" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a62dfbfb357c98095e446b9a617c34ee9" title="SrP_ClassroomInq.frmClassrromInq.btnQuizAsk_Click" alt="" coords="351,208,694,235"/>
+<area shape="rect" id="node5" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#ad4c66414acc8ac456211b3f8024ed68c" title="SrP_ClassroomInq.frmClassrromInq.frmClassrromInq" alt="" coords="1153,5,1487,32"/>
+<area shape="rect" id="node7" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a8ae3b3804b16d4c67b8ff652eb5488ed" title="SrP_ClassroomInq.frmClassrromInq.MakeCtrls" alt="" coords="1171,56,1469,83"/>
+<area shape="rect" id="node9" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#af03934d96e1bb39c2a01e4f766ed8702" title="SrP_ClassroomInq.frmClassrromInq.timer_ControlsCreate_Tick" alt="" coords="1545,56,1938,83"/>
+<area shape="rect" id="node21" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#af53e6dc60cbe667e6b83a7591ee7678f" title="SrP_ClassroomInq.frmClassrromInq.MakeQuizQuestion" alt="" coords="747,208,1095,235"/>
+<area shape="rect" id="node23" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#ac71625cc47c0a4bfa92bd4f83e8c7bb6" title="SrP_ClassroomInq.frmClassrromInq.Form1_Load" alt="" coords="1165,183,1475,209"/>
+<area shape="rect" id="node25" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#acfcbbf64f2bc2adf94eec18f45d2af2c" title="SrP_ClassroomInq.frmClassrromInq.btnQuizMode_Click" alt="" coords="1145,233,1495,260"/>
+</map>

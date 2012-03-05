@@ -398,7 +398,7 @@ namespace SrP_ClassroomInq
         }
         
         /*This method allows for key presses to be detected and used even by controls which don't have keypress events*/
-        private void CheckKeys(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        public void CheckKeys(object sender, System.Windows.Forms.KeyPressEventArgs e)
 
         {
             if (e.KeyChar == (char)13) //enter key in windows
@@ -1805,10 +1805,10 @@ namespace SrP_ClassroomInq
             serialCOMcmbbx_Click(sender, e);//pre-load the combobox         
             //auto fill feed box or something... for testing if needed
 
-            Properties.Settings.Default.Reload(); //load the key..
-            SecretKey = Properties.Settings.Default.key;
+            Properties.Settings.Default.Reload();           
 
             /*Check the state of previous settings and reset them*/
+            SecretKey = Properties.Settings.Default.key;
             chkbxLameMode.Checked = Properties.Settings.Default.Animations;
             chkbxRXSound.Checked = Properties.Settings.Default.SoundRX;
             chkbxTXSound.Checked = Properties.Settings.Default.SoundTX;
@@ -2069,7 +2069,6 @@ namespace SrP_ClassroomInq
                 if (WeGotData != false)
                 {
                     //we just had data, call some event
-                    UnreadCount++;
                     tmp_str = HandleBCKSPC(RX_Data);
                     if (tmp_str == "")// handle backspace (0x08) before printing questions
                     {
@@ -2085,6 +2084,7 @@ namespace SrP_ClassroomInq
 
                             case("Normal"): //normal is the default
                             default:
+                                 UnreadCount++;
                                  Qs_to_create[ix++] = tmp_str; //store and increment pointer
                                  Qs_to_Make = true; //set the flag
                                  timer_ControlsCreate.Enabled = true;
@@ -2329,7 +2329,7 @@ namespace SrP_ClassroomInq
         }
         
         /*This saves the information which may have been changed about the students in StuMgmt*/
-        private void SaveStudentData()
+        public void SaveStudentData()
         {
            
             if (File.Exists(PlainData) == false)
@@ -2573,7 +2573,7 @@ namespace SrP_ClassroomInq
         }
         
         /*The method is responsible for sending all the serial messages*/
-        private bool SendMsg(string Message2Send, string Address2Send)
+        public bool SendMsg(string Message2Send, string Address2Send)
         {
             bool SuccessOfSending = new bool();
             if (SerialPort.IsOpen == true)
@@ -2596,7 +2596,7 @@ namespace SrP_ClassroomInq
         }
         
         /*Save the preferences whenever called*/
-        private void SavePrefs()
+        public void SavePrefs()
         {
             Properties.Settings.Default.Animations = chkbxLameMode.Checked;
             Properties.Settings.Default.SoundRX = chkbxRXSound.Checked;
@@ -2611,7 +2611,7 @@ namespace SrP_ClassroomInq
         }
         
         /*This method decrements the unread count smartly*/
-        private void UnreadDecrement(object sender)
+        public void UnreadDecrement(object sender)
         {
             char tmp = (char)UnreadCount; //contains old value
             //UnreadCount needs smartly decremented here
@@ -2654,7 +2654,7 @@ namespace SrP_ClassroomInq
         }
         
         /*This method logs all questions and answers*/
-        private bool LogQandA(string dialog, bool teacher, string recipient)
+        public bool LogQandA(string dialog, bool teacher, string recipient)
         {
             bool success = false;
             byte student = 0;
@@ -3397,7 +3397,7 @@ namespace SrP_ClassroomInq
         }
 
         /*Method to create questions on the quiz*/
-        private bool MakeQuizQuestion(string question, int number)
+        public bool MakeQuizQuestion(string question, int number)
         {
             bool success = false;
             int index = number;
@@ -3490,7 +3490,7 @@ namespace SrP_ClassroomInq
             }
 
             //enter into quiz mode
-            quitToolStripMenuItem_Click(sender, e);
+            quizToolStripMenuItem_Click(sender, e);
         }
 
         /*Allows for Undoing the delete of a question*/
@@ -3531,7 +3531,15 @@ namespace SrP_ClassroomInq
 
             if (File.Exists(file2write) == true)
             {
-                File.Move(file2write, @".data/Quiz/QuizData-oldQuiz.txt");//move to a backup                    
+                /*If Only File.Move was used the 2nd or 3rd time this ran it would barf, File.Replace Fixes that*/
+                if(File.Exists(@".data/Quiz/QuizData-oldQuiz.txt"))
+                {
+                    File.Replace(file2write, @".data/Quiz/QuizData-oldQuiz.txt", @".data/Quiz/QuizData-bak"); // replace the file
+                }
+                else
+                {
+                    File.Move(file2write, @".data/Quiz/QuizData-oldQuiz.txt");//move to a backup              
+                }
             }
             using (FileStream fs = File.Create(file2write))
             {
@@ -3549,7 +3557,7 @@ namespace SrP_ClassroomInq
         }
 
         /*This method allows for the recording of questions and answers for the quiz*/
-        private void RecordQuizData(string question, string name_sender)
+        public void RecordQuizData(string question, string name_sender)
         {
             string file2write = @".data/Quiz/QuizData.txt";
             try
