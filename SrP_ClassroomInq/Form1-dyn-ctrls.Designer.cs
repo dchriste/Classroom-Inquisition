@@ -148,6 +148,9 @@
             this.muItmQuit = new System.Windows.Forms.MenuItem();
             this.muItmUndo = new System.Windows.Forms.MenuItem();
             this.muItmName = new System.Windows.Forms.MenuItem();
+            this.muItmAttendance = new System.Windows.Forms.MenuItem();
+            this.muItmClassVote = new System.Windows.Forms.MenuItem();
+            this.muItmQuiz = new System.Windows.Forms.MenuItem();
             this.PanelQuizMaker = new System.Windows.Forms.Panel();
             this.btnAddQM = new System.Windows.Forms.Button();
             this.btnQMDel = new System.Windows.Forms.Button();
@@ -162,6 +165,12 @@
             this.pnlQuiz = new System.Windows.Forms.Panel();
             this.btnExitQuiz = new System.Windows.Forms.Button();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.PanelAttendance = new System.Windows.Forms.Panel();
+            this.btnExitAttendance = new System.Windows.Forms.Button();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.PanelClassVote = new System.Windows.Forms.Panel();
+            this.btnExitClassVote = new System.Windows.Forms.Button();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.PanelPrefs.SuspendLayout();
@@ -181,6 +190,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.PanelQuizMode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            this.PanelAttendance.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            this.PanelClassVote.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -265,6 +278,7 @@
             this.attedanceToolStripMenuItem.Name = "attedanceToolStripMenuItem";
             this.attedanceToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.attedanceToolStripMenuItem.Text = "Attedance";
+            this.attedanceToolStripMenuItem.Click += new System.EventHandler(this.attedanceToolStripMenuItem_Click);
             // 
             // classVoteToolStripMenuItem
             // 
@@ -273,6 +287,7 @@
             this.classVoteToolStripMenuItem.Name = "classVoteToolStripMenuItem";
             this.classVoteToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.classVoteToolStripMenuItem.Text = "Class Vote";
+            this.classVoteToolStripMenuItem.Click += new System.EventHandler(this.classVoteToolStripMenuItem_Click);
             // 
             // normalToolStripMenuItem
             // 
@@ -289,7 +304,7 @@
             this.quizToolStripMenuItem.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.quizToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.quizToolStripMenuItem.Name = "quizToolStripMenuItem";
-            this.quizToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.quizToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.quizToolStripMenuItem.Text = "Quiz";
             this.quizToolStripMenuItem.Click += new System.EventHandler(this.quizToolStripMenuItem_Click);
             // 
@@ -582,6 +597,7 @@
             // 
             // textBox1
             // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(15, 27);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -1308,6 +1324,24 @@
             this.muItmName.Text = "Toggle Name";
             this.muItmName.Click += new System.EventHandler(this.muItmName_Click);
             // 
+            // muItmAttendance
+            // 
+            this.muItmAttendance.Index = -1;
+            this.muItmAttendance.Text = "Attendance";
+            this.muItmAttendance.Click += new System.EventHandler(this.muItmAttendance_Click);
+            // 
+            // muItmClassVote
+            // 
+            this.muItmClassVote.Index = -1;
+            this.muItmClassVote.Text = "Class Vote";
+            this.muItmClassVote.Click += new System.EventHandler(this.muItmClassVote_Click);
+            // 
+            // muItmQuiz
+            // 
+            this.muItmQuiz.Index = -1;
+            this.muItmQuiz.Text = "Quiz";
+            this.muItmQuiz.Click += new System.EventHandler(this.muItmQuiz_Click);
+            // 
             // PanelQuizMaker
             // 
             this.PanelQuizMaker.AutoScroll = true;
@@ -1470,6 +1504,74 @@
             this.pictureBox6.TabIndex = 0;
             this.pictureBox6.TabStop = false;
             // 
+            // PanelAttendance
+            // 
+            this.PanelAttendance.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelAttendance.Controls.Add(this.btnExitAttendance);
+            this.PanelAttendance.Controls.Add(this.pictureBox7);
+            this.PanelAttendance.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.PanelAttendance.Location = new System.Drawing.Point(190, 265);
+            this.PanelAttendance.Name = "PanelAttendance";
+            this.PanelAttendance.Size = new System.Drawing.Size(0, 0);
+            this.PanelAttendance.TabIndex = 13;
+            this.PanelAttendance.Visible = false;
+            // 
+            // btnExitAttendance
+            // 
+            this.btnExitAttendance.BackColor = System.Drawing.Color.Black;
+            this.btnExitAttendance.Location = new System.Drawing.Point(125, 486);
+            this.btnExitAttendance.Name = "btnExitAttendance";
+            this.btnExitAttendance.Size = new System.Drawing.Size(135, 23);
+            this.btnExitAttendance.TabIndex = 1;
+            this.btnExitAttendance.Text = "Exit Attendance Mode";
+            this.btnExitAttendance.UseVisualStyleBackColor = false;
+            this.btnExitAttendance.Click += new System.EventHandler(this.btnExitAttendance_Click);
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = global::SrP_ClassroomInq.Properties.Resources.Background;
+            this.pictureBox7.Location = new System.Drawing.Point(32, 17);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(321, 50);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 0;
+            this.pictureBox7.TabStop = false;
+            // 
+            // PanelClassVote
+            // 
+            this.PanelClassVote.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelClassVote.Controls.Add(this.btnExitClassVote);
+            this.PanelClassVote.Controls.Add(this.pictureBox8);
+            this.PanelClassVote.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.PanelClassVote.Location = new System.Drawing.Point(190, 265);
+            this.PanelClassVote.Name = "PanelClassVote";
+            this.PanelClassVote.Size = new System.Drawing.Size(0, 0);
+            this.PanelClassVote.TabIndex = 14;
+            this.PanelClassVote.Visible = false;
+            // 
+            // btnExitClassVote
+            // 
+            this.btnExitClassVote.BackColor = System.Drawing.Color.Black;
+            this.btnExitClassVote.Location = new System.Drawing.Point(125, 486);
+            this.btnExitClassVote.Name = "btnExitClassVote";
+            this.btnExitClassVote.Size = new System.Drawing.Size(135, 23);
+            this.btnExitClassVote.TabIndex = 1;
+            this.btnExitClassVote.Text = "Exit Class Vote Mode";
+            this.btnExitClassVote.UseVisualStyleBackColor = false;
+            this.btnExitClassVote.Visible = false;
+            this.btnExitClassVote.Click += new System.EventHandler(this.btnExitClassVote_Click);
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = global::SrP_ClassroomInq.Properties.Resources.Background;
+            this.pictureBox8.Location = new System.Drawing.Point(32, 17);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(321, 50);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox8.TabIndex = 0;
+            this.pictureBox8.TabStop = false;
+            this.pictureBox8.Visible = false;
+            // 
             // frmClassrromInq
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1477,6 +1579,8 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(384, 550);
+            this.Controls.Add(this.PanelClassVote);
+            this.Controls.Add(this.PanelAttendance);
             this.Controls.Add(this.PanelQuizMode);
             this.Controls.Add(this.PanelQuizMaker);
             this.Controls.Add(this.PanelConvView);
@@ -1529,6 +1633,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.PanelQuizMode.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            this.PanelAttendance.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            this.PanelClassVote.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1650,6 +1758,9 @@
         private System.Windows.Forms.MenuItem muItmQuit;
         private System.Windows.Forms.MenuItem muItmUndo;
         private System.Windows.Forms.MenuItem muItmName;
+        private System.Windows.Forms.MenuItem muItmClassVote;
+        private System.Windows.Forms.MenuItem muItmQuiz;
+        private System.Windows.Forms.MenuItem muItmAttendance;
         private System.Windows.Forms.CheckBox chkbxCtrlHide;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
@@ -1668,6 +1779,12 @@
         private System.Windows.Forms.Panel pnlQuiz;
         private System.Windows.Forms.Button btnExitQuiz;
         private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Panel PanelAttendance;
+        private System.Windows.Forms.Button btnExitAttendance;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.Panel PanelClassVote;
+        private System.Windows.Forms.Button btnExitClassVote;
+        private System.Windows.Forms.PictureBox pictureBox8;
     }
 }
 

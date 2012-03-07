@@ -17,8 +17,11 @@ namespace SrP_ClassroomInq
 {
 	public partial class frmClassrromInq : Form
 	{
-
-        
+        /****************************************************************************
+          *  Classroom Inquisition Teacher Application 
+          *  Programmer: David Christensen
+          *  Bug Tracking: https://github.com/dchriste/Classroom-Inquisition/issues 
+         *****************************************************************************/
         public frmClassrromInq()
 		{
 			InitializeComponent();
@@ -29,6 +32,10 @@ namespace SrP_ClassroomInq
             PanelPrefs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
             DirectMsgPanel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
             PanelConvView.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
+            PanelAttendance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
+            PanelQuizMaker.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
+            PanelQuizMode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
+            PanelClassVote.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
 		}
         #region Initialization
 
@@ -98,6 +105,12 @@ namespace SrP_ClassroomInq
         bool QuizModeShowing = false;
         bool QuizModeClicked = false;
         byte QuizModeTimesClicked = 0;
+        bool AttendanceShowing = false;
+        bool AttendanceClicked = false;
+        byte AttendanceTimesClicked = 0;
+        bool ClassVoteShowing = false;
+        bool ClassVoteClicked = false;
+        byte ClassVoteTimesClicked = 0;
 		bool textbox1WASclicked = new bool();
 		bool grpbxRPL_WASclicked = new bool();
 		bool btnCLS_WASclicked = new bool();
@@ -427,7 +440,23 @@ namespace SrP_ClassroomInq
             }
             else if (e.KeyChar == (char)27) //escape key
             {
-                if (ConvViewShowing)
+                if (ClassVoteShowing)
+                {
+                    btnExitClassVote_Click(sender, e);
+                }
+                else if (AttendanceShowing)
+                {
+                    btnExitAttendance_Click(sender, e);
+                }
+                else if (QuizModeShowing)
+                {
+                    btnExitQuiz_Click(sender, e);
+                }
+                else if (QuizMakerShowing)
+                {
+                    btnQMcls_Click(sender, e);
+                }
+                else if (ConvViewShowing)
                 {
                     ConvViewClicked = true;
                     timer.Enabled = true;
@@ -502,16 +531,22 @@ namespace SrP_ClassroomInq
                     {
                         if (i < 3)
                         {
-                            grpbxFeed.SetBounds(grpbxFeed.Location.X, grpbxFeed.Location.Y + 5, grpbxFeed.Size.Width, grpbxFeed.Size.Height - 2);
-                            DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X, DirectMsgPanel.Location.Y + 5, DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height - 2);
-                            PanelPrefs.SetBounds(PanelPrefs.Location.X, PanelPrefs.Location.Y + 5, PanelPrefs.Size.Width, PanelPrefs.Size.Height - 2);
+                            grpbxFeed.SetBounds(grpbxFeed.Location.X, grpbxFeed.Location.Y + 5, 
+                                                grpbxFeed.Size.Width, grpbxFeed.Size.Height - 2);
+                            DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X, DirectMsgPanel.Location.Y + 5, 
+                                                     DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height - 2);
+                            PanelPrefs.SetBounds(PanelPrefs.Location.X, PanelPrefs.Location.Y + 5, 
+                                                 PanelPrefs.Size.Width, PanelPrefs.Size.Height - 2);
                             i++;
                         }
                         else if ((i > 2) && (i < 9))
                         {
-                            grpbxFeed.SetBounds(grpbxFeed.Location.X, grpbxFeed.Location.Y + 4, grpbxFeed.Size.Width, grpbxFeed.Size.Height - 3);
-                            DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X, DirectMsgPanel.Location.Y + 4, DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height - 3);
-                            PanelPrefs.SetBounds(PanelPrefs.Location.X, PanelPrefs.Location.Y + 4, PanelPrefs.Size.Width, PanelPrefs.Size.Height - 3);
+                            grpbxFeed.SetBounds(grpbxFeed.Location.X, grpbxFeed.Location.Y + 4, 
+                                                grpbxFeed.Size.Width, grpbxFeed.Size.Height - 3);
+                            DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X, DirectMsgPanel.Location.Y + 4, 
+                                                     DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height - 3);
+                            PanelPrefs.SetBounds(PanelPrefs.Location.X, PanelPrefs.Location.Y + 4, 
+                                                 PanelPrefs.Size.Width, PanelPrefs.Size.Height - 3);
                             i++;
                         }
                         else
@@ -528,9 +563,12 @@ namespace SrP_ClassroomInq
                     else //no animations
                     {
                         //jump straight to whatever position..
-                        grpbxFeed.SetBounds(grpbxFeed.Location.X, grpbxFeed.Location.Y + 39, grpbxFeed.Size.Width, grpbxFeed.Size.Height - 24);
-                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X, DirectMsgPanel.Location.Y + 39, DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height - 24);
-                        PanelPrefs.SetBounds(PanelPrefs.Location.X, PanelPrefs.Location.Y + 39, PanelPrefs.Size.Width, PanelPrefs.Size.Height - 24);
+                        grpbxFeed.SetBounds(grpbxFeed.Location.X, grpbxFeed.Location.Y + 39, 
+                                            grpbxFeed.Size.Width, grpbxFeed.Size.Height - 24);
+                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X, DirectMsgPanel.Location.Y + 39, 
+                                                 DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height - 24);
+                        PanelPrefs.SetBounds(PanelPrefs.Location.X, PanelPrefs.Location.Y + 39, 
+                                             PanelPrefs.Size.Width, PanelPrefs.Size.Height - 24);
                         timer.Enabled = false;
                         btnSend.Visible = true;
                         btnCLS.Visible = true;
@@ -546,16 +584,22 @@ namespace SrP_ClassroomInq
                     {
                         if (i < 3)
                         {
-                            grpbxFeed.SetBounds(grpbxFeed.Location.X, grpbxFeed.Location.Y - 5, grpbxFeed.Size.Width, grpbxFeed.Size.Height + 2);
-                            DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X, DirectMsgPanel.Location.Y - 5, DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height + 2);
-                            PanelPrefs.SetBounds(PanelPrefs.Location.X, PanelPrefs.Location.Y - 5, PanelPrefs.Size.Width, PanelPrefs.Size.Height + 2);
+                            grpbxFeed.SetBounds(grpbxFeed.Location.X, grpbxFeed.Location.Y - 5, 
+                                                grpbxFeed.Size.Width, grpbxFeed.Size.Height + 2);
+                            DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X, DirectMsgPanel.Location.Y - 5, 
+                                                     DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height + 2);
+                            PanelPrefs.SetBounds(PanelPrefs.Location.X, PanelPrefs.Location.Y - 5, 
+                                                 PanelPrefs.Size.Width, PanelPrefs.Size.Height + 2);
                             i++;
                         }
                         else if ((i > 2) && (i < 9))
                         {
-                            grpbxFeed.SetBounds(grpbxFeed.Location.X, grpbxFeed.Location.Y - 4, grpbxFeed.Size.Width, grpbxFeed.Size.Height + 3);
-                            DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X, DirectMsgPanel.Location.Y - 4, DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height + 3);
-                            PanelPrefs.SetBounds(PanelPrefs.Location.X, PanelPrefs.Location.Y - 4, PanelPrefs.Size.Width, PanelPrefs.Size.Height + 3);
+                            grpbxFeed.SetBounds(grpbxFeed.Location.X, grpbxFeed.Location.Y - 4, 
+                                                grpbxFeed.Size.Width, grpbxFeed.Size.Height + 3);
+                            DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X, DirectMsgPanel.Location.Y - 4, 
+                                                     DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height + 3);
+                            PanelPrefs.SetBounds(PanelPrefs.Location.X, PanelPrefs.Location.Y - 4, 
+                                                 PanelPrefs.Size.Width, PanelPrefs.Size.Height + 3);
                             i++;
                         }
                         else
@@ -577,9 +621,12 @@ namespace SrP_ClassroomInq
                     }
                     else //no animations
                     {
-                        grpbxFeed.SetBounds(grpbxFeed.Location.X, grpbxFeed.Location.Y - 39, grpbxFeed.Size.Width, grpbxFeed.Size.Height + 24);
-                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X, DirectMsgPanel.Location.Y - 39, DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height + 24);
-                        PanelPrefs.SetBounds(PanelPrefs.Location.X, PanelPrefs.Location.Y - 39, PanelPrefs.Size.Width, PanelPrefs.Size.Height + 24);
+                        grpbxFeed.SetBounds(grpbxFeed.Location.X, grpbxFeed.Location.Y - 39, 
+                                            grpbxFeed.Size.Width, grpbxFeed.Size.Height + 24);
+                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X, DirectMsgPanel.Location.Y - 39, 
+                                                 DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height + 24);
+                        PanelPrefs.SetBounds(PanelPrefs.Location.X, PanelPrefs.Location.Y - 39, 
+                                             PanelPrefs.Size.Width, PanelPrefs.Size.Height + 24);
                         btnSend.Visible = false;
                         btnCLS.Visible = false;
                         serialCOMcmbbx.Visible = false;
@@ -607,7 +654,8 @@ namespace SrP_ClassroomInq
                     {
                         if (k < 3) //use groupboxID..
                         {
-                            group_arr[lbl_ID].SetBounds(group_arr[lbl_ID].Location.X, group_arr[lbl_ID].Location.Y, group_arr[lbl_ID].Size.Width, group_arr[lbl_ID].Size.Height + 2);
+                            group_arr[lbl_ID].SetBounds(group_arr[lbl_ID].Location.X, group_arr[lbl_ID].Location.Y, 
+                                                        group_arr[lbl_ID].Size.Width, group_arr[lbl_ID].Size.Height + 2);
                             if (lbl_ID != 0)
                             {
                                 for (int i = lbl_ID - 1; i >= 0; i--) // to achieve LIFO
@@ -621,7 +669,8 @@ namespace SrP_ClassroomInq
                         }
                         else if ((k > 2) && (k < 36))
                         {
-                            group_arr[lbl_ID].SetBounds(group_arr[lbl_ID].Location.X, group_arr[lbl_ID].Location.Y, group_arr[lbl_ID].Size.Width, group_arr[lbl_ID].Size.Height + 3);
+                            group_arr[lbl_ID].SetBounds(group_arr[lbl_ID].Location.X, group_arr[lbl_ID].Location.Y, 
+                                                        group_arr[lbl_ID].Size.Width, group_arr[lbl_ID].Size.Height + 3);
                             //fire ctrl resize event
                             if (lbl_ID != 0)
                             {
@@ -645,7 +694,8 @@ namespace SrP_ClassroomInq
                     }
                     else //no animations
                     {
-                        group_arr[lbl_ID].SetBounds(group_arr[lbl_ID].Location.X, group_arr[lbl_ID].Location.Y, group_arr[lbl_ID].Size.Width, group_arr[lbl_ID].Size.Height + 105);
+                        group_arr[lbl_ID].SetBounds(group_arr[lbl_ID].Location.X, group_arr[lbl_ID].Location.Y, 
+                                                    group_arr[lbl_ID].Size.Width, group_arr[lbl_ID].Size.Height + 105);
                         if (lbl_ID != 0)
                         {
                             for (int i = lbl_ID - 1; i >= 0; i--)// to achieve LIFO
@@ -667,7 +717,7 @@ namespace SrP_ClassroomInq
 			#region Destroy Reply
             if(grpbxFeed.Controls.Count > 0) //allows textbox click with no questions
             { 
-                if ((group_arr[lbl_ID].Height > 31) && (btnCLS_WASclicked == true))// if open and clicked 31 so that it makes it to else
+                if ((group_arr[lbl_ID].Height > 31) && (btnCLS_WASclicked == true))
                 {
                     Point tmp = new Point(); // for dynamic moving of all controls below the clicked one
                     if (!chkbxLameMode.Checked)
@@ -675,7 +725,8 @@ namespace SrP_ClassroomInq
 
                         if (j < 3)
                         {
-                            group_arr[lbl_ID].SetBounds(group_arr[lbl_ID].Location.X, group_arr[lbl_ID].Location.Y, group_arr[lbl_ID].Size.Width, group_arr[lbl_ID].Size.Height - 2);
+                            group_arr[lbl_ID].SetBounds(group_arr[lbl_ID].Location.X, group_arr[lbl_ID].Location.Y, 
+                                                        group_arr[lbl_ID].Size.Width, group_arr[lbl_ID].Size.Height - 2);
                             if (lbl_ID != 0)
                             {
                                 for (int x = lbl_ID - 1; x >= 0; x--)
@@ -689,7 +740,8 @@ namespace SrP_ClassroomInq
                         }
                         else if ((j > 2) && (j < 36)) //was 19 with 3,6 pixel increments
                         {
-                            group_arr[lbl_ID].SetBounds(group_arr[lbl_ID].Location.X, group_arr[lbl_ID].Location.Y, group_arr[lbl_ID].Size.Width, group_arr[lbl_ID].Size.Height - 3);
+                            group_arr[lbl_ID].SetBounds(group_arr[lbl_ID].Location.X, group_arr[lbl_ID].Location.Y, 
+                                                        group_arr[lbl_ID].Size.Width, group_arr[lbl_ID].Size.Height - 3);
                             if (lbl_ID != 0)
                             {
                                 for (int x = lbl_ID - 1; x >= 0; x--)
@@ -720,7 +772,8 @@ namespace SrP_ClassroomInq
                     }
                     else //no animations :(
                     {
-                        group_arr[lbl_ID].SetBounds(group_arr[lbl_ID].Location.X, group_arr[lbl_ID].Location.Y, group_arr[lbl_ID].Size.Width, group_arr[lbl_ID].Size.Height - 105);
+                        group_arr[lbl_ID].SetBounds(group_arr[lbl_ID].Location.X, group_arr[lbl_ID].Location.Y, 
+                                                    group_arr[lbl_ID].Size.Width, group_arr[lbl_ID].Size.Height - 105);
                         if (lbl_ID != 0)
                         {
                             for (int x = lbl_ID - 1; x >= 0; x--)
@@ -745,19 +798,21 @@ namespace SrP_ClassroomInq
                         }
                     }
                 }
-				//textBox1.AppendText(group_arr[lbl_ID].Height.ToString() + Environment.NewLine); //troubleshooting
 			}
 			#endregion
 
             #region Delete Question
-            if (DeleteQuestion) //keeps things from being upset when Del_ID is intialized to 255 (so as not to delete the first question that comes in....
+            //keeps things from being upset when Del_ID is intialized to 255 
+            //(so as not to delete the first question that comes in...)
+            if (DeleteQuestion) 
             {
                 if ((group_arr[Del_ID].Height > 0) && (DeleteQuestion == true))// if open and clicked
                 {
                     Point tmp = new Point(); // for dynamic moving of all controls below the clicked one
                     if (!chkbxLameMode.Checked)
                     {
-                        group_arr[Del_ID].SetBounds(group_arr[Del_ID].Location.X, group_arr[Del_ID].Location.Y, group_arr[Del_ID].Size.Width, group_arr[Del_ID].Size.Height - 5);
+                        group_arr[Del_ID].SetBounds(group_arr[Del_ID].Location.X, group_arr[Del_ID].Location.Y, 
+                                                    group_arr[Del_ID].Size.Width, group_arr[Del_ID].Size.Height - 5);
                         if (Del_ID != 0)
                         {
                             for (int x = Del_ID - 1; x >= 0; x--)
@@ -770,7 +825,8 @@ namespace SrP_ClassroomInq
                     }
                     else
                     {
-                        group_arr[Del_ID].SetBounds(group_arr[Del_ID].Location.X, group_arr[Del_ID].Location.Y, group_arr[Del_ID].Size.Width, 0);
+                        group_arr[Del_ID].SetBounds(group_arr[Del_ID].Location.X, group_arr[Del_ID].Location.Y, 
+                                                    group_arr[Del_ID].Size.Width, 0);
                         for (int x = Del_ID - 1; x >= 0; x--)
                         {
                             tmp.X = group_arr[x].Location.X;
@@ -796,14 +852,17 @@ namespace SrP_ClassroomInq
             #endregion
 
             #region Undo Delete Question
-            if (Request_Undo && Question_Deleted) //keeps things from being upset when Del_ID is intialized to 255 (so as not to delete the first question that comes in....
+            //keeps things from being upset when Del_ID is intialized to 255 
+            //(so as not to delete the first question that comes in...)
+            if (Request_Undo && Question_Deleted)
             {
                 if ((group_arr[Del_ID].Height < 32) && (Request_Undo == true))// if open and clicked
                 {
                     Point tmp = new Point(); // for dynamic moving of all controls below the clicked one
                     if (!chkbxLameMode.Checked)
                     {
-                        group_arr[Del_ID].SetBounds(group_arr[Del_ID].Location.X, group_arr[Del_ID].Location.Y, group_arr[Del_ID].Size.Width, group_arr[Del_ID].Size.Height + 4);
+                        group_arr[Del_ID].SetBounds(group_arr[Del_ID].Location.X, group_arr[Del_ID].Location.Y, 
+                                                    group_arr[Del_ID].Size.Width, group_arr[Del_ID].Size.Height + 4);
                         if (Del_ID != 0)
                         {
                             for (int x = Del_ID - 1; x >= 0; x--)
@@ -818,7 +877,8 @@ namespace SrP_ClassroomInq
                     {
                         if (Del_ID != 0)
                         {
-                            group_arr[Del_ID].SetBounds(group_arr[Del_ID].Location.X, group_arr[Del_ID].Location.Y, group_arr[Del_ID].Size.Width, 32);
+                            group_arr[Del_ID].SetBounds(group_arr[Del_ID].Location.X, group_arr[Del_ID].Location.Y, 
+                                                        group_arr[Del_ID].Size.Width, 32);
                             for (int x = Del_ID - 1; x >= 0; x--)
                             {
                                 tmp.X = group_arr[x].Location.X;
@@ -875,26 +935,33 @@ namespace SrP_ClassroomInq
             #endregion
 
             #region DMPanel Animate
-            if ((DirectMsgPanel.Location.X <16) && (DMclicked == true) && (DMtimesClicked==0) && (DMPanelShowing ==false))
+            if ((DirectMsgPanel.Location.X <16) && (DMclicked == true) 
+                    && (DMtimesClicked==0) && (DMPanelShowing ==false))
             {
                 if (!chkbxLameMode.Checked)
                 {
                     if (x < 10)
                     {
-                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X + 16, DirectMsgPanel.Location.Y, DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height);
-                        grpbxFeed.SetBounds(grpbxFeed.Location.X + 16, grpbxFeed.Location.Y, grpbxFeed.Size.Width, grpbxFeed.Size.Height);
+                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X + 16, DirectMsgPanel.Location.Y, 
+                                                 DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height);
+                        grpbxFeed.SetBounds(grpbxFeed.Location.X + 16, grpbxFeed.Location.Y, 
+                                            grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                         x++;
                     }
                     else if (x < 20)
                     {
-                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X + 15, DirectMsgPanel.Location.Y, DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height);
-                        grpbxFeed.SetBounds(grpbxFeed.Location.X + 15, grpbxFeed.Location.Y, grpbxFeed.Size.Width, grpbxFeed.Size.Height);
+                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X + 15, DirectMsgPanel.Location.Y, 
+                                                 DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height);
+                        grpbxFeed.SetBounds(grpbxFeed.Location.X + 15, grpbxFeed.Location.Y, 
+                                            grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                         x++;
                     }
                     else if (x < 30)
                     {
-                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X + 10, DirectMsgPanel.Location.Y, DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height);
-                        grpbxFeed.SetBounds(grpbxFeed.Location.X + 10, grpbxFeed.Location.Y, grpbxFeed.Size.Width, grpbxFeed.Size.Height);
+                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X + 10, DirectMsgPanel.Location.Y, 
+                                                 DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height);
+                        grpbxFeed.SetBounds(grpbxFeed.Location.X + 10, grpbxFeed.Location.Y, 
+                                            grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                         x++;
                     }
                     else
@@ -910,8 +977,10 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations, boo!
                 {
-                    DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X + 410, DirectMsgPanel.Location.Y, DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height);
-                    grpbxFeed.SetBounds(grpbxFeed.Location.X + 410, grpbxFeed.Location.Y, grpbxFeed.Size.Width, grpbxFeed.Size.Height);
+                    DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X + 410, DirectMsgPanel.Location.Y, 
+                                             DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height);
+                    grpbxFeed.SetBounds(grpbxFeed.Location.X + 410, grpbxFeed.Location.Y, 
+                                        grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                     DMPanelShowing = true;
                     DMclicked = false;
                     DMtimesClicked = 1;
@@ -920,27 +989,33 @@ namespace SrP_ClassroomInq
                     frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Direct Msg";
                 }
             }
-            else if ((DirectMsgPanel.Location.X > -396) && (DMclicked == true) && (DMtimesClicked==1) && (DMPanelShowing == true) )
+            else if ((DirectMsgPanel.Location.X > -396) && (DMclicked == true) 
+                            && (DMtimesClicked==1) && (DMPanelShowing == true))
             {
                 if (!chkbxLameMode.Checked)
                 {
                     if (x < 10)
                     {
-                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X - 10, DirectMsgPanel.Location.Y, DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height);
-                        grpbxFeed.SetBounds(grpbxFeed.Location.X - 10, grpbxFeed.Location.Y, grpbxFeed.Size.Width, grpbxFeed.Size.Height);
-
+                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X - 10, DirectMsgPanel.Location.Y, 
+                                                 DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height);
+                        grpbxFeed.SetBounds(grpbxFeed.Location.X - 10, grpbxFeed.Location.Y, 
+                                            grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                         x++;
                     }
                     else if (x < 20)
                     {
-                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X - 15, DirectMsgPanel.Location.Y, DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height);
-                        grpbxFeed.SetBounds(grpbxFeed.Location.X - 15, grpbxFeed.Location.Y, grpbxFeed.Size.Width, grpbxFeed.Size.Height);
+                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X - 15, DirectMsgPanel.Location.Y, 
+                                                 DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height);
+                        grpbxFeed.SetBounds(grpbxFeed.Location.X - 15, grpbxFeed.Location.Y, 
+                                            grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                         x++;
                     }
                     else if (x < 30)
                     {
-                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X - 16, DirectMsgPanel.Location.Y, DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height);
-                        grpbxFeed.SetBounds(grpbxFeed.Location.X - 16, grpbxFeed.Location.Y, grpbxFeed.Size.Width, grpbxFeed.Size.Height);
+                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X - 16, DirectMsgPanel.Location.Y, 
+                                                 DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height);
+                        grpbxFeed.SetBounds(grpbxFeed.Location.X - 16, grpbxFeed.Location.Y, 
+                                            grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                         x++;
                     }
                     else
@@ -953,7 +1028,7 @@ namespace SrP_ClassroomInq
                         {
                             if (!PrefsShowing)
                             {
-                                PrefsClicked = true; //show prefs now                                
+                                PrefsClicked = true; //show prefs now      
                             }
                             DesirePrefs = false;
                         }
@@ -966,8 +1041,10 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations, boo!
                 {
-                    DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X - 410, DirectMsgPanel.Location.Y, DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height);
-                    grpbxFeed.SetBounds(grpbxFeed.Location.X - 410, grpbxFeed.Location.Y, grpbxFeed.Size.Width, grpbxFeed.Size.Height);
+                    DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X - 410, DirectMsgPanel.Location.Y, 
+                                             DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height);
+                    grpbxFeed.SetBounds(grpbxFeed.Location.X - 410, grpbxFeed.Location.Y, 
+                                        grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                     DMPanelShowing = false;
                     DMclicked = false;
                     DMtimesClicked = 0;
@@ -975,7 +1052,7 @@ namespace SrP_ClassroomInq
                     {
                         if (!PrefsShowing)
                         {
-                            PrefsClicked = true; //show prefs now                                
+                            PrefsClicked = true; //show prefs now      
                         }
                         DesirePrefs = false;
                     }
@@ -992,27 +1069,33 @@ namespace SrP_ClassroomInq
 
             #region Prefs Animate 
 
-            if ((PanelPrefs.Location.X > 14) && (PrefsClicked == true) && (PrefsTimesClicked == 0) && (PrefsShowing == false))
+            if ((PanelPrefs.Location.X > 14) && (PrefsClicked == true) 
+                && (PrefsTimesClicked == 0) && (PrefsShowing == false))
             {
                 if (!chkbxLameMode.Checked)
                 {
                     if (x < 10)
                     {
-                        PanelPrefs.SetBounds(PanelPrefs.Location.X - 16, PanelPrefs.Location.Y, PanelPrefs.Size.Width, PanelPrefs.Size.Height);
-                        grpbxFeed.SetBounds(grpbxFeed.Location.X - 16, grpbxFeed.Location.Y, grpbxFeed.Size.Width, grpbxFeed.Size.Height);
-
+                        PanelPrefs.SetBounds(PanelPrefs.Location.X - 16, PanelPrefs.Location.Y, 
+                                             PanelPrefs.Size.Width, PanelPrefs.Size.Height);
+                        grpbxFeed.SetBounds(grpbxFeed.Location.X - 16, grpbxFeed.Location.Y, 
+                                            grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                         x++;
                     }
                     else if (x < 20)
                     {
-                        PanelPrefs.SetBounds(PanelPrefs.Location.X - 12, PanelPrefs.Location.Y, PanelPrefs.Size.Width, PanelPrefs.Size.Height);
-                        grpbxFeed.SetBounds(grpbxFeed.Location.X - 12, grpbxFeed.Location.Y, grpbxFeed.Size.Width, grpbxFeed.Size.Height);
+                        PanelPrefs.SetBounds(PanelPrefs.Location.X - 12, PanelPrefs.Location.Y, 
+                                             PanelPrefs.Size.Width, PanelPrefs.Size.Height);
+                        grpbxFeed.SetBounds(grpbxFeed.Location.X - 12, grpbxFeed.Location.Y, 
+                                            grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                         x++;
                     }
                     else if (x < 30)
                     {
-                        PanelPrefs.SetBounds(PanelPrefs.Location.X - 10, PanelPrefs.Location.Y, PanelPrefs.Size.Width, PanelPrefs.Size.Height);
-                        grpbxFeed.SetBounds(grpbxFeed.Location.X - 10, grpbxFeed.Location.Y, grpbxFeed.Size.Width, grpbxFeed.Size.Height);
+                        PanelPrefs.SetBounds(PanelPrefs.Location.X - 10, PanelPrefs.Location.Y, 
+                                             PanelPrefs.Size.Width, PanelPrefs.Size.Height);
+                        grpbxFeed.SetBounds(grpbxFeed.Location.X - 10, grpbxFeed.Location.Y, 
+                                            grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                         x++;
                     }
                     else
@@ -1028,8 +1111,10 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations
                 {
-                    PanelPrefs.SetBounds(PanelPrefs.Location.X - 380, PanelPrefs.Location.Y, PanelPrefs.Size.Width, PanelPrefs.Size.Height);
-                    grpbxFeed.SetBounds(grpbxFeed.Location.X - 380, grpbxFeed.Location.Y, grpbxFeed.Size.Width, grpbxFeed.Size.Height);
+                    PanelPrefs.SetBounds(PanelPrefs.Location.X - 380, PanelPrefs.Location.Y, 
+                                         PanelPrefs.Size.Width, PanelPrefs.Size.Height);
+                    grpbxFeed.SetBounds(grpbxFeed.Location.X - 380, grpbxFeed.Location.Y, 
+                                        grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                     PrefsShowing = true;
                     PrefsClicked = false;
                     PrefsTimesClicked = 1;
@@ -1038,27 +1123,33 @@ namespace SrP_ClassroomInq
                     frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
                 }
             }
-            else if ((PanelPrefs.Location.X < 396) && (PrefsClicked == true) && (PrefsTimesClicked == 1) && (PrefsShowing == true))
+            else if ((PanelPrefs.Location.X < 396) && (PrefsClicked == true) 
+                        && (PrefsTimesClicked == 1) && (PrefsShowing == true))
             {
                 if (!chkbxLameMode.Checked)
                 {
                     if (x < 10)
                     {
-                        PanelPrefs.SetBounds(PanelPrefs.Location.X + 10, PanelPrefs.Location.Y, PanelPrefs.Size.Width, PanelPrefs.Size.Height);
-                        grpbxFeed.SetBounds(grpbxFeed.Location.X + 10, grpbxFeed.Location.Y, grpbxFeed.Size.Width, grpbxFeed.Size.Height);
-
+                        PanelPrefs.SetBounds(PanelPrefs.Location.X + 10, PanelPrefs.Location.Y, 
+                                             PanelPrefs.Size.Width, PanelPrefs.Size.Height);
+                        grpbxFeed.SetBounds(grpbxFeed.Location.X + 10, grpbxFeed.Location.Y, 
+                                            grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                         x++;
                     }
                     else if (x < 20)
                     {
-                        PanelPrefs.SetBounds(PanelPrefs.Location.X + 12, PanelPrefs.Location.Y, PanelPrefs.Size.Width, PanelPrefs.Size.Height);
-                        grpbxFeed.SetBounds(grpbxFeed.Location.X + 12, grpbxFeed.Location.Y, grpbxFeed.Size.Width, grpbxFeed.Size.Height);
+                        PanelPrefs.SetBounds(PanelPrefs.Location.X + 12, PanelPrefs.Location.Y, 
+                                             PanelPrefs.Size.Width, PanelPrefs.Size.Height);
+                        grpbxFeed.SetBounds(grpbxFeed.Location.X + 12, grpbxFeed.Location.Y, 
+                                            grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                         x++;
                     }
                     else if (x < 30)
                     {
-                        PanelPrefs.SetBounds(PanelPrefs.Location.X + 16, PanelPrefs.Location.Y, PanelPrefs.Size.Width, PanelPrefs.Size.Height);
-                        grpbxFeed.SetBounds(grpbxFeed.Location.X + 16, grpbxFeed.Location.Y, grpbxFeed.Size.Width, grpbxFeed.Size.Height);
+                        PanelPrefs.SetBounds(PanelPrefs.Location.X + 16, PanelPrefs.Location.Y, 
+                                             PanelPrefs.Size.Width, PanelPrefs.Size.Height);
+                        grpbxFeed.SetBounds(grpbxFeed.Location.X + 16, grpbxFeed.Location.Y, 
+                                            grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                         x++;
                     }
                     else
@@ -1066,8 +1157,7 @@ namespace SrP_ClassroomInq
                         x = 0;
                         PrefsShowing = false;
                         PrefsClicked = false;
-                        PrefsTimesClicked = 0;
-                       // SavePrefs(); //when hiding the panel save the preferences                        
+                        PrefsTimesClicked = 0;        
                         if (DesireDM)
                         {
                             if (!DMPanelShowing)
@@ -1090,8 +1180,10 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations, boo!
                 {
-                    PanelPrefs.SetBounds(PanelPrefs.Location.X + 380, PanelPrefs.Location.Y, PanelPrefs.Size.Width, PanelPrefs.Size.Height);
-                    grpbxFeed.SetBounds(grpbxFeed.Location.X + 380, grpbxFeed.Location.Y, grpbxFeed.Size.Width, grpbxFeed.Size.Height);
+                    PanelPrefs.SetBounds(PanelPrefs.Location.X + 380, PanelPrefs.Location.Y, 
+                                         PanelPrefs.Size.Width, PanelPrefs.Size.Height);
+                    grpbxFeed.SetBounds(grpbxFeed.Location.X + 380, grpbxFeed.Location.Y, 
+                                        grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                     PrefsShowing = false;
                     PrefsClicked = false;
                     PrefsTimesClicked = 0;
@@ -1122,23 +1214,27 @@ namespace SrP_ClassroomInq
 
             #region FAQ Animate
 
-            if ((PanelFAQ.Location.Y < 26) && (FAQClicked == true) && (FAQTimesClicked == 0) && (FAQShowing == false))
+            if ((PanelFAQ.Location.Y < 26) && (FAQClicked == true) 
+                && (FAQTimesClicked == 0) && (FAQShowing == false))
             {
                 if (!chkbxLameMode.Checked)
                 {
                     if (x < 10)
                     {
-                        PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y + 24, PanelFAQ.Size.Width, PanelFAQ.Size.Height);
+                        PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y + 24, 
+                                           PanelFAQ.Size.Width, PanelFAQ.Size.Height);
                         x++;
                     }
                     else if (x < 20)
                     {
-                        PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y + 15, PanelFAQ.Size.Width, PanelFAQ.Size.Height);
+                        PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y + 15, 
+                                           PanelFAQ.Size.Width, PanelFAQ.Size.Height);
                         x++;
                     }
                     else if (x < 30)
                     {
-                        PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y + 12, PanelFAQ.Size.Width, PanelFAQ.Size.Height);
+                        PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y + 12, 
+                                           PanelFAQ.Size.Width, PanelFAQ.Size.Height);
                         x++;
                     }
                     else
@@ -1154,7 +1250,8 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations
                 {
-                    PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y + 510, PanelFAQ.Size.Width, PanelFAQ.Size.Height);
+                    PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y + 510, 
+                                       PanelFAQ.Size.Width, PanelFAQ.Size.Height);
                     FAQShowing = true;
                     FAQClicked = false;
                     FAQTimesClicked = 1;
@@ -1163,23 +1260,27 @@ namespace SrP_ClassroomInq
                     frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  FAQ";
                 }
             }
-            else if( (PanelFAQ.Location.Y > -486) && (FAQClicked == true) && (FAQTimesClicked == 1) && (FAQShowing == true))
+            else if( (PanelFAQ.Location.Y > -486) && (FAQClicked == true) 
+                        && (FAQTimesClicked == 1) && (FAQShowing == true))
             {
                 if (!chkbxLameMode.Checked)
                 {
                     if (x < 10)
                     {
-                        PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y - 12, PanelFAQ.Size.Width, PanelFAQ.Size.Height);
+                        PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y - 12, 
+                                           PanelFAQ.Size.Width, PanelFAQ.Size.Height);
                         x++;
                     }
                     else if (x < 20)
                     {
-                        PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y - 15, PanelFAQ.Size.Width, PanelFAQ.Size.Height);
+                        PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y - 15, 
+                                           PanelFAQ.Size.Width, PanelFAQ.Size.Height);
                         x++;
                     }
                     else if (x < 30)
                     {
-                        PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y - 24, PanelFAQ.Size.Width, PanelFAQ.Size.Height);
+                        PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y - 24, 
+                                           PanelFAQ.Size.Width, PanelFAQ.Size.Height);
                         x++;
                     }
                     else
@@ -1192,7 +1293,7 @@ namespace SrP_ClassroomInq
                         {
                             if (!btnSend.Visible)
                             {
-                                textbox1WASclicked = true; //show broadcast now                                
+                                textbox1WASclicked = true; //show broadcast now     
                             }
                             DesireBrdcst = false;
                         }
@@ -1213,7 +1314,7 @@ namespace SrP_ClassroomInq
                         {
                             if (!PrefsShowing)
                             {
-                                PrefsClicked = true; //show prefs now                                
+                                PrefsClicked = true; //show prefs now                
                             }
                             else
                             {
@@ -1238,7 +1339,8 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations
                 {
-                    PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y - 510, PanelFAQ.Size.Width, PanelFAQ.Size.Height);
+                    PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y - 510, 
+                                       PanelFAQ.Size.Width, PanelFAQ.Size.Height);
                     FAQShowing = false;
                     FAQClicked = false;
                     FAQTimesClicked = 0;
@@ -1296,23 +1398,27 @@ namespace SrP_ClassroomInq
 
             #region Student Management Animate
 
-            if ((PanelStudents.Location.Y > 24) && (StuMgmtClicked == true) && (StuMgmtTimesClicked == 0) && (StuMgmtShowing == false))
+            if ((PanelStudents.Location.Y > 24) && (StuMgmtClicked == true) 
+                 && (StuMgmtTimesClicked == 0) && (StuMgmtShowing == false))
             {
                 if (!chkbxLameMode.Checked)
                 {
                     if (x < 10)
                     {
-                        PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y - 24, PanelStudents.Size.Width, PanelStudents.Size.Height);
+                        PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y - 24, 
+                                                PanelStudents.Size.Width, PanelStudents.Size.Height);
                         x++;
                     }
                     else if (x < 20)
                     {
-                        PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y - 15, PanelStudents.Size.Width, PanelStudents.Size.Height);
+                        PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y - 15, 
+                                                PanelStudents.Size.Width, PanelStudents.Size.Height);
                         x++;
                     }
                     else if (x < 30)
                     {
-                        PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y - 12, PanelStudents.Size.Width, PanelStudents.Size.Height);
+                        PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y - 12, 
+                                                PanelStudents.Size.Width, PanelStudents.Size.Height);
                         x++;
                     }
                     else
@@ -1328,7 +1434,8 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations, boo!
                 {
-                    PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y - 510, PanelStudents.Size.Width, PanelStudents.Size.Height);
+                    PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y - 510, 
+                                            PanelStudents.Size.Width, PanelStudents.Size.Height);
                     StuMgmtShowing = true;
                     StuMgmtClicked = false;
                     StuMgmtTimesClicked = 1;
@@ -1337,23 +1444,27 @@ namespace SrP_ClassroomInq
                     frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Student Management";
                 }
             }
-            else if ((PanelStudents.Location.Y < 536) && (StuMgmtClicked == true) && (StuMgmtTimesClicked == 1) && (StuMgmtShowing == true))
+            else if ((PanelStudents.Location.Y < 536) && (StuMgmtClicked == true) 
+                        && (StuMgmtTimesClicked == 1) && (StuMgmtShowing == true))
             {
                 if (!chkbxLameMode.Checked)
                 {
                     if (x < 10)
                     {
-                        PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y + 12, PanelStudents.Size.Width, PanelStudents.Size.Height);
+                        PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y + 12, 
+                                                PanelStudents.Size.Width, PanelStudents.Size.Height);
                         x++;
                     }
                     else if (x < 20)
                     {
-                        PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y + 15, PanelStudents.Size.Width, PanelStudents.Size.Height);
+                        PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y + 15, 
+                                                PanelStudents.Size.Width, PanelStudents.Size.Height);
                         x++;
                     }
                     else if (x < 30)
                     {
-                        PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y + 24, PanelStudents.Size.Width, PanelStudents.Size.Height);
+                        PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y + 24, 
+                                                PanelStudents.Size.Width, PanelStudents.Size.Height);
                         x++;
                     }
                     else
@@ -1382,7 +1493,8 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations
                 {
-                    PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y + 510, PanelStudents.Size.Width, PanelStudents.Size.Height);
+                    PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y + 510, 
+                                            PanelStudents.Size.Width, PanelStudents.Size.Height);
                     StuMgmtShowing = false;
                     StuMgmtClicked = false;
                     StuMgmtTimesClicked = 0;
@@ -1407,23 +1519,27 @@ namespace SrP_ClassroomInq
             #endregion
 
             #region Conversation Viewer Animation
-            if ((PanelConvView.Location.Y < 1) && (ConvViewClicked == true) && (ConvViewTimesClicked == 0) && (ConvViewShowing == false))
+            if ((PanelConvView.Location.Y < 1) && (ConvViewClicked == true) 
+               && (ConvViewTimesClicked == 0) && (ConvViewShowing == false))
             {
                 if (!chkbxLameMode.Checked)
                 {
                     if (x < 10)
                     {
-                        PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y + 25, PanelConvView.Size.Width, PanelConvView.Size.Height);
+                        PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y + 25, 
+                                                PanelConvView.Size.Width, PanelConvView.Size.Height);
                         x++;
                     }
                     else if (x < 20)
                     {
-                        PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y + 15, PanelConvView.Size.Width, PanelConvView.Size.Height);
+                        PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y + 15, 
+                                                PanelConvView.Size.Width, PanelConvView.Size.Height);
                         x++;
                     }
                     else if (x < 30)
                     {
-                        PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y + 13, PanelConvView.Size.Width, PanelConvView.Size.Height);
+                        PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y + 13, 
+                                                PanelConvView.Size.Width, PanelConvView.Size.Height);
                         x++;
                     }
                     else
@@ -1439,7 +1555,8 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations
                 {
-                    PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y + 530, PanelConvView.Size.Width, PanelConvView.Size.Height);
+                    PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y + 530, 
+                                            PanelConvView.Size.Width, PanelConvView.Size.Height);
                     ConvViewShowing = true;
                     ConvViewClicked = false;
                     ConvViewTimesClicked = 1;
@@ -1448,23 +1565,27 @@ namespace SrP_ClassroomInq
                     frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Conversation Viewer";
                 }
             }
-            else if( (PanelConvView.Location.Y > -531) && (ConvViewClicked == true) && (ConvViewTimesClicked == 1) && (ConvViewShowing == true))
+            else if( (PanelConvView.Location.Y > -531) && (ConvViewClicked == true) 
+                        && (ConvViewTimesClicked == 1) && (ConvViewShowing == true))
             {
                 if (!chkbxLameMode.Checked)
                 {
                     if (x < 10)
                     {
-                        PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y - 13, PanelConvView.Size.Width, PanelConvView.Size.Height);
+                        PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y - 13,
+                                                PanelConvView.Size.Width, PanelConvView.Size.Height);
                         x++;
                     }
                     else if (x < 20)
                     {
-                        PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y - 15, PanelConvView.Size.Width, PanelConvView.Size.Height);
+                        PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y - 15, 
+                                                PanelConvView.Size.Width, PanelConvView.Size.Height);
                         x++;
                     }
                     else if (x < 30)
                     {
-                        PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y - 25, PanelConvView.Size.Width, PanelConvView.Size.Height);
+                        PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y - 25, 
+                                                PanelConvView.Size.Width, PanelConvView.Size.Height);
                         x++;
                     }
                     else
@@ -1484,7 +1605,8 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations
                 {
-                    PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y - 530, PanelConvView.Size.Width, PanelConvView.Size.Height);
+                    PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y - 530, 
+                                            PanelConvView.Size.Width, PanelConvView.Size.Height);
                     ConvViewShowing = false;
                     ConvViewClicked = false;
                     ConvViewTimesClicked = 0;
@@ -1502,23 +1624,27 @@ namespace SrP_ClassroomInq
 
             #region Quiz Maker Animate
 
-            if ((PanelQuizMaker.Location.X > -1) && (QuizMakerClicked == true) && (QuizMakerTimesClicked == 0) && (QuizMakerShowing == false))
+            if ((PanelQuizMaker.Location.X > -1) && (QuizMakerClicked == true) 
+                && (QuizMakerTimesClicked == 0) && (QuizMakerShowing == false))
             {
                 if (!chkbxLameMode.Checked)
                 {
                     if (x < 10)
                     {
-                        PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X - 20, PanelQuizMaker.Location.Y, PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
+                        PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X - 20, PanelQuizMaker.Location.Y, 
+                                                 PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
                         x++;
                     }
                     else if (x < 20)
                     {
-                        PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X - 12, PanelQuizMaker.Location.Y, PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
+                        PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X - 12, PanelQuizMaker.Location.Y, 
+                                                 PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
                         x++;
                     }
                     else if (x < 30)
                     {
-                        PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X - 8, PanelQuizMaker.Location.Y, PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
+                        PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X - 8, PanelQuizMaker.Location.Y, 
+                                                 PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
                         x++;
                     }
                     else
@@ -1534,7 +1660,8 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations
                 {
-                    PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X - 400, PanelQuizMaker.Location.Y, PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
+                    PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X - 400, PanelQuizMaker.Location.Y, 
+                                             PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
                     QuizMakerShowing = true;
                     QuizMakerClicked = false;
                     QuizMakerTimesClicked = 1;
@@ -1543,23 +1670,27 @@ namespace SrP_ClassroomInq
                     frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Quiz Maker";
                 }
             }
-            else if ((PanelQuizMaker.Location.X < 401) && (QuizMakerClicked == true) && (QuizMakerTimesClicked == 1) && (QuizMakerShowing == true))
+            else if ((PanelQuizMaker.Location.X < 401) && (QuizMakerClicked == true) 
+                      && (QuizMakerTimesClicked == 1) && (QuizMakerShowing == true))
             {
                 if (!chkbxLameMode.Checked)
                 {
                     if (x < 10)
                     {
-                        PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X + 8, PanelQuizMaker.Location.Y, PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
+                        PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X + 8, PanelQuizMaker.Location.Y, 
+                                                 PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
                         x++;
                     }
                     else if (x < 20)
                     {
-                        PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X + 12, PanelQuizMaker.Location.Y, PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
+                        PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X + 12, PanelQuizMaker.Location.Y, 
+                                                 PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
                         x++;
                     }
                     else if (x < 30)
                     {
-                        PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X + 20, PanelQuizMaker.Location.Y, PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
+                        PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X + 20, PanelQuizMaker.Location.Y, 
+                                                 PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
                         x++;
                     }
                     else
@@ -1574,7 +1705,8 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations, boo!
                 {
-                    PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X + 400, PanelQuizMaker.Location.Y, PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
+                    PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X + 400, PanelQuizMaker.Location.Y,
+                                             PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
                     QuizMakerShowing = false;
                     QuizMakerClicked = false;
                     QuizMakerTimesClicked = 0;
@@ -1587,23 +1719,27 @@ namespace SrP_ClassroomInq
             #endregion
 
             #region Quiz Mode Animate
-            if ((PanelQuizMode.Location.X < 1) && (QuizModeClicked == true) && (QuizModeTimesClicked == 0) && (QuizModeShowing == false))
+            if ((PanelQuizMode.Location.X < 1) && (QuizModeClicked == true) 
+                && (QuizModeTimesClicked == 0) && (QuizModeShowing == false))
             {
                 if (!chkbxLameMode.Checked)
                 {
                     if (x < 10)
                     {
-                        PanelQuizMode.SetBounds(PanelQuizMode.Location.X + 20, PanelQuizMode.Location.Y, PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
+                        PanelQuizMode.SetBounds(PanelQuizMode.Location.X + 20, PanelQuizMode.Location.Y,
+                                                PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
                         x++;
                     }
                     else if (x < 20)
                     {
-                        PanelQuizMode.SetBounds(PanelQuizMode.Location.X + 12, PanelQuizMode.Location.Y, PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
+                        PanelQuizMode.SetBounds(PanelQuizMode.Location.X + 12, PanelQuizMode.Location.Y, 
+                                                PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
                         x++;
                     }
                     else if (x < 30)
                     {
-                        PanelQuizMode.SetBounds(PanelQuizMode.Location.X + 8, PanelQuizMode.Location.Y, PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
+                        PanelQuizMode.SetBounds(PanelQuizMode.Location.X + 8, PanelQuizMode.Location.Y, 
+                                                PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
                         x++;
                     }
                     else
@@ -1619,7 +1755,8 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations
                 {
-                    PanelQuizMode.SetBounds(PanelQuizMode.Location.X + 400, PanelQuizMode.Location.Y, PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
+                    PanelQuizMode.SetBounds(PanelQuizMode.Location.X + 400, PanelQuizMode.Location.Y, 
+                                            PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
                     QuizModeShowing = true;
                     QuizModeClicked = false;
                     QuizModeTimesClicked = 1;
@@ -1628,23 +1765,27 @@ namespace SrP_ClassroomInq
                     frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Quiz Mode";
                 }
             }
-            else if ((PanelQuizMode.Location.X > -401) && (QuizModeClicked == true) && (QuizModeTimesClicked == 1) && (QuizModeShowing == true))
+            else if ((PanelQuizMode.Location.X > -401) && (QuizModeClicked == true) 
+                        && (QuizModeTimesClicked == 1) && (QuizModeShowing == true))
             {
                 if (!chkbxLameMode.Checked)
                 {
                     if (x < 10)
                     {
-                        PanelQuizMode.SetBounds(PanelQuizMode.Location.X - 8, PanelQuizMode.Location.Y, PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
+                        PanelQuizMode.SetBounds(PanelQuizMode.Location.X - 8, PanelQuizMode.Location.Y, 
+                                                PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
                         x++;
                     }
                     else if (x < 20)
                     {
-                        PanelQuizMode.SetBounds(PanelQuizMode.Location.X - 12, PanelQuizMode.Location.Y, PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
+                        PanelQuizMode.SetBounds(PanelQuizMode.Location.X - 12, PanelQuizMode.Location.Y, 
+                                                PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
                         x++;
                     }
                     else if (x < 30)
                     {
-                        PanelQuizMode.SetBounds(PanelQuizMode.Location.X - 20, PanelQuizMode.Location.Y, PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
+                        PanelQuizMode.SetBounds(PanelQuizMode.Location.X - 20, PanelQuizMode.Location.Y, 
+                                                PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
                         x++;
                     }
                     else
@@ -1659,7 +1800,8 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations, boo!
                 {
-                    PanelQuizMode.SetBounds(PanelQuizMode.Location.X - 400, PanelQuizMode.Location.Y, PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
+                    PanelQuizMode.SetBounds(PanelQuizMode.Location.X - 400, PanelQuizMode.Location.Y, 
+                                            PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
                     QuizModeShowing = false;
                     QuizModeClicked = false;
                     QuizModeTimesClicked = 0;
@@ -1668,6 +1810,247 @@ namespace SrP_ClassroomInq
                 }
             }
 
+
+            #endregion
+
+            #region Attendance Mode Animation (android)
+            if ((PanelAttendance.Location.Y <= 265) && (AttendanceClicked == true) 
+                  && (AttendanceTimesClicked == 0) && (AttendanceShowing == false))
+            {
+                if (!chkbxLameMode.Checked)
+                {
+                    if (x < 10)
+                    {
+                        if (x == 0)
+                        {
+                            PanelAttendance.Show();
+                            PanelAttendance.SetBounds(190, PanelAttendance.Location.Y-5,
+                                                      PanelAttendance.Size.Width+4, PanelAttendance.Size.Height+1);
+                        }
+                        PanelAttendance.SetBounds(PanelAttendance.Location.X-19, PanelAttendance.Location.Y,
+                                                  PanelAttendance.Size.Width + 38, PanelAttendance.Size.Height);
+                        x++;
+                    }
+                    else if (x < 20)
+                    {
+                        PanelAttendance.SetBounds(PanelAttendance.Location.X, PanelAttendance.Location.Y - 10,
+                                                  PanelAttendance.Size.Width, PanelAttendance.Size.Height + 22);
+                        x++;
+                    }
+                    else if (x < 30)
+                    {
+                        PanelAttendance.SetBounds(PanelAttendance.Location.X, PanelAttendance.Location.Y -16,
+                                                  PanelAttendance.Size.Width, PanelAttendance.Size.Height +30);
+                        x++;
+                    }
+                    else
+                    {
+                        x = 0;
+                        AttendanceShowing = true;
+                        AttendanceClicked = false;
+                        AttendanceTimesClicked = 1;
+                        timer.Enabled = false;
+                        PanelAttendance.Focus();
+                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Attendance";
+                    }
+                }
+                else //no animations
+                {
+                    PanelAttendance.SetBounds(0, 0, 384,530);
+                    PanelAttendance.Show();
+                    AttendanceShowing = true;
+                    AttendanceClicked = false;
+                    AttendanceTimesClicked = 1;
+                    timer.Enabled = false;
+                    PanelAttendance.Focus();
+                    frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Attendance";
+                }
+            }
+            else if ((PanelAttendance.Location.Y >= 0) && (AttendanceClicked == true) 
+                     && (AttendanceTimesClicked == 1) && (AttendanceShowing == true))
+            {
+                if (!chkbxLameMode.Checked)
+                {
+                    if (x < 10)
+                    {
+                        PanelAttendance.SetBounds(PanelAttendance.Location.X, PanelAttendance.Location.Y + 16,
+                                                  PanelAttendance.Size.Width, PanelAttendance.Size.Height -30);
+                        x++;
+                    }
+                    else if (x < 20)
+                    {
+                        PanelAttendance.SetBounds(PanelAttendance.Location.X, PanelAttendance.Location.Y + 10, 
+                                                  PanelAttendance.Size.Width, PanelAttendance.Size.Height -22);
+                        x++;
+                    }
+                    else if (x < 30)
+                    {
+                        PanelAttendance.SetBounds(PanelAttendance.Location.X +19, PanelAttendance.Location.Y, 
+                                                  PanelAttendance.Size.Width-38, PanelAttendance.Size.Height);
+                        if (x == 29)
+                        {
+                            PanelAttendance.SetBounds(PanelAttendance.Location.X, PanelAttendance.Location.Y + 5, 
+                                                      PanelAttendance.Size.Width - 4, PanelAttendance.Size.Height - 1);
+                        }
+                        x++;
+                    }
+                    else
+                    {
+                        x = 0;
+                        AttendanceShowing = false;
+                        AttendanceClicked = false;
+                        AttendanceTimesClicked = 0;
+                        PanelAttendance.Hide();
+                        timer.Enabled = false; //all done
+                        if (StuMgmtShowing)
+                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Student Management";
+                        else if (PrefsShowing)
+                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                        else
+                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                    }
+                }
+                else //no animations
+                {
+                    PanelAttendance.SetBounds(190, 265, 0, 0);
+                    PanelAttendance.Hide();
+                    AttendanceShowing = false;
+                    AttendanceClicked = false;
+                    AttendanceTimesClicked = 0;
+                    timer.Enabled = false; //all done
+                    if (StuMgmtShowing)
+                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Student Management";
+                    else if (PrefsShowing)
+                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                    else
+                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                }
+            }
+
+            #endregion
+
+            #region Class Vote Mode Animation (inverse android)
+            if ((PanelClassVote.Location.Y <= 265) && (ClassVoteClicked == true) 
+                 && (ClassVoteTimesClicked == 0) && (ClassVoteShowing == false))
+            {
+                if (!chkbxLameMode.Checked)
+                {
+                    if (x < 10)
+                    {
+                        if (x == 0)
+                        {
+                            PanelClassVote.Show();
+                            PanelClassVote.SetBounds(190, PanelClassVote.Location.Y - 5, 
+                                                    PanelClassVote.Size.Width + 4, PanelClassVote.Size.Height);
+                        }
+                        PanelClassVote.SetBounds(PanelClassVote.Location.X, PanelClassVote.Location.Y -26, 
+                                                 PanelClassVote.Size.Width, PanelClassVote.Size.Height + 53);
+                        x++;
+                    }
+                    else if (x < 20)
+                    {
+                        PanelClassVote.SetBounds(PanelClassVote.Location.X - 12 , PanelClassVote.Location.Y, 
+                                                 PanelClassVote.Size.Width + 24, PanelClassVote.Size.Height);
+                        x++;
+                    }
+                    else if (x < 30)
+                    {
+                        PanelClassVote.SetBounds(PanelClassVote.Location.X - 7, PanelClassVote.Location.Y, 
+                                                 PanelClassVote.Size.Width + 14, PanelClassVote.Size.Height);
+                        x++;
+                    }
+                    else
+                    {
+                        x = 0;
+                        ClassVoteShowing = true;
+                        ClassVoteClicked = false;
+                        ClassVoteTimesClicked = 1;
+                        timer.Enabled = false;
+                        pictureBox8.Show();
+                        btnExitClassVote.Show();
+                        PanelClassVote.Focus();
+                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  ClassVote";
+                    }
+                }
+                else //no animations
+                {
+                    PanelClassVote.SetBounds(0, 0, 384, 530);
+                    PanelClassVote.Show();
+                    ClassVoteShowing = true;
+                    ClassVoteClicked = false;
+                    ClassVoteTimesClicked = 1;
+                    timer.Enabled = false;
+                    pictureBox8.Show();
+                    btnExitClassVote.Show();
+                    PanelClassVote.Focus();
+                    frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  ClassVote";
+                }
+            }
+            else if ((PanelClassVote.Location.Y >= 0) && (ClassVoteClicked == true) 
+                     && (ClassVoteTimesClicked == 1) && (ClassVoteShowing == true))
+            {
+                if (!chkbxLameMode.Checked)
+                {
+                    if (x < 10)
+                    {
+                        if (x == 1)
+                        {
+                            pictureBox8.Hide();
+                            btnExitClassVote.Hide();
+                        }
+                        PanelClassVote.SetBounds(PanelClassVote.Location.X + 7, PanelClassVote.Location.Y, 
+                                                 PanelClassVote.Size.Width - 14, PanelClassVote.Size.Height);
+                        x++;
+                    }
+                    else if (x < 20)
+                    {
+                        PanelClassVote.SetBounds(PanelClassVote.Location.X + 12, PanelClassVote.Location.Y, 
+                                                 PanelClassVote.Size.Width - 24, PanelClassVote.Size.Height);
+                        x++;
+                    }
+                    else if (x < 30)
+                    {
+                        PanelClassVote.SetBounds(PanelClassVote.Location.X , PanelClassVote.Location.Y + 26, 
+                                                 PanelClassVote.Size.Width, PanelClassVote.Size.Height - 53);
+                        if (x == 29)
+                        {
+                            PanelClassVote.SetBounds(PanelClassVote.Location.X, PanelClassVote.Location.Y + 5, 
+                                                     PanelClassVote.Size.Width - 4, PanelClassVote.Size.Height);
+                        }
+                        x++;
+                    }
+                    else
+                    {
+                        x = 0;
+                        ClassVoteShowing = false;
+                        ClassVoteClicked = false;
+                        ClassVoteTimesClicked = 0;
+                        PanelClassVote.Hide();
+                        timer.Enabled = false; //all done
+                        if (StuMgmtShowing)
+                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Student Management";
+                        else if (PrefsShowing)
+                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                        else
+                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                    }
+                }
+                else //no animations
+                {
+                    PanelClassVote.SetBounds(190, 265, 0, 0);
+                    PanelClassVote.Hide();
+                    ClassVoteShowing = false;
+                    ClassVoteClicked = false;
+                    ClassVoteTimesClicked = 0;
+                    timer.Enabled = false; //all done
+                    if (StuMgmtShowing)
+                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Student Management";
+                    else if (PrefsShowing)
+                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                    else
+                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                }
+            }
 
             #endregion
 
@@ -2014,6 +2397,27 @@ namespace SrP_ClassroomInq
             {
                 SerialPort.Close(); //tie up loose ends..
                 SavePrefs();
+                if (StuMgmtShowing)
+                {
+                    SaveStudentData(); //if the panel is showing, on close, save data
+                }
+                if (QuizMakerShowing) // you'll want to save whatever changes they've made
+                {
+                    try
+                    {
+                        using (StreamWriter sw = new StreamWriter(@".data\Quiz\QuizMaker.txt"))
+                        {
+                            //build and write the strings for the data file
+                            for (int i = 0; i < lstbxQuizMaker.Items.Count; i++)
+                            {
+                                sw.WriteLine(lstbxQuizMaker.Items[i]);
+                            }
+                            sw.Flush();
+                            sw.Close();
+                        }
+                    }
+                    catch { }
+                }
             }
         }
         
@@ -2080,6 +2484,14 @@ namespace SrP_ClassroomInq
                         {
                             case("Quiz"):
                                 RecordQuizData(tmp_str, tempString2); //question, student's name
+                                break;
+
+                            case("Attendance"):
+                                //we're in attendance mode
+                                break;
+
+                            case("ClassVote"):
+                                //in class vote mode
                                 break;
 
                             case("Normal"): //normal is the default
@@ -2549,8 +2961,8 @@ namespace SrP_ClassroomInq
         }
         
         /*This creates the controls in a timely manner so that they don't get created on top of one another */
-        private void timer_ControlsCreate_Tick(object sender, EventArgs e) //this event goes off when timer enabled, every 1 seconds
-        {
+        private void timer_ControlsCreate_Tick(object sender, EventArgs e) 
+        { //this event goes off when timer enabled, every 1 seconds
             if (Qs_to_Make)
             {
                 if (ix > jx) // we haven't made all the controls yet
@@ -3033,6 +3445,9 @@ namespace SrP_ClassroomInq
                    cntxtMenu.MenuItems.Add(muItmDM);
                    cntxtMenu.MenuItems.Add(muItmFAQ);
                    cntxtMenu.MenuItems.Add(muItmPrefs);
+                   cntxtMenu.MenuItems.Add(muItmQuiz);
+                   cntxtMenu.MenuItems.Add(muItmAttendance);
+                   cntxtMenu.MenuItems.Add(muItmClassVote);
                }
            }
            else if (cntxtMenu.SourceControl == btnQMDel)
@@ -3580,5 +3995,79 @@ namespace SrP_ClassroomInq
                 MessageBox.Show("Quiz Log Creation // Writing Failed!!!");
             }
         }
+
+        /*Mode for the Attendance Keeping of the class*/
+        private void attedanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //show attendance panel            
+            attedanceToolStripMenuItem.Checked = true;
+
+            normalToolStripMenuItem.Checked = false;
+            classVoteToolStripMenuItem.Checked = false;
+            quizToolStripMenuItem.Checked = false;
+
+            StateMachine = "Attendance";
+            PanelAttendance.BringToFront();
+            AttendanceClicked = true;
+            timer.Enabled = true;
+        }
+
+        /*Closes the attendance mode*/
+        private void btnExitAttendance_Click(object sender, EventArgs e)
+        {
+            attedanceToolStripMenuItem.Checked = false;
+            normalToolStripMenuItem.Checked = true;
+            classVoteToolStripMenuItem.Checked = false;
+            quizToolStripMenuItem.Checked = false;
+
+            StateMachine = "Normal";
+            AttendanceClicked = true;
+            timer.Enabled = true;
+        }
+
+        /*Closes the Class Vote Mode*/
+        private void btnExitClassVote_Click(object sender, EventArgs e)
+        {
+            classVoteToolStripMenuItem.Checked = false;
+            normalToolStripMenuItem.Checked = true;
+            attedanceToolStripMenuItem.Checked = false;
+            quizToolStripMenuItem.Checked = false;
+
+            StateMachine = "Normal";
+            ClassVoteClicked = true;
+            timer.Enabled = true;
+        }
+
+        /*Mode for hosting Class Votes*/
+        private void classVoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            attedanceToolStripMenuItem.Checked = false;
+            normalToolStripMenuItem.Checked = false;
+            classVoteToolStripMenuItem.Checked = true;
+            quizToolStripMenuItem.Checked = false;
+
+            StateMachine = "ClassVote";
+            ClassVoteClicked = true;
+            timer.Enabled = true;
+        }
+
+        /*Allows opening of Attendance mode from context menu at home screen*/
+        private void muItmAttendance_Click(object sender, EventArgs e)
+        {
+            attedanceToolStripMenuItem_Click(sender, e);
+        }
+
+        /*Allows the entering of Class Vote mode from home screen context menu*/
+        private void muItmClassVote_Click(object sender, EventArgs e)
+        {
+            classVoteToolStripMenuItem_Click(sender, e);
+        }
+
+        /*Allows entering Quiz mode from home screen context menu*/
+        private void muItmQuiz_Click(object sender, EventArgs e)
+        {
+            quizToolStripMenuItem_Click(sender, e);
+        }
+
    } //end of partial class
 } //end of namespace    
