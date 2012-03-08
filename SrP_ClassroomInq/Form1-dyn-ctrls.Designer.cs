@@ -704,6 +704,7 @@
             // 
             // serialCOMcmbbx
             // 
+            this.serialCOMcmbbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.serialCOMcmbbx.FormattingEnabled = true;
             this.serialCOMcmbbx.Location = new System.Drawing.Point(160, 84);
             this.serialCOMcmbbx.Name = "serialCOMcmbbx";
@@ -921,7 +922,7 @@
             // 
             // picbxPrefs
             // 
-            this.picbxPrefs.Image = global::SrP_ClassroomInq.Properties.Resources.Background;
+            this.picbxPrefs.Image = ((System.Drawing.Image)(resources.GetObject("picbxPrefs.Image")));
             this.picbxPrefs.Location = new System.Drawing.Point(16, 17);
             this.picbxPrefs.Name = "picbxPrefs";
             this.picbxPrefs.Size = new System.Drawing.Size(321, 50);
@@ -946,7 +947,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::SrP_ClassroomInq.Properties.Resources.Background;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(16, 17);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(324, 73);
@@ -989,7 +990,7 @@
             // 
             // cmbxDM
             // 
-            this.cmbxDM.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cmbxDM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbxDM.FormattingEnabled = true;
             this.cmbxDM.Location = new System.Drawing.Point(96, 119);
             this.cmbxDM.Name = "cmbxDM";
@@ -1097,7 +1098,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::SrP_ClassroomInq.Properties.Resources.Background;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(16, 17);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(321, 50);
@@ -1217,7 +1218,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Image = global::SrP_ClassroomInq.Properties.Resources.StuMngmntCtr;
             this.pictureBox3.Location = new System.Drawing.Point(6, 7);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(345, 77);
@@ -1297,7 +1298,7 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Image = global::SrP_ClassroomInq.Properties.Resources.Background;
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
             this.pictureBox4.Location = new System.Drawing.Point(32, 17);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(321, 50);
@@ -1481,7 +1482,7 @@
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Image = global::SrP_ClassroomInq.Properties.Resources.Background;
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
             this.pictureBox5.Location = new System.Drawing.Point(32, 17);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(321, 50);
@@ -1535,7 +1536,7 @@
             // 
             // pictureBox6
             // 
-            this.pictureBox6.Image = global::SrP_ClassroomInq.Properties.Resources.Background;
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
             this.pictureBox6.Location = new System.Drawing.Point(32, 17);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(321, 50);
@@ -1568,7 +1569,7 @@
             // 
             // pictureBox7
             // 
-            this.pictureBox7.Image = global::SrP_ClassroomInq.Properties.Resources.Background;
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
             this.pictureBox7.Location = new System.Drawing.Point(32, 17);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(321, 50);
@@ -1602,7 +1603,7 @@
             // 
             // pictureBox8
             // 
-            this.pictureBox8.Image = global::SrP_ClassroomInq.Properties.Resources.Background;
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
             this.pictureBox8.Location = new System.Drawing.Point(32, 17);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(321, 50);

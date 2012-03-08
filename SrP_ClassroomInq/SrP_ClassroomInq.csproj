@@ -27,7 +27,7 @@
     <SupportUrl>https://github.com/dchriste/Classroom-Inquisition</SupportUrl>
     <PublisherName>Classroom Inquisition</PublisherName>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.4.0.0</ApplicationVersion>
+    <ApplicationVersion>1.4.1.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -144,6 +144,8 @@
     <None Include="Resources\Background.bmp" />
     <None Include="Resources\reply-arrow.png" />
     <None Include="Resources\bubbles2.png" />
+    <None Include="Resources\StuMngmntCtr.png" />
+    <None Include="Resources\Background.png" />
     <Content Include="user_comment.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -268,6 +268,9 @@ namespace SrP_ClassroomInq
             btnDoneStudents.BackColor = Back;
             btnDoneStudents.ForeColor = Fore;
 
+            btnCLSStudents.BackColor = Back;
+            btnCLSStudents.ForeColor = Fore;
+
             btnConvView.BackColor = Back;
             btnConvView.ForeColor = Fore;
             #endregion 

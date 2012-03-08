@@ -8,6 +8,10 @@ currently.
 
 CHANGELOG created on 2/22/12
 
+/*** Version 1.4.1 committed 3/8 ***/
+fixed unthemed button
+added alpha channel to background of fixed color pictures(for themes)
+
 /*** Version 1.4 committed 3/8 ***/
 added "theme" capability and saving
 added published version 1.4
