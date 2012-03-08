@@ -18,9 +18,11 @@ namespace SrP_ClassroomInq
 	public partial class frmClassrromInq : Form
 	{
         /****************************************************************************
+          * 
           *  Classroom Inquisition Teacher Application 
           *  Programmer: David Christensen
           *  Bug Tracking: https://github.com/dchriste/Classroom-Inquisition/issues 
+          *  
          *****************************************************************************/
 
         /*This Method allows for the theming of all controls globally*/
@@ -70,6 +72,20 @@ namespace SrP_ClassroomInq
 
             grpbxUnread.ForeColor = Fore;
             grpbxUnread.BackColor = Back;
+
+            lblAnimationPrefs.BackColor = Back;
+            lblAnimationPrefs.ForeColor = Fore;
+
+            if (Fore == Color.Lime)
+            {
+                cmbbxAnimationSpeed.BackColor = SystemColors.ControlDarkDark;
+                cmbbxAnimationSpeed.ForeColor = Fore;
+            }
+            else
+            {
+                cmbbxAnimationSpeed.BackColor = Color.White;
+                cmbbxAnimationSpeed.ForeColor = Color.Black;
+            }
 
             PanelPrefs.ForeColor = Fore;
             PanelPrefs.BackColor = Back;

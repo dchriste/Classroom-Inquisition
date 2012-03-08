@@ -166,5 +166,17 @@ namespace SrP_ClassroomInq.Properties {
                 this["BackColorTheme"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("24")]
+        public byte AnimationSpeed {
+            get {
+                return ((byte)(this["AnimationSpeed"]));
+            }
+            set {
+                this["AnimationSpeed"] = value;
+            }
+        }
     }
 }

@@ -175,6 +175,8 @@
             this.btnExitClassVote = new System.Windows.Forms.Button();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.colorDlg = new System.Windows.Forms.ColorDialog();
+            this.cmbbxAnimationSpeed = new System.Windows.Forms.ComboBox();
+            this.lblAnimationPrefs = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.PanelPrefs.SuspendLayout();
@@ -725,6 +727,8 @@
             // 
             this.PanelPrefs.AutoScroll = true;
             this.PanelPrefs.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelPrefs.Controls.Add(this.lblAnimationPrefs);
+            this.PanelPrefs.Controls.Add(this.cmbbxAnimationSpeed);
             this.PanelPrefs.Controls.Add(this.grpbxTheme);
             this.PanelPrefs.Controls.Add(this.btnQuizMaker);
             this.PanelPrefs.Controls.Add(this.chkbxCtrlHide);
@@ -792,7 +796,7 @@
             // 
             this.btnQuizMaker.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.btnQuizMaker.BackColor = System.Drawing.Color.Black;
-            this.btnQuizMaker.Location = new System.Drawing.Point(220, 198);
+            this.btnQuizMaker.Location = new System.Drawing.Point(220, 283);
             this.btnQuizMaker.Name = "btnQuizMaker";
             this.btnQuizMaker.Size = new System.Drawing.Size(103, 23);
             this.btnQuizMaker.TabIndex = 10;
@@ -879,7 +883,7 @@
             // 
             this.btnStuMgmt_Prefs.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.btnStuMgmt_Prefs.BackColor = System.Drawing.Color.Black;
-            this.btnStuMgmt_Prefs.Location = new System.Drawing.Point(220, 163);
+            this.btnStuMgmt_Prefs.Location = new System.Drawing.Point(220, 248);
             this.btnStuMgmt_Prefs.Name = "btnStuMgmt_Prefs";
             this.btnStuMgmt_Prefs.Size = new System.Drawing.Size(103, 23);
             this.btnStuMgmt_Prefs.TabIndex = 4;
@@ -1617,6 +1621,32 @@
             this.colorDlg.AnyColor = true;
             this.colorDlg.FullOpen = true;
             // 
+            // cmbbxAnimationSpeed
+            // 
+            this.cmbbxAnimationSpeed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbbxAnimationSpeed.FormattingEnabled = true;
+            this.cmbbxAnimationSpeed.Items.AddRange(new object[] {
+            "Slow",
+            "Normal",
+            "Fast",
+            "Blazing"});
+            this.cmbbxAnimationSpeed.Location = new System.Drawing.Point(252, 165);
+            this.cmbbxAnimationSpeed.Name = "cmbbxAnimationSpeed";
+            this.cmbbxAnimationSpeed.Size = new System.Drawing.Size(71, 21);
+            this.cmbbxAnimationSpeed.TabIndex = 14;
+            this.cmbbxAnimationSpeed.Text = "Speed";
+            this.cmbbxAnimationSpeed.SelectedIndexChanged += new System.EventHandler(this.cmbbxAnimationSpeed_SelectedIndexChanged);
+            // 
+            // lblAnimationPrefs
+            // 
+            this.lblAnimationPrefs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAnimationPrefs.Location = new System.Drawing.Point(169, 159);
+            this.lblAnimationPrefs.Name = "lblAnimationPrefs";
+            this.lblAnimationPrefs.Size = new System.Drawing.Size(74, 33);
+            this.lblAnimationPrefs.TabIndex = 15;
+            this.lblAnimationPrefs.Text = "Animation\r\nSpeed -->";
+            this.lblAnimationPrefs.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmClassrromInq
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1835,6 +1865,8 @@
         private System.Windows.Forms.ColorDialog colorDlg;
         private System.Windows.Forms.GroupBox grpbxTheme;
         private System.Windows.Forms.Button btnDefaultTheme;
+        private System.Windows.Forms.Label lblAnimationPrefs;
+        private System.Windows.Forms.ComboBox cmbbxAnimationSpeed;
     }
 }
 
