@@ -3,6 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SrP_ClassroomInq", "SrP_ClassroomInq\SrP_ClassroomInq.csproj", "{5E94BC06-BB4F-4F56-995C-D5A8745E284D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C5C4B09C-8EFB-498D-AB52-334D31C57B90}"
+	ProjectSection(SolutionItems) = preProject
+		SrP_ClassroomInq\themes.cs = SrP_ClassroomInq\themes.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86

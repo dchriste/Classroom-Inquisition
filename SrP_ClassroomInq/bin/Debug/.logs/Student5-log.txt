@@ -100,3 +100,9 @@ Test Message
 Student 6 ( 15:48:59  |  2/27/2012 ):
 Hey professor
 
+Student 6 ( 01:25:43  |  3/8/2012 ):
+Hi there themed app
+
+Teacher ( 01:26:26  |  3/8/2012 ):
+thanks
+

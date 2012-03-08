@@ -91,6 +91,10 @@
             this.serialCOMcmbbx = new System.Windows.Forms.ComboBox();
             this.timer_SerialRead = new System.Windows.Forms.Timer(this.components);
             this.PanelPrefs = new System.Windows.Forms.Panel();
+            this.grpbxTheme = new System.Windows.Forms.GroupBox();
+            this.btnDefaultTheme = new System.Windows.Forms.Button();
+            this.btnForeColor = new System.Windows.Forms.Button();
+            this.btnBkgrndColor = new System.Windows.Forms.Button();
             this.btnQuizMaker = new System.Windows.Forms.Button();
             this.chkbxCtrlHide = new System.Windows.Forms.CheckBox();
             this.chkbxNotify = new System.Windows.Forms.CheckBox();
@@ -116,7 +120,6 @@
             this.PanelFAQ = new System.Windows.Forms.Panel();
             this.lnklblIssues = new System.Windows.Forms.LinkLabel();
             this.lblFAQ = new System.Windows.Forms.Label();
-            this.lnklblFAQ = new System.Windows.Forms.LinkLabel();
             this.txtbxFAQ = new System.Windows.Forms.TextBox();
             this.btnFAQcls = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -171,9 +174,11 @@
             this.PanelClassVote = new System.Windows.Forms.Panel();
             this.btnExitClassVote = new System.Windows.Forms.Button();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.colorDlg = new System.Windows.Forms.ColorDialog();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.PanelPrefs.SuspendLayout();
+            this.grpbxTheme.SuspendLayout();
             this.grpbxUnread.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbxPrefs)).BeginInit();
             this.DirectMsgPanel.SuspendLayout();
@@ -690,7 +695,7 @@
             // grpbxFeed
             // 
             this.grpbxFeed.AutoScroll = true;
-            this.grpbxFeed.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.grpbxFeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.grpbxFeed.Location = new System.Drawing.Point(15, 80);
             this.grpbxFeed.Name = "grpbxFeed";
             this.grpbxFeed.Size = new System.Drawing.Size(355, 432);
@@ -719,6 +724,7 @@
             // 
             this.PanelPrefs.AutoScroll = true;
             this.PanelPrefs.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelPrefs.Controls.Add(this.grpbxTheme);
             this.PanelPrefs.Controls.Add(this.btnQuizMaker);
             this.PanelPrefs.Controls.Add(this.chkbxCtrlHide);
             this.PanelPrefs.Controls.Add(this.chkbxNotify);
@@ -735,6 +741,51 @@
             this.PanelPrefs.Name = "PanelPrefs";
             this.PanelPrefs.Size = new System.Drawing.Size(355, 432);
             this.PanelPrefs.TabIndex = 6;
+            // 
+            // grpbxTheme
+            // 
+            this.grpbxTheme.Controls.Add(this.btnDefaultTheme);
+            this.grpbxTheme.Controls.Add(this.btnForeColor);
+            this.grpbxTheme.Controls.Add(this.btnBkgrndColor);
+            this.grpbxTheme.Location = new System.Drawing.Point(13, 332);
+            this.grpbxTheme.Name = "grpbxTheme";
+            this.grpbxTheme.Size = new System.Drawing.Size(236, 85);
+            this.grpbxTheme.TabIndex = 13;
+            this.grpbxTheme.TabStop = false;
+            this.grpbxTheme.Text = "Application Theme";
+            // 
+            // btnDefaultTheme
+            // 
+            this.btnDefaultTheme.BackColor = System.Drawing.Color.Black;
+            this.btnDefaultTheme.Location = new System.Drawing.Point(64, 56);
+            this.btnDefaultTheme.Name = "btnDefaultTheme";
+            this.btnDefaultTheme.Size = new System.Drawing.Size(98, 23);
+            this.btnDefaultTheme.TabIndex = 13;
+            this.btnDefaultTheme.Text = "Reset Default";
+            this.btnDefaultTheme.UseVisualStyleBackColor = false;
+            this.btnDefaultTheme.Click += new System.EventHandler(this.btnDefaultTheme_Click);
+            // 
+            // btnForeColor
+            // 
+            this.btnForeColor.BackColor = System.Drawing.Color.Black;
+            this.btnForeColor.Location = new System.Drawing.Point(15, 23);
+            this.btnForeColor.Name = "btnForeColor";
+            this.btnForeColor.Size = new System.Drawing.Size(98, 23);
+            this.btnForeColor.TabIndex = 12;
+            this.btnForeColor.Text = "Pick ForeColor";
+            this.btnForeColor.UseVisualStyleBackColor = false;
+            this.btnForeColor.Click += new System.EventHandler(this.btnForeColor_Click);
+            // 
+            // btnBkgrndColor
+            // 
+            this.btnBkgrndColor.BackColor = System.Drawing.Color.Black;
+            this.btnBkgrndColor.Location = new System.Drawing.Point(124, 23);
+            this.btnBkgrndColor.Name = "btnBkgrndColor";
+            this.btnBkgrndColor.Size = new System.Drawing.Size(98, 23);
+            this.btnBkgrndColor.TabIndex = 11;
+            this.btnBkgrndColor.Text = "Pick BackColor";
+            this.btnBkgrndColor.UseVisualStyleBackColor = false;
+            this.btnBkgrndColor.Click += new System.EventHandler(this.btnBkgrndColor_Click);
             // 
             // btnQuizMaker
             // 
@@ -827,7 +878,7 @@
             // 
             this.btnStuMgmt_Prefs.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.btnStuMgmt_Prefs.BackColor = System.Drawing.Color.Black;
-            this.btnStuMgmt_Prefs.Location = new System.Drawing.Point(13, 377);
+            this.btnStuMgmt_Prefs.Location = new System.Drawing.Point(220, 163);
             this.btnStuMgmt_Prefs.Name = "btnStuMgmt_Prefs";
             this.btnStuMgmt_Prefs.Size = new System.Drawing.Size(103, 23);
             this.btnStuMgmt_Prefs.TabIndex = 4;
@@ -860,7 +911,7 @@
             // btnPrefs_Cls
             // 
             this.btnPrefs_Cls.BackColor = System.Drawing.Color.Black;
-            this.btnPrefs_Cls.Location = new System.Drawing.Point(262, 377);
+            this.btnPrefs_Cls.Location = new System.Drawing.Point(262, 388);
             this.btnPrefs_Cls.Name = "btnPrefs_Cls";
             this.btnPrefs_Cls.Size = new System.Drawing.Size(75, 23);
             this.btnPrefs_Cls.TabIndex = 1;
@@ -952,6 +1003,7 @@
             // 
             this.txtbxDM.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtbxDM.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.AllSystemSources;
+            this.txtbxDM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtbxDM.Location = new System.Drawing.Point(10, 160);
             this.txtbxDM.Multiline = true;
             this.txtbxDM.Name = "txtbxDM";
@@ -986,7 +1038,6 @@
             this.PanelFAQ.BackColor = System.Drawing.SystemColors.ControlText;
             this.PanelFAQ.Controls.Add(this.lnklblIssues);
             this.PanelFAQ.Controls.Add(this.lblFAQ);
-            this.PanelFAQ.Controls.Add(this.lnklblFAQ);
             this.PanelFAQ.Controls.Add(this.txtbxFAQ);
             this.PanelFAQ.Controls.Add(this.btnFAQcls);
             this.PanelFAQ.Controls.Add(this.pictureBox2);
@@ -1000,12 +1051,12 @@
             // 
             this.lnklblIssues.AutoSize = true;
             this.lnklblIssues.LinkColor = System.Drawing.Color.Gold;
-            this.lnklblIssues.Location = new System.Drawing.Point(138, 252);
+            this.lnklblIssues.Location = new System.Drawing.Point(125, 467);
             this.lnklblIssues.Name = "lnklblIssues";
-            this.lnklblIssues.Size = new System.Drawing.Size(73, 13);
+            this.lnklblIssues.Size = new System.Drawing.Size(85, 13);
             this.lnklblIssues.TabIndex = 5;
             this.lnklblIssues.TabStop = true;
-            this.lnklblIssues.Text = "GitHub-Issues";
+            this.lnklblIssues.Text = "GitHub  -  Issues";
             this.lnklblIssues.VisitedLinkColor = System.Drawing.Color.Chocolate;
             this.lnklblIssues.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnklblIssues_LinkClicked);
             // 
@@ -1017,19 +1068,6 @@
             this.lblFAQ.Size = new System.Drawing.Size(111, 13);
             this.lblFAQ.TabIndex = 4;
             this.lblFAQ.Text = "Contact Developer at:";
-            // 
-            // lnklblFAQ
-            // 
-            this.lnklblFAQ.AutoSize = true;
-            this.lnklblFAQ.LinkColor = System.Drawing.Color.Gold;
-            this.lnklblFAQ.Location = new System.Drawing.Point(117, 467);
-            this.lnklblFAQ.Name = "lnklblFAQ";
-            this.lnklblFAQ.Size = new System.Drawing.Size(153, 13);
-            this.lnklblFAQ.TabIndex = 3;
-            this.lnklblFAQ.TabStop = true;
-            this.lnklblFAQ.Text = "bondslaveofJesus@gmail.com ";
-            this.lnklblFAQ.VisitedLinkColor = System.Drawing.Color.Chocolate;
-            this.lnklblFAQ.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnklblFAQ_LinkClicked);
             // 
             // txtbxFAQ
             // 
@@ -1129,6 +1167,7 @@
             // 
             // txtbxStudentsName
             // 
+            this.txtbxStudentsName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtbxStudentsName.Location = new System.Drawing.Point(19, 61);
             this.txtbxStudentsName.Name = "txtbxStudentsName";
             this.txtbxStudentsName.Size = new System.Drawing.Size(169, 20);
@@ -1572,6 +1611,11 @@
             this.pictureBox8.TabStop = false;
             this.pictureBox8.Visible = false;
             // 
+            // colorDlg
+            // 
+            this.colorDlg.AnyColor = true;
+            this.colorDlg.FullOpen = true;
+            // 
             // frmClassrromInq
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1612,6 +1656,7 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.PanelPrefs.ResumeLayout(false);
+            this.grpbxTheme.ResumeLayout(false);
             this.grpbxUnread.ResumeLayout(false);
             this.grpbxUnread.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbxPrefs)).EndInit();
@@ -1691,7 +1736,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TextBox txtbxFAQ;
         private System.Windows.Forms.Label lblFAQ;
-        private System.Windows.Forms.LinkLabel lnklblFAQ;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
@@ -1785,6 +1829,11 @@
         private System.Windows.Forms.Panel PanelClassVote;
         private System.Windows.Forms.Button btnExitClassVote;
         private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.Button btnForeColor;
+        private System.Windows.Forms.Button btnBkgrndColor;
+        private System.Windows.Forms.ColorDialog colorDlg;
+        private System.Windows.Forms.GroupBox grpbxTheme;
+        private System.Windows.Forms.Button btnDefaultTheme;
     }
 }
 

@@ -2,4 +2,6 @@
 
 *Zone.Identifier
 *Zone.Identifier\:*
-
+publish/*
+*.pfx
+*.publish

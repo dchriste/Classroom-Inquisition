@@ -41,6 +41,9 @@ namespace SrP_ClassroomInq
 
         public StreamReader Stream2Print;
         public Font PrintFont;
+        public Color ForeColorTheme = Color.DarkGoldenrod;
+        public Color BackColorTheme = Color.Black;
+        public AboutBox_CI About = new AboutBox_CI();
 
         string[] Students_Name = new string[classSize];
         string[] Students_ID = new string[classSize];
@@ -178,8 +181,8 @@ namespace SrP_ClassroomInq
         /*This method makes the controls for the new question dynamically upon receiving the quesiton*/
         public void MakeCtrls(string question){
             reply_arr[NumQuestions] = new System.Windows.Forms.Button();
-            reply_arr[NumQuestions].BackColor = System.Drawing.Color.Black;
-            reply_arr[NumQuestions].ForeColor = System.Drawing.Color.DarkGoldenrod;
+            reply_arr[NumQuestions].BackColor = BackColorTheme;
+            reply_arr[NumQuestions].ForeColor = ForeColorTheme;
             reply_arr[NumQuestions].FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             reply_arr[NumQuestions].Location = tempreplyarr;
             reply_arr[NumQuestions].Name = "reply_arr_" + NumQuestions.ToString();
@@ -190,8 +193,8 @@ namespace SrP_ClassroomInq
             reply_arr[NumQuestions].Click += new System.EventHandler(this.btnRepl_Click);
 
             close_arr[NumQuestions] = new Button();
-            close_arr[NumQuestions].BackColor = System.Drawing.Color.Black;
-            close_arr[NumQuestions].ForeColor = System.Drawing.Color.DarkGoldenrod;
+            close_arr[NumQuestions].BackColor = BackColorTheme;
+            close_arr[NumQuestions].ForeColor = ForeColorTheme;
             close_arr[NumQuestions].FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             close_arr[NumQuestions].Location = tempclosearr;
             close_arr[NumQuestions].Name = "close_arr_" + NumQuestions.ToString();
@@ -202,8 +205,8 @@ namespace SrP_ClassroomInq
             close_arr[NumQuestions].Click += new System.EventHandler(this.btnCLS_Click);
 
             clear_arr[NumQuestions] = new Button();
-            clear_arr[NumQuestions].BackColor = System.Drawing.Color.Black;
-            clear_arr[NumQuestions].ForeColor = System.Drawing.Color.DarkGoldenrod;
+            clear_arr[NumQuestions].BackColor = BackColorTheme;
+            clear_arr[NumQuestions].ForeColor = ForeColorTheme;
             clear_arr[NumQuestions].FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             clear_arr[NumQuestions].Location = tempcleararr;
             clear_arr[NumQuestions].Name = "clear_arr_" + NumQuestions.ToString();
@@ -223,8 +226,8 @@ namespace SrP_ClassroomInq
             txtbx_reply_arr[NumQuestions].KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
 
             group_arr[NumQuestions] = new System.Windows.Forms.GroupBox();  // Instantiate next index of groupbox array
-            group_arr[NumQuestions].BackColor = System.Drawing.Color.Black;
-            group_arr[NumQuestions].ForeColor = System.Drawing.SystemColors.HighlightText;
+            group_arr[NumQuestions].BackColor = BackColorTheme;
+            group_arr[NumQuestions].ForeColor = ForeColorTheme;
             group_arr[NumQuestions].Location = origingrouparr; //insert new question at the top
             group_arr[NumQuestions].Name = "group_arr_" + NumQuestions.ToString();
             group_arr[NumQuestions].Size = new System.Drawing.Size(328, 32);
@@ -236,8 +239,8 @@ namespace SrP_ClassroomInq
             lbl_arr[NumQuestions].AutoSize = false;
             lbl_arr[NumQuestions].AutoEllipsis = true;
             lbl_arr[NumQuestions].TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            lbl_arr[NumQuestions].BackColor = System.Drawing.Color.Black;
-            lbl_arr[NumQuestions].ForeColor = System.Drawing.Color.DarkGoldenrod;
+            lbl_arr[NumQuestions].BackColor = BackColorTheme;
+            lbl_arr[NumQuestions].ForeColor = ForeColorTheme;
             lbl_arr[NumQuestions].FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             lbl_arr[NumQuestions].Dock = DockStyle.Top;
             lbl_arr[NumQuestions].Location = lbl_arr_temp;
@@ -258,6 +261,7 @@ namespace SrP_ClassroomInq
             lbl_arr[NumQuestions].MouseMove += new System.Windows.Forms.MouseEventHandler(this.lbl_question_MouseMove);
 
             picbx_arr[NumQuestions] = new PictureBox();
+            picbx_arr[NumQuestions].BackColor = BackColorTheme;
             picbx_arr[NumQuestions].Image = global::SrP_ClassroomInq.Properties.Resources.reply_arrow;
             picbx_arr[NumQuestions].Location = picbx_arr_tmp;
             picbx_arr[NumQuestions].Name = "picbx_arr_" + NumQuestions.ToString();
@@ -268,6 +272,7 @@ namespace SrP_ClassroomInq
             picbx_arr[NumQuestions].Visible = false; //set to visible after marked read
 
             picbx_ConvView_arr[NumQuestions] = new PictureBox();
+            picbx_ConvView_arr[NumQuestions].BackColor = BackColorTheme;
             picbx_ConvView_arr[NumQuestions].Image = global::SrP_ClassroomInq.Properties.Resources.bubbles2;
             picbx_ConvView_arr[NumQuestions].Location = picbx_ConvView_tmp;
             picbx_ConvView_arr[NumQuestions].Name = "picbx_ConvView_arr_" + NumQuestions.ToString();
@@ -281,8 +286,8 @@ namespace SrP_ClassroomInq
             picbx_ConvView_arr[NumQuestions].MouseLeave += new System.EventHandler(this.picbx_CV_MouseLeave);
 
             tt_picbxCV_arr[NumQuestions] = new ToolTip();
-            tt_picbxCV_arr[NumQuestions].BackColor = System.Drawing.Color.Black;
-            tt_picbxCV_arr[NumQuestions].ForeColor = System.Drawing.Color.DarkGoldenrod;
+            tt_picbxCV_arr[NumQuestions].BackColor = BackColorTheme;
+            tt_picbxCV_arr[NumQuestions].ForeColor = ForeColorTheme;
             tt_picbxCV_arr[NumQuestions].IsBalloon = true;
             tt_picbxCV_arr[NumQuestions].ToolTipTitle = "Click the icon!";
             tt_picbxCV_arr[NumQuestions].AutoPopDelay = 2500;
@@ -311,6 +316,7 @@ namespace SrP_ClassroomInq
                 picbxStatus.Visible = false;
                 tlstrplbl_Unread.Text = "Unread " + UnreadCount.ToString();
                 tlstrplbl_Unread.Visible = true;
+                this.Text = " Classroom Inquisition  |  Home (" + UnreadCount.ToString() + ")";
             }
             else
             {
@@ -557,7 +563,7 @@ namespace SrP_ClassroomInq
                             btnCLS.Visible = true;
                             serialCOMcmbbx.Visible = true;
                             textbox1WASclicked = false;
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Broadcast";
+                            this.Text = " Classroom Inquisition  |  Broadcast";
                         }
                     }
                     else //no animations
@@ -574,7 +580,7 @@ namespace SrP_ClassroomInq
                         btnCLS.Visible = true;
                         serialCOMcmbbx.Visible = true;
                         textbox1WASclicked = false;
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Broadcast";
+                        this.Text = " Classroom Inquisition  |  Broadcast";
                     }
                 }
 
@@ -612,11 +618,11 @@ namespace SrP_ClassroomInq
                             textbox1WASclicked = false;
                             grpbxFeed.Focus(); //get cursor out of textbox if it's there...
                             if (PrefsShowing)
-                                frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                                this.Text = " Classroom Inquisition  |  Prefs";
                             else if (DMPanelShowing)
-                                frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Direct Msg";
+                                this.Text = " Classroom Inquisition  |  Direct Msg";
                             else
-                                frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                                this.Text = " Classroom Inquisition  |  Home";
                         }
                     }
                     else //no animations
@@ -634,11 +640,11 @@ namespace SrP_ClassroomInq
                         textbox1WASclicked = false;
                         grpbxFeed.Focus(); //get cursor out of textbox if it's there...
                         if (PrefsShowing)
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                            this.Text = " Classroom Inquisition  |  Prefs";
                         else if (DMPanelShowing)
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Direct Msg";
+                            this.Text = " Classroom Inquisition  |  Direct Msg";
                         else
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                            this.Text = " Classroom Inquisition  |  Home";
                     }
                 }
             
@@ -972,7 +978,7 @@ namespace SrP_ClassroomInq
                         DMtimesClicked = 1;
                         timer.Enabled = false;
                         DirectMsgPanel.Focus();
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Direct Msg";
+                        this.Text = " Classroom Inquisition  |  Direct Msg";
                     }
                 }
                 else //no animations, boo!
@@ -986,7 +992,7 @@ namespace SrP_ClassroomInq
                     DMtimesClicked = 1;
                     timer.Enabled = false;
                     DirectMsgPanel.Focus();
-                    frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Direct Msg";
+                    this.Text = " Classroom Inquisition  |  Direct Msg";
                 }
             }
             else if ((DirectMsgPanel.Location.X > -396) && (DMclicked == true) 
@@ -1035,7 +1041,7 @@ namespace SrP_ClassroomInq
                         else
                         {
                             timer.Enabled = false; //all done
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                            this.Text = " Classroom Inquisition  |  Home";
                         }
                     }
                 }
@@ -1059,7 +1065,7 @@ namespace SrP_ClassroomInq
                     else
                     {
                         timer.Enabled = false; //all done
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                        this.Text = " Classroom Inquisition  |  Home";
                     }
                 }
             }
@@ -1106,7 +1112,7 @@ namespace SrP_ClassroomInq
                         PrefsTimesClicked = 1;
                         timer.Enabled = false;
                         PanelPrefs.Focus();
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                        this.Text = " Classroom Inquisition  |  Prefs";
                     }
                 }
                 else //no animations
@@ -1120,7 +1126,7 @@ namespace SrP_ClassroomInq
                     PrefsTimesClicked = 1;
                     timer.Enabled = false;
                     PanelPrefs.Focus();
-                    frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                    this.Text = " Classroom Inquisition  |  Prefs";
                 }
             }
             else if ((PanelPrefs.Location.X < 396) && (PrefsClicked == true) 
@@ -1174,7 +1180,7 @@ namespace SrP_ClassroomInq
                         else
                         {
                             timer.Enabled = false; //all done
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                            this.Text = " Classroom Inquisition  |  Home";
                         }
                     }
                 }
@@ -1188,7 +1194,7 @@ namespace SrP_ClassroomInq
                     PrefsClicked = false;
                     PrefsTimesClicked = 0;
                     //SavePrefs(); //when hiding the panel save the preferences
-                    frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                    this.Text = " Classroom Inquisition  |  Home";
                     if (DesireDM)
                     {
                         if (!DMPanelShowing)
@@ -1245,7 +1251,7 @@ namespace SrP_ClassroomInq
                         FAQTimesClicked = 1;
                         timer.Enabled = false;
                         PanelFAQ.Focus();
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  FAQ";
+                        this.Text = " Classroom Inquisition  |  FAQ";
                     }
                 }
                 else //no animations
@@ -1257,7 +1263,7 @@ namespace SrP_ClassroomInq
                     FAQTimesClicked = 1;
                     timer.Enabled = false;
                     PanelFAQ.Focus();
-                    frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  FAQ";
+                    this.Text = " Classroom Inquisition  |  FAQ";
                 }
             }
             else if( (PanelFAQ.Location.Y > -486) && (FAQClicked == true) 
@@ -1306,7 +1312,7 @@ namespace SrP_ClassroomInq
                             else
                             {
                                 DirectMsgPanel.Focus();
-                                frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Direct Msg";
+                                this.Text = " Classroom Inquisition  |  Direct Msg";
                             }
                             DesireDM = false;
                         }
@@ -1319,7 +1325,7 @@ namespace SrP_ClassroomInq
                             else
                             {
                                 PanelPrefs.Focus();
-                                frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                                this.Text = " Classroom Inquisition  |  Prefs";
                             }
                             DesirePrefs = false;
                         }
@@ -1327,13 +1333,13 @@ namespace SrP_ClassroomInq
                         {
                             timer.Enabled = false; //all done
                             if (StuMgmtShowing)
-                                frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Student Management";
+                                this.Text = " Classroom Inquisition  |  Student Management";
                             else if (DMPanelShowing)
-                                frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Direct Msg";
+                                this.Text = " Classroom Inquisition  |  Direct Msg";
                             else if (PrefsShowing)
-                                frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                                this.Text = " Classroom Inquisition  |  Prefs";
                             else
-                                frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                                this.Text = " Classroom Inquisition  |  Home";
                         }
                     }
                 }
@@ -1361,7 +1367,7 @@ namespace SrP_ClassroomInq
                         else
                         {
                             DirectMsgPanel.Focus();
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Direct Msg";
+                            this.Text = " Classroom Inquisition  |  Direct Msg";
                         }
                         DesireDM = false;
                     }
@@ -1374,7 +1380,7 @@ namespace SrP_ClassroomInq
                         else
                         {
                             PanelPrefs.Focus();
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                            this.Text = " Classroom Inquisition  |  Prefs";
                         }
                         DesirePrefs = false;
                     }
@@ -1382,13 +1388,13 @@ namespace SrP_ClassroomInq
                     {
                         timer.Enabled = false; //all done
                         if (StuMgmtShowing)
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Student Management";
+                            this.Text = " Classroom Inquisition  |  Student Management";
                         else if (DMPanelShowing)
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Direct Msg";
+                            this.Text = " Classroom Inquisition  |  Direct Msg";
                         else if (PrefsShowing)
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                            this.Text = " Classroom Inquisition  |  Prefs";
                         else
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                            this.Text = " Classroom Inquisition  |  Home";
                     }
                 }
              }
@@ -1429,7 +1435,7 @@ namespace SrP_ClassroomInq
                         StuMgmtTimesClicked = 1;
                         timer.Enabled = false;
                         PanelStudents.Focus();
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Student Management";
+                        this.Text = " Classroom Inquisition  |  Student Management";
                     }
                 }
                 else //no animations, boo!
@@ -1441,7 +1447,7 @@ namespace SrP_ClassroomInq
                     StuMgmtTimesClicked = 1;
                     timer.Enabled = false;
                     PanelStudents.Focus();
-                    frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Student Management";
+                    this.Text = " Classroom Inquisition  |  Student Management";
                 }
             }
             else if ((PanelStudents.Location.Y < 536) && (StuMgmtClicked == true) 
@@ -1485,9 +1491,9 @@ namespace SrP_ClassroomInq
                         {
                             timer.Enabled = false; //all done
                             if (PrefsShowing)
-                                frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                                this.Text = " Classroom Inquisition  |  Prefs";
                             else
-                                frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                                this.Text = " Classroom Inquisition  |  Home";
                         }
                     }
                 }
@@ -1510,9 +1516,9 @@ namespace SrP_ClassroomInq
                     {
                         timer.Enabled = false; //all done
                         if (PrefsShowing)
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                            this.Text = " Classroom Inquisition  |  Prefs";
                         else
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                            this.Text = " Classroom Inquisition  |  Home";
                     }
                 }
             }
@@ -1550,7 +1556,7 @@ namespace SrP_ClassroomInq
                         ConvViewTimesClicked = 1;
                         timer.Enabled = false;
                         PanelConvView.Focus();
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Conversation Viewer";
+                        this.Text = " Classroom Inquisition  |  Conversation Viewer";
                     }
                 }
                 else //no animations
@@ -1562,7 +1568,7 @@ namespace SrP_ClassroomInq
                     ConvViewTimesClicked = 1;
                     timer.Enabled = false;
                     PanelConvView.Focus();
-                    frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Conversation Viewer";
+                    this.Text = " Classroom Inquisition  |  Conversation Viewer";
                 }
             }
             else if( (PanelConvView.Location.Y > -531) && (ConvViewClicked == true) 
@@ -1596,11 +1602,11 @@ namespace SrP_ClassroomInq
                         ConvViewTimesClicked = 0;
                         timer.Enabled = false; //all done
                         if (StuMgmtShowing)
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Student Management";
+                            this.Text = " Classroom Inquisition  |  Student Management";
                         else if (PrefsShowing)
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                            this.Text = " Classroom Inquisition  |  Prefs";
                         else
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";                        
+                            this.Text = " Classroom Inquisition  |  Home";                        
                     }
                 }
                 else //no animations
@@ -1612,11 +1618,11 @@ namespace SrP_ClassroomInq
                     ConvViewTimesClicked = 0;
                     timer.Enabled = false; //all done
                     if (StuMgmtShowing)
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Student Management";
+                        this.Text = " Classroom Inquisition  |  Student Management";
                     else if (PrefsShowing)
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                        this.Text = " Classroom Inquisition  |  Prefs";
                     else
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";                    
+                        this.Text = " Classroom Inquisition  |  Home";                    
                 }
              }
                         
@@ -1655,7 +1661,7 @@ namespace SrP_ClassroomInq
                         QuizMakerTimesClicked = 1;
                         timer.Enabled = false;
                         PanelQuizMaker.Focus();
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Quiz Maker";
+                        this.Text = " Classroom Inquisition  |  Quiz Maker";
                     }
                 }
                 else //no animations
@@ -1667,7 +1673,7 @@ namespace SrP_ClassroomInq
                     QuizMakerTimesClicked = 1;
                     timer.Enabled = false;
                     PanelQuizMaker.Focus();
-                    frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Quiz Maker";
+                    this.Text = " Classroom Inquisition  |  Quiz Maker";
                 }
             }
             else if ((PanelQuizMaker.Location.X < 401) && (QuizMakerClicked == true) 
@@ -1700,7 +1706,7 @@ namespace SrP_ClassroomInq
                         QuizMakerClicked = false;
                         QuizMakerTimesClicked = 0;                       
                         timer.Enabled = false; //all done
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                        this.Text = " Classroom Inquisition  |  Home";
                     }
                 }
                 else //no animations, boo!
@@ -1710,7 +1716,7 @@ namespace SrP_ClassroomInq
                     QuizMakerShowing = false;
                     QuizMakerClicked = false;
                     QuizMakerTimesClicked = 0;
-                    frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                    this.Text = " Classroom Inquisition  |  Home";
                     timer.Enabled = false;
                 }
             }
@@ -1750,7 +1756,7 @@ namespace SrP_ClassroomInq
                         QuizModeTimesClicked = 1;
                         timer.Enabled = false;
                         PanelQuizMode.Focus();
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Quiz Mode";
+                        this.Text = " Classroom Inquisition  |  Quiz Mode";
                     }
                 }
                 else //no animations
@@ -1762,7 +1768,7 @@ namespace SrP_ClassroomInq
                     QuizModeTimesClicked = 1;
                     timer.Enabled = false;
                     PanelQuizMode.Focus();
-                    frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Quiz Mode";
+                    this.Text = " Classroom Inquisition  |  Quiz Mode";
                 }
             }
             else if ((PanelQuizMode.Location.X > -401) && (QuizModeClicked == true) 
@@ -1795,7 +1801,7 @@ namespace SrP_ClassroomInq
                         QuizModeClicked = false;
                         QuizModeTimesClicked = 0;                       
                         timer.Enabled = false; //all done
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                        this.Text = " Classroom Inquisition  |  Home";
                     }
                 }
                 else //no animations, boo!
@@ -1805,7 +1811,7 @@ namespace SrP_ClassroomInq
                     QuizModeShowing = false;
                     QuizModeClicked = false;
                     QuizModeTimesClicked = 0;
-                    frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                    this.Text = " Classroom Inquisition  |  Home";
                     timer.Enabled = false;
                 }
             }
@@ -1851,7 +1857,7 @@ namespace SrP_ClassroomInq
                         AttendanceTimesClicked = 1;
                         timer.Enabled = false;
                         PanelAttendance.Focus();
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Attendance";
+                        this.Text = " Classroom Inquisition  |  Attendance";
                     }
                 }
                 else //no animations
@@ -1863,7 +1869,7 @@ namespace SrP_ClassroomInq
                     AttendanceTimesClicked = 1;
                     timer.Enabled = false;
                     PanelAttendance.Focus();
-                    frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Attendance";
+                    this.Text = " Classroom Inquisition  |  Attendance";
                 }
             }
             else if ((PanelAttendance.Location.Y >= 0) && (AttendanceClicked == true) 
@@ -1903,11 +1909,11 @@ namespace SrP_ClassroomInq
                         PanelAttendance.Hide();
                         timer.Enabled = false; //all done
                         if (StuMgmtShowing)
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Student Management";
+                            this.Text = " Classroom Inquisition  |  Student Management";
                         else if (PrefsShowing)
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                            this.Text = " Classroom Inquisition  |  Prefs";
                         else
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                            this.Text = " Classroom Inquisition  |  Home";
                     }
                 }
                 else //no animations
@@ -1919,11 +1925,11 @@ namespace SrP_ClassroomInq
                     AttendanceTimesClicked = 0;
                     timer.Enabled = false; //all done
                     if (StuMgmtShowing)
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Student Management";
+                        this.Text = " Classroom Inquisition  |  Student Management";
                     else if (PrefsShowing)
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                        this.Text = " Classroom Inquisition  |  Prefs";
                     else
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                        this.Text = " Classroom Inquisition  |  Home";
                 }
             }
 
@@ -1969,7 +1975,7 @@ namespace SrP_ClassroomInq
                         pictureBox8.Show();
                         btnExitClassVote.Show();
                         PanelClassVote.Focus();
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  ClassVote";
+                        this.Text = " Classroom Inquisition  |  ClassVote";
                     }
                 }
                 else //no animations
@@ -1983,7 +1989,7 @@ namespace SrP_ClassroomInq
                     pictureBox8.Show();
                     btnExitClassVote.Show();
                     PanelClassVote.Focus();
-                    frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  ClassVote";
+                    this.Text = " Classroom Inquisition  |  ClassVote";
                 }
             }
             else if ((PanelClassVote.Location.Y >= 0) && (ClassVoteClicked == true) 
@@ -2028,11 +2034,11 @@ namespace SrP_ClassroomInq
                         PanelClassVote.Hide();
                         timer.Enabled = false; //all done
                         if (StuMgmtShowing)
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Student Management";
+                            this.Text = " Classroom Inquisition  |  Student Management";
                         else if (PrefsShowing)
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                            this.Text = " Classroom Inquisition  |  Prefs";
                         else
-                            frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                            this.Text = " Classroom Inquisition  |  Home";
                     }
                 }
                 else //no animations
@@ -2044,11 +2050,11 @@ namespace SrP_ClassroomInq
                     ClassVoteTimesClicked = 0;
                     timer.Enabled = false; //all done
                     if (StuMgmtShowing)
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Student Management";
+                        this.Text = " Classroom Inquisition  |  Student Management";
                     else if (PrefsShowing)
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Prefs";
+                        this.Text = " Classroom Inquisition  |  Prefs";
                     else
-                        frmClassrromInq.ActiveForm.Text = " Classroom Inquisition  |  Home";
+                        this.Text = " Classroom Inquisition  |  Home";
                 }
             }
 
@@ -2201,7 +2207,11 @@ namespace SrP_ClassroomInq
             showNamesToolStripMenuItem.Checked = Properties.Settings.Default.ShowNames;
             chkbxNotify.Checked = Properties.Settings.Default.Notify;
             chkbxCtrlHide.Checked = Properties.Settings.Default.CtrlHide;
+            ForeColorTheme = Properties.Settings.Default.ForeColorTheme;
+            BackColorTheme = Properties.Settings.Default.BackColorTheme;
             /***************************************************/
+
+            ThemeApply(ForeColorTheme, BackColorTheme); //set from saved theme
 
             string[] tmpstring = new string[classSize];
             try
@@ -2424,8 +2434,7 @@ namespace SrP_ClassroomInq
         /*This shows the about information in a separate dialog*/
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Show About Information
-            AboutBox_CI About = new AboutBox_CI();
+            //Show About Information            
             About.ShowDialog();
         }
         
@@ -3019,6 +3028,8 @@ namespace SrP_ClassroomInq
             Properties.Settings.Default.ShowNames = showNamesToolStripMenuItem.Checked;
             Properties.Settings.Default.Notify = chkbxNotify.Checked;
             Properties.Settings.Default.CtrlHide = chkbxCtrlHide.Checked;
+            Properties.Settings.Default.ForeColorTheme = ForeColorTheme;
+            Properties.Settings.Default.BackColorTheme = BackColorTheme;
             Properties.Settings.Default.Save();
         }
         
@@ -3046,11 +3057,13 @@ namespace SrP_ClassroomInq
                     picbxStatus.Visible = false;
                     tlstrplbl_Unread.Text = "Unread " + UnreadCount.ToString();
                     tlstrplbl_Unread.Visible = true;
+                    this.Text = " Classroom Inquisition  |  Home (" + UnreadCount.ToString() + ")";
                 }
                 else
                 {
                     picbxStatus.Visible = true;
                     tlstrplbl_Unread.Visible = false;
+                    this.Text = " Classroom Inquisition  |  Home";
                 }
             }
         }
@@ -3525,8 +3538,8 @@ namespace SrP_ClassroomInq
         /*This method allows for the hiding of the window close control and, inseparably, the icon*/
         private void chkbxCtrlHide_CheckedChanged(object sender, EventArgs e)
         {
-            SrP_ClassroomInq.frmClassrromInq.ActiveForm.ControlBox = !chkbxCtrlHide.Checked; //toggles control
-            SrP_ClassroomInq.frmClassrromInq.ActiveForm.Refresh();
+            this.ControlBox = !chkbxCtrlHide.Checked; //toggles control
+            this.Refresh();
         }
         
         /*Method to call the Undo Delete Animation/Action*/
@@ -3835,7 +3848,7 @@ namespace SrP_ClassroomInq
                 txtbxQuestion_arr[index] = new TextBox();
                 txtbxQuestion_arr[index].BackColor = System.Drawing.SystemColors.ControlDarkDark;
                 txtbxQuestion_arr[index].BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                txtbxQuestion_arr[index].ForeColor = System.Drawing.Color.DarkGoldenrod;
+                txtbxQuestion_arr[index].ForeColor = ForeColorTheme;
                 txtbxQuestion_arr[index].Location = txtbxQuestion_arr_tmp;
                 txtbxQuestion_arr[index].Multiline = true;
                 txtbxQuestion_arr[index].Name = "txtbxQuestion_arr_" + number.ToString();
@@ -3859,10 +3872,11 @@ namespace SrP_ClassroomInq
                 // PanelQuestion_arr_*
                 // 
                 PanelQuestion_arr[index] = new Panel();
-                PanelQuestion_arr[index].BackColor = System.Drawing.Color.Black;
+                PanelQuestion_arr[index].BackColor = BackColorTheme;
                 PanelQuestion_arr[index].Controls.Add(btnQuizQuestionSend_arr[number]);
                 PanelQuestion_arr[index].Controls.Add(txtbxQuestion_arr[number]);
                 PanelQuestion_arr[index].Controls.Add(lblQuestionNum_arr[number]);
+                PanelQuestion_arr[index].ForeColor = ForeColorTheme;
                 PanelQuestion_arr[index].Location = PanelQuestion_arr_tmp;
                 PanelQuestion_arr[index].Name = "PanelQuestion_arr_" + number.ToString();
                 PanelQuestion_arr[index].Size = new System.Drawing.Size(330, 63);
@@ -4067,6 +4081,32 @@ namespace SrP_ClassroomInq
         private void muItmQuiz_Click(object sender, EventArgs e)
         {
             quizToolStripMenuItem_Click(sender, e);
+        }
+
+        /*This method allows the choosing of a custom color for theming*/
+        private void btnForeColor_Click(object sender, EventArgs e)
+        {
+            colorDlg.ShowDialog();
+            ForeColorTheme = colorDlg.Color;
+
+            ThemeApply(ForeColorTheme, BackColorTheme);
+        }
+
+        /*This method allows the choosing of a custom color for theming*/
+        private void btnBkgrndColor_Click(object sender, EventArgs e)
+        {
+            colorDlg.ShowDialog();
+            BackColorTheme = colorDlg.Color;
+
+            ThemeApply(ForeColorTheme, BackColorTheme);
+        }
+
+        /*This method allows for Resetting the theme to default Purdue Colors*/
+        private void btnDefaultTheme_Click(object sender, EventArgs e)
+        {
+            ForeColorTheme = Color.DarkGoldenrod;
+            BackColorTheme = Color.Black;
+            ThemeApply(Color.DarkGoldenrod, Color.Black); //default theme
         }
 
    } //end of partial class

@@ -8,13 +8,22 @@ using System.Windows.Forms;
 
 namespace SrP_ClassroomInq
 {
-    partial class AboutBox_CI : Form
+    public partial class AboutBox_CI : Form
     {
         public AboutBox_CI()
         {
             InitializeComponent();
-            
         }
+
+        private void AboutBox_CI_Load(object sender, EventArgs e)
+        {
+            //Version version = Assembly.GetExecutingAssembly().GetName().Version;
+            //labelVersion.Text = version.ToString();
+
+            labelVersion.BackColor = this.BackColor;
+            labelVersion.ForeColor = this.ForeColor;            
+        }
+
 
     }
 }

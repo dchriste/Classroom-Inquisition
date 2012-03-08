@@ -142,5 +142,29 @@ namespace SrP_ClassroomInq.Properties {
                 this["CtrlHide"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DarkGoldenrod")]
+        public global::System.Drawing.Color ForeColorTheme {
+            get {
+                return ((global::System.Drawing.Color)(this["ForeColorTheme"]));
+            }
+            set {
+                this["ForeColorTheme"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color BackColorTheme {
+            get {
+                return ((global::System.Drawing.Color)(this["BackColorTheme"]));
+            }
+            set {
+                this["BackColorTheme"] = value;
+            }
+        }
     }
 }

@@ -32,5 +32,11 @@
     <Setting Name="CtrlHide" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="ForeColorTheme" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DarkGoldenrod</Value>
+    </Setting>
+    <Setting Name="BackColorTheme" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
