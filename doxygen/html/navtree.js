@@ -18,11 +18,13 @@ var NAVTREE =
     [ "File List", "files.html", [
       [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/AboutBox1.cs", "_about_box1_8cs.html", null ],
       [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/AboutBox1.Designer.cs", "_about_box1_8_designer_8cs.html", null ],
+      [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/AnimateTimer.cs", "_animate_timer_8cs.html", null ],
       [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/Form1-dyn-ctrls.cs", "_form1-dyn-ctrls_8cs.html", null ],
       [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/Form1-dyn-ctrls.Designer.cs", "_form1-dyn-ctrls_8_designer_8cs.html", null ],
       [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/Form1.cs", "_form1_8cs.html", null ],
       [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/Form1.Designer.cs", "_form1_8_designer_8cs.html", null ],
       [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/Program.cs", "_program_8cs.html", null ],
+      [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/themes.cs", "themes_8cs.html", null ],
       [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/Properties/AssemblyInfo.cs", "_assembly_info_8cs.html", null ],
       [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/Properties/Resources.Designer.cs", "_resources_8_designer_8cs.html", null ],
       [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/Properties/Settings.Designer.cs", "_settings_8_designer_8cs.html", null ]

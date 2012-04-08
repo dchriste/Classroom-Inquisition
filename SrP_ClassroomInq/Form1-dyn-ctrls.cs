@@ -219,6 +219,7 @@ namespace SrP_ClassroomInq
             txtbx_reply_arr[NumQuestions] = new TextBox();
             txtbx_reply_arr[NumQuestions].AcceptsReturn = false;
             txtbx_reply_arr[NumQuestions].Location = txtbx_reply_temp;
+            txtbx_reply_arr[NumQuestions].BorderStyle = BorderStyle.FixedSingle;
             txtbx_reply_arr[NumQuestions].Multiline = true;
             txtbx_reply_arr[NumQuestions].Name = " txtbx_reply_arr_" + NumQuestions.ToString();
             txtbx_reply_arr[NumQuestions].Size = new System.Drawing.Size(274, 51);
@@ -752,6 +753,7 @@ namespace SrP_ClassroomInq
             {
                 MessageBox.Show("Oh No's....Quiz file reading broke!!");
             }
+            this.Focus();
 		}
         
         /*This method shows the PrefsPanel*/
@@ -1956,7 +1958,11 @@ namespace SrP_ClassroomInq
             if (rightClick)
             {
                 //show context menu at mouse click location aligned right
-                cntxtMenu.Show(group_arr[student], e.Location, LeftRightAlignment.Right);
+                try
+                {
+                    cntxtMenu.Show(group_arr[student], e.Location, LeftRightAlignment.Right);
+                }
+                catch { }
             }
         }
         

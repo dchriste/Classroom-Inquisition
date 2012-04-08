@@ -91,6 +91,8 @@
             this.serialCOMcmbbx = new System.Windows.Forms.ComboBox();
             this.timer_SerialRead = new System.Windows.Forms.Timer(this.components);
             this.PanelPrefs = new System.Windows.Forms.Panel();
+            this.lblAnimationPrefs = new System.Windows.Forms.Label();
+            this.cmbbxAnimationSpeed = new System.Windows.Forms.ComboBox();
             this.grpbxTheme = new System.Windows.Forms.GroupBox();
             this.btnDefaultTheme = new System.Windows.Forms.Button();
             this.btnForeColor = new System.Windows.Forms.Button();
@@ -175,8 +177,6 @@
             this.btnExitClassVote = new System.Windows.Forms.Button();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.colorDlg = new System.Windows.Forms.ColorDialog();
-            this.cmbbxAnimationSpeed = new System.Windows.Forms.ComboBox();
-            this.lblAnimationPrefs = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.PanelPrefs.SuspendLayout();
@@ -373,6 +373,7 @@
             this.quitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
             this.quitToolStripMenuItem.Size = new System.Drawing.Size(39, 21);
             this.quitToolStripMenuItem.Text = "&Quit";
+            this.quitToolStripMenuItem.ToolTipText = "To Quit use \"Ctrl + Q\"";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
             // toolStripComboBox1
@@ -651,7 +652,7 @@
             this.sb_send_status.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
             this.sb_send_status.ForeColor = System.Drawing.Color.DarkGoldenrod;
             this.sb_send_status.Name = "sb_send_status";
-            this.sb_send_status.Size = new System.Drawing.Size(167, 17);
+            this.sb_send_status.Size = new System.Drawing.Size(200, 17);
             this.sb_send_status.Text = "Welcome to Classroom Inquisition";
             // 
             // toolStripStatusLabel1
@@ -667,6 +668,7 @@
             this.tlstrplbl_Unread.Name = "tlstrplbl_Unread";
             this.tlstrplbl_Unread.Size = new System.Drawing.Size(67, 17);
             this.tlstrplbl_Unread.Text = "Unread 1";
+            this.tlstrplbl_Unread.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tlstrplbl_Unread.Visible = false;
             // 
             // timer
@@ -746,6 +748,32 @@
             this.PanelPrefs.Name = "PanelPrefs";
             this.PanelPrefs.Size = new System.Drawing.Size(355, 432);
             this.PanelPrefs.TabIndex = 6;
+            // 
+            // lblAnimationPrefs
+            // 
+            this.lblAnimationPrefs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAnimationPrefs.Location = new System.Drawing.Point(169, 159);
+            this.lblAnimationPrefs.Name = "lblAnimationPrefs";
+            this.lblAnimationPrefs.Size = new System.Drawing.Size(74, 33);
+            this.lblAnimationPrefs.TabIndex = 15;
+            this.lblAnimationPrefs.Text = "Animation\r\nSpeed -->";
+            this.lblAnimationPrefs.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cmbbxAnimationSpeed
+            // 
+            this.cmbbxAnimationSpeed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbbxAnimationSpeed.FormattingEnabled = true;
+            this.cmbbxAnimationSpeed.Items.AddRange(new object[] {
+            "Slow",
+            "Normal",
+            "Fast",
+            "Blazing"});
+            this.cmbbxAnimationSpeed.Location = new System.Drawing.Point(252, 165);
+            this.cmbbxAnimationSpeed.Name = "cmbbxAnimationSpeed";
+            this.cmbbxAnimationSpeed.Size = new System.Drawing.Size(71, 21);
+            this.cmbbxAnimationSpeed.TabIndex = 14;
+            this.cmbbxAnimationSpeed.Text = "Speed";
+            this.cmbbxAnimationSpeed.SelectedIndexChanged += new System.EventHandler(this.cmbbxAnimationSpeed_SelectedIndexChanged);
             // 
             // grpbxTheme
             // 
@@ -1084,8 +1112,8 @@
             this.txtbxFAQ.Multiline = true;
             this.txtbxFAQ.Name = "txtbxFAQ";
             this.txtbxFAQ.ReadOnly = true;
-            this.txtbxFAQ.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.txtbxFAQ.Size = new System.Drawing.Size(318, 372);
+            this.txtbxFAQ.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtbxFAQ.Size = new System.Drawing.Size(332, 372);
             this.txtbxFAQ.TabIndex = 2;
             this.txtbxFAQ.Text = resources.GetString("txtbxFAQ.Text");
             // 
@@ -1620,32 +1648,6 @@
             // 
             this.colorDlg.AnyColor = true;
             this.colorDlg.FullOpen = true;
-            // 
-            // cmbbxAnimationSpeed
-            // 
-            this.cmbbxAnimationSpeed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbbxAnimationSpeed.FormattingEnabled = true;
-            this.cmbbxAnimationSpeed.Items.AddRange(new object[] {
-            "Slow",
-            "Normal",
-            "Fast",
-            "Blazing"});
-            this.cmbbxAnimationSpeed.Location = new System.Drawing.Point(252, 165);
-            this.cmbbxAnimationSpeed.Name = "cmbbxAnimationSpeed";
-            this.cmbbxAnimationSpeed.Size = new System.Drawing.Size(71, 21);
-            this.cmbbxAnimationSpeed.TabIndex = 14;
-            this.cmbbxAnimationSpeed.Text = "Speed";
-            this.cmbbxAnimationSpeed.SelectedIndexChanged += new System.EventHandler(this.cmbbxAnimationSpeed_SelectedIndexChanged);
-            // 
-            // lblAnimationPrefs
-            // 
-            this.lblAnimationPrefs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAnimationPrefs.Location = new System.Drawing.Point(169, 159);
-            this.lblAnimationPrefs.Name = "lblAnimationPrefs";
-            this.lblAnimationPrefs.Size = new System.Drawing.Size(74, 33);
-            this.lblAnimationPrefs.TabIndex = 15;
-            this.lblAnimationPrefs.Text = "Animation\r\nSpeed -->";
-            this.lblAnimationPrefs.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmClassrromInq
             // 

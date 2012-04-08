@@ -1,7 +1,11 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a35e5cf3f9f2a335041a9f3810bb11ae2" title="Required method for Designer support &#45; do not modify the contents of this method with the code editor..." alt="" coords="389,5,741,32"/>
-<area shape="rect" id="node5" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a5703a99c40db13bca956c2204fbb1205" title="SrP_ClassroomInq.frmClassrromInq.CheckKeys" alt="" coords="413,56,718,83"/>
-<area shape="rect" id="node7" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a525504ef91d8a99202dbcbc825a7aac2" title="SrP_ClassroomInq.frmClassrromInq.SendMsg" alt="" coords="1161,31,1453,57"/>
-<area shape="rect" id="node9" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a65ba92a7bf3839c796abc965f5524b0f" title="SrP_ClassroomInq.frmClassrromInq.btnRepl_Click" alt="" coords="790,81,1109,108"/>
-<area shape="rect" id="node12" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a3013595b3a4e7bb6d8c8871d788aad44" title="SrP_ClassroomInq.frmClassrromInq.LogQandA" alt="" coords="1157,81,1456,108"/>
+<area shape="rect" id="node3" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a35e5cf3f9f2a335041a9f3810bb11ae2" title="Required method for Designer support &#45; do not modify the contents of this method with the code editor..." alt="" coords="389,108,741,134"/>
+<area shape="rect" id="node5" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a5703a99c40db13bca956c2204fbb1205" title="SrP_ClassroomInq.frmClassrromInq.CheckKeys" alt="" coords="413,158,718,185"/>
+<area shape="rect" id="node7" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a525504ef91d8a99202dbcbc825a7aac2" title="SrP_ClassroomInq.frmClassrromInq.SendMsg" alt="" coords="1222,32,1514,58"/>
+<area shape="rect" id="node9" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a65ba92a7bf3839c796abc965f5524b0f" title="SrP_ClassroomInq.frmClassrromInq.btnRepl_Click" alt="" coords="821,82,1139,109"/>
+<area shape="rect" id="node14" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a7de1b5ffee595dda863be7b2299e0e38" title="SrP_ClassroomInq.frmClassrromInq.btnExitClassVote_Click" alt="" coords="792,133,1168,160"/>
+<area shape="rect" id="node16" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a5df71a30d5e80349884dd26718780e97" title="SrP_ClassroomInq.frmClassrromInq.btnExitAttendance_Click" alt="" coords="789,184,1171,210"/>
+<area shape="rect" id="node18" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a80183bae83a721931c21b4a8764dc289" title="SrP_ClassroomInq.frmClassrromInq.btnExitQuiz_Click" alt="" coords="809,234,1151,261"/>
+<area shape="rect" id="node20" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a6e7cdcc66d0d497b1692085fe08917cd" title="SrP_ClassroomInq.frmClassrromInq.btnQMcls_Click" alt="" coords="815,285,1145,312"/>
+<area shape="rect" id="node12" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a3013595b3a4e7bb6d8c8871d788aad44" title="SrP_ClassroomInq.frmClassrromInq.LogQandA" alt="" coords="1219,82,1517,109"/>
 </map>

@@ -29,6 +29,7 @@ namespace SrP_ClassroomInq
         public void ThemeApply(Color Fore, Color Back)
         {
             this.Hide(); //hide while we repaint everything
+            this.SuspendLayout();
 
             #region Prefs Panel Controls
             btnForeColor.ForeColor = Fore;
@@ -173,6 +174,9 @@ namespace SrP_ClassroomInq
             sb_send_status.ForeColor = Fore;
 
             picbxStatus.BackColor = Back;
+
+            tlstrplbl_Unread.BackColor = Back;
+            tlstrplbl_Unread.ForeColor = Fore; //this may not be working...
 
             for (int i = 0; i < NumQuestions; i++) //re-skin the questions present
             {
@@ -376,6 +380,7 @@ namespace SrP_ClassroomInq
             About.ForeColor = Fore;
             #endregion
 
+            this.ResumeLayout();
             this.Show(); //tada!!
         }
 

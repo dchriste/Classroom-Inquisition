@@ -8,6 +8,11 @@ currently.
 
 CHANGELOG created on 2/22/12
 
+/*** Version 1.4.2.1 committed 4/8 ***/
+added animation speed 
+tweaked theme layout speed
+updated FAQ
+
 /*** Version 1.4.1 committed 3/8 ***/
 fixed unthemed button
 added alpha channel to background of fixed color pictures(for themes)

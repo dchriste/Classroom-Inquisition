@@ -1389,8 +1389,8 @@
   <data name="picbxPrefs.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAyAAAABQCAYAAADhuhE0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEQAA
-        CxEBf2RfkQAAL11JREFUeF7tXfvzJEWR//60O9Ojd+qdHp6vwMdpnIoSvlcCUSQUQQNBUAJEQXwECmKA
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDwAA
+        Cw8BkvkDpQAAL11JREFUeF7tXfvzJEWR//60O9Ojd+qdHp6vwMdpnIoSvlcCUSQUQQNBUAJEQXwECmKA
         oAQIykNWIEBEYnlu7CK4O9/5EuEv9+/NZWb19HR1vbIe3T393TTiGwhTXZX1qarMyqx87O3J/wQBQUAQ
         EAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQB
         QUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQ
@@ -1598,8 +1598,8 @@
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAyAAAABQCAYAAADhuhE0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEQAA
-        CxEBf2RfkQAAL11JREFUeF7tXfvzJEWR//60O9Ojd+qdHp6vwMdpnIoSvlcCUSQUQQNBUAJEQXwECmKA
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDwAA
+        Cw8BkvkDpQAAL11JREFUeF7tXfvzJEWR//60O9Ojd+qdHp6vwMdpnIoSvlcCUSQUQQNBUAJEQXwECmKA
         oAQIykNWIEBEYnlu7CK4O9/5EuEv9+/NZWb19HR1vbIe3T393TTiGwhTXZX1qarMyqx87O3J/wQBQUAQ
         EAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQB
         QUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQ
@@ -1817,20 +1817,39 @@
      b) Select the desired student and click edit
      c) When you're finished click done
 
-3) How can I submit a bug?
-     a) submit your bug by contacting the developer below.
+3) How can I change the color of the application?
+     a) The theme may be altered in the preferences menu where 
+         there is located a box for such preferences in the lower 
+         left-hand side.
+      b) The theme may be reset with the reset button in the same
+           location.
 
+4) What if I would like to view the entire conversation that I've had
+     with a student since the beginning of time?
+      a) There is an app for that... and it just involves clicking on the
+           conversation bubble on the right side of the question or by
+           finding the student in the Student Management Center and
+           clicking the Conversation Viewer button after selecting the
+           desired student.
+       b) It is possible to print the conversation from that menu also.
 
-
-
-
-//other questions</value>
+5) Why can't I receive questions when in quiz, vote, and attenda-
+     nce modes?
+     a) The application sets up a system of communication which 
+          filters the incoming messages from students in different 
+          ways, as each mode requires.
+     b) Think of "Normal Mode" as "Field question mode." It is named
+          "Normal" because is was perceived to receive widest use.
+ 
+6) How can I submit a bug or request?
+     a) Submit your bug/request by contacting the developer below.
+</value>
   </data>
   <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAyAAAABQCAYAAADhuhE0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEQAA
-        CxEBf2RfkQAAL11JREFUeF7tXfvzJEWR//60O9Ojd+qdHp6vwMdpnIoSvlcCUSQUQQNBUAJEQXwECmKA
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDwAA
+        Cw8BkvkDpQAAL11JREFUeF7tXfvzJEWR//60O9Ojd+qdHp6vwMdpnIoSvlcCUSQUQQNBUAJEQXwECmKA
         oAQIykNWIEBEYnlu7CK4O9/5EuEv9+/NZWb19HR1vbIe3T393TTiGwhTXZX1qarMyqx87O3J/wQBQUAQ
         EAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQB
         QUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQ
@@ -2041,8 +2060,8 @@
   <data name="pictureBox4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAyAAAABQCAYAAADhuhE0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEQAA
-        CxEBf2RfkQAAL11JREFUeF7tXfvzJEWR//60O9Ojd+qdHp6vwMdpnIoSvlcCUSQUQQNBUAJEQXwECmKA
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDwAA
+        Cw8BkvkDpQAAL11JREFUeF7tXfvzJEWR//60O9Ojd+qdHp6vwMdpnIoSvlcCUSQUQQNBUAJEQXwECmKA
         oAQIykNWIEBEYnlu7CK4O9/5EuEv9+/NZWb19HR1vbIe3T393TTiGwhTXZX1qarMyqx87O3J/wQBQUAQ
         EAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQB
         QUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQ
@@ -2256,8 +2275,8 @@
   <data name="pictureBox5.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAyAAAABQCAYAAADhuhE0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEQAA
-        CxEBf2RfkQAAL11JREFUeF7tXfvzJEWR//60O9Ojd+qdHp6vwMdpnIoSvlcCUSQUQQNBUAJEQXwECmKA
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDwAA
+        Cw8BkvkDpQAAL11JREFUeF7tXfvzJEWR//60O9Ojd+qdHp6vwMdpnIoSvlcCUSQUQQNBUAJEQXwECmKA
         oAQIykNWIEBEYnlu7CK4O9/5EuEv9+/NZWb19HR1vbIe3T393TTiGwhTXZX1qarMyqx87O3J/wQBQUAQ
         EAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQB
         QUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQ
@@ -2465,8 +2484,8 @@
   <data name="pictureBox6.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAyAAAABQCAYAAADhuhE0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEQAA
-        CxEBf2RfkQAAL11JREFUeF7tXfvzJEWR//60O9Ojd+qdHp6vwMdpnIoSvlcCUSQUQQNBUAJEQXwECmKA
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDwAA
+        Cw8BkvkDpQAAL11JREFUeF7tXfvzJEWR//60O9Ojd+qdHp6vwMdpnIoSvlcCUSQUQQNBUAJEQXwECmKA
         oAQIykNWIEBEYnlu7CK4O9/5EuEv9+/NZWb19HR1vbIe3T393TTiGwhTXZX1qarMyqx87O3J/wQBQUAQ
         EAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQB
         QUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQ
@@ -2674,8 +2693,8 @@
   <data name="pictureBox7.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAyAAAABQCAYAAADhuhE0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEQAA
-        CxEBf2RfkQAAL11JREFUeF7tXfvzJEWR//60O9Ojd+qdHp6vwMdpnIoSvlcCUSQUQQNBUAJEQXwECmKA
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDwAA
+        Cw8BkvkDpQAAL11JREFUeF7tXfvzJEWR//60O9Ojd+qdHp6vwMdpnIoSvlcCUSQUQQNBUAJEQXwECmKA
         oAQIykNWIEBEYnlu7CK4O9/5EuEv9+/NZWb19HR1vbIe3T393TTiGwhTXZX1qarMyqx87O3J/wQBQUAQ
         EAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQB
         QUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQ
@@ -2883,8 +2902,8 @@
   <data name="pictureBox8.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAyAAAABQCAYAAADhuhE0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEQAA
-        CxEBf2RfkQAAL11JREFUeF7tXfvzJEWR//60O9Ojd+qdHp6vwMdpnIoSvlcCUSQUQQNBUAJEQXwECmKA
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDwAA
+        Cw8BkvkDpQAAL11JREFUeF7tXfvzJEWR//60O9Ojd+qdHp6vwMdpnIoSvlcCUSQUQQNBUAJEQXwECmKA
         oAQIykNWIEBEYnlu7CK4O9/5EuEv9+/NZWb19HR1vbIe3T393TTiGwhTXZX1qarMyqx87O3J/wQBQUAQ
         EAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQB
         QUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQBAQBQUAQEAQEAUFAEBAEBAFBQBAQ

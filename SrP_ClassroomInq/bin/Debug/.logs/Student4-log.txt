@@ -70,3 +70,105 @@ I don't understand
 Student  5 ( 01:23:11  |  3/8/2012 ):
 Hey there themed program
 
+Student  5 ( 03:14:08  |  3/9/2012 ):
+hey
+
+Student  5 ( 03:15:16  |  3/9/2012 ):
+Hey
+
+Student  5 ( 03:15:58  |  3/9/2012 ):
+Hey
+
+Student  5 ( 03:23:57  |  3/9/2012 ):
+I am 
+
+Teacher ( 00:02:16  |  3/17/2012 ):
+Hello Student5
+
+Teacher ( 16:42:01  |  3/17/2012 ):
+Hello Keypad
+
+Teacher ( 16:50:26  |  3/17/2012 ):
+Attention #5
+
+Student  5 ( 16:51:08  |  3/17/2012 ):
+testing
+
+Teacher ( 16:51:37  |  3/17/2012 ):
+hello there
+
+Teacher ( 16:54:50  |  3/17/2012 ):
+Hey student5
+
+Teacher ( 17:00:24  |  3/17/2012 ):
+Test Message
+
+Teacher ( 17:00:47  |  3/17/2012 ):
+Hello Student5
+
+Student  5 ( 17:01:48  |  3/17/2012 ):
+?
+
+Teacher ( 17:10:28  |  3/17/2012 ):
+Hello Student
+
+Student  5 ( 17:10:43  |  3/17/2012 ):
+dog
+
+Teacher ( 17:18:03  |  3/17/2012 ):
+Can you Hear me!?
+
+Teacher ( 17:23:41  |  3/17/2012 ):
+Hello Governor
+
+Student  5 ( 17:25:58  |  3/17/2012 ):
+i need 2 poo
+
+Student  5 ( 17:25:59  |  3/17/2012 ):
+cat
+
+Student  5 ( 17:27:15  |  3/17/2012 ):
+dog ! cat
+
+Teacher ( 17:27:32  |  3/17/2012 ):
+too bad... :P
+
+Teacher ( 17:29:56  |  3/17/2012 ):
+Keypad, How you do'in?
+
+Kelly ( 21:16:01  |  3/17/2012 ):
+hey
+
+Teacher ( 21:17:31  |  3/17/2012 ):
+sup homie
+
+Kelly ( 21:19:58  |  3/17/2012 ):
+celary
+
+Kelly ( 21:29:59  |  3/17/2012 ):
+hi!
+
+Teacher ( 21:31:13  |  3/17/2012 ):
+hello kello
+
+Kelly Keypad ( 20:30:42  |  3/20/2012 ):
+hey
+
+Teacher ( 20:31:11  |  3/20/2012 ):
+hello
+
+Kelly Keypad ( 22:48:39  |  3/25/2012 ):
+yes
+
+Kelly Keypad ( 19:20:12  |  3/26/2012 ):
+hey teach
+
+Kelly Keypad ( 20:31:29  |  3/30/2012 ):
+iam
+
+Teacher ( 20:31:49  |  3/30/2012 ):
+well hello there
+
+Kelly Keypad ( 20:32:28  |  3/30/2012 ):
+thanks
+

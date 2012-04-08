@@ -15,6 +15,13 @@ using System.Runtime.InteropServices;
 
 namespace SrP_ClassroomInq
 {
+    /****************************************************************************
+     * 
+     *  Classroom Inquisition Teacher Application 
+     *  Programmer: David Christensen
+     *  Bug Tracking: https://github.com/dchriste/Classroom-Inquisition/issues 
+     *  
+    *****************************************************************************/
     public partial class frmClassrromInq : Form
     {
         /*This method does all the animation for the application*/
@@ -322,21 +329,21 @@ namespace SrP_ClassroomInq
                     }
                     else
                     {
-                        group_arr[Del_ID].SetBounds(group_arr[Del_ID].Location.X, group_arr[Del_ID].Location.Y,
-                                                    group_arr[Del_ID].Size.Width, 0);
                         for (int x = Del_ID - 1; x >= 0; x--)
                         {
                             tmp.X = group_arr[x].Location.X;
                             tmp.Y = group_arr[x].Location.Y - group_arr[Del_ID].Size.Height;
                             group_arr[x].Location = tmp;
                         }
+                        group_arr[Del_ID].SetBounds(group_arr[Del_ID].Location.X, group_arr[Del_ID].Location.Y,
+                                                    group_arr[Del_ID].Size.Width, 0);
                     }
                 }
                 else if (DeleteQuestion)
                 {
                     btnCLS_WASclicked = false; //needed if you delete an open question
                     timesClicked = 0; //reset
-
+                    x = 0;
                     DeleteQuestion = false;
                     Question_Deleted = true;
                     timer.Enabled = false;
@@ -362,11 +369,23 @@ namespace SrP_ClassroomInq
                                                     group_arr[Del_ID].Size.Width, group_arr[Del_ID].Size.Height + 4);
                         if (Del_ID != 0)
                         {
-                            for (int x = Del_ID - 1; x >= 0; x--)
+                            if (group_arr[Del_ID].Height < 32)
                             {
-                                tmp.X = group_arr[x].Location.X;
-                                tmp.Y = group_arr[x].Location.Y + 4;
-                                group_arr[x].Location = tmp;
+                                for (int x = Del_ID - 1; x >= 0; x--)
+                                {
+                                    tmp.X = group_arr[x].Location.X;
+                                    tmp.Y = group_arr[x].Location.Y + 4;
+                                    group_arr[x].Location = tmp;
+                                }
+                            }
+                            else
+                            {
+                                for (int x = Del_ID - 1; x >= 0; x--)
+                                {
+                                    tmp.X = group_arr[x].Location.X;
+                                    tmp.Y = group_arr[x].Location.Y + 6; // looks better with 6 than 4 for last run
+                                    group_arr[x].Location = tmp;
+                                }
                             }
                         }
                     }
@@ -389,6 +408,7 @@ namespace SrP_ClassroomInq
                 {
                     Question_Deleted = false;
                     Request_Undo = false;
+                    x = 0;
                     timer.Enabled = false;
                 }
             }

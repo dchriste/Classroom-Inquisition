@@ -1,0 +1,33 @@
+Student 9 ( 03:01:29  |  3/9/2012 ):
+Testing Conversation view
+
+Teacher ( 03:01:57  |  3/9/2012 ):
+hey student 9, what's your name?
+
+Student 9 ( 03:02:16  |  3/9/2012 ):
+My name is King Tut
+
+Teacher ( 03:03:09  |  3/9/2012 ):
+Sure thing, pharoh...
+
+King Tut ( 03:03:24  |  3/9/2012 ):
+Seriously though
+
+Teacher ( 03:03:45  |  3/9/2012 ):
+it's cool, I added it...
+
+King Tut ( 03:08:25  |  3/9/2012 ):
+Recess
+
+Teacher ( 03:08:35  |  3/9/2012 ):
+no, not today...
+
+King Tut ( 03:08:48  |  3/9/2012 ):
+Weaksauce!
+
+King Tut ( 03:20:01  |  3/9/2012 ):
+The deleting
+
+King Tut ( 03:23:55  |  3/9/2012 ):
+Discontent
+
