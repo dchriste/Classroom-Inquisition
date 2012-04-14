@@ -102,13 +102,36 @@ namespace SrP_ClassroomInq
                         timer.Enabled = false;
                         textbox1WASclicked = false;
                         BrdcstShowing = false;
-                        grpbxFeed.Focus(); //get cursor out of textbox if it's there...
-                        if (PrefsShowing)
+                        if (FAQShowing)
+                        {
+                            this.Text = " Classroom Inquisition  |  FAQ";
+                            PanelFAQ.Focus();
+                        }
+                        else if (ConvViewShowing)
+                        {
+                            this.Text = " Classroom Inquisition  |  Conversation Viewer";
+                            PanelConvView.Focus();
+                        }
+                        else if (StuMgmtShowing)
+                        {
+                            this.Text = " Classroom Inquisition  |  Student Managment";
+                            PanelStudents.Focus();
+                        }
+                        else if (PrefsShowing)
+                        {
                             this.Text = " Classroom Inquisition  |  Prefs";
+                            PanelPrefs.Focus();
+                        }
                         else if (DMPanelShowing)
+                        {
                             this.Text = " Classroom Inquisition  |  Direct Msg";
+                            txtbxDM.Focus();
+                        }
                         else
+                        {
                             this.Text = " Classroom Inquisition  |  Home";
+                            this.Focus();
+                        }
                     }
                 }
                 else //no animations
@@ -119,13 +142,36 @@ namespace SrP_ClassroomInq
                     timer.Enabled = false;
                     textbox1WASclicked = false;
                     BrdcstShowing = false;
-                    grpbxFeed.Focus(); //get cursor out of textbox if it's there...
-                    if (PrefsShowing)
+                    if (FAQShowing)
+                    {
+                        this.Text = " Classroom Inquisition  |  FAQ";
+                        PanelFAQ.Focus();
+                    }
+                    else if (ConvViewShowing)
+                    {
+                        this.Text = " Classroom Inquisition  |  Conversation Viewer";
+                        PanelConvView.Focus();
+                    }
+                    else if (StuMgmtShowing)
+                    {
+                        this.Text = " Classroom Inquisition  |  Student Managment";
+                        PanelStudents.Focus();
+                    }
+                    else if (PrefsShowing)
+                    {
                         this.Text = " Classroom Inquisition  |  Prefs";
+                        PanelPrefs.Focus();
+                    }
                     else if (DMPanelShowing)
+                    {
                         this.Text = " Classroom Inquisition  |  Direct Msg";
+                        txtbxDM.Focus();
+                    }
                     else
+                    {
                         this.Text = " Classroom Inquisition  |  Home";
+                        this.Focus();
+                    }
                 }
             }
 

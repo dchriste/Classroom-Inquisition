@@ -748,6 +748,8 @@
             this.serialCOMcmbbx.Size = new System.Drawing.Size(64, 21);
             this.serialCOMcmbbx.TabIndex = 16;
             this.serialCOMcmbbx.Text = "  Port?";
+            this.serialCOMcmbbx.SelectedIndexChanged += new System.EventHandler(this.serialCOMcmbbx_SelectedIndexChanged);
+            this.serialCOMcmbbx.Click += new System.EventHandler(this.serialCOMcmbbx_Click);
             // 
             // lblAnimationPrefs
             // 
@@ -834,6 +836,7 @@
             // 
             // chkbxCtrlHide
             // 
+            this.chkbxCtrlHide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkbxCtrlHide.Location = new System.Drawing.Point(18, 276);
             this.chkbxCtrlHide.Name = "chkbxCtrlHide";
             this.chkbxCtrlHide.Size = new System.Drawing.Size(130, 33);
@@ -847,6 +850,7 @@
             // 
             this.chkbxNotify.Checked = true;
             this.chkbxNotify.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkbxNotify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkbxNotify.Location = new System.Drawing.Point(18, 237);
             this.chkbxNotify.Name = "chkbxNotify";
             this.chkbxNotify.Size = new System.Drawing.Size(130, 33);
@@ -857,6 +861,7 @@
             // 
             // chkbxTooltips
             // 
+            this.chkbxTooltips.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkbxTooltips.Location = new System.Drawing.Point(18, 198);
             this.chkbxTooltips.Name = "chkbxTooltips";
             this.chkbxTooltips.Size = new System.Drawing.Size(130, 33);
@@ -879,9 +884,10 @@
             // rdbtnClick
             // 
             this.rdbtnClick.AutoSize = true;
+            this.rdbtnClick.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rdbtnClick.Location = new System.Drawing.Point(31, 42);
             this.rdbtnClick.Name = "rdbtnClick";
-            this.rdbtnClick.Size = new System.Drawing.Size(83, 17);
+            this.rdbtnClick.Size = new System.Drawing.Size(82, 17);
             this.rdbtnClick.TabIndex = 1;
             this.rdbtnClick.TabStop = true;
             this.rdbtnClick.Text = "Mouse Click";
@@ -890,9 +896,10 @@
             // rdbtnHover
             // 
             this.rdbtnHover.AutoSize = true;
+            this.rdbtnHover.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rdbtnHover.Location = new System.Drawing.Point(31, 19);
             this.rdbtnHover.Name = "rdbtnHover";
-            this.rdbtnHover.Size = new System.Drawing.Size(89, 17);
+            this.rdbtnHover.Size = new System.Drawing.Size(88, 17);
             this.rdbtnHover.TabIndex = 0;
             this.rdbtnHover.TabStop = true;
             this.rdbtnHover.Text = "Mouse Hover";
@@ -900,6 +907,7 @@
             // 
             // chkbxLameMode
             // 
+            this.chkbxLameMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkbxLameMode.Location = new System.Drawing.Point(18, 159);
             this.chkbxLameMode.Name = "chkbxLameMode";
             this.chkbxLameMode.Size = new System.Drawing.Size(112, 33);
@@ -923,6 +931,7 @@
             // 
             this.chkbxTXSound.Checked = true;
             this.chkbxTXSound.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkbxTXSound.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkbxTXSound.Location = new System.Drawing.Point(18, 120);
             this.chkbxTXSound.Name = "chkbxTXSound";
             this.chkbxTXSound.Size = new System.Drawing.Size(112, 33);
@@ -934,6 +943,7 @@
             // 
             this.chkbxRXSound.Checked = true;
             this.chkbxRXSound.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkbxRXSound.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkbxRXSound.Location = new System.Drawing.Point(18, 81);
             this.chkbxRXSound.Name = "chkbxRXSound";
             this.chkbxRXSound.Size = new System.Drawing.Size(112, 33);
