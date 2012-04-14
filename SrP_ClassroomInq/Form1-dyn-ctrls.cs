@@ -36,6 +36,7 @@ namespace SrP_ClassroomInq
             PanelQuizMaker.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
             PanelQuizMode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
             PanelClassVote.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
+            pnlBrdCst.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
 		}
         #region Initialization
 
@@ -45,6 +46,7 @@ namespace SrP_ClassroomInq
         public Color BackColorTheme = Color.Black;
         public AboutBox_CI About = new AboutBox_CI();
 
+        #region Variables
         string[] Students_Name = new string[classSize];
         string[] Students_ID = new string[classSize];
         string[] Qs_to_create = new string[classSize];
@@ -83,6 +85,7 @@ namespace SrP_ClassroomInq
         byte NumQuestions = 0;
         byte UnreadCount = 0;
         bool EDTClicked = false;
+        bool BrdcstShowing = false;
         byte timesClicked = 0; //allows for double click of question
         byte DMtimesClicked = 0;
         byte PrefsTimesClicked = 0;
@@ -134,6 +137,7 @@ namespace SrP_ClassroomInq
         int new_lblID = 0;
 		int lbl_ID = 0;
         int lbl_ID_2 = 0;// for unread counter
+        #endregion
 
         #region Dyn-Ctrls-Init_DoNotChange
         System.Windows.Forms.GroupBox[] group_arr = new System.Windows.Forms.GroupBox[classSize]; //add const for max_lns
@@ -151,7 +155,7 @@ namespace SrP_ClassroomInq
         System.Windows.Forms.Label[] lblQuestionNum_arr = new System.Windows.Forms.Label[classSize];
         System.Windows.Forms.TextBox[] txtbxQuestion_arr = new System.Windows.Forms.TextBox[classSize];
         /**************************/
-        System.Drawing.Point origingrouparr = new System.Drawing.Point(6, -13); //originally 6,19 but this gives questions an entering animation
+        System.Drawing.Point origingrouparr = new System.Drawing.Point(6, -13); //originally 6,-13 
         System.Drawing.Point tempgrouparr = new System.Drawing.Point(6, 19);
         System.Drawing.Point tempreplyarr = new System.Drawing.Point(230, 98);
         System.Drawing.Point tempclosearr = new System.Drawing.Point(129, 98);
@@ -447,7 +451,11 @@ namespace SrP_ClassroomInq
             }
             else if (e.KeyChar == (char)27) //escape key
             {
-                if (ClassVoteShowing)
+                if (BrdcstShowing)
+                {
+                    btnCLS_Click_BrdCst(sender, e);
+                }
+                else if (ClassVoteShowing)
                 {
                     btnExitClassVote_Click(sender, e);
                 }
@@ -495,16 +503,6 @@ namespace SrP_ClassroomInq
 		private void quitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
             this.Close(); // there is a prompt in form closing
-		}
-        
-        /*This method determines what happens when you click the broadcast box*/
-		private void textBox1_MouseClick(object sender, MouseEventArgs e)
-		{
-			timer.Enabled = true;
-			textbox1WASclicked = true;
-            //grpbxRPL_WASclicked = false;
-            textBox1.Clear();        
-			
 		}
         
         /*This method allows for minimize to tray functionality*/
@@ -814,7 +812,6 @@ namespace SrP_ClassroomInq
             try
             {
                 SerialPort.Open();
-                textBox1.Focus(); //put cursor in txtbx
             }
             catch (Exception E)
             {
@@ -1046,35 +1043,19 @@ namespace SrP_ClassroomInq
         /*This opens the broadcast box*/
         private void broadcastToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((FAQShowing == false) && (StuMgmtShowing == false))
-            {
-                timer.Enabled = true;
-                textbox1WASclicked = true;
-                textBox1.Clear();
-                textBox1.Focus();
-            }
-            else if (FAQShowing == true)
-            {
-                DesireBrdcst = true;
-                FAQClicked = true; //hide
-                timer.Enabled = true;
-            }
-            else if (StuMgmtShowing == true)
-            {
-                SaveStudentData(); //if the panel is hiding save data
-                StuMgmtClicked = true; //hide
-                DesirePrefs = true; // hide me too...
-                DesireBrdcst = true; //show me last
-                timer.Enabled = true;
-            }
+            //pnlBrdCst.BringToFront();
+            timer.Enabled = true;
+            textbox1WASclicked = true;
+            textBox1.Clear();
+            textBox1.Focus();
         }
         
         /*This closes the broadcast box*/
-        private void btnCLS_Click_1(object sender, EventArgs e)
+        private void btnCLS_Click_BrdCst(object sender, EventArgs e)
         {
             textbox1WASclicked = true;
             timer.Enabled = true;
-            grpbxFeed.Focus();
+            this.Focus();
         }
         
         /*This closes preferences*/
@@ -1922,10 +1903,14 @@ namespace SrP_ClassroomInq
                    if (Question_Deleted)
                    {
                        cntxtMenu.MenuItems.Add(muItmUndo);
-                   }
+                       cntxtMenu.MenuItems.Add("-");
+                   }                   
+                   cntxtMenu.MenuItems.Add(muItmBrdCst);
                    cntxtMenu.MenuItems.Add(muItmDM);
+                   cntxtMenu.MenuItems.Add("-");
                    cntxtMenu.MenuItems.Add(muItmFAQ);
                    cntxtMenu.MenuItems.Add(muItmPrefs);
+                   cntxtMenu.MenuItems.Add("-");
                    cntxtMenu.MenuItems.Add(muItmQuiz);
                    cntxtMenu.MenuItems.Add(muItmAttendance);
                    cntxtMenu.MenuItems.Add(muItmClassVote);
@@ -2555,6 +2540,12 @@ namespace SrP_ClassroomInq
             quizToolStripMenuItem_Click(sender, e);
         }
 
+        /*Allows for quick broadcast message from the home screen*/
+        private void muItmBrdCst_Click(object sender, EventArgs e)
+        {
+            broadcastToolStripMenuItem_Click(sender, e);
+        }
+
         /*This method allows the choosing of a custom color for theming*/
         private void btnForeColor_Click(object sender, EventArgs e)
         {
@@ -2608,6 +2599,14 @@ namespace SrP_ClassroomInq
                 default:
                     timer.Interval = 25;
                     break;
+            }
+        }
+
+        private void pnlBrdCst_Leave(object sender, EventArgs e)
+        {
+            if (BrdcstShowing)
+            {
+                btnCLS_Click_BrdCst(sender, e);
             }
         }
 

@@ -8,6 +8,13 @@ currently.
 
 CHANGELOG created on 2/22/12
 
+/*** Version 1.5.0 committed 4/14 ***/
+overhauled the broadcast box for better space utilization
+added animated entry and exit for brdcstbx
+resized the home feed groupbox for maximum question capacity
+relocated com-port select to prefs page
+resized prefs (room for more prefs now!) and direct message 
+
 /*** Version 1.4.2.1 committed 4/8 ***/
 added animation speed 
 tweaked theme layout speed

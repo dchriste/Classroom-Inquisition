@@ -84,13 +84,13 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlstrplbl_Unread = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.btnSend = new System.Windows.Forms.Button();
             this.trayICON = new System.Windows.Forms.NotifyIcon(this.components);
             this.grpbxFeed = new System.Windows.Forms.Panel();
             this.SerialPort = new System.IO.Ports.SerialPort(this.components);
-            this.serialCOMcmbbx = new System.Windows.Forms.ComboBox();
             this.timer_SerialRead = new System.Windows.Forms.Timer(this.components);
             this.PanelPrefs = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.serialCOMcmbbx = new System.Windows.Forms.ComboBox();
             this.lblAnimationPrefs = new System.Windows.Forms.Label();
             this.cmbbxAnimationSpeed = new System.Windows.Forms.ComboBox();
             this.grpbxTheme = new System.Windows.Forms.GroupBox();
@@ -118,7 +118,6 @@
             this.cmbxDM = new System.Windows.Forms.ComboBox();
             this.txtbxDM = new System.Windows.Forms.TextBox();
             this.picbxStatus = new System.Windows.Forms.PictureBox();
-            this.btnCLS = new System.Windows.Forms.Button();
             this.PanelFAQ = new System.Windows.Forms.Panel();
             this.lnklblIssues = new System.Windows.Forms.LinkLabel();
             this.lblFAQ = new System.Windows.Forms.Label();
@@ -156,6 +155,7 @@
             this.muItmAttendance = new System.Windows.Forms.MenuItem();
             this.muItmClassVote = new System.Windows.Forms.MenuItem();
             this.muItmQuiz = new System.Windows.Forms.MenuItem();
+            this.muItmBrdCst = new System.Windows.Forms.MenuItem();
             this.PanelQuizMaker = new System.Windows.Forms.Panel();
             this.btnAddQM = new System.Windows.Forms.Button();
             this.btnQMDel = new System.Windows.Forms.Button();
@@ -177,6 +177,8 @@
             this.btnExitClassVote = new System.Windows.Forms.Button();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.colorDlg = new System.Windows.Forms.ColorDialog();
+            this.pnlBrdCst = new System.Windows.Forms.Panel();
+            this.btnSend = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.PanelPrefs.SuspendLayout();
@@ -201,6 +203,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.PanelClassVote.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            this.pnlBrdCst.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -606,13 +609,12 @@
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(15, 27);
+            this.textBox1.Location = new System.Drawing.Point(3, 5);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(355, 45);
+            this.textBox1.Size = new System.Drawing.Size(301, 52);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "Enter Message here..";
-            this.textBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseClick);
             // 
             // statusStrip1
             // 
@@ -676,17 +678,6 @@
             this.timer.Interval = 25;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // btnSend
-            // 
-            this.btnSend.Location = new System.Drawing.Point(277, 80);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(75, 29);
-            this.btnSend.TabIndex = 2;
-            this.btnSend.Text = "Send Msg";
-            this.btnSend.UseVisualStyleBackColor = true;
-            this.btnSend.Visible = false;
-            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
-            // 
             // trayICON
             // 
             this.trayICON.BalloonTipText = "Raising Hands is a thing of the past.";
@@ -700,24 +691,11 @@
             // 
             this.grpbxFeed.AutoScroll = true;
             this.grpbxFeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.grpbxFeed.Location = new System.Drawing.Point(15, 80);
+            this.grpbxFeed.Location = new System.Drawing.Point(15, 28);
             this.grpbxFeed.Name = "grpbxFeed";
-            this.grpbxFeed.Size = new System.Drawing.Size(355, 432);
+            this.grpbxFeed.Size = new System.Drawing.Size(355, 496);
             this.grpbxFeed.TabIndex = 5;
             this.grpbxFeed.MouseDown += new System.Windows.Forms.MouseEventHandler(this.grpbxFeed_MouseDown);
-            // 
-            // serialCOMcmbbx
-            // 
-            this.serialCOMcmbbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.serialCOMcmbbx.FormattingEnabled = true;
-            this.serialCOMcmbbx.Location = new System.Drawing.Point(160, 84);
-            this.serialCOMcmbbx.Name = "serialCOMcmbbx";
-            this.serialCOMcmbbx.Size = new System.Drawing.Size(64, 21);
-            this.serialCOMcmbbx.TabIndex = 0;
-            this.serialCOMcmbbx.Text = "  Port?";
-            this.serialCOMcmbbx.Visible = false;
-            this.serialCOMcmbbx.SelectedIndexChanged += new System.EventHandler(this.serialCOMcmbbx_SelectedIndexChanged);
-            this.serialCOMcmbbx.Click += new System.EventHandler(this.serialCOMcmbbx_Click);
             // 
             // timer_SerialRead
             // 
@@ -729,6 +707,8 @@
             // 
             this.PanelPrefs.AutoScroll = true;
             this.PanelPrefs.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelPrefs.Controls.Add(this.label1);
+            this.PanelPrefs.Controls.Add(this.serialCOMcmbbx);
             this.PanelPrefs.Controls.Add(this.lblAnimationPrefs);
             this.PanelPrefs.Controls.Add(this.cmbbxAnimationSpeed);
             this.PanelPrefs.Controls.Add(this.grpbxTheme);
@@ -744,10 +724,30 @@
             this.PanelPrefs.Controls.Add(this.btnPrefs_Cls);
             this.PanelPrefs.Controls.Add(this.picbxPrefs);
             this.PanelPrefs.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.PanelPrefs.Location = new System.Drawing.Point(395, 80);
+            this.PanelPrefs.Location = new System.Drawing.Point(395, 28);
             this.PanelPrefs.Name = "PanelPrefs";
-            this.PanelPrefs.Size = new System.Drawing.Size(355, 432);
+            this.PanelPrefs.Size = new System.Drawing.Size(355, 496);
             this.PanelPrefs.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(169, 192);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 33);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Serial Port\r\nSelect-->";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // serialCOMcmbbx
+            // 
+            this.serialCOMcmbbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.serialCOMcmbbx.FormattingEnabled = true;
+            this.serialCOMcmbbx.Location = new System.Drawing.Point(252, 199);
+            this.serialCOMcmbbx.Name = "serialCOMcmbbx";
+            this.serialCOMcmbbx.Size = new System.Drawing.Size(64, 21);
+            this.serialCOMcmbbx.TabIndex = 16;
+            this.serialCOMcmbbx.Text = "  Port?";
             // 
             // lblAnimationPrefs
             // 
@@ -780,7 +780,7 @@
             this.grpbxTheme.Controls.Add(this.btnDefaultTheme);
             this.grpbxTheme.Controls.Add(this.btnForeColor);
             this.grpbxTheme.Controls.Add(this.btnBkgrndColor);
-            this.grpbxTheme.Location = new System.Drawing.Point(13, 332);
+            this.grpbxTheme.Location = new System.Drawing.Point(17, 396);
             this.grpbxTheme.Name = "grpbxTheme";
             this.grpbxTheme.Size = new System.Drawing.Size(236, 85);
             this.grpbxTheme.TabIndex = 13;
@@ -824,7 +824,7 @@
             // 
             this.btnQuizMaker.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.btnQuizMaker.BackColor = System.Drawing.Color.Black;
-            this.btnQuizMaker.Location = new System.Drawing.Point(220, 283);
+            this.btnQuizMaker.Location = new System.Drawing.Point(20, 367);
             this.btnQuizMaker.Name = "btnQuizMaker";
             this.btnQuizMaker.Size = new System.Drawing.Size(103, 23);
             this.btnQuizMaker.TabIndex = 10;
@@ -911,7 +911,7 @@
             // 
             this.btnStuMgmt_Prefs.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.btnStuMgmt_Prefs.BackColor = System.Drawing.Color.Black;
-            this.btnStuMgmt_Prefs.Location = new System.Drawing.Point(220, 248);
+            this.btnStuMgmt_Prefs.Location = new System.Drawing.Point(138, 367);
             this.btnStuMgmt_Prefs.Name = "btnStuMgmt_Prefs";
             this.btnStuMgmt_Prefs.Size = new System.Drawing.Size(103, 23);
             this.btnStuMgmt_Prefs.TabIndex = 4;
@@ -944,7 +944,7 @@
             // btnPrefs_Cls
             // 
             this.btnPrefs_Cls.BackColor = System.Drawing.Color.Black;
-            this.btnPrefs_Cls.Location = new System.Drawing.Point(262, 388);
+            this.btnPrefs_Cls.Location = new System.Drawing.Point(267, 452);
             this.btnPrefs_Cls.Name = "btnPrefs_Cls";
             this.btnPrefs_Cls.Size = new System.Drawing.Size(75, 23);
             this.btnPrefs_Cls.TabIndex = 1;
@@ -972,9 +972,9 @@
             this.DirectMsgPanel.Controls.Add(this.btnDM_Clr);
             this.DirectMsgPanel.Controls.Add(this.cmbxDM);
             this.DirectMsgPanel.Controls.Add(this.txtbxDM);
-            this.DirectMsgPanel.Location = new System.Drawing.Point(-395, 80);
+            this.DirectMsgPanel.Location = new System.Drawing.Point(-395, 28);
             this.DirectMsgPanel.Name = "DirectMsgPanel";
-            this.DirectMsgPanel.Size = new System.Drawing.Size(355, 432);
+            this.DirectMsgPanel.Size = new System.Drawing.Size(355, 496);
             this.DirectMsgPanel.TabIndex = 6;
             // 
             // pictureBox1
@@ -1054,17 +1054,6 @@
             this.picbxStatus.TabIndex = 7;
             this.picbxStatus.TabStop = false;
             // 
-            // btnCLS
-            // 
-            this.btnCLS.Location = new System.Drawing.Point(31, 81);
-            this.btnCLS.Name = "btnCLS";
-            this.btnCLS.Size = new System.Drawing.Size(75, 29);
-            this.btnCLS.TabIndex = 8;
-            this.btnCLS.Text = "Close";
-            this.btnCLS.UseVisualStyleBackColor = true;
-            this.btnCLS.Visible = false;
-            this.btnCLS.Click += new System.EventHandler(this.btnCLS_Click_1);
-            // 
             // PanelFAQ
             // 
             this.PanelFAQ.AutoScroll = true;
@@ -1077,7 +1066,7 @@
             this.PanelFAQ.ForeColor = System.Drawing.Color.DarkGoldenrod;
             this.PanelFAQ.Location = new System.Drawing.Point(12, -485);
             this.PanelFAQ.Name = "PanelFAQ";
-            this.PanelFAQ.Size = new System.Drawing.Size(361, 497);
+            this.PanelFAQ.Size = new System.Drawing.Size(361, 499);
             this.PanelFAQ.TabIndex = 7;
             // 
             // lnklblIssues
@@ -1152,7 +1141,7 @@
             this.PanelStudents.ForeColor = System.Drawing.Color.DarkGoldenrod;
             this.PanelStudents.Location = new System.Drawing.Point(15, 535);
             this.PanelStudents.Name = "PanelStudents";
-            this.PanelStudents.Size = new System.Drawing.Size(361, 497);
+            this.PanelStudents.Size = new System.Drawing.Size(361, 499);
             this.PanelStudents.TabIndex = 9;
             // 
             // btnConvView
@@ -1414,6 +1403,12 @@
             this.muItmQuiz.Text = "Quiz";
             this.muItmQuiz.Click += new System.EventHandler(this.muItmQuiz_Click);
             // 
+            // muItmBrdCst
+            // 
+            this.muItmBrdCst.Index = -1;
+            this.muItmBrdCst.Text = "BroadCast";
+            this.muItmBrdCst.Click += new System.EventHandler(this.muItmBrdCst_Click);
+            // 
             // PanelQuizMaker
             // 
             this.PanelQuizMaker.AutoScroll = true;
@@ -1602,7 +1597,7 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(32, 17);
+            this.pictureBox7.Location = new System.Drawing.Point(32, 18);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(321, 50);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1636,7 +1631,7 @@
             // pictureBox8
             // 
             this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(32, 17);
+            this.pictureBox8.Location = new System.Drawing.Point(32, 18);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(321, 50);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1649,6 +1644,26 @@
             this.colorDlg.AnyColor = true;
             this.colorDlg.FullOpen = true;
             // 
+            // pnlBrdCst
+            // 
+            this.pnlBrdCst.Controls.Add(this.btnSend);
+            this.pnlBrdCst.Controls.Add(this.textBox1);
+            this.pnlBrdCst.Location = new System.Drawing.Point(0, -45);
+            this.pnlBrdCst.Name = "pnlBrdCst";
+            this.pnlBrdCst.Size = new System.Drawing.Size(385, 66);
+            this.pnlBrdCst.TabIndex = 15;
+            this.pnlBrdCst.Leave += new System.EventHandler(this.pnlBrdCst_Leave);
+            // 
+            // btnSend
+            // 
+            this.btnSend.Location = new System.Drawing.Point(310, 5);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(72, 52);
+            this.btnSend.TabIndex = 3;
+            this.btnSend.Text = "Send Msg";
+            this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            // 
             // frmClassrromInq
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1656,12 +1671,13 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(384, 550);
+            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.pnlBrdCst);
             this.Controls.Add(this.PanelClassVote);
             this.Controls.Add(this.PanelAttendance);
             this.Controls.Add(this.PanelQuizMode);
             this.Controls.Add(this.PanelQuizMaker);
             this.Controls.Add(this.PanelConvView);
-            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.PanelFAQ);
             this.Controls.Add(this.DirectMsgPanel);
             this.Controls.Add(this.picbxStatus);
@@ -1669,10 +1685,6 @@
             this.Controls.Add(this.PanelStudents);
             this.Controls.Add(this.PanelPrefs);
             this.Controls.Add(this.grpbxFeed);
-            this.Controls.Add(this.btnCLS);
-            this.Controls.Add(this.btnSend);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.serialCOMcmbbx);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.DarkGoldenrod;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -1715,6 +1727,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.PanelClassVote.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            this.pnlBrdCst.ResumeLayout(false);
+            this.pnlBrdCst.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1734,11 +1748,9 @@
         private System.Windows.Forms.ToolStripMenuItem PrefsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
         private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.NotifyIcon trayICON;
         private System.Windows.Forms.Panel grpbxFeed;
         private System.IO.Ports.SerialPort SerialPort;
-        private System.Windows.Forms.ComboBox serialCOMcmbbx;
         private System.Windows.Forms.ToolStripMenuItem modesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem attedanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem classVoteToolStripMenuItem;
@@ -1759,7 +1771,6 @@
         private System.Windows.Forms.Button btnDM_Clr;
         private System.Windows.Forms.ComboBox cmbxDM;
         private System.Windows.Forms.TextBox txtbxDM;
-        private System.Windows.Forms.Button btnCLS;
         private System.Windows.Forms.PictureBox picbxPrefs;
         private System.Windows.Forms.Button btnPrefs_Cls;
         private System.Windows.Forms.CheckBox chkbxRXSound;
@@ -1838,6 +1849,7 @@
         private System.Windows.Forms.MenuItem muItmClassVote;
         private System.Windows.Forms.MenuItem muItmQuiz;
         private System.Windows.Forms.MenuItem muItmAttendance;
+        private System.Windows.Forms.MenuItem muItmBrdCst;
         private System.Windows.Forms.CheckBox chkbxCtrlHide;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
@@ -1869,6 +1881,10 @@
         private System.Windows.Forms.Button btnDefaultTheme;
         private System.Windows.Forms.Label lblAnimationPrefs;
         private System.Windows.Forms.ComboBox cmbbxAnimationSpeed;
+        private System.Windows.Forms.Panel pnlBrdCst;
+        private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox serialCOMcmbbx;
     }
 }
 

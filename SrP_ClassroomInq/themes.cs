@@ -112,13 +112,7 @@ namespace SrP_ClassroomInq
                 serialCOMcmbbx.BackColor = Color.White;
                 serialCOMcmbbx.ForeColor = Color.Black;
             }
-
-            btnCLS.ForeColor = Fore;
-            btnCLS.BackColor = Back;
-
-            btnSend.ForeColor = Fore;
-            btnSend.BackColor = Back;
-
+            
             menuStrip1.BackColor = Fore; //for contrast between form back
             menuStrip1.ForeColor = Back;
 
@@ -245,6 +239,14 @@ namespace SrP_ClassroomInq
 
             btnDM_Send.BackColor = Back;
             btnDM_Send.ForeColor = Fore;
+            #endregion
+
+            #region BroadCast Controls
+            pnlBrdCst.BackColor = Fore;
+            pnlBrdCst.ForeColor = Back;
+
+            btnSend.ForeColor = Fore;
+            btnSend.BackColor = Back;
             #endregion
 
             #region FAQ Panel Controls

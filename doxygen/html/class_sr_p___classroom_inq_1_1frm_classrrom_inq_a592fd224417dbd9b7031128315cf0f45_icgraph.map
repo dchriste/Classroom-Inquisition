@@ -1,6 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#abce1cb97617c664a4d967eed8c5f9c86" title="SrP_ClassroomInq.frmClassrromInq.PrefsToolStripMenuItem_Click" alt="" coords="409,5,823,32"/>
-<area shape="rect" id="node5" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a6a257d6e30f5e9370c72b475aff7aafa" title="SrP_ClassroomInq.frmClassrromInq.Form1_FormClosing" alt="" coords="439,56,793,83"/>
-<area shape="rect" id="node7" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a5a5c0fb174e0ecda3389793bcb45d6e7" title="SrP_ClassroomInq.frmClassrromInq.broadcastToolStripMenuItem_Click" alt="" coords="395,107,837,133"/>
-<area shape="rect" id="node9" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a84063ccbe84b1c95a224444f0b43ccd1" title="SrP_ClassroomInq.frmClassrromInq.btnCLSStudents_Click" alt="" coords="431,157,801,184"/>
+<area shape="rect" id="node3" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#abce1cb97617c664a4d967eed8c5f9c86" title="SrP_ClassroomInq.frmClassrromInq.PrefsToolStripMenuItem_Click" alt="" coords="395,5,810,32"/>
+<area shape="rect" id="node5" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a6a257d6e30f5e9370c72b475aff7aafa" title="SrP_ClassroomInq.frmClassrromInq.Form1_FormClosing" alt="" coords="425,56,780,83"/>
+<area shape="rect" id="node7" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a84063ccbe84b1c95a224444f0b43ccd1" title="SrP_ClassroomInq.frmClassrromInq.btnCLSStudents_Click" alt="" coords="417,107,788,133"/>
 </map>

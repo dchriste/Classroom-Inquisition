@@ -27,93 +27,81 @@ namespace SrP_ClassroomInq
         /*This method does all the animation for the application*/
         private void timer_Tick(object sender, EventArgs e)
         {
-            #region Send Button
+            #region BroadCast Panel
 
-            if ((btnSend.Visible == false) && (textbox1WASclicked == true))// if not visible
+            if ((!BrdcstShowing) && (textbox1WASclicked == true) && (pnlBrdCst.Location.Y  < 41))// if not visible
             {
                 if (!chkbxLameMode.Checked) //animations
                 {
-                    if (i < 3)
+                    if (i < 10)
                     {
-                        grpbxFeed.SetBounds(grpbxFeed.Location.X, grpbxFeed.Location.Y + 5,
-                                            grpbxFeed.Size.Width, grpbxFeed.Size.Height - 2);
-                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X, DirectMsgPanel.Location.Y + 5,
-                                                 DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height - 2);
-                        PanelPrefs.SetBounds(PanelPrefs.Location.X, PanelPrefs.Location.Y + 5,
-                                             PanelPrefs.Size.Width, PanelPrefs.Size.Height - 2);
+                        pnlBrdCst.SetBounds(pnlBrdCst.Location.X, pnlBrdCst.Location.Y + 5,
+                                             pnlBrdCst.Size.Width, pnlBrdCst.Size.Height);
                         i++;
                     }
-                    else if ((i > 2) && (i < 9))
+                    else if (i <20)
                     {
-                        grpbxFeed.SetBounds(grpbxFeed.Location.X, grpbxFeed.Location.Y + 4,
-                                            grpbxFeed.Size.Width, grpbxFeed.Size.Height - 3);
-                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X, DirectMsgPanel.Location.Y + 4,
-                                                 DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height - 3);
-                        PanelPrefs.SetBounds(PanelPrefs.Location.X, PanelPrefs.Location.Y + 4,
-                                             PanelPrefs.Size.Width, PanelPrefs.Size.Height - 3);
+                        pnlBrdCst.SetBounds(pnlBrdCst.Location.X, pnlBrdCst.Location.Y + 2,
+                                             pnlBrdCst.Size.Width, pnlBrdCst.Size.Height);
+                        i++;
+                    }/* //uncomment this for bounce effect
+                    else if (i < 25)
+                    {
+                        pnlBrdCst.SetBounds(pnlBrdCst.Location.X, pnlBrdCst.Location.Y + 3,
+                                             pnlBrdCst.Size.Width, pnlBrdCst.Size.Height);
                         i++;
                     }
+                    else if (i < 30)
+                    {
+                        pnlBrdCst.SetBounds(pnlBrdCst.Location.X, pnlBrdCst.Location.Y - 3,
+                                             pnlBrdCst.Size.Width, pnlBrdCst.Size.Height);
+                        i++;
+                    }*/
                     else
                     {
                         i = 0;
                         timer.Enabled = false;
-                        btnSend.Visible = true;
-                        btnCLS.Visible = true;
-                        serialCOMcmbbx.Visible = true;
                         textbox1WASclicked = false;
+                        BrdcstShowing = true;
+                        textBox1.Clear();
                         this.Text = " Classroom Inquisition  |  Broadcast";
                     }
                 }
                 else //no animations
                 {
                     //jump straight to whatever position..
-                    grpbxFeed.SetBounds(grpbxFeed.Location.X, grpbxFeed.Location.Y + 39,
-                                        grpbxFeed.Size.Width, grpbxFeed.Size.Height - 24);
-                    DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X, DirectMsgPanel.Location.Y + 39,
-                                             DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height - 24);
-                    PanelPrefs.SetBounds(PanelPrefs.Location.X, PanelPrefs.Location.Y + 39,
-                                         PanelPrefs.Size.Width, PanelPrefs.Size.Height - 24);
+                    pnlBrdCst.SetBounds(pnlBrdCst.Location.X, pnlBrdCst.Location.Y + 70,
+                                         pnlBrdCst.Size.Width, pnlBrdCst.Size.Height);
                     timer.Enabled = false;
-                    btnSend.Visible = true;
-                    btnCLS.Visible = true;
-                    serialCOMcmbbx.Visible = true;
+                    BrdcstShowing = true;
+                    textBox1.Clear();
                     textbox1WASclicked = false;
                     this.Text = " Classroom Inquisition  |  Broadcast";
                 }
             }
 
-            if ((btnSend.Visible == true) && (textbox1WASclicked == true))// if visible, destroy
+            if ((BrdcstShowing) && (textbox1WASclicked == true) && (pnlBrdCst.Location.Y > -46))// if visible, destroy
             {
                 if (!chkbxLameMode.Checked)
                 {
-                    if (i < 3)
+                    if (i < 10)
                     {
-                        grpbxFeed.SetBounds(grpbxFeed.Location.X, grpbxFeed.Location.Y - 5,
-                                            grpbxFeed.Size.Width, grpbxFeed.Size.Height + 2);
-                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X, DirectMsgPanel.Location.Y - 5,
-                                                 DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height + 2);
-                        PanelPrefs.SetBounds(PanelPrefs.Location.X, PanelPrefs.Location.Y - 5,
-                                             PanelPrefs.Size.Width, PanelPrefs.Size.Height + 2);
+                        pnlBrdCst.SetBounds(pnlBrdCst.Location.X, pnlBrdCst.Location.Y -2,
+                                             pnlBrdCst.Size.Width, pnlBrdCst.Size.Height);
                         i++;
                     }
-                    else if ((i > 2) && (i < 9))
+                    else if (i < 20)
                     {
-                        grpbxFeed.SetBounds(grpbxFeed.Location.X, grpbxFeed.Location.Y - 4,
-                                            grpbxFeed.Size.Width, grpbxFeed.Size.Height + 3);
-                        DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X, DirectMsgPanel.Location.Y - 4,
-                                                 DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height + 3);
-                        PanelPrefs.SetBounds(PanelPrefs.Location.X, PanelPrefs.Location.Y - 4,
-                                             PanelPrefs.Size.Width, PanelPrefs.Size.Height + 3);
+                        pnlBrdCst.SetBounds(pnlBrdCst.Location.X, pnlBrdCst.Location.Y - 5,
+                                             pnlBrdCst.Size.Width, pnlBrdCst.Size.Height);
                         i++;
                     }
                     else
                     {
                         i = 0;
-                        btnSend.Visible = false;
-                        btnCLS.Visible = false;
-                        serialCOMcmbbx.Visible = false;
                         timer.Enabled = false;
                         textbox1WASclicked = false;
+                        BrdcstShowing = false;
                         grpbxFeed.Focus(); //get cursor out of textbox if it's there...
                         if (PrefsShowing)
                             this.Text = " Classroom Inquisition  |  Prefs";
@@ -125,17 +113,12 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations
                 {
-                    grpbxFeed.SetBounds(grpbxFeed.Location.X, grpbxFeed.Location.Y - 39,
-                                        grpbxFeed.Size.Width, grpbxFeed.Size.Height + 24);
-                    DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X, DirectMsgPanel.Location.Y - 39,
-                                             DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height + 24);
-                    PanelPrefs.SetBounds(PanelPrefs.Location.X, PanelPrefs.Location.Y - 39,
-                                         PanelPrefs.Size.Width, PanelPrefs.Size.Height + 24);
-                    btnSend.Visible = false;
-                    btnCLS.Visible = false;
-                    serialCOMcmbbx.Visible = false;
+                    pnlBrdCst.SetBounds(pnlBrdCst.Location.X, pnlBrdCst.Location.Y - 70,
+                                         pnlBrdCst.Size.Width, pnlBrdCst.Size.Height);
+                   
                     timer.Enabled = false;
                     textbox1WASclicked = false;
+                    BrdcstShowing = false;
                     grpbxFeed.Focus(); //get cursor out of textbox if it's there...
                     if (PrefsShowing)
                         this.Text = " Classroom Inquisition  |  Prefs";
@@ -1342,7 +1325,7 @@ namespace SrP_ClassroomInq
                         {
                             PanelAttendance.Show();
                             PanelAttendance.SetBounds(190, PanelAttendance.Location.Y - 5,
-                                                      PanelAttendance.Size.Width + 4, PanelAttendance.Size.Height + 1);
+                                                      PanelAttendance.Size.Width + 4, PanelAttendance.Size.Height + 4);
                         }
                         PanelAttendance.SetBounds(PanelAttendance.Location.X - 19, PanelAttendance.Location.Y,
                                                   PanelAttendance.Size.Width + 38, PanelAttendance.Size.Height);
@@ -1457,11 +1440,12 @@ namespace SrP_ClassroomInq
                         if (x == 0)
                         {
                             PanelClassVote.Show();
+                            PanelClassVote.BringToFront();
                             PanelClassVote.SetBounds(190, PanelClassVote.Location.Y - 5,
-                                                    PanelClassVote.Size.Width + 4, PanelClassVote.Size.Height);
+                                                    PanelClassVote.Size.Width + 4, PanelClassVote.Size.Height+4);
                         }
                         PanelClassVote.SetBounds(PanelClassVote.Location.X, PanelClassVote.Location.Y - 26,
-                                                 PanelClassVote.Size.Width, PanelClassVote.Size.Height + 53);
+                                                 PanelClassVote.Size.Width, PanelClassVote.Size.Height + 52);
                         x++;
                     }
                     else if (x < 20)
