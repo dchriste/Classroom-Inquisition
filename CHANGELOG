@@ -8,6 +8,15 @@ currently.
 
 CHANGELOG created on 2/22/12
 
+/*** Version 1.6 committed 4/15 ***/
+added Attendance mode
+added Notification Panel
+removed statusbar et al
+moved status notifications to notify panel
+moved unread status bar counter to title bar
+enlarged home, prefs, and DM panels
+limited brdcst to Normal Mode
+
 /*** Version 1.5.0.1 committed 4/14 ***/
 fixed title bar bugs
 fixed missing serial combo box events 

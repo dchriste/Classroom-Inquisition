@@ -116,3 +116,18 @@ Hey Kel, ...
 Student  3 ( 02:15:29  |  4/14/2012 ):
 Hey you
 
+Student  3 ( 00:35:33  |  4/15/2012 ):
+Hey
+
+Student  3 ( 00:39:11  |  4/15/2012 ):
+Hey teach
+
+Student  3 ( 01:04:07  |  4/15/2012 ):
+Test
+
+Student  3 ( 02:23:16  |  4/15/2012 ):
+Hey teach
+
+Student  3 ( 02:23:52  |  4/15/2012 ):
+Blah
+

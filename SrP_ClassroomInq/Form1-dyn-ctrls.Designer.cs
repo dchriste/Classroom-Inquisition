@@ -77,19 +77,15 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.sb_send_status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tlstrplbl_Unread = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.trayICON = new System.Windows.Forms.NotifyIcon(this.components);
             this.grpbxFeed = new System.Windows.Forms.Panel();
             this.SerialPort = new System.IO.Ports.SerialPort(this.components);
             this.timer_SerialRead = new System.Windows.Forms.Timer(this.components);
             this.PanelPrefs = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblNotifyTime = new System.Windows.Forms.Label();
+            this.numUpDnNotify = new System.Windows.Forms.NumericUpDown();
+            this.lblSerPt = new System.Windows.Forms.Label();
             this.serialCOMcmbbx = new System.Windows.Forms.ComboBox();
             this.lblAnimationPrefs = new System.Windows.Forms.Label();
             this.cmbbxAnimationSpeed = new System.Windows.Forms.ComboBox();
@@ -117,7 +113,6 @@
             this.btnDM_Clr = new System.Windows.Forms.Button();
             this.cmbxDM = new System.Windows.Forms.ComboBox();
             this.txtbxDM = new System.Windows.Forms.TextBox();
-            this.picbxStatus = new System.Windows.Forms.PictureBox();
             this.PanelFAQ = new System.Windows.Forms.Panel();
             this.lnklblIssues = new System.Windows.Forms.LinkLabel();
             this.lblFAQ = new System.Windows.Forms.Label();
@@ -171,6 +166,7 @@
             this.btnExitQuiz = new System.Windows.Forms.Button();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.PanelAttendance = new System.Windows.Forms.Panel();
+            this.lstbxAttendance = new System.Windows.Forms.ListBox();
             this.btnExitAttendance = new System.Windows.Forms.Button();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.PanelClassVote = new System.Windows.Forms.Panel();
@@ -179,15 +175,17 @@
             this.colorDlg = new System.Windows.Forms.ColorDialog();
             this.pnlBrdCst = new System.Windows.Forms.Panel();
             this.btnSend = new System.Windows.Forms.Button();
+            this.PanelNotify = new System.Windows.Forms.Panel();
+            this.lblNotify = new System.Windows.Forms.Label();
+            this.pictureBoxNotify = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.PanelPrefs.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDnNotify)).BeginInit();
             this.grpbxTheme.SuspendLayout();
             this.grpbxUnread.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbxPrefs)).BeginInit();
             this.DirectMsgPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picbxStatus)).BeginInit();
             this.PanelFAQ.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.PanelStudents.SuspendLayout();
@@ -204,6 +202,8 @@
             this.PanelClassVote.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.pnlBrdCst.SuspendLayout();
+            this.PanelNotify.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNotify)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -616,63 +616,6 @@
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "Enter Message here..";
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.AutoSize = false;
-            this.statusStrip1.BackColor = System.Drawing.SystemColors.ControlText;
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel3,
-            this.toolStripStatusLabel2,
-            this.sb_send_status,
-            this.toolStripStatusLabel1,
-            this.tlstrplbl_Unread});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 528);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(384, 22);
-            this.statusStrip1.SizingGrip = false;
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel3
-            // 
-            this.toolStripStatusLabel3.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(16, 17);
-            this.toolStripStatusLabel3.Text = "   ";
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(16, 17);
-            this.toolStripStatusLabel2.Text = "   ";
-            // 
-            // sb_send_status
-            // 
-            this.sb_send_status.AutoSize = false;
-            this.sb_send_status.BackColor = System.Drawing.SystemColors.ControlText;
-            this.sb_send_status.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
-            this.sb_send_status.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.sb_send_status.Name = "sb_send_status";
-            this.sb_send_status.Size = new System.Drawing.Size(200, 17);
-            this.sb_send_status.Text = "Welcome to Classroom Inquisition";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(121, 17);
-            this.toolStripStatusLabel1.Text = "                                      ";
-            // 
-            // tlstrplbl_Unread
-            // 
-            this.tlstrplbl_Unread.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.tlstrplbl_Unread.Image = global::SrP_ClassroomInq.Properties.Resources.comment_bubble;
-            this.tlstrplbl_Unread.Name = "tlstrplbl_Unread";
-            this.tlstrplbl_Unread.Size = new System.Drawing.Size(67, 17);
-            this.tlstrplbl_Unread.Text = "Unread 1";
-            this.tlstrplbl_Unread.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tlstrplbl_Unread.Visible = false;
-            // 
             // timer
             // 
             this.timer.Interval = 25;
@@ -693,7 +636,7 @@
             this.grpbxFeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.grpbxFeed.Location = new System.Drawing.Point(15, 28);
             this.grpbxFeed.Name = "grpbxFeed";
-            this.grpbxFeed.Size = new System.Drawing.Size(355, 496);
+            this.grpbxFeed.Size = new System.Drawing.Size(355, 517);
             this.grpbxFeed.TabIndex = 5;
             this.grpbxFeed.MouseDown += new System.Windows.Forms.MouseEventHandler(this.grpbxFeed_MouseDown);
             // 
@@ -707,7 +650,9 @@
             // 
             this.PanelPrefs.AutoScroll = true;
             this.PanelPrefs.BackColor = System.Drawing.SystemColors.ControlText;
-            this.PanelPrefs.Controls.Add(this.label1);
+            this.PanelPrefs.Controls.Add(this.lblNotifyTime);
+            this.PanelPrefs.Controls.Add(this.numUpDnNotify);
+            this.PanelPrefs.Controls.Add(this.lblSerPt);
             this.PanelPrefs.Controls.Add(this.serialCOMcmbbx);
             this.PanelPrefs.Controls.Add(this.lblAnimationPrefs);
             this.PanelPrefs.Controls.Add(this.cmbbxAnimationSpeed);
@@ -726,18 +671,60 @@
             this.PanelPrefs.ForeColor = System.Drawing.Color.DarkGoldenrod;
             this.PanelPrefs.Location = new System.Drawing.Point(395, 28);
             this.PanelPrefs.Name = "PanelPrefs";
-            this.PanelPrefs.Size = new System.Drawing.Size(355, 496);
+            this.PanelPrefs.Size = new System.Drawing.Size(355, 517);
             this.PanelPrefs.TabIndex = 6;
             // 
-            // label1
+            // lblNotifyTime
             // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(169, 192);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 33);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Serial Port\r\nSelect-->";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblNotifyTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNotifyTime.Location = new System.Drawing.Point(169, 225);
+            this.lblNotifyTime.Name = "lblNotifyTime";
+            this.lblNotifyTime.Size = new System.Drawing.Size(74, 33);
+            this.lblNotifyTime.TabIndex = 19;
+            this.lblNotifyTime.Text = "Notify panel\r\nTimeout-->";
+            this.lblNotifyTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // numUpDnNotify
+            // 
+            this.numUpDnNotify.BackColor = System.Drawing.Color.White;
+            this.numUpDnNotify.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numUpDnNotify.DecimalPlaces = 1;
+            this.numUpDnNotify.Increment = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            this.numUpDnNotify.Location = new System.Drawing.Point(252, 232);
+            this.numUpDnNotify.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            65536});
+            this.numUpDnNotify.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numUpDnNotify.Name = "numUpDnNotify";
+            this.numUpDnNotify.ReadOnly = true;
+            this.numUpDnNotify.Size = new System.Drawing.Size(49, 20);
+            this.numUpDnNotify.TabIndex = 18;
+            this.numUpDnNotify.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numUpDnNotify.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            65536});
+            // 
+            // lblSerPt
+            // 
+            this.lblSerPt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSerPt.Location = new System.Drawing.Point(169, 192);
+            this.lblSerPt.Name = "lblSerPt";
+            this.lblSerPt.Size = new System.Drawing.Size(74, 33);
+            this.lblSerPt.TabIndex = 17;
+            this.lblSerPt.Text = "Serial Port\r\nSelect-->";
+            this.lblSerPt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // serialCOMcmbbx
             // 
@@ -984,7 +971,7 @@
             this.DirectMsgPanel.Controls.Add(this.txtbxDM);
             this.DirectMsgPanel.Location = new System.Drawing.Point(-395, 28);
             this.DirectMsgPanel.Name = "DirectMsgPanel";
-            this.DirectMsgPanel.Size = new System.Drawing.Size(355, 496);
+            this.DirectMsgPanel.Size = new System.Drawing.Size(355, 517);
             this.DirectMsgPanel.TabIndex = 6;
             // 
             // pictureBox1
@@ -1052,17 +1039,6 @@
             this.txtbxDM.Name = "txtbxDM";
             this.txtbxDM.Size = new System.Drawing.Size(335, 71);
             this.txtbxDM.TabIndex = 0;
-            // 
-            // picbxStatus
-            // 
-            this.picbxStatus.BackColor = System.Drawing.SystemColors.ControlText;
-            this.picbxStatus.Image = global::SrP_ClassroomInq.Properties.Resources.comment_bubble;
-            this.picbxStatus.Location = new System.Drawing.Point(353, 530);
-            this.picbxStatus.Name = "picbxStatus";
-            this.picbxStatus.Size = new System.Drawing.Size(32, 21);
-            this.picbxStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picbxStatus.TabIndex = 7;
-            this.picbxStatus.TabStop = false;
             // 
             // PanelFAQ
             // 
@@ -1584,6 +1560,7 @@
             // PanelAttendance
             // 
             this.PanelAttendance.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelAttendance.Controls.Add(this.lstbxAttendance);
             this.PanelAttendance.Controls.Add(this.btnExitAttendance);
             this.PanelAttendance.Controls.Add(this.pictureBox7);
             this.PanelAttendance.ForeColor = System.Drawing.Color.DarkGoldenrod;
@@ -1592,6 +1569,19 @@
             this.PanelAttendance.Size = new System.Drawing.Size(0, 0);
             this.PanelAttendance.TabIndex = 13;
             this.PanelAttendance.Visible = false;
+            // 
+            // lstbxAttendance
+            // 
+            this.lstbxAttendance.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.lstbxAttendance.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lstbxAttendance.ForeColor = System.Drawing.Color.Black;
+            this.lstbxAttendance.FormattingEnabled = true;
+            this.lstbxAttendance.Items.AddRange(new object[] {
+            "Student\'s will show up here when they\'ve said they\'re here:"});
+            this.lstbxAttendance.Location = new System.Drawing.Point(32, 89);
+            this.lstbxAttendance.Name = "lstbxAttendance";
+            this.lstbxAttendance.Size = new System.Drawing.Size(321, 379);
+            this.lstbxAttendance.TabIndex = 2;
             // 
             // btnExitAttendance
             // 
@@ -1674,6 +1664,41 @@
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
+            // PanelNotify
+            // 
+            this.PanelNotify.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.PanelNotify.Controls.Add(this.lblNotify);
+            this.PanelNotify.Controls.Add(this.pictureBoxNotify);
+            this.PanelNotify.ForeColor = System.Drawing.Color.Black;
+            this.PanelNotify.Location = new System.Drawing.Point(0, 550);
+            this.PanelNotify.Name = "PanelNotify";
+            this.PanelNotify.Size = new System.Drawing.Size(385, 35);
+            this.PanelNotify.TabIndex = 16;
+            // 
+            // lblNotify
+            // 
+            this.lblNotify.AutoEllipsis = true;
+            this.lblNotify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblNotify.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNotify.Location = new System.Drawing.Point(3, 3);
+            this.lblNotify.Name = "lblNotify";
+            this.lblNotify.Size = new System.Drawing.Size(345, 31);
+            this.lblNotify.TabIndex = 1;
+            this.lblNotify.Text = " ";
+            this.lblNotify.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblNotify.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblNotify_MouseDown);
+            // 
+            // pictureBoxNotify
+            // 
+            this.pictureBoxNotify.BackgroundImage = global::SrP_ClassroomInq.Properties.Resources.comment_bubble;
+            this.pictureBoxNotify.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxNotify.Location = new System.Drawing.Point(348, 3);
+            this.pictureBoxNotify.Name = "pictureBoxNotify";
+            this.pictureBoxNotify.Size = new System.Drawing.Size(34, 31);
+            this.pictureBoxNotify.TabIndex = 0;
+            this.pictureBoxNotify.TabStop = false;
+            this.pictureBoxNotify.Click += new System.EventHandler(this.pictureBoxNotify_Click);
+            // 
             // frmClassrromInq
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1683,18 +1708,17 @@
             this.ClientSize = new System.Drawing.Size(384, 550);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pnlBrdCst);
-            this.Controls.Add(this.PanelClassVote);
+            this.Controls.Add(this.PanelPrefs);
+            this.Controls.Add(this.PanelNotify);
+            this.Controls.Add(this.grpbxFeed);
             this.Controls.Add(this.PanelAttendance);
+            this.Controls.Add(this.PanelClassVote);
             this.Controls.Add(this.PanelQuizMode);
             this.Controls.Add(this.PanelQuizMaker);
             this.Controls.Add(this.PanelConvView);
             this.Controls.Add(this.PanelFAQ);
             this.Controls.Add(this.DirectMsgPanel);
-            this.Controls.Add(this.picbxStatus);
-            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.PanelStudents);
-            this.Controls.Add(this.PanelPrefs);
-            this.Controls.Add(this.grpbxFeed);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.DarkGoldenrod;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -1708,9 +1732,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.PanelPrefs.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDnNotify)).EndInit();
             this.grpbxTheme.ResumeLayout(false);
             this.grpbxUnread.ResumeLayout(false);
             this.grpbxUnread.PerformLayout();
@@ -1718,7 +1741,6 @@
             this.DirectMsgPanel.ResumeLayout(false);
             this.DirectMsgPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picbxStatus)).EndInit();
             this.PanelFAQ.ResumeLayout(false);
             this.PanelFAQ.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -1739,6 +1761,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.pnlBrdCst.ResumeLayout(false);
             this.pnlBrdCst.PerformLayout();
+            this.PanelNotify.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNotify)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1753,8 +1777,6 @@
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel sb_send_status;
         private System.Windows.Forms.ToolStripMenuItem PrefsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
         private System.Windows.Forms.Timer timer;
@@ -1770,9 +1792,6 @@
         private System.Windows.Forms.ToolStripMenuItem generalFAQToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Timer timer_SerialRead;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripStatusLabel tlstrplbl_Unread;
-        private System.Windows.Forms.PictureBox picbxStatus;
         private System.Windows.Forms.Panel PanelPrefs;
         private System.Windows.Forms.Panel DirectMsgPanel;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -1861,8 +1880,6 @@
         private System.Windows.Forms.MenuItem muItmAttendance;
         private System.Windows.Forms.MenuItem muItmBrdCst;
         private System.Windows.Forms.CheckBox chkbxCtrlHide;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.Button btnQuizMaker;
         private System.Windows.Forms.Panel PanelQuizMaker;
         private System.Windows.Forms.Button btnQuizMode;
@@ -1893,8 +1910,14 @@
         private System.Windows.Forms.ComboBox cmbbxAnimationSpeed;
         private System.Windows.Forms.Panel pnlBrdCst;
         private System.Windows.Forms.Button btnSend;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSerPt;
         private System.Windows.Forms.ComboBox serialCOMcmbbx;
+        private System.Windows.Forms.ListBox lstbxAttendance;
+        private System.Windows.Forms.Panel PanelNotify;
+        private System.Windows.Forms.Label lblNotify;
+        private System.Windows.Forms.PictureBox pictureBoxNotify;
+        private System.Windows.Forms.NumericUpDown numUpDnNotify;
+        private System.Windows.Forms.Label lblNotifyTime;
     }
 }
 

@@ -41,5 +41,8 @@
     <Setting Name="AnimationSpeed" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">24</Value>
     </Setting>
+    <Setting Name="NotifyTimeout" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1.6</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

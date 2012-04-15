@@ -40,6 +40,7 @@ namespace SrP_ClassroomInq
 		}
         #region Initialization
 
+        public const int classSize = 50;  //will be max questions handled at once
         public StreamReader Stream2Print;
         public Font PrintFont;
         public Color ForeColorTheme = Color.DarkGoldenrod;
@@ -58,6 +59,8 @@ namespace SrP_ClassroomInq
         bool[] Q_status = new bool[classSize]; //records the read status of a question
         bool[] Q_Replied = new bool[classSize]; //records if the question has been replied to
         bool[] Q_NameShowing = new bool[classSize];
+        bool[] StudentPresent = new bool[classSize]; //for attendance mode
+        byte PresentStuNum = 250;
         string[] Q_sender = new string[classSize]; // records the addr of the sender of each question
         string brdcst_addr = "\x01";
         string[] logFiles = new string[classSize];
@@ -70,13 +73,12 @@ namespace SrP_ClassroomInq
         string SecretKey;
         string StateMachine = "Normal"; //inital state
         SoundPlayer JukeBox = new System.Media.SoundPlayer(); //for alert tone
-        bool WeGotData = false;
-		public const int classSize = 50;  //will be max questions handled at once
+        bool WeGotData = false;		
 		byte i = 0;
 		byte k = 0;
 		byte j = 0;
         byte x = 0;
-        byte iAck = 0;
+        int notif_I = 0; //incrementer for notify panel only
         static int logHistoryLength = 500; //this could be a preference, it determines the amount shown in conversation viewer
         string[] logTmpString = new string[logHistoryLength];
         int ix = 0; //only for serial tick timer...
@@ -91,6 +93,8 @@ namespace SrP_ClassroomInq
         byte PrefsTimesClicked = 0;
         byte FAQTimesClicked = 0;
         byte StuMgmtTimesClicked = 0;
+        bool DesireNotify = new bool();
+        bool NotifyShowing = new bool();
         bool DesirePrefs = new bool();
         bool DesireDM = new bool();
         bool DesireBrdcst = new bool();
@@ -184,6 +188,9 @@ namespace SrP_ClassroomInq
         
         /*This method makes the controls for the new question dynamically upon receiving the quesiton*/
         public void MakeCtrls(string question){
+            string oldTitleText = this.Text;
+            char tmpTitle = oldTitleText[27]; //first letter of variable title
+            
             reply_arr[NumQuestions] = new System.Windows.Forms.Button();
             reply_arr[NumQuestions].BackColor = BackColorTheme;
             reply_arr[NumQuestions].ForeColor = ForeColorTheme;
@@ -316,24 +323,50 @@ namespace SrP_ClassroomInq
                 JukeBox.SoundLocation = @"blip.wav"; // this is in [projdir]/bin/debug/blip.wav
                 JukeBox.Play();
             }
+
             if (UnreadCount > 0)
             {
-                picbxStatus.Visible = false;
-                tlstrplbl_Unread.Text = "Unread " + UnreadCount.ToString();
-                tlstrplbl_Unread.Visible = true;
-                this.Text = " Classroom Inquisition  |  Home (" + UnreadCount.ToString() + ")";
+                switch (tmpTitle)
+                {
+                    //this switch avoids the title being changed while the user is in a panel
+                        //other than the home screen...
+                    case('H'):
+                        oldTitleText = "Home";
+                        break;
+                    case('P'):
+                        oldTitleText = "Prefs";
+                        break;
+                    case('S'):
+                        oldTitleText = "Student Management";
+                        break;
+                    case('C'): //Class Vote can't happen due to state machine
+                        oldTitleText = "Conversation Viewer";
+                        break;
+                    case('D'):
+                        oldTitleText = "Direct Message";
+                        break;
+                    case('Q'): //Quiz mode can't happen because of state machine
+                        oldTitleText = "Quiz Maker";
+                        break;
+                    case('F'):
+                        oldTitleText = "FAQ";
+                        break;
+                    default:
+                        oldTitleText = "Home"; //it's the best guess
+                        break;
+                }
+                this.Text = " Classroom Inquisition  |  " + oldTitleText + " (" + UnreadCount.ToString() + ")";
             }
-            else
-            {
-                picbxStatus.Visible = true;
-                tlstrplbl_Unread.Visible = false;
-            }
+
             if (chkbxNotify.Checked)
             {
                 trayICON.BalloonTipTitle = tempString2 + " asked:";
                 trayICON.BalloonTipText = question;
                 trayICON.ShowBalloonTip(1250); //show for 1.25 seconds
             }
+            lblNotify.Text = "New Message from: " + tempString2;
+            DesireNotify = true; //show notify panel
+            
             NumQuestions++; //increment number of ctrls
         }
         
@@ -373,6 +406,18 @@ namespace SrP_ClassroomInq
                 {
                     switch(StateMachine){
                         
+                        case("Attendance"):
+                            finalString = finalString.TrimStart(tmp); //trim off the address
+                            for (int i = 0; i < Students_ID.Length; i++)
+                            {
+                                if (String.CompareOrdinal(addr_tbl[i], tmp.ToString().TrimStart('\x27').TrimEnd('\x27')) == 0) //CompareOrdinal Compares Numerical value
+                                {
+                                    tempString2 = Students_Name[i];
+                                    PresentStuNum = (byte)i; //save for later
+                                    break;
+                                }
+                            }
+                            break;
                         case("Quiz"):
                             finalString = finalString.TrimStart(tmp); //trim off the address
                             for (int i = 0; i < Students_ID.Length; i++)
@@ -673,6 +718,7 @@ namespace SrP_ClassroomInq
             ForeColorTheme = Properties.Settings.Default.ForeColorTheme;
             BackColorTheme = Properties.Settings.Default.BackColorTheme;
             timer.Interval = Properties.Settings.Default.AnimationSpeed;
+            numUpDnNotify.Value = Properties.Settings.Default.NotifyTimeout;
             /***************************************************/
 
             ThemeApply(ForeColorTheme, BackColorTheme); //set from saved theme
@@ -752,6 +798,9 @@ namespace SrP_ClassroomInq
                 MessageBox.Show("Oh No's....Quiz file reading broke!!");
             }
             this.Focus();
+            lblNotify.Text = "Ready to Rock!";
+            DesireNotify = true;
+            timer.Enabled = true;
 		}
         
         /*This method shows the PrefsPanel*/
@@ -961,6 +1010,10 @@ namespace SrP_ClassroomInq
 
                             case("Attendance"):
                                 //we're in attendance mode
+                                if (StudentPresent[PresentStuNum] == false){
+                                    lstbxAttendance.Items.Add(tempString2 + " is here!");
+                                    StudentPresent[PresentStuNum] = true; //prevents student's saying there here more than once
+                                }
                                 break;
 
                             case("ClassVote"):
@@ -978,20 +1031,7 @@ namespace SrP_ClassroomInq
                     }
                     WeGotData = false;
 
-                }
-                else
-                {
-                    if (sb_send_status.Text == "Message Sent")
-                    {
-                        timesThrough++; 
-                        if (timesThrough >= 5) //~500ms
-                        {
-                            sb_send_status.Text = "Ready to Communicate"; //reset the status bar
-                            timesThrough = 0;
-                        }
-                    }
-                }
-                
+                }                
             }
         }
         
@@ -1044,10 +1084,15 @@ namespace SrP_ClassroomInq
         private void broadcastToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //pnlBrdCst.BringToFront();
-            timer.Enabled = true;
-            textbox1WASclicked = true;
-            textBox1.Clear();
-            textBox1.Focus();
+            if (StateMachine == "Normal")
+            {
+                timer.Enabled = true;
+                textbox1WASclicked = true;
+                textBox1.Clear();
+                textBox1.Focus();
+            }
+
+            //don't show if we're not in Normal mode...
         }
         
         /*This closes the broadcast box*/
@@ -1426,7 +1471,6 @@ namespace SrP_ClassroomInq
                 {
                     LogQandA(Qs_to_create[jx], false, Q_sender[jx]);
                     MakeCtrls(Qs_to_create[jx++]); //make controls and increment creation counter
-                    sb_send_status.Text = "New Message Received!";
                     picbx_ConvView_arr[jx-1].BringToFront(); //shows the "show conv view pic"
                 }
                 else
@@ -1437,7 +1481,6 @@ namespace SrP_ClassroomInq
             else //No more changes to make!
             {
                 timer_ControlsCreate.Enabled = false;
-                sb_send_status.Text = "Ready to Communicate";
             }            
         }
         
@@ -1460,7 +1503,8 @@ namespace SrP_ClassroomInq
                 MessageBox.Show("You must select a COM port before sending communications.");
                 SuccessOfSending = false;
             }
-            sb_send_status.Text = SuccessOfSending ? "Message Sent" : "Message Sending Failed!"; 
+            lblNotify.Text = SuccessOfSending ? "Message Sent" : "Message Sending Failed!";
+            DesireNotify = true;
             return SuccessOfSending; //lets sender know if sending succeeded
         }
         
@@ -1479,6 +1523,7 @@ namespace SrP_ClassroomInq
             Properties.Settings.Default.ForeColorTheme = ForeColorTheme;
             Properties.Settings.Default.BackColorTheme = BackColorTheme;
             Properties.Settings.Default.AnimationSpeed = (byte)timer.Interval;
+            Properties.Settings.Default.NotifyTimeout = (decimal)numUpDnNotify.Value;
             Properties.Settings.Default.Save();
         }
         
@@ -1486,7 +1531,7 @@ namespace SrP_ClassroomInq
         public void UnreadDecrement(object sender)
         {
             char tmp = (char)UnreadCount; //contains old value
-            //UnreadCount needs smartly decremented here
+
             for (int i = 0; i < lbl_arr.Length - 1; i++) //loop through to find the clicked one
             {
                 if (sender.Equals(lbl_arr[i]))
@@ -1497,21 +1542,16 @@ namespace SrP_ClassroomInq
 
             if (Q_status[lbl_ID_2] != true) //if status is true then it has already been read
             {
-                Q_status[lbl_ID_2] = true;
+                Q_status[lbl_ID_2] = true; // so unread won't get decremented if opened again..
                 UnreadCount--;
                 lbl_arr[lbl_ID_2].Text = lbl_arr[lbl_ID_2].Text.TrimStart('*').TrimStart(' '); //removes unread indicator in the label
 
                 if (UnreadCount > 0)
                 {
-                    picbxStatus.Visible = false;
-                    tlstrplbl_Unread.Text = "Unread " + UnreadCount.ToString();
-                    tlstrplbl_Unread.Visible = true;
                     this.Text = " Classroom Inquisition  |  Home (" + UnreadCount.ToString() + ")";
                 }
                 else
                 {
-                    picbxStatus.Visible = true;
-                    tlstrplbl_Unread.Visible = false;
                     this.Text = " Classroom Inquisition  |  Home";
                 }
             }
@@ -2479,6 +2519,7 @@ namespace SrP_ClassroomInq
 
             StateMachine = "Attendance";
             PanelAttendance.BringToFront();
+            SendMsg("Reply if you're here..", brdcst_addr); //let's the students know to check-in
             AttendanceClicked = true;
             timer.Enabled = true;
         }
@@ -2602,12 +2643,27 @@ namespace SrP_ClassroomInq
             }
         }
 
+        /*Allows for the hiding of the broadcast panel when it loses focus*/
         private void pnlBrdCst_Leave(object sender, EventArgs e)
         {
             if (BrdcstShowing)
             {
                 btnCLS_Click_BrdCst(sender, e);
             }
+        }
+
+        /*Allows dismissing the notify panel by clicking it*/
+        private void lblNotify_MouseDown(object sender, MouseEventArgs e)
+        {
+            notif_I = (int)numUpDnNotify.Value * 100; //next tick the panel will close
+            timer_Tick(sender, e);
+        }
+
+        /*Allows dismissing the notify panel by clicking it*/
+        private void pictureBoxNotify_Click(object sender, EventArgs e)
+        {
+            notif_I = (int)numUpDnNotify.Value * 100; //next tick the panel will close
+            timer_Tick(sender, e);
         }
 
    } //end of partial class

@@ -77,6 +77,12 @@ namespace SrP_ClassroomInq
             lblAnimationPrefs.BackColor = Back;
             lblAnimationPrefs.ForeColor = Fore;
 
+            lblNotifyTime.BackColor = Back;
+            lblNotifyTime.ForeColor = Fore;
+
+            lblSerPt.BackColor = Back;
+            lblSerPt.ForeColor = Fore;
+
             if (Fore == Color.Lime)
             {
                 cmbbxAnimationSpeed.BackColor = SystemColors.ControlDarkDark;
@@ -151,26 +157,6 @@ namespace SrP_ClassroomInq
 
             quitToolStripMenuItem.BackColor = Fore;
             quitToolStripMenuItem.ForeColor = Back;
-
-            statusStrip1.ForeColor = Fore;
-            statusStrip1.BackColor = Back;
-
-            toolStripStatusLabel1.BackColor = Back;
-            toolStripStatusLabel1.ForeColor = Fore;
-
-            toolStripStatusLabel2.BackColor = Back;
-            toolStripStatusLabel2.ForeColor = Fore;
-
-            toolStripStatusLabel3.BackColor = Back;
-            toolStripStatusLabel3.ForeColor = Fore;
-
-            sb_send_status.BackColor = Back;
-            sb_send_status.ForeColor = Fore;
-
-            picbxStatus.BackColor = Back;
-
-            tlstrplbl_Unread.BackColor = Back;
-            tlstrplbl_Unread.ForeColor = Fore; //this may not be working...
 
             for (int i = 0; i < NumQuestions; i++) //re-skin the questions present
             {
@@ -367,6 +353,9 @@ namespace SrP_ClassroomInq
 
             btnExitAttendance.BackColor = Back;
             btnExitAttendance.ForeColor = Fore;
+
+            lstbxAttendance.BackColor = Fore;
+            lstbxAttendance.ForeColor = Back;
             #endregion
 
             #region Class Vote Mode Controls
@@ -380,6 +369,16 @@ namespace SrP_ClassroomInq
             #region About Dialog
             About.BackColor = Back;
             About.ForeColor = Fore;
+            #endregion
+
+            #region Notify Panel
+            PanelNotify.BackColor = Fore;
+            PanelNotify.ForeColor = Back;
+
+            pictureBoxNotify.BackColor = Fore;
+
+            lblNotify.BackColor = Fore;
+            lblNotify.ForeColor = Back;
             #endregion
 
             this.ResumeLayout();

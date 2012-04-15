@@ -178,5 +178,17 @@ namespace SrP_ClassroomInq.Properties {
                 this["AnimationSpeed"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.6")]
+        public decimal NotifyTimeout {
+            get {
+                return ((decimal)(this["NotifyTimeout"]));
+            }
+            set {
+                this["NotifyTimeout"] = value;
+            }
+        }
     }
 }
