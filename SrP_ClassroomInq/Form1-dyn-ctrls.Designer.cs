@@ -1258,13 +1258,13 @@
             this.PanelConvView.ForeColor = System.Drawing.Color.DarkGoldenrod;
             this.PanelConvView.Location = new System.Drawing.Point(0, -530);
             this.PanelConvView.Name = "PanelConvView";
-            this.PanelConvView.Size = new System.Drawing.Size(384, 524);
+            this.PanelConvView.Size = new System.Drawing.Size(384, 545);
             this.PanelConvView.TabIndex = 10;
             // 
             // btnCV_Refresh
             // 
             this.btnCV_Refresh.BackColor = System.Drawing.Color.Black;
-            this.btnCV_Refresh.Location = new System.Drawing.Point(274, 486);
+            this.btnCV_Refresh.Location = new System.Drawing.Point(274, 505);
             this.btnCV_Refresh.Name = "btnCV_Refresh";
             this.btnCV_Refresh.Size = new System.Drawing.Size(75, 23);
             this.btnCV_Refresh.TabIndex = 5;
@@ -1275,7 +1275,7 @@
             // btnCV_Print
             // 
             this.btnCV_Print.BackColor = System.Drawing.Color.Black;
-            this.btnCV_Print.Location = new System.Drawing.Point(21, 486);
+            this.btnCV_Print.Location = new System.Drawing.Point(21, 505);
             this.btnCV_Print.Name = "btnCV_Print";
             this.btnCV_Print.Size = new System.Drawing.Size(75, 23);
             this.btnCV_Print.TabIndex = 4;
@@ -1295,14 +1295,14 @@
             this.lstbxConvView.Location = new System.Drawing.Point(12, 73);
             this.lstbxConvView.Name = "lstbxConvView";
             this.lstbxConvView.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstbxConvView.Size = new System.Drawing.Size(361, 403);
+            this.lstbxConvView.Size = new System.Drawing.Size(361, 416);
             this.lstbxConvView.TabIndex = 3;
             this.lstbxConvView.MouseLeave += new System.EventHandler(this.lstbxConvView_MouseLeave);
             // 
             // btnCLS_ConvView
             // 
             this.btnCLS_ConvView.BackColor = System.Drawing.Color.Black;
-            this.btnCLS_ConvView.Location = new System.Drawing.Point(153, 486);
+            this.btnCLS_ConvView.Location = new System.Drawing.Point(153, 505);
             this.btnCLS_ConvView.Name = "btnCLS_ConvView";
             this.btnCLS_ConvView.Size = new System.Drawing.Size(75, 23);
             this.btnCLS_ConvView.TabIndex = 1;
@@ -1806,8 +1806,9 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(384, 550);
-            this.Controls.Add(this.PanelClassVote);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.PanelConvView);
+            this.Controls.Add(this.PanelClassVote);
             this.Controls.Add(this.pnlBrdCst);
             this.Controls.Add(this.PanelFAQ);
             this.Controls.Add(this.PanelPrefs);
@@ -1816,7 +1817,6 @@
             this.Controls.Add(this.PanelAttendance);
             this.Controls.Add(this.PanelQuizMode);
             this.Controls.Add(this.PanelQuizMaker);
-            this.Controls.Add(this.PanelConvView);
             this.Controls.Add(this.DirectMsgPanel);
             this.Controls.Add(this.PanelStudents);
             this.DoubleBuffered = true;

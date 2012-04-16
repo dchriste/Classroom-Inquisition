@@ -41,6 +41,7 @@ namespace SrP_ClassroomInq
                             pnlBrdCst.BringToFront();
                             menuStrip1.BringToFront();
                             pnlBrdCst.Show();
+                            aPanelIsMoving = true;
                         }
                         pnlBrdCst.SetBounds(pnlBrdCst.Location.X, pnlBrdCst.Location.Y + 5,
                                              pnlBrdCst.Size.Width, pnlBrdCst.Size.Height);
@@ -67,8 +68,12 @@ namespace SrP_ClassroomInq
                     else
                     {
                         i = 0;
-                        timer.Enabled = false;
+                        if (!NotifyShowing && !DesireNotify)
+                        {
+                            timer.Enabled = false;
+                        }
                         BrdcstShowing = true;
+                        aPanelIsMoving = false;
                         textBox1.Clear();
                         this.Text = " Classroom Inquisition  |  Broadcast" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                     }
@@ -78,8 +83,12 @@ namespace SrP_ClassroomInq
                     //jump straight to whatever position..
                     pnlBrdCst.SetBounds(pnlBrdCst.Location.X, pnlBrdCst.Location.Y + 70,
                                          pnlBrdCst.Size.Width, pnlBrdCst.Size.Height);
-                    timer.Enabled = false;
+                    if (!NotifyShowing && !DesireNotify)
+                    {
+                        timer.Enabled = false;
+                    }
                     BrdcstShowing = true;
+                    aPanelIsMoving = false;
                     textBox1.Clear();
                     textbox1WASclicked = false;
                     this.Text = " Classroom Inquisition  |  Broadcast";
@@ -92,6 +101,10 @@ namespace SrP_ClassroomInq
                 {
                     if (i < 10)
                     {
+                        if (i == 0)
+                        {
+                            aPanelIsMoving = true;
+                        }
                         pnlBrdCst.SetBounds(pnlBrdCst.Location.X, pnlBrdCst.Location.Y -2,
                                              pnlBrdCst.Size.Width, pnlBrdCst.Size.Height);
                         i++;
@@ -104,13 +117,107 @@ namespace SrP_ClassroomInq
                     }
                     else
                     {
-                        i = 0; 
-
-                        if (!NotifyShowing && !DesireNotify)
+                        i = 0;
+                        
+                        if (DesirePrefs)
                         {
-                            timer.Enabled = false;
+                            if (!PrefsShowing && !DMPanelShowing)
+                            {
+                                PrefsClicked = true; //show prefs now      
+                                DesirePrefs = false;
+                            }
+                            else if (DMPanelShowing && !PrefsShowing)
+                            {
+                                DMclicked = true; //hide
+                                //leave desire prefs on..
+                            }
+                            else
+                            {
+                                DesirePrefs = false;
+                            }
+                            
                         }
-
+                        else if (DesireDM)
+                        {
+                            if (!DMPanelShowing && !PrefsShowing)
+                            {
+                                DMclicked = true; //show dm now
+                                DesireDM = false;
+                            }
+                            else if (PrefsShowing && !DMPanelShowing)
+                            {
+                                PrefsClicked = true; //hide this
+                                //leaves desire DM on...
+                            }
+                            else
+                            {
+                                DesireDM = false;
+                            }
+                        }
+                        else if (DesireFAQ)
+                        {
+                            if (!FAQShowing)
+                            {
+                                FAQClicked = true; //show FAQ now      
+                            }
+                            DesireFAQ = false;
+                        }
+                        else if (DesireAttendance)
+                        {
+                            if (!AttendanceShowing)
+                            {
+                                AttendanceClicked = true; //show Attendance Mode now      
+                            }
+                            DesireAttendance = false;
+                        }
+                        else if (DesireClassVote)
+                        {
+                            if (!ClassVoteShowing)
+                            {
+                                ClassVoteClicked = true; //show ClassVote Mode now      
+                            }
+                            DesireClassVote = false;
+                        }
+                        else if (DesireQuizMd)
+                        {
+                            if (!QuizModeShowing)
+                            {
+                                QuizModeClicked = true; //show Quiz Mode now      
+                            }
+                            DesireQuizMd = false;
+                        }
+                        else if (DesireQzMkr)
+                        {
+                            if (!QuizMakerShowing)
+                            {
+                                QuizMakerClicked = true; //show QuizMaker now      
+                            }
+                            DesireQzMkr = false;
+                        }
+                        else if (DesireStuMgmt)
+                        {
+                            if (!StuMgmtShowing)
+                            {
+                                StuMgmtClicked = true; //show Student Management now      
+                            }
+                            DesireStuMgmt = false;
+                        }
+                        else if (DesireConvView)
+                        {
+                            if (!ConvViewShowing)
+                            {
+                                ConvViewClicked = true; //show Conversation Viewer now      
+                            }
+                            DesireConvView = false;
+                        }
+                        else
+                        {
+                            if (!NotifyShowing && !DesireNotify)
+                            {
+                                timer.Enabled = false;
+                            }
+                        }
+                        aPanelIsMoving = false;
                         textbox1WASclicked = false;
                         textbox1WASclicked = false;
                         BrdcstShowing = false;
@@ -151,10 +258,105 @@ namespace SrP_ClassroomInq
                     pnlBrdCst.SetBounds(pnlBrdCst.Location.X, pnlBrdCst.Location.Y - 70,
                                          pnlBrdCst.Size.Width, pnlBrdCst.Size.Height);
 
-                    if (!NotifyShowing && !DesireNotify)
+                    if (DesirePrefs)
                     {
-                        timer.Enabled = false;
+                        if (!PrefsShowing && !DMPanelShowing)
+                        {
+                            PrefsClicked = true; //show prefs now      
+                            DesirePrefs = false;
+                        }
+                        else if (DMPanelShowing && !PrefsShowing)
+                        {
+                            DMclicked = true; //hide
+                            //leave desire prefs on..
+                        }
+                        else
+                        {
+                            DesirePrefs = false;
+                        }
+
                     }
+                    else if (DesireDM)
+                    {
+                        if (!DMPanelShowing && !PrefsShowing)
+                        {
+                            DMclicked = true; //show dm now
+                            DesireDM = false;
+                        }
+                        else if (PrefsShowing && !DMPanelShowing)
+                        {
+                            PrefsClicked = true; //hide this
+                            //leaves desire DM on...
+                        }
+                        else
+                        {
+                            DesireDM = false;
+                        }
+                    }
+                    else if (DesireFAQ)
+                    {
+                        if (!FAQShowing)
+                        {
+                            FAQClicked = true; //show FAQ now      
+                        }
+                        DesireFAQ = false;
+                    }
+                    else if (DesireAttendance)
+                    {
+                        if (!AttendanceShowing)
+                        {
+                            AttendanceClicked = true; //show Attendance Mode now      
+                        }
+                        DesireAttendance = false;
+                    }
+                    else if (DesireClassVote)
+                    {
+                        if (!ClassVoteShowing)
+                        {
+                            ClassVoteClicked = true; //show ClassVote Mode now      
+                        }
+                        DesireClassVote = false;
+                    }
+                    else if (DesireQuizMd)
+                    {
+                        if (!QuizModeShowing)
+                        {
+                            QuizModeClicked = true; //show Quiz Mode now      
+                        }
+                        DesireQuizMd = false;
+                    }
+                    else if (DesireQzMkr)
+                    {
+                        if (!QuizMakerShowing)
+                        {
+                            QuizMakerClicked = true; //show QuizMaker now      
+                        }
+                        DesireQzMkr = false;
+                    }
+                    else if (DesireStuMgmt)
+                    {
+                        if (!StuMgmtShowing)
+                        {
+                            StuMgmtClicked = true; //show Student Management now      
+                        }
+                        DesireStuMgmt = false;
+                    }
+                    else if (DesireConvView)
+                    {
+                        if (!ConvViewShowing)
+                        {
+                            ConvViewClicked = true; //show Conversation Viewer now      
+                        }
+                        DesireConvView = false;
+                    }
+                    else
+                    {
+                        if (!NotifyShowing && !DesireNotify)
+                        {
+                            timer.Enabled = false;
+                        }
+                    }
+                    aPanelIsMoving = false;
                     textbox1WASclicked = false;
                     textbox1WASclicked = false;
                     BrdcstShowing = false;
@@ -203,6 +405,10 @@ namespace SrP_ClassroomInq
                     {
                         if (k < 3) //use groupboxID..
                         {
+                            if (k == 0)
+                            {
+                                aPanelIsMoving = true;
+                            }
                             group_arr[lbl_ID].SetBounds(group_arr[lbl_ID].Location.X, group_arr[lbl_ID].Location.Y,
                                                         group_arr[lbl_ID].Size.Width, group_arr[lbl_ID].Size.Height + 2);
                             if (lbl_ID != 0)
@@ -236,7 +442,11 @@ namespace SrP_ClassroomInq
                         else
                         {
                             k = 0;
-                            timer.Enabled = false;
+                            if (!NotifyShowing && !DesireNotify)
+                            {
+                                timer.Enabled = false;
+                            }
+                            aPanelIsMoving = false;
                             grpbxRPL_WASclicked = false;
                             txtbx_reply_arr[lbl_ID].Focus(); //places cursor in question reply box on open
                         }
@@ -254,7 +464,11 @@ namespace SrP_ClassroomInq
                                 group_arr[i].Location = tmp;
                             }
                         }
-                        timer.Enabled = false;
+                        if (!NotifyShowing && !DesireNotify)
+                        {
+                            timer.Enabled = false;
+                        }
+                        aPanelIsMoving = false;
                         grpbxRPL_WASclicked = false;
                         txtbx_reply_arr[lbl_ID].Focus(); //places cursor in question reply box on open
                     }
@@ -274,6 +488,10 @@ namespace SrP_ClassroomInq
 
                         if (j < 3)
                         {
+                            if (j == 0)
+                            {
+                                aPanelIsMoving = true;
+                            }
                             group_arr[lbl_ID].SetBounds(group_arr[lbl_ID].Location.X, group_arr[lbl_ID].Location.Y,
                                                         group_arr[lbl_ID].Size.Width, group_arr[lbl_ID].Size.Height - 2);
                             if (lbl_ID != 0)
@@ -306,6 +524,7 @@ namespace SrP_ClassroomInq
                         {
                             j = 0;
                             btnCLS_WASclicked = false;
+                            aPanelIsMoving = false;
                             if (!DesireID)
                             {
                                 if (!NotifyShowing && !DesireNotify)
@@ -337,6 +556,7 @@ namespace SrP_ClassroomInq
                         }
                         j = 0;
                         btnCLS_WASclicked = false;
+                        aPanelIsMoving = false;
                         if (!DesireID)
                         {
                             if (!NotifyShowing && !DesireNotify)
@@ -366,6 +586,7 @@ namespace SrP_ClassroomInq
                     Point tmp = new Point(); // for dynamic moving of all controls below the clicked one
                     if (!chkbxLameMode.Checked)
                     {
+                        aPanelIsMoving = true;
                         group_arr[Del_ID].SetBounds(group_arr[Del_ID].Location.X, group_arr[Del_ID].Location.Y,
                                                     group_arr[Del_ID].Size.Width, group_arr[Del_ID].Size.Height - 5);
                         if (Del_ID != 0)
@@ -397,7 +618,11 @@ namespace SrP_ClassroomInq
                     x = 0;
                     DeleteQuestion = false;
                     Question_Deleted = true;
-                    timer.Enabled = false;
+                    aPanelIsMoving = false;
+                    if (!NotifyShowing && !DesireNotify)
+                    {
+                        timer.Enabled = false;
+                    }
                     group_arr[Del_ID].Hide(); //real deleting would mess up a lot of numbers in status arrays etc..
                     trayICON.BalloonTipTitle = "Undo Delete by";
                     trayICON.BalloonTipText = "Right click Feed (grey) & choose Undo Delete";
@@ -416,6 +641,7 @@ namespace SrP_ClassroomInq
                     Point tmp = new Point(); // for dynamic moving of all controls below the clicked one
                     if (!chkbxLameMode.Checked)
                     {
+                        aPanelIsMoving = true;
                         group_arr[Del_ID].SetBounds(group_arr[Del_ID].Location.X, group_arr[Del_ID].Location.Y,
                                                     group_arr[Del_ID].Size.Width, group_arr[Del_ID].Size.Height + 4);
                         if (Del_ID != 0)
@@ -459,8 +685,12 @@ namespace SrP_ClassroomInq
                 {
                     Question_Deleted = false;
                     Request_Undo = false;
+                    aPanelIsMoving = false;
                     x = 0;
-                    timer.Enabled = false;
+                    if (!NotifyShowing && !DesireNotify)
+                    {
+                        timer.Enabled = false;
+                    }
                 }
             }
             #endregion
@@ -471,6 +701,10 @@ namespace SrP_ClassroomInq
                 Point TEMP = new Point();
                 if (k < 3) //use groupboxID..
                 {
+                    if (k == 0)
+                    {
+                        aPanelIsMoving = true;
+                    }
                     for (int i = NumQuestions - 1; i >= 0; i--) // to achieve LIFO
                     {
                         TEMP.X = group_arr[i].Location.X;
@@ -495,6 +729,7 @@ namespace SrP_ClassroomInq
                 else
                 {
                     k = 0;
+                    aPanelIsMoving = false;
                     if (!NotifyShowing && !DesireNotify)
                     {
                         timer.Enabled = false;
@@ -513,6 +748,10 @@ namespace SrP_ClassroomInq
                 {
                     if (x < 10)
                     {
+                        if (x == 0)
+                        {
+                            aPanelIsMoving = true;
+                        }
                         DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X + 16, DirectMsgPanel.Location.Y,
                                                  DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height);
                         grpbxFeed.SetBounds(grpbxFeed.Location.X + 16, grpbxFeed.Location.Y,
@@ -540,8 +779,12 @@ namespace SrP_ClassroomInq
                         x = 0;
                         DMPanelShowing = true;
                         DMclicked = false;
+                        aPanelIsMoving = false;
                         DMtimesClicked = 1;
-                        timer.Enabled = false;
+                        if (!NotifyShowing && !DesireNotify)
+                        {
+                            timer.Enabled = false;
+                        }
                         DirectMsgPanel.Focus();
                         this.Text = " Classroom Inquisition  |  Direct Msg" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                     }
@@ -554,8 +797,12 @@ namespace SrP_ClassroomInq
                                         grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                     DMPanelShowing = true;
                     DMclicked = false;
+                    aPanelIsMoving = false;
                     DMtimesClicked = 1;
-                    timer.Enabled = false;
+                    if (!NotifyShowing && !DesireNotify)
+                    {
+                        timer.Enabled = false;
+                    }
                     DirectMsgPanel.Focus();
                     this.Text = " Classroom Inquisition  |  Direct Msg" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                 }
@@ -567,6 +814,10 @@ namespace SrP_ClassroomInq
                 {
                     if (x < 10)
                     {
+                        if (x == 0)
+                        {
+                            aPanelIsMoving = true;
+                        }
                         DirectMsgPanel.SetBounds(DirectMsgPanel.Location.X - 10, DirectMsgPanel.Location.Y,
                                                  DirectMsgPanel.Size.Width, DirectMsgPanel.Size.Height);
                         grpbxFeed.SetBounds(grpbxFeed.Location.X - 10, grpbxFeed.Location.Y,
@@ -594,6 +845,7 @@ namespace SrP_ClassroomInq
                         x = 0;
                         DMPanelShowing = false;
                         DMclicked = false;
+                        aPanelIsMoving = false;
                         DMtimesClicked = 0;
                         if (DesirePrefs)
                         {
@@ -621,6 +873,7 @@ namespace SrP_ClassroomInq
                                         grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                     DMPanelShowing = false;
                     DMclicked = false;
+                    aPanelIsMoving = false;
                     DMtimesClicked = 0;
                     if (DesirePrefs)
                     {
@@ -653,6 +906,10 @@ namespace SrP_ClassroomInq
                 {
                     if (x < 10)
                     {
+                        if (x == 0)
+                        {
+                            aPanelIsMoving = true;
+                        }
                         PanelPrefs.SetBounds(PanelPrefs.Location.X - 16, PanelPrefs.Location.Y,
                                              PanelPrefs.Size.Width, PanelPrefs.Size.Height);
                         grpbxFeed.SetBounds(grpbxFeed.Location.X - 16, grpbxFeed.Location.Y,
@@ -680,8 +937,12 @@ namespace SrP_ClassroomInq
                         x = 0;
                         PrefsShowing = true;
                         PrefsClicked = false;
+                        aPanelIsMoving = false;
                         PrefsTimesClicked = 1;
-                        timer.Enabled = false;
+                        if (!NotifyShowing && !DesireNotify)
+                        {
+                            timer.Enabled = false;
+                        }
                         PanelPrefs.Focus();
                         this.Text = " Classroom Inquisition  |  Prefs" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                     }
@@ -694,8 +955,12 @@ namespace SrP_ClassroomInq
                                         grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                     PrefsShowing = true;
                     PrefsClicked = false;
+                    aPanelIsMoving = false;
                     PrefsTimesClicked = 1;
-                    timer.Enabled = false;
+                    if (!NotifyShowing && !DesireNotify)
+                    {
+                        timer.Enabled = false;
+                    }
                     PanelPrefs.Focus();
                     this.Text = " Classroom Inquisition  |  Prefs" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                 }
@@ -707,6 +972,10 @@ namespace SrP_ClassroomInq
                 {
                     if (x < 10)
                     {
+                        if (x == 0)
+                        {
+                            aPanelIsMoving = true;
+                        }
                         PanelPrefs.SetBounds(PanelPrefs.Location.X + 10, PanelPrefs.Location.Y,
                                              PanelPrefs.Size.Width, PanelPrefs.Size.Height);
                         grpbxFeed.SetBounds(grpbxFeed.Location.X + 10, grpbxFeed.Location.Y,
@@ -735,6 +1004,7 @@ namespace SrP_ClassroomInq
                         PrefsShowing = false;
                         PrefsClicked = false;
                         PrefsTimesClicked = 0;
+                        aPanelIsMoving = false;
                         if (DesireDM)
                         {
                             if (!DMPanelShowing)
@@ -750,8 +1020,11 @@ namespace SrP_ClassroomInq
                         }
                         else
                         {
-                            timer.Enabled = false; //all done
-                            this.Text = " Classroom Inquisition  |  Home";
+                            if (!NotifyShowing && !DesireNotify)
+                            {
+                                timer.Enabled = false;//all done
+                            } 
+                            this.Text = " Classroom Inquisition  |  Home" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                         }
                     }
                 }
@@ -763,9 +1036,10 @@ namespace SrP_ClassroomInq
                                         grpbxFeed.Size.Width, grpbxFeed.Size.Height);
                     PrefsShowing = false;
                     PrefsClicked = false;
+                    aPanelIsMoving = false;
                     PrefsTimesClicked = 0;
                     //SavePrefs(); //when hiding the panel save the preferences
-                    this.Text = " Classroom Inquisition  |  Home";
+                    this.Text = " Classroom Inquisition  |  Home" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                     if (DesireDM)
                     {
                         if (!DMPanelShowing)
@@ -781,7 +1055,10 @@ namespace SrP_ClassroomInq
                     }
                     else
                     {
-                        timer.Enabled = false; //all done
+                        if (!NotifyShowing && !DesireNotify)
+                        {
+                            timer.Enabled = false;//all done
+                        } 
                     }
                 }
             }
@@ -800,6 +1077,7 @@ namespace SrP_ClassroomInq
                     {
                         if (x == 0)
                         {
+                            aPanelIsMoving = true;
                             PanelFAQ.BringToFront();
                             menuStrip1.BringToFront();
                         }
@@ -824,8 +1102,12 @@ namespace SrP_ClassroomInq
                         x = 0;
                         FAQShowing = true;
                         FAQClicked = false;
+                        aPanelIsMoving = false;
                         FAQTimesClicked = 1;
-                        timer.Enabled = false;
+                        if (!NotifyShowing && !DesireNotify)
+                        {
+                            timer.Enabled = false;
+                        }
                         PanelFAQ.Focus();
                         this.Text = " Classroom Inquisition  |  FAQ" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                     }
@@ -836,8 +1118,12 @@ namespace SrP_ClassroomInq
                                        PanelFAQ.Size.Width, PanelFAQ.Size.Height);
                     FAQShowing = true;
                     FAQClicked = false;
+                    aPanelIsMoving = false;
                     FAQTimesClicked = 1;
-                    timer.Enabled = false;
+                    if (!NotifyShowing && !DesireNotify)
+                    {
+                        timer.Enabled = false;
+                    }
                     PanelFAQ.Focus();
                     this.Text = " Classroom Inquisition  |  FAQ" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                 }
@@ -849,6 +1135,10 @@ namespace SrP_ClassroomInq
                 {
                     if (x < 10)
                     {
+                        if (x == 0)
+                        {
+                            aPanelIsMoving = true;
+                        }
                         PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y - 12,
                                            PanelFAQ.Size.Width, PanelFAQ.Size.Height);
                         x++;
@@ -870,6 +1160,7 @@ namespace SrP_ClassroomInq
                         x = 0;
                         FAQShowing = false;
                         FAQClicked = false;
+                        aPanelIsMoving = false;
                         FAQTimesClicked = 0;
                         if (DesireBrdcst)
                         {
@@ -907,7 +1198,10 @@ namespace SrP_ClassroomInq
                         }
                         else
                         {
-                            timer.Enabled = false; //all done
+                            if (!NotifyShowing && !DesireNotify)
+                            {
+                                timer.Enabled = false;//all done
+                            } 
                             if (StuMgmtShowing)
                                 this.Text = " Classroom Inquisition  |  Student Management" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                             else if (DMPanelShowing)
@@ -925,6 +1219,7 @@ namespace SrP_ClassroomInq
                                        PanelFAQ.Size.Width, PanelFAQ.Size.Height);
                     FAQShowing = false;
                     FAQClicked = false;
+                    aPanelIsMoving = false;
                     FAQTimesClicked = 0;
                     if (DesireBrdcst)
                     {
@@ -962,7 +1257,10 @@ namespace SrP_ClassroomInq
                     }
                     else
                     {
-                        timer.Enabled = false; //all done
+                        if (!NotifyShowing && !DesireNotify)
+                        {
+                            timer.Enabled = false; //all done
+                        } 
                         if (StuMgmtShowing)
                             this.Text = " Classroom Inquisition  |  Student Management" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                         else if (DMPanelShowing)
@@ -989,6 +1287,7 @@ namespace SrP_ClassroomInq
                     {
                         if (x == 0)
                         {
+                            aPanelIsMoving = true;
                             PanelStudents.BringToFront();
                         }
                         PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y - 25,
@@ -1012,8 +1311,12 @@ namespace SrP_ClassroomInq
                         x = 0;
                         StuMgmtShowing = true;
                         StuMgmtClicked = false;
+                        aPanelIsMoving = false;
                         StuMgmtTimesClicked = 1;
-                        timer.Enabled = false;
+                        if (!NotifyShowing && !DesireNotify)
+                        {
+                            timer.Enabled = false;
+                        }
                         PanelStudents.Focus();
                         this.Text = " Classroom Inquisition  |  Student Management" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                     }
@@ -1024,8 +1327,12 @@ namespace SrP_ClassroomInq
                                             PanelStudents.Size.Width, PanelStudents.Size.Height);
                     StuMgmtShowing = true;
                     StuMgmtClicked = false;
+                    aPanelIsMoving = false;
                     StuMgmtTimesClicked = 1;
-                    timer.Enabled = false;
+                    if (!NotifyShowing && !DesireNotify)
+                    {
+                        timer.Enabled = false;
+                    }
                     PanelStudents.Focus();
                     this.Text = " Classroom Inquisition  |  Student Management" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                 }
@@ -1037,6 +1344,10 @@ namespace SrP_ClassroomInq
                 {
                     if (x < 10)
                     {
+                        if (x == 0)
+                        {
+                            aPanelIsMoving = true;
+                        }
                         PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y + 12,
                                                 PanelStudents.Size.Width, PanelStudents.Size.Height);
                         x++;
@@ -1058,6 +1369,7 @@ namespace SrP_ClassroomInq
                         x = 0;
                         StuMgmtShowing = false;
                         StuMgmtClicked = false;
+                        aPanelIsMoving = false;
                         StuMgmtTimesClicked = 0;
                         if (DesirePrefs)
                         {
@@ -1069,7 +1381,10 @@ namespace SrP_ClassroomInq
                         }
                         else
                         {
-                            timer.Enabled = false; //all done
+                            if (!NotifyShowing && !DesireNotify)
+                            {
+                                timer.Enabled = false;
+                            }
                             if (PrefsShowing)
                                 this.Text = " Classroom Inquisition  |  Prefs" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                             else
@@ -1083,6 +1398,7 @@ namespace SrP_ClassroomInq
                                             PanelStudents.Size.Width, PanelStudents.Size.Height);
                     StuMgmtShowing = false;
                     StuMgmtClicked = false;
+                    aPanelIsMoving = false;
                     StuMgmtTimesClicked = 0;
                     if (DesirePrefs)
                     {
@@ -1094,7 +1410,10 @@ namespace SrP_ClassroomInq
                     }
                     else
                     {
-                        timer.Enabled = false; //all done
+                        if (!NotifyShowing && !DesireNotify)
+                        {
+                            timer.Enabled = false;
+                        }
                         if (PrefsShowing)
                             this.Text = " Classroom Inquisition  |  Prefs" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                         else
@@ -1114,6 +1433,7 @@ namespace SrP_ClassroomInq
                     {
                         if (x == 0)
                         {
+                            aPanelIsMoving = true;
                             PanelConvView.BringToFront();
                         }
                         PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y + 25,
@@ -1137,8 +1457,14 @@ namespace SrP_ClassroomInq
                         x = 0;
                         ConvViewShowing = true;
                         ConvViewClicked = false;
+                        aPanelIsMoving = false;
                         ConvViewTimesClicked = 1;
-                        timer.Enabled = false;
+
+                        if (!NotifyShowing && !DesireNotify)
+                        {
+                            timer.Enabled = false;
+                        }
+
                         PanelConvView.Focus();
                         this.Text = " Classroom Inquisition  |  Conversation Viewer" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                     }
@@ -1149,8 +1475,14 @@ namespace SrP_ClassroomInq
                                             PanelConvView.Size.Width, PanelConvView.Size.Height);
                     ConvViewShowing = true;
                     ConvViewClicked = false;
+                    aPanelIsMoving = false;
                     ConvViewTimesClicked = 1;
-                    timer.Enabled = false;
+
+                    if (!NotifyShowing && !DesireNotify)
+                    {
+                        timer.Enabled = false;
+                    }
+
                     PanelConvView.Focus();
                     this.Text = " Classroom Inquisition  |  Conversation Viewer" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                 }
@@ -1162,6 +1494,10 @@ namespace SrP_ClassroomInq
                 {
                     if (x < 10)
                     {
+                        if (x == 0)
+                        {
+                            aPanelIsMoving = true;
+                        }
                         PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y - 13,
                                                 PanelConvView.Size.Width, PanelConvView.Size.Height);
                         x++;
@@ -1183,8 +1519,15 @@ namespace SrP_ClassroomInq
                         x = 0;
                         ConvViewShowing = false;
                         ConvViewClicked = false;
-                        ConvViewTimesClicked = 0;
-                        timer.Enabled = false; //all done
+                        aPanelIsMoving = false;
+                        menuStrip1.BringToFront();
+                        ConvViewTimesClicked = 0; 
+
+                        if (!NotifyShowing && !DesireNotify)
+                        {
+                            timer.Enabled = false;
+                        }
+
                         if (StuMgmtShowing)
                             this.Text = " Classroom Inquisition  |  Student Management" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                         else if (PrefsShowing)
@@ -1199,8 +1542,15 @@ namespace SrP_ClassroomInq
                                             PanelConvView.Size.Width, PanelConvView.Size.Height);
                     ConvViewShowing = false;
                     ConvViewClicked = false;
+                    aPanelIsMoving = false;
                     ConvViewTimesClicked = 0;
-                    timer.Enabled = false; //all done
+                    menuStrip1.BringToFront();
+
+                    if (!NotifyShowing && !DesireNotify)
+                    {
+                        timer.Enabled = false;
+                    }
+
                     if (StuMgmtShowing)
                         this.Text = " Classroom Inquisition  |  Student Management" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                     else if (PrefsShowing)
@@ -1223,6 +1573,7 @@ namespace SrP_ClassroomInq
                     {
                         if (x == 0)
                         {
+                            aPanelIsMoving = true;
                             PanelQuizMaker.BringToFront();
                         }
                         PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X - 20, PanelQuizMaker.Location.Y,
@@ -1246,8 +1597,14 @@ namespace SrP_ClassroomInq
                         x = 0;
                         QuizMakerShowing = true;
                         QuizMakerClicked = false;
+                        aPanelIsMoving = false;
                         QuizMakerTimesClicked = 1;
-                        timer.Enabled = false;
+
+                        if (!NotifyShowing && !DesireNotify)
+                        {
+                            timer.Enabled = false;
+                        }
+
                         PanelQuizMaker.Focus();
                         this.Text = " Classroom Inquisition  |  Quiz Maker" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                     }
@@ -1258,8 +1615,14 @@ namespace SrP_ClassroomInq
                                              PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
                     QuizMakerShowing = true;
                     QuizMakerClicked = false;
+                    aPanelIsMoving = false;
                     QuizMakerTimesClicked = 1;
-                    timer.Enabled = false;
+                    
+                    if (!NotifyShowing && !DesireNotify)
+                    {
+                        timer.Enabled = false;
+                    }
+
                     PanelQuizMaker.Focus();
                     this.Text = " Classroom Inquisition  |  Quiz Maker" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                 }
@@ -1271,6 +1634,10 @@ namespace SrP_ClassroomInq
                 {
                     if (x < 10)
                     {
+                        if (x == 0)
+                        {
+                            aPanelIsMoving = true;
+                        }
                         PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X + 8, PanelQuizMaker.Location.Y,
                                                  PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
                         x++;
@@ -1292,8 +1659,14 @@ namespace SrP_ClassroomInq
                         x = 0;
                         QuizMakerShowing = false;
                         QuizMakerClicked = false;
+                        aPanelIsMoving = false;
                         QuizMakerTimesClicked = 0;
-                        timer.Enabled = false; //all done
+
+                        if (!NotifyShowing && !DesireNotify)
+                        {
+                            timer.Enabled = false;
+                        }
+
                         this.Text = " Classroom Inquisition  |  Home" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                     }
                 }
@@ -1303,9 +1676,14 @@ namespace SrP_ClassroomInq
                                              PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
                     QuizMakerShowing = false;
                     QuizMakerClicked = false;
+                    aPanelIsMoving = false;
                     QuizMakerTimesClicked = 0;
                     this.Text = " Classroom Inquisition  |  Home" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
-                    timer.Enabled = false;
+                    
+                    if (!NotifyShowing && !DesireNotify)
+                    {
+                        timer.Enabled = false;
+                    }
                 }
             }
 
@@ -1322,6 +1700,7 @@ namespace SrP_ClassroomInq
                     {
                         if (x == 0)
                         {
+                            aPanelIsMoving = true;
                             PanelQuizMode.BringToFront();
                         }
                         PanelQuizMode.SetBounds(PanelQuizMode.Location.X + 20, PanelQuizMode.Location.Y,
@@ -1345,8 +1724,14 @@ namespace SrP_ClassroomInq
                         x = 0;
                         QuizModeShowing = true;
                         QuizModeClicked = false;
+                        aPanelIsMoving = false;
                         QuizModeTimesClicked = 1;
-                        timer.Enabled = false;
+
+                        if (!NotifyShowing && !DesireNotify)
+                        {
+                            timer.Enabled = false;
+                        }
+
                         PanelQuizMode.Focus();
                         this.Text = " Classroom Inquisition  |  Quiz Mode" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                     }
@@ -1357,8 +1742,14 @@ namespace SrP_ClassroomInq
                                             PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
                     QuizModeShowing = true;
                     QuizModeClicked = false;
+                    aPanelIsMoving = false;
                     QuizModeTimesClicked = 1;
-                    timer.Enabled = false;
+
+                    if (!NotifyShowing && !DesireNotify)
+                    {
+                        timer.Enabled = false;
+                    }
+
                     PanelQuizMode.Focus();
                     this.Text = " Classroom Inquisition  |  Quiz Mode" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                 }
@@ -1370,6 +1761,10 @@ namespace SrP_ClassroomInq
                 {
                     if (x < 10)
                     {
+                        if (x == 0)
+                        {
+                            aPanelIsMoving = true;
+                        }
                         PanelQuizMode.SetBounds(PanelQuizMode.Location.X - 8, PanelQuizMode.Location.Y,
                                                 PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
                         x++;
@@ -1391,8 +1786,14 @@ namespace SrP_ClassroomInq
                         x = 0;
                         QuizModeShowing = false;
                         QuizModeClicked = false;
+                        aPanelIsMoving = false;
                         QuizModeTimesClicked = 0;
-                        timer.Enabled = false; //all done
+                        
+                        if (!NotifyShowing && !DesireNotify)
+                        {
+                            timer.Enabled = false;
+                        }
+
                         this.Text = " Classroom Inquisition  |  Home" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                     }
                 }
@@ -1402,9 +1803,14 @@ namespace SrP_ClassroomInq
                                             PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
                     QuizModeShowing = false;
                     QuizModeClicked = false;
+                    aPanelIsMoving = false;
                     QuizModeTimesClicked = 0;
                     this.Text = " Classroom Inquisition  |  Home" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
-                    timer.Enabled = false;
+
+                    if (!NotifyShowing && !DesireNotify)
+                    {
+                        timer.Enabled = false;
+                    }
                 }
             }
 
@@ -1421,6 +1827,7 @@ namespace SrP_ClassroomInq
                     {
                         if (x == 0)
                         {
+                            aPanelIsMoving = true;
                             PanelAttendance.Show();
                             PanelAttendance.SetBounds(190, PanelAttendance.Location.Y - 5,
                                                       PanelAttendance.Size.Width + 4, PanelAttendance.Size.Height + 2);
@@ -1446,6 +1853,7 @@ namespace SrP_ClassroomInq
                         x = 0;
                         AttendanceShowing = true;
                         AttendanceClicked = false;
+                        aPanelIsMoving = false;
                         AttendanceTimesClicked = 1;
                         if (!NotifyShowing && !DesireNotify)
                         {
@@ -1461,6 +1869,7 @@ namespace SrP_ClassroomInq
                     PanelAttendance.Show();
                     AttendanceShowing = true;
                     AttendanceClicked = false;
+                    aPanelIsMoving = false;
                     AttendanceTimesClicked = 1;
                     if (!NotifyShowing && !DesireNotify)
                     {
@@ -1477,6 +1886,10 @@ namespace SrP_ClassroomInq
                 {
                     if (x < 10)
                     {
+                        if(x==0)
+                        {
+                            aPanelIsMoving = true;
+                        }
                         PanelAttendance.SetBounds(PanelAttendance.Location.X, PanelAttendance.Location.Y + 16,
                                                   PanelAttendance.Size.Width, PanelAttendance.Size.Height - 32);
                         x++;
@@ -1503,9 +1916,15 @@ namespace SrP_ClassroomInq
                         x = 0;
                         AttendanceShowing = false;
                         AttendanceClicked = false;
+                        aPanelIsMoving = false;
                         AttendanceTimesClicked = 0;
                         PanelAttendance.Hide();
-                        timer.Enabled = false; //all done
+
+                        if (!NotifyShowing && !DesireNotify)
+                        {
+                            timer.Enabled = false;
+                        }
+
                         if (StuMgmtShowing)
                             this.Text = " Classroom Inquisition  |  Student Management" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                         else if (PrefsShowing)
@@ -1520,8 +1939,14 @@ namespace SrP_ClassroomInq
                     PanelAttendance.Hide();
                     AttendanceShowing = false;
                     AttendanceClicked = false;
+                    aPanelIsMoving = false;
                     AttendanceTimesClicked = 0;
-                    timer.Enabled = false; //all done
+                    
+                    if (!NotifyShowing && !DesireNotify)
+                    {
+                        timer.Enabled = false;
+                    }
+
                     if (StuMgmtShowing)
                         this.Text = " Classroom Inquisition  |  Student Management" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                     else if (PrefsShowing)
@@ -1543,8 +1968,11 @@ namespace SrP_ClassroomInq
                     {
                         if (x == 0)
                         {
-                            PanelClassVote.Show();
+                            aPanelIsMoving = true;
                             PanelClassVote.BringToFront();
+                            PanelNotify.BringToFront();
+                            PanelClassVote.Show();                           
+
                             PanelClassVote.SetBounds(190, PanelClassVote.Location.Y - 5,
                                                     PanelClassVote.Size.Width + 4, PanelClassVote.Size.Height+2);
                         }
@@ -1569,6 +1997,7 @@ namespace SrP_ClassroomInq
                         x = 0;
                         ClassVoteShowing = true;
                         ClassVoteClicked = false;
+                        aPanelIsMoving = false;
                         ClassVoteTimesClicked = 1;
                         if (!NotifyShowing && !DesireNotify)
                         {
@@ -1593,6 +2022,7 @@ namespace SrP_ClassroomInq
                     PanelClassVote.Show();
                     ClassVoteShowing = true;
                     ClassVoteClicked = false;
+                    aPanelIsMoving = false;
                     ClassVoteTimesClicked = 1;
                     if (!NotifyShowing && !DesireNotify)
                     {
@@ -1620,6 +2050,7 @@ namespace SrP_ClassroomInq
                     {
                         if (x == 0)
                         {
+                            aPanelIsMoving = true;
                             pictureBox8.Hide();
                             lblCVLeft.Hide();
                             lblCVRight.Hide();
@@ -1656,9 +2087,15 @@ namespace SrP_ClassroomInq
                         x = 0;
                         ClassVoteShowing = false;
                         ClassVoteClicked = false;
+                        aPanelIsMoving = false;
                         ClassVoteTimesClicked = 0;
                         PanelClassVote.Hide();
-                        timer.Enabled = false; //all done
+
+                        if (!NotifyShowing && !DesireNotify)
+                        {
+                            timer.Enabled = false;
+                        }
+
                         if (StuMgmtShowing)
                             this.Text = " Classroom Inquisition  |  Student Management" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                         else if (PrefsShowing)
@@ -1682,8 +2119,14 @@ namespace SrP_ClassroomInq
                     PanelClassVote.Hide();
                     ClassVoteShowing = false;
                     ClassVoteClicked = false;
+                    aPanelIsMoving = false;
                     ClassVoteTimesClicked = 0;
-                    timer.Enabled = false; //all done
+
+                    if (!NotifyShowing && !DesireNotify)
+                    {
+                        timer.Enabled = false;
+                    }
+
                     if (StuMgmtShowing)
                         this.Text = " Classroom Inquisition  |  Student Management" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                     else if (PrefsShowing)
@@ -1750,7 +2193,10 @@ namespace SrP_ClassroomInq
                     else
                     {
                         notif_I = 0;
-                        timer.Enabled = false;
+                        if (!aPanelIsMoving)
+                        {
+                            timer.Enabled = false;
+                        }
                         DesireNotify = false;
                         NotifyShowing = false;
                     }
@@ -1766,7 +2212,10 @@ namespace SrP_ClassroomInq
                         PanelNotify.SetBounds(PanelNotify.Location.X, PanelNotify.Location.Y + 35,
                                              PanelNotify.Size.Width, PanelNotify.Size.Height);
                     }
-                    timer.Enabled = false;
+                    if (!aPanelIsMoving)
+                    {
+                        timer.Enabled = false;
+                    }
                     DesireNotify = false;
                     NotifyShowing = false;
                 }

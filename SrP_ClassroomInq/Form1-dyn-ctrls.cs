@@ -94,11 +94,19 @@ namespace SrP_ClassroomInq
         byte PrefsTimesClicked = 0;
         byte FAQTimesClicked = 0;
         byte StuMgmtTimesClicked = 0;
+        bool aPanelIsMoving = new bool();
         bool DesireNotify = new bool();
         bool NotifyShowing = new bool();
         bool DesirePrefs = new bool();
         bool DesireDM = new bool();
         bool DesireBrdcst = new bool();
+        bool DesireFAQ = new bool();
+        bool DesireQzMkr = new bool();
+        bool DesireQuizMd = new bool();
+        bool DesireStuMgmt = new bool();
+        bool DesireAttendance = new bool();
+        bool DesireClassVote = new bool();
+        bool DesireConvView = new bool();
         bool FAQClicked = new bool();
         bool FAQShowing = new bool();
         bool StuMgmtClicked = new bool();
@@ -815,23 +823,28 @@ namespace SrP_ClassroomInq
                 timer.Enabled = true;
                 PanelPrefs.Focus(); //for use of esc key
             }
-            else if ((FAQShowing == false) && (DMPanelShowing == false))
+            else if ((FAQShowing == false) && (DMPanelShowing == false) && (!BrdcstShowing))
             {
                 PrefsClicked = true;
                 timer.Enabled = true;
             }
-            else if ((FAQShowing ==true) && (DMPanelShowing == false))
+            else if ((FAQShowing == true) && (DMPanelShowing == false) && (!BrdcstShowing))
             {
                 DesirePrefs = true;//show me after hiding FAQ
                 FAQClicked = true; //hide
                 timer.Enabled = true;
             }
-            else if ((FAQShowing == false) && (DMPanelShowing == true))
+            else if ((FAQShowing == false) && (DMPanelShowing == true) && (!BrdcstShowing))
             {
                 DesirePrefs = true;//show me after hiding DM
                 DMclicked = true; //hide
                 timer.Enabled = true;
-            } 
+            }
+            else if ((BrdcstShowing))
+            {
+                DesirePrefs = true;
+                broadcastToolStripMenuItem_Click(sender, e);
+            }
         }
         
         /*This method fills the serial port combo box and auto selects a port if there's only one*/
@@ -1050,24 +1063,29 @@ namespace SrP_ClassroomInq
         /*This opens the direct message panel*/
         private void directMessageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((StuMgmtShowing == true) && (PrefsShowing == true))
+            if ((StuMgmtShowing == true) && (PrefsShowing == true) && (!BrdcstShowing))
             {
                 DesireDM = true; //show after hiding stumgmt
                 StuMgmtClicked = true; //hide
                 DesirePrefs = true; //tells stumgmt to hide prefs
                 timer.Enabled = true;
             }
-            else if ((FAQShowing == true) && (PrefsShowing == false))
+            else if ((FAQShowing == true) && (PrefsShowing == false) && (!BrdcstShowing))
             {
                 DesireDM = true; //show me after hiding FAQ
                 FAQClicked = true; //hide me
                 timer.Enabled = true;
             }
-            else if ((FAQShowing == false) && (PrefsShowing == true))
+            else if ((FAQShowing == false) && (PrefsShowing == true) && (!BrdcstShowing))
             {
                 DesireDM = true; //show me after hiding Prefs
                 PrefsClicked = true; //hide me
                 timer.Enabled = true;
+            }
+            else if ((BrdcstShowing))
+            {
+                DesireDM = true;
+                broadcastToolStripMenuItem_Click(sender, e);
             }
             else
             {
@@ -1087,8 +1105,9 @@ namespace SrP_ClassroomInq
         private void broadcastToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //pnlBrdCst.BringToFront();
-            if (StateMachine == "Normal")
+            if ((StateMachine == "Normal") && !FAQShowing && !StuMgmtShowing && !ConvViewShowing && !QuizMakerShowing)
             {
+                //only shows broadcast if at DM, Home, or prefs panel
                 timer.Enabled = true;
                 textbox1WASclicked = true;
                 textBox1.Clear();
@@ -1167,9 +1186,17 @@ namespace SrP_ClassroomInq
         /*Opens the FAQ Panel, button in the Help menu*/
         private void generalFAQToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FAQClicked = true;
-            timer.Enabled = true;
-            PanelFAQ.Focus();
+            if (BrdcstShowing)
+            {
+                DesireFAQ = true;
+                broadcastToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                FAQClicked = true;
+                timer.Enabled = true;
+                PanelFAQ.Focus();
+            }
         }
         
         /*This allows the emailing of the developer*/
@@ -1231,8 +1258,18 @@ namespace SrP_ClassroomInq
                 }
 
             }
-            StuMgmtClicked = true;
-            timer.Enabled = true;
+
+            if (BrdcstShowing)
+            {
+                DesireStuMgmt = true;
+                broadcastToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                StuMgmtClicked = true;
+                timer.Enabled = true;
+            }
+            
         }
         
         /*This closes the Student Management Center*/
@@ -1691,8 +1728,18 @@ namespace SrP_ClassroomInq
                 {
                     MessageBox.Show("This is embarassing..there were Errors..." + Environment.NewLine + E);
                 }
-                ConvViewClicked = true;
-                timer.Enabled = true;
+
+                if (BrdcstShowing)
+                {
+                    DesireConvView = true;
+                    broadcastToolStripMenuItem_Click(sender, e);
+                }
+                else
+                {
+                    ConvViewClicked = true;
+                    timer.Enabled = true;
+                }
+                
             }
         }
         
@@ -1928,36 +1975,37 @@ namespace SrP_ClassroomInq
            if (cntxtMenu.SourceControl == lbl_arr[new_lblID]) //if a question label is context clicked
            {
                cntxtMenu.MenuItems.Add(muItmName);//add the toggle name
+               cntxtMenu.MenuItems.Add("-");
                cntxtMenu.MenuItems.Add(muItmDelete); //add context menu for delete
            }
            else if (cntxtMenu.SourceControl == group_arr[new_lblID])
            {
                cntxtMenu.MenuItems.Add(muItmName);//add the toggle name
+               cntxtMenu.MenuItems.Add("-");
                cntxtMenu.MenuItems.Add(muItmDelete); //add context menu for delete
            }
            else if (cntxtMenu.SourceControl == grpbxFeed)
            {
+               if (Question_Deleted)
+               {
+                   cntxtMenu.MenuItems.Add(muItmUndo);
+                   cntxtMenu.MenuItems.Add("-");
+               }                   
+               cntxtMenu.MenuItems.Add(muItmBrdCst);
+               cntxtMenu.MenuItems.Add(muItmDM);
+               cntxtMenu.MenuItems.Add("-");
+               cntxtMenu.MenuItems.Add(muItmFAQ);
+               cntxtMenu.MenuItems.Add(muItmPrefs);
+               cntxtMenu.MenuItems.Add("-");
+               cntxtMenu.MenuItems.Add(muItmQuiz);
+               cntxtMenu.MenuItems.Add(muItmAttendance);
+               cntxtMenu.MenuItems.Add(muItmClassVote);
                if (ModifierKeys == System.Windows.Forms.Keys.Shift)
                {
+                   cntxtMenu.MenuItems.Add("-");
                    cntxtMenu.MenuItems.Add(muItmQuit); //hidden quit option ;)
                }
-               else
-               {
-                   if (Question_Deleted)
-                   {
-                       cntxtMenu.MenuItems.Add(muItmUndo);
-                       cntxtMenu.MenuItems.Add("-");
-                   }                   
-                   cntxtMenu.MenuItems.Add(muItmBrdCst);
-                   cntxtMenu.MenuItems.Add(muItmDM);
-                   cntxtMenu.MenuItems.Add("-");
-                   cntxtMenu.MenuItems.Add(muItmFAQ);
-                   cntxtMenu.MenuItems.Add(muItmPrefs);
-                   cntxtMenu.MenuItems.Add("-");
-                   cntxtMenu.MenuItems.Add(muItmQuiz);
-                   cntxtMenu.MenuItems.Add(muItmAttendance);
-                   cntxtMenu.MenuItems.Add(muItmClassVote);
-               }
+               
            }
            else if (cntxtMenu.SourceControl == btnQMDel)
            {
@@ -2010,22 +2058,19 @@ namespace SrP_ClassroomInq
         /*This method allows for the showing of PanelPrefs from the home context menu*/
         private void muItmPrefs_Click(object sender, EventArgs e)
         {
-            PrefsClicked = true;
-            timer.Enabled = true;
+            PrefsToolStripMenuItem_Click(sender, e);
         }
         
         /*This method allows for the showing of PanelDM from the home context menu*/
         private void muItmDM_Click(object sender, EventArgs e)
         {
-            DMclicked = true;
-            timer.Enabled = true;
+            directMessageToolStripMenuItem_Click(sender, e);
         }
         
         /*This method allows for the showing of PanelFAQ from the home context menu*/
         private void muItmFAQ_Click(object sender, EventArgs e)
         {
-            FAQClicked = true;
-            timer.Enabled = true;
+            generalFAQToolStripMenuItem_Click(sender, e);
         }
         
         /*This method allows for a secret quit option availble only to those who know where tis*/
@@ -2169,8 +2214,18 @@ namespace SrP_ClassroomInq
             {
                 MessageBox.Show("This is embarassing..there were Errors..." + Environment.NewLine + E);
             }
-            QuizMakerClicked = true;
-            timer.Enabled = true;
+
+            if (BrdcstShowing)
+            {
+                DesireQzMkr = true;
+                broadcastToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                QuizMakerClicked = true;
+                timer.Enabled = true;
+            }
+            
         }
 
         /*This method closes the quiz maker (via animation)*/
@@ -2481,8 +2536,17 @@ namespace SrP_ClassroomInq
             attedanceToolStripMenuItem.Checked = false;
             StateMachine = "Quiz"; //program state
 
-            QuizModeClicked = true;
-            timer.Enabled = true;
+            if (BrdcstShowing)
+            {
+                DesireQuizMd = true;
+                broadcastToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                QuizModeClicked = true;
+                timer.Enabled = true;
+            }
+            
         }
 
         /*This method allows for the recording of questions and answers for the quiz*/
@@ -2520,11 +2584,21 @@ namespace SrP_ClassroomInq
             classVoteToolStripMenuItem.Checked = false;
             quizToolStripMenuItem.Checked = false;
 
+            if (BrdcstShowing)
+            {
+                DesireAttendance = true;
+                broadcastToolStripMenuItem_Click(sender, e); //must call before state change
+            }
+            else
+            {
+                AttendanceClicked = true;
+                timer.Enabled = true;
+            }
+
             StateMachine = "Attendance";
             PanelAttendance.BringToFront();
             SendMsg("Reply if you're here..", brdcst_addr); //let's the students know to check-in
-            AttendanceClicked = true;
-            timer.Enabled = true;
+            
         }
 
         /*Closes the attendance mode*/
@@ -2563,9 +2637,18 @@ namespace SrP_ClassroomInq
 
             SendMsg("Vote for option 1 or 2, please!",brdcst_addr);
 
+            if (BrdcstShowing)
+            {
+                DesireClassVote = true;
+                broadcastToolStripMenuItem_Click(sender, e);
+            }
+            else
+            {
+                ClassVoteClicked = true;
+                timer.Enabled = true;
+            }
+
             StateMachine = "ClassVote";
-            ClassVoteClicked = true;
-            timer.Enabled = true;
         }
 
         /*Allows opening of Attendance mode from context menu at home screen*/
@@ -2671,6 +2754,7 @@ namespace SrP_ClassroomInq
             timer_Tick(sender, e);
         }
 
+        /*This handles the votes of the kiddies*/
         private void ClassVoteHandler(string vote, int student)
         {
             int tmp = 0;
@@ -2749,6 +2833,7 @@ namespace SrP_ClassroomInq
             }
         }
 
+        /*This allows for the reset of voting so that there may be more than one per app run*/
         private void btnCVReset_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < classSize; i++)
