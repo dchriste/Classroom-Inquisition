@@ -60,6 +60,7 @@ namespace SrP_ClassroomInq
         bool[] Q_Replied = new bool[classSize]; //records if the question has been replied to
         bool[] Q_NameShowing = new bool[classSize];
         bool[] StudentPresent = new bool[classSize]; //for attendance mode
+        bool[] StudentVoted = new bool[classSize];
         byte PresentStuNum = 250;
         string[] Q_sender = new string[classSize]; // records the addr of the sender of each question
         string brdcst_addr = "\x01";
@@ -379,7 +380,7 @@ namespace SrP_ClassroomInq
             char tmp=' ';
             char tmp_response=' ';
             strARRAY = tmpString.Split('\b');
-            if (RAW_DATA.Length > 5)//contains at least stx,addr,msg,etx,LF
+            if (RAW_DATA.Length >= 4)//contains at least stx,addr,msg,etx,LF
             {
                 foreach (string str in strARRAY)
                 {
@@ -406,6 +407,7 @@ namespace SrP_ClassroomInq
                 {
                     switch(StateMachine){
                         
+                        case("ClassVote"):
                         case("Attendance"):
                             finalString = finalString.TrimStart(tmp); //trim off the address
                             for (int i = 0; i < Students_ID.Length; i++)
@@ -1018,6 +1020,7 @@ namespace SrP_ClassroomInq
 
                             case("ClassVote"):
                                 //in class vote mode
+                                ClassVoteHandler(tmp_str, PresentStuNum); 
                                 break;
 
                             case("Normal"): //normal is the default
@@ -2558,6 +2561,8 @@ namespace SrP_ClassroomInq
             classVoteToolStripMenuItem.Checked = true;
             quizToolStripMenuItem.Checked = false;
 
+            SendMsg("Vote for option 1 or 2, please!",brdcst_addr);
+
             StateMachine = "ClassVote";
             ClassVoteClicked = true;
             timer.Enabled = true;
@@ -2666,5 +2671,103 @@ namespace SrP_ClassroomInq
             timer_Tick(sender, e);
         }
 
+        private void ClassVoteHandler(string vote, int student)
+        {
+            int tmp = 0;
+            int numLeft = Convert.ToInt16(lblCVLeft.Text);
+            int numRight = Convert.ToInt16(lblCVRight.Text);
+            decimal percentMajority = 0;
+
+            if (StudentVoted[student] == false)
+            {
+                if (int.TryParse(vote, out tmp))
+                {
+                    if (tmp > 0 && tmp < 3)
+                    {
+                        StudentVoted[student] = true; //prevents double voting!
+
+                        if (tmp == 1)
+                        {
+                            numLeft++;
+                        }
+                        else if (tmp == 2)
+                        {
+                            numRight++;
+                        }
+
+                        if (numLeft != numRight)
+                        {
+                            if (numLeft > numRight)
+                            {
+                                lblCVLeft.Font = new Font(lblCVLeft.Font, FontStyle.Bold);
+                                lblCVLeft.Font = new Font(lblCVLeft.Font, FontStyle.Underline);
+
+                                lblCVRight.Font = new Font(lblCVRight.Font, FontStyle.Regular);
+
+                                lblCVLeft.Text = numLeft.ToString();//update number
+
+                                percentMajority = ((decimal)numLeft / (numLeft + numRight));
+                            }
+                            else
+                            {
+                                lblCVRight.Font = new Font(lblCVRight.Font, FontStyle.Bold);
+                                lblCVRight.Font = new Font(lblCVRight.Font, FontStyle.Underline);
+
+                                lblCVLeft.Font = new Font(lblCVLeft.Font, FontStyle.Regular);
+
+                                lblCVRight.Text = numRight.ToString();//update number
+
+                                percentMajority = ((decimal)numRight / (numLeft + numRight));
+                            }
+
+                            txtbxCVStats.Text = "Option #" + (numLeft > numRight ? "1" : "2") + " is winning with " + percentMajority.ToString("P") + " of the vote!";
+                        }
+                        else
+                        {
+                            lblCVRight.Font = new Font(lblCVRight.Font, FontStyle.Italic);
+                            lblCVLeft.Font = new Font(lblCVLeft.Font, FontStyle.Italic);
+
+                            lblCVLeft.Text = numLeft.ToString();//update number
+                            lblCVRight.Text = numRight.ToString();//update number
+
+                            txtbxCVStats.Text = "After " + (numLeft + numRight).ToString() + " votes, we're all tied up!";
+                        }
+                    }
+                    else
+                    {
+                        //invalid numerical vote
+                    }
+                }
+                else
+                {
+                    //invalid non-numerical vote
+                }
+            }
+            else
+            {
+                //student has already voted, we won't count this!
+            }
+        }
+
+        private void btnCVReset_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < classSize; i++)
+            {
+                StudentVoted[i] = false; 
+            }
+
+            lblCVLeft.Text = "0";
+            lblCVRight.Text = "0";
+
+            lblCVRight.Font = new Font(lblCVRight.Font, FontStyle.Regular);
+            lblCVLeft.Font = new Font(lblCVLeft.Font, FontStyle.Regular);
+
+            txtbxCVStats.Text = "...Stats of Vote...";
+
+            //let'em know it's done..
+            lblNotify.Text = "Class Vote reset!";
+            DesireNotify = true;
+            timer.Enabled = true;
+        }
    } //end of partial class
 } //end of namespace    

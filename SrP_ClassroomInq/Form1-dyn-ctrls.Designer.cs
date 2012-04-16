@@ -170,6 +170,13 @@
             this.btnExitAttendance = new System.Windows.Forms.Button();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.PanelClassVote = new System.Windows.Forms.Panel();
+            this.btnCVReset = new System.Windows.Forms.Button();
+            this.txtbxCVStats = new System.Windows.Forms.TextBox();
+            this.lblOption2 = new System.Windows.Forms.Label();
+            this.lblOption1 = new System.Windows.Forms.Label();
+            this.lblCVPipe = new System.Windows.Forms.Label();
+            this.lblCVRight = new System.Windows.Forms.Label();
+            this.lblCVLeft = new System.Windows.Forms.Label();
             this.btnExitClassVote = new System.Windows.Forms.Button();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.colorDlg = new System.Windows.Forms.ColorDialog();
@@ -1050,16 +1057,16 @@
             this.PanelFAQ.Controls.Add(this.btnFAQcls);
             this.PanelFAQ.Controls.Add(this.pictureBox2);
             this.PanelFAQ.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.PanelFAQ.Location = new System.Drawing.Point(12, -485);
+            this.PanelFAQ.Location = new System.Drawing.Point(12, -495);
             this.PanelFAQ.Name = "PanelFAQ";
-            this.PanelFAQ.Size = new System.Drawing.Size(361, 499);
+            this.PanelFAQ.Size = new System.Drawing.Size(361, 522);
             this.PanelFAQ.TabIndex = 7;
             // 
             // lnklblIssues
             // 
             this.lnklblIssues.AutoSize = true;
             this.lnklblIssues.LinkColor = System.Drawing.Color.Gold;
-            this.lnklblIssues.Location = new System.Drawing.Point(125, 467);
+            this.lnklblIssues.Location = new System.Drawing.Point(125, 486);
             this.lnklblIssues.Name = "lnklblIssues";
             this.lnklblIssues.Size = new System.Drawing.Size(85, 13);
             this.lnklblIssues.TabIndex = 5;
@@ -1071,7 +1078,7 @@
             // lblFAQ
             // 
             this.lblFAQ.AutoSize = true;
-            this.lblFAQ.Location = new System.Drawing.Point(8, 467);
+            this.lblFAQ.Location = new System.Drawing.Point(8, 486);
             this.lblFAQ.Name = "lblFAQ";
             this.lblFAQ.Size = new System.Drawing.Size(111, 13);
             this.lblFAQ.TabIndex = 4;
@@ -1088,14 +1095,14 @@
             this.txtbxFAQ.Name = "txtbxFAQ";
             this.txtbxFAQ.ReadOnly = true;
             this.txtbxFAQ.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtbxFAQ.Size = new System.Drawing.Size(332, 372);
+            this.txtbxFAQ.Size = new System.Drawing.Size(332, 392);
             this.txtbxFAQ.TabIndex = 2;
             this.txtbxFAQ.Text = resources.GetString("txtbxFAQ.Text");
             // 
             // btnFAQcls
             // 
             this.btnFAQcls.BackColor = System.Drawing.Color.Black;
-            this.btnFAQcls.Location = new System.Drawing.Point(276, 462);
+            this.btnFAQcls.Location = new System.Drawing.Point(276, 481);
             this.btnFAQcls.Name = "btnFAQcls";
             this.btnFAQcls.Size = new System.Drawing.Size(75, 23);
             this.btnFAQcls.TabIndex = 1;
@@ -1125,7 +1132,7 @@
             this.PanelStudents.Controls.Add(this.btnCLSStudents);
             this.PanelStudents.Controls.Add(this.pictureBox3);
             this.PanelStudents.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.PanelStudents.Location = new System.Drawing.Point(15, 535);
+            this.PanelStudents.Location = new System.Drawing.Point(15, 545);
             this.PanelStudents.Name = "PanelStudents";
             this.PanelStudents.Size = new System.Drawing.Size(361, 499);
             this.PanelStudents.TabIndex = 9;
@@ -1524,7 +1531,7 @@
             this.PanelQuizMode.ForeColor = System.Drawing.Color.DarkGoldenrod;
             this.PanelQuizMode.Location = new System.Drawing.Point(-400, 0);
             this.PanelQuizMode.Name = "PanelQuizMode";
-            this.PanelQuizMode.Size = new System.Drawing.Size(384, 524);
+            this.PanelQuizMode.Size = new System.Drawing.Size(384, 550);
             this.PanelQuizMode.TabIndex = 12;
             // 
             // pnlQuiz
@@ -1607,6 +1614,13 @@
             // PanelClassVote
             // 
             this.PanelClassVote.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelClassVote.Controls.Add(this.btnCVReset);
+            this.PanelClassVote.Controls.Add(this.txtbxCVStats);
+            this.PanelClassVote.Controls.Add(this.lblOption2);
+            this.PanelClassVote.Controls.Add(this.lblOption1);
+            this.PanelClassVote.Controls.Add(this.lblCVPipe);
+            this.PanelClassVote.Controls.Add(this.lblCVRight);
+            this.PanelClassVote.Controls.Add(this.lblCVLeft);
             this.PanelClassVote.Controls.Add(this.btnExitClassVote);
             this.PanelClassVote.Controls.Add(this.pictureBox8);
             this.PanelClassVote.ForeColor = System.Drawing.Color.DarkGoldenrod;
@@ -1616,10 +1630,96 @@
             this.PanelClassVote.TabIndex = 14;
             this.PanelClassVote.Visible = false;
             // 
+            // btnCVReset
+            // 
+            this.btnCVReset.BackColor = System.Drawing.Color.Black;
+            this.btnCVReset.Location = new System.Drawing.Point(32, 486);
+            this.btnCVReset.Name = "btnCVReset";
+            this.btnCVReset.Size = new System.Drawing.Size(135, 23);
+            this.btnCVReset.TabIndex = 8;
+            this.btnCVReset.Text = "Reset Voting";
+            this.btnCVReset.UseVisualStyleBackColor = false;
+            this.btnCVReset.Visible = false;
+            this.btnCVReset.Click += new System.EventHandler(this.btnCVReset_Click);
+            // 
+            // txtbxCVStats
+            // 
+            this.txtbxCVStats.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.txtbxCVStats.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtbxCVStats.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbxCVStats.ForeColor = System.Drawing.Color.Black;
+            this.txtbxCVStats.Location = new System.Drawing.Point(40, 297);
+            this.txtbxCVStats.Multiline = true;
+            this.txtbxCVStats.Name = "txtbxCVStats";
+            this.txtbxCVStats.ReadOnly = true;
+            this.txtbxCVStats.Size = new System.Drawing.Size(304, 50);
+            this.txtbxCVStats.TabIndex = 7;
+            this.txtbxCVStats.Text = "...Stats of Vote...";
+            this.txtbxCVStats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtbxCVStats.Visible = false;
+            // 
+            // lblOption2
+            // 
+            this.lblOption2.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOption2.Location = new System.Drawing.Point(213, 95);
+            this.lblOption2.Name = "lblOption2";
+            this.lblOption2.Size = new System.Drawing.Size(156, 32);
+            this.lblOption2.TabIndex = 6;
+            this.lblOption2.Text = "Option #2";
+            this.lblOption2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblOption2.Visible = false;
+            // 
+            // lblOption1
+            // 
+            this.lblOption1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOption1.Location = new System.Drawing.Point(26, 95);
+            this.lblOption1.Name = "lblOption1";
+            this.lblOption1.Size = new System.Drawing.Size(156, 32);
+            this.lblOption1.TabIndex = 5;
+            this.lblOption1.Text = "Option #1";
+            this.lblOption1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblOption1.Visible = false;
+            // 
+            // lblCVPipe
+            // 
+            this.lblCVPipe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCVPipe.Font = new System.Drawing.Font("Poor Richard", 84F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCVPipe.Location = new System.Drawing.Point(163, 124);
+            this.lblCVPipe.Name = "lblCVPipe";
+            this.lblCVPipe.Size = new System.Drawing.Size(65, 156);
+            this.lblCVPipe.TabIndex = 4;
+            this.lblCVPipe.Text = "|";
+            this.lblCVPipe.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCVPipe.Visible = false;
+            // 
+            // lblCVRight
+            // 
+            this.lblCVRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCVRight.Font = new System.Drawing.Font("Poor Richard", 84F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCVRight.Location = new System.Drawing.Point(210, 124);
+            this.lblCVRight.Name = "lblCVRight";
+            this.lblCVRight.Size = new System.Drawing.Size(155, 156);
+            this.lblCVRight.TabIndex = 3;
+            this.lblCVRight.Text = "0";
+            this.lblCVRight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCVRight.Visible = false;
+            // 
+            // lblCVLeft
+            // 
+            this.lblCVLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCVLeft.Font = new System.Drawing.Font("Poor Richard", 84F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCVLeft.Location = new System.Drawing.Point(16, 124);
+            this.lblCVLeft.Name = "lblCVLeft";
+            this.lblCVLeft.Size = new System.Drawing.Size(155, 156);
+            this.lblCVLeft.TabIndex = 2;
+            this.lblCVLeft.Text = "0";
+            this.lblCVLeft.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCVLeft.Visible = false;
+            // 
             // btnExitClassVote
             // 
             this.btnExitClassVote.BackColor = System.Drawing.Color.Black;
-            this.btnExitClassVote.Location = new System.Drawing.Point(125, 486);
+            this.btnExitClassVote.Location = new System.Drawing.Point(218, 486);
             this.btnExitClassVote.Name = "btnExitClassVote";
             this.btnExitClassVote.Size = new System.Drawing.Size(135, 23);
             this.btnExitClassVote.TabIndex = 1;
@@ -1706,17 +1806,17 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(384, 550);
+            this.Controls.Add(this.PanelClassVote);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pnlBrdCst);
+            this.Controls.Add(this.PanelFAQ);
             this.Controls.Add(this.PanelPrefs);
             this.Controls.Add(this.PanelNotify);
             this.Controls.Add(this.grpbxFeed);
             this.Controls.Add(this.PanelAttendance);
-            this.Controls.Add(this.PanelClassVote);
             this.Controls.Add(this.PanelQuizMode);
             this.Controls.Add(this.PanelQuizMaker);
             this.Controls.Add(this.PanelConvView);
-            this.Controls.Add(this.PanelFAQ);
             this.Controls.Add(this.DirectMsgPanel);
             this.Controls.Add(this.PanelStudents);
             this.DoubleBuffered = true;
@@ -1758,6 +1858,7 @@
             this.PanelAttendance.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.PanelClassVote.ResumeLayout(false);
+            this.PanelClassVote.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.pnlBrdCst.ResumeLayout(false);
             this.pnlBrdCst.PerformLayout();
@@ -1918,6 +2019,13 @@
         private System.Windows.Forms.PictureBox pictureBoxNotify;
         private System.Windows.Forms.NumericUpDown numUpDnNotify;
         private System.Windows.Forms.Label lblNotifyTime;
+        private System.Windows.Forms.TextBox txtbxCVStats;
+        private System.Windows.Forms.Label lblOption2;
+        private System.Windows.Forms.Label lblOption1;
+        private System.Windows.Forms.Label lblCVPipe;
+        private System.Windows.Forms.Label lblCVRight;
+        private System.Windows.Forms.Label lblCVLeft;
+        private System.Windows.Forms.Button btnCVReset;
     }
 }
 

@@ -35,6 +35,13 @@ namespace SrP_ClassroomInq
                 {
                     if (i < 10)
                     {
+                        if (i == 0)
+                        {
+                            pnlBrdCst.Hide();
+                            pnlBrdCst.BringToFront();
+                            menuStrip1.BringToFront();
+                            pnlBrdCst.Show();
+                        }
                         pnlBrdCst.SetBounds(pnlBrdCst.Location.X, pnlBrdCst.Location.Y + 5,
                                              pnlBrdCst.Size.Width, pnlBrdCst.Size.Height);
                         i++;
@@ -796,7 +803,7 @@ namespace SrP_ClassroomInq
                             PanelFAQ.BringToFront();
                             menuStrip1.BringToFront();
                         }
-                        PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y + 24,
+                        PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y + 25,
                                            PanelFAQ.Size.Width, PanelFAQ.Size.Height);
                         x++;
                     }
@@ -835,7 +842,7 @@ namespace SrP_ClassroomInq
                     this.Text = " Classroom Inquisition  |  FAQ" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                 }
             }
-            else if ((PanelFAQ.Location.Y > -486) && (FAQClicked == true)
+            else if ((PanelFAQ.Location.Y > -496) && (FAQClicked == true)
                         && (FAQTimesClicked == 1) && (FAQShowing == true))
             {
                 if (!chkbxLameMode.Checked)
@@ -854,7 +861,7 @@ namespace SrP_ClassroomInq
                     }
                     else if (x < 30)
                     {
-                        PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y - 24,
+                        PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y - 25,
                                            PanelFAQ.Size.Width, PanelFAQ.Size.Height);
                         x++;
                     }
@@ -984,7 +991,7 @@ namespace SrP_ClassroomInq
                         {
                             PanelStudents.BringToFront();
                         }
-                        PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y - 24,
+                        PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y - 25,
                                                 PanelStudents.Size.Width, PanelStudents.Size.Height);
                         x++;
                     }
@@ -1013,7 +1020,7 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations, boo!
                 {
-                    PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y - 510,
+                    PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y - 520,
                                             PanelStudents.Size.Width, PanelStudents.Size.Height);
                     StuMgmtShowing = true;
                     StuMgmtClicked = false;
@@ -1023,7 +1030,7 @@ namespace SrP_ClassroomInq
                     this.Text = " Classroom Inquisition  |  Student Management" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                 }
             }
-            else if ((PanelStudents.Location.Y < 536) && (StuMgmtClicked == true)
+            else if ((PanelStudents.Location.Y < 546) && (StuMgmtClicked == true)
                         && (StuMgmtTimesClicked == 1) && (StuMgmtShowing == true))
             {
                 if (!chkbxLameMode.Checked)
@@ -1042,7 +1049,7 @@ namespace SrP_ClassroomInq
                     }
                     else if (x < 30)
                     {
-                        PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y + 24,
+                        PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y + 25,
                                                 PanelStudents.Size.Width, PanelStudents.Size.Height);
                         x++;
                     }
@@ -1072,7 +1079,7 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations
                 {
-                    PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y + 510,
+                    PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y + 520,
                                             PanelStudents.Size.Width, PanelStudents.Size.Height);
                     StuMgmtShowing = false;
                     StuMgmtClicked = false;
@@ -1527,7 +1534,7 @@ namespace SrP_ClassroomInq
             #endregion
 
             #region Class Vote Mode Animation (inverse android)
-            if ((PanelClassVote.Location.Y <= 265) && (ClassVoteClicked == true)
+            if ((PanelClassVote.Location.Y <= 266) && (ClassVoteClicked == true)
                  && (ClassVoteTimesClicked == 0) && (ClassVoteShowing == false))
             {
                 if (!chkbxLameMode.Checked)
@@ -1568,6 +1575,13 @@ namespace SrP_ClassroomInq
                             timer.Enabled = false;
                         }
                         pictureBox8.Show();
+                        lblCVLeft.Show();
+                        lblCVRight.Show();
+                        lblOption1.Show();
+                        lblOption2.Show();
+                        lblCVPipe.Show();
+                        txtbxCVStats.Show();
+                        btnCVReset.Show();
                         btnExitClassVote.Show();
                         PanelClassVote.Focus();
                         this.Text = " Classroom Inquisition  |  ClassVote" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
@@ -1585,6 +1599,13 @@ namespace SrP_ClassroomInq
                         timer.Enabled = false;
                     }
                     pictureBox8.Show();
+                    lblCVLeft.Show();
+                    lblCVRight.Show();
+                    lblOption1.Show();
+                    lblOption2.Show();
+                    lblCVPipe.Show();
+                    txtbxCVStats.Show();
+                    btnCVReset.Show();
                     btnExitClassVote.Show();
                     PanelClassVote.Focus();
                     this.Text = " Classroom Inquisition  |  ClassVote" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
@@ -1597,9 +1618,16 @@ namespace SrP_ClassroomInq
                 {
                     if (x < 10)
                     {
-                        if (x == 1)
+                        if (x == 0)
                         {
                             pictureBox8.Hide();
+                            lblCVLeft.Hide();
+                            lblCVRight.Hide();
+                            lblOption1.Hide();
+                            lblOption2.Hide();
+                            lblCVPipe.Hide();
+                            txtbxCVStats.Hide();
+                            btnCVReset.Hide();
                             btnExitClassVote.Hide();
                         }
                         PanelClassVote.SetBounds(PanelClassVote.Location.X + 7, PanelClassVote.Location.Y,
@@ -1618,7 +1646,7 @@ namespace SrP_ClassroomInq
                                                  PanelClassVote.Size.Width, PanelClassVote.Size.Height - 55);
                         if (x == 29)
                         {
-                            PanelClassVote.SetBounds(PanelClassVote.Location.X, PanelClassVote.Location.Y + 2,
+                            PanelClassVote.SetBounds(PanelClassVote.Location.X, PanelClassVote.Location.Y + 5,
                                                      PanelClassVote.Size.Width - 4, PanelClassVote.Size.Height);
                         }
                         x++;
@@ -1642,6 +1670,15 @@ namespace SrP_ClassroomInq
                 else //no animations
                 {
                     PanelClassVote.SetBounds(190, 265, 0, 0);
+                    pictureBox8.Hide();
+                    lblCVLeft.Hide();
+                    lblCVRight.Hide();
+                    lblOption1.Hide();
+                    lblOption2.Hide();
+                    lblCVPipe.Hide();
+                    txtbxCVStats.Hide();
+                    btnCVReset.Hide();
+                    btnExitClassVote.Hide();
                     PanelClassVote.Hide();
                     ClassVoteShowing = false;
                     ClassVoteClicked = false;

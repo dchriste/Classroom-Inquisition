@@ -362,6 +362,27 @@ namespace SrP_ClassroomInq
             PanelClassVote.BackColor = Back;
             PanelClassVote.ForeColor = Fore;
 
+            lblCVLeft.BackColor = Back;
+            lblCVLeft.ForeColor = Fore;
+
+            lblCVRight.BackColor = Back;
+            lblCVRight.ForeColor = Fore;
+
+            lblOption1.BackColor = Back;
+            lblOption1.ForeColor = Fore;
+
+            lblOption2.BackColor = Back;
+            lblOption2.ForeColor = Fore;
+
+            lblCVPipe.BackColor = Back;
+            lblCVPipe.ForeColor = Fore;
+
+            txtbxCVStats.BackColor = Fore;
+            txtbxCVStats.ForeColor = Back;
+
+            btnCVReset.BackColor = Back;
+            btnCVReset.ForeColor = Fore;
+
             btnExitClassVote.BackColor = Back;
             btnExitClassVote.ForeColor = Fore;
             #endregion
@@ -384,7 +405,5 @@ namespace SrP_ClassroomInq
             this.ResumeLayout();
             this.Show(); //tada!!
         }
-
-
 	}
 }

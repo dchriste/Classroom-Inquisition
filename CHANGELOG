@@ -8,9 +8,15 @@ currently.
 
 CHANGELOG created on 2/22/12
 
+/*** Version 1.7 committed 4/15 ***/
+added Class Vote Mode
+added reset for class vote
+fixed misc. bugs & UI glitches caused by the recent changes
+
 /*** Version 1.6 committed 4/15 ***/
 added Attendance mode
 added Notification Panel
+added pref for notify timeout
 removed statusbar et al
 moved status notifications to notify panel
 moved unread status bar counter to title bar
