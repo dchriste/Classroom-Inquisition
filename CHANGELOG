@@ -8,6 +8,13 @@ currently.
 
 CHANGELOG created on 2/22/12
 
+/*** Version 1.7.2 committed 4/22 ***/
+added splashscreen
+added pref to disable splash
+fixed lame mode bugs
+UI tweaks
+default prefs changes
+
 /*** Version 1.7.1 committed 4/16 ***/
 major animation bug fixes
 added checks and balances in animations

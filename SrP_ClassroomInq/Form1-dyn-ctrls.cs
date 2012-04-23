@@ -1,3 +1,20 @@
+﻿/*******************************************************************************
+ * Copyright (C) 2012  David V. Christensen
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *********************************************************************************/
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,6 +63,7 @@ namespace SrP_ClassroomInq
         public Color ForeColorTheme = Color.DarkGoldenrod;
         public Color BackColorTheme = Color.Black;
         public AboutBox_CI About = new AboutBox_CI();
+        public Splash SplashScreen = new Splash();
 
         #region Variables
         string[] Students_Name = new string[classSize];
@@ -94,6 +112,7 @@ namespace SrP_ClassroomInq
         byte PrefsTimesClicked = 0;
         byte FAQTimesClicked = 0;
         byte StuMgmtTimesClicked = 0;
+        bool SplashScreenShowing = new bool();
         bool aPanelIsMoving = new bool();
         bool DesireNotify = new bool();
         bool NotifyShowing = new bool();
@@ -709,6 +728,7 @@ namespace SrP_ClassroomInq
         /*This method loads up prefs and other things needed to be initialized at startup*/
 		private void Form1_Load(object sender, EventArgs e)
 		{
+            this.Hide();
             serialCOMcmbbx_Click(sender, e);//pre-load the combobox         
             //auto fill feed box or something... for testing if needed
 
@@ -729,10 +749,15 @@ namespace SrP_ClassroomInq
             BackColorTheme = Properties.Settings.Default.BackColorTheme;
             timer.Interval = Properties.Settings.Default.AnimationSpeed;
             numUpDnNotify.Value = Properties.Settings.Default.NotifyTimeout;
+            chkbxSplash.Checked = Properties.Settings.Default.Splash;
             /***************************************************/
 
             ThemeApply(ForeColorTheme, BackColorTheme); //set from saved theme
-
+            if (!chkbxSplash.Checked)
+            {
+                this.Show();
+            }
+            
             string[] tmpstring = new string[classSize];
             try
             {
@@ -807,6 +832,20 @@ namespace SrP_ClassroomInq
             {
                 MessageBox.Show("Oh No's....Quiz file reading broke!!");
             }
+
+            /*Splash Screen Code*/
+            if (chkbxSplash.Checked)
+            {
+                timer.Enabled = false;
+                timer_ControlsCreate.Enabled = false;
+                timer_SerialRead.Enabled = false;
+                while (DialogResult.OK != SplashScreen.ShowDialog()); //wait here                
+            }            
+            while (frmClassrromInq.ActiveForm == SplashScreen);
+            /********************/
+
+            timer_SerialRead.Enabled = true;
+            this.Show();
             this.Focus();
             lblNotify.Text = "Ready to Rock!";
             DesireNotify = true;
@@ -1564,6 +1603,7 @@ namespace SrP_ClassroomInq
             Properties.Settings.Default.BackColorTheme = BackColorTheme;
             Properties.Settings.Default.AnimationSpeed = (byte)timer.Interval;
             Properties.Settings.Default.NotifyTimeout = (decimal)numUpDnNotify.Value;
+            Properties.Settings.Default.Splash = chkbxSplash.Checked;
             Properties.Settings.Default.Save();
         }
         
@@ -2682,6 +2722,7 @@ namespace SrP_ClassroomInq
             ForeColorTheme = colorDlg.Color;
 
             ThemeApply(ForeColorTheme, BackColorTheme);
+            this.Show();
         }
 
         /*This method allows the choosing of a custom color for theming*/
@@ -2691,6 +2732,7 @@ namespace SrP_ClassroomInq
             BackColorTheme = colorDlg.Color;
 
             ThemeApply(ForeColorTheme, BackColorTheme);
+            this.Show();
         }
 
         /*This method allows for Resetting the theme to default Purdue Colors*/
@@ -2699,6 +2741,7 @@ namespace SrP_ClassroomInq
             ForeColorTheme = Color.DarkGoldenrod;
             BackColorTheme = Color.Black;
             ThemeApply(Color.DarkGoldenrod, Color.Black); //default theme
+            this.Show();
         }
 
         /*Allows for the speed of animation preference*/

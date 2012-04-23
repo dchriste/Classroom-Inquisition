@@ -17,22 +17,45 @@
  *********************************************************************************/
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace SrP_ClassroomInq
 {
-    static class Program
+    public partial class Splash : Form
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
+        public Splash()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmClassrromInq());
+            InitializeComponent();
         }
+        byte i = 0;
+
+
+        private void FatherTime_Tick(object sender, EventArgs e)
+        {
+            if (i < 3)
+            {
+                //tick is once a second
+                i++;
+            }
+            else if (i < 10)
+            {
+                if (i == 3)
+                {
+                    FatherTime.Interval = 100; //change to 10 times faster
+                }
+                this.Opacity = this.Opacity - (double)0.1; //fade out by percent
+                i++;
+            }
+            else
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.OK; //tell the main form we're good to go
+            }
+        }
+        
     }
 }

@@ -37,7 +37,7 @@ namespace SrP_ClassroomInq.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool Animations {
             get {
                 return ((bool)(this["Animations"]));
@@ -97,7 +97,7 @@ namespace SrP_ClassroomInq.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool Tooltips {
             get {
                 return ((bool)(this["Tooltips"]));
@@ -188,6 +188,18 @@ namespace SrP_ClassroomInq.Properties {
             }
             set {
                 this["NotifyTimeout"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Splash {
+            get {
+                return ((bool)(this["Splash"]));
+            }
+            set {
+                this["Splash"] = value;
             }
         }
     }

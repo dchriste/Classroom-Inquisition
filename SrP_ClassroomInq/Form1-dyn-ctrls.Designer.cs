@@ -1,3 +1,20 @@
+﻿/*******************************************************************************
+ * Copyright (C) 2012  David V. Christensen
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *********************************************************************************/
 ﻿namespace SrP_ClassroomInq
 {
     partial class frmClassrromInq
@@ -185,6 +202,7 @@
             this.PanelNotify = new System.Windows.Forms.Panel();
             this.lblNotify = new System.Windows.Forms.Label();
             this.pictureBoxNotify = new System.Windows.Forms.PictureBox();
+            this.chkbxSplash = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.PanelPrefs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDnNotify)).BeginInit();
@@ -657,6 +675,7 @@
             // 
             this.PanelPrefs.AutoScroll = true;
             this.PanelPrefs.BackColor = System.Drawing.SystemColors.ControlText;
+            this.PanelPrefs.Controls.Add(this.chkbxSplash);
             this.PanelPrefs.Controls.Add(this.lblNotifyTime);
             this.PanelPrefs.Controls.Add(this.numUpDnNotify);
             this.PanelPrefs.Controls.Add(this.lblSerPt);
@@ -1799,6 +1818,19 @@
             this.pictureBoxNotify.TabStop = false;
             this.pictureBoxNotify.Click += new System.EventHandler(this.pictureBoxNotify_Click);
             // 
+            // chkbxSplash
+            // 
+            this.chkbxSplash.Checked = true;
+            this.chkbxSplash.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkbxSplash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkbxSplash.Location = new System.Drawing.Point(18, 315);
+            this.chkbxSplash.Name = "chkbxSplash";
+            this.chkbxSplash.Size = new System.Drawing.Size(130, 33);
+            this.chkbxSplash.TabIndex = 20;
+            this.chkbxSplash.Text = "Splash Screen";
+            this.chkbxSplash.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkbxSplash.UseVisualStyleBackColor = true;
+            // 
             // frmClassrromInq
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2026,6 +2058,7 @@
         private System.Windows.Forms.Label lblCVRight;
         private System.Windows.Forms.Label lblCVLeft;
         private System.Windows.Forms.Button btnCVReset;
+        private System.Windows.Forms.CheckBox chkbxSplash;
     }
 }
 

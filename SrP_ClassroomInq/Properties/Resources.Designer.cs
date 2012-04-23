@@ -88,6 +88,13 @@ namespace SrP_ClassroomInq.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Splash {
+            get {
+                object obj = ResourceManager.GetObject("Splash", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap StuMngmntCtr {
             get {
                 object obj = ResourceManager.GetObject("StuMngmntCtr", resourceCulture);

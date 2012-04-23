@@ -6,7 +6,7 @@
       <Value Profile="(Default)">this-isn't-secure</Value>
     </Setting>
     <Setting Name="Animations" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="SoundRX" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -21,7 +21,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="Tooltips" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="ShowNames" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -43,6 +43,9 @@
     </Setting>
     <Setting Name="NotifyTimeout" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1.6</Value>
+    </Setting>
+    <Setting Name="Splash" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

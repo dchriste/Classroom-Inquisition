@@ -1,3 +1,20 @@
+﻿/*******************************************************************************
+ * Copyright (C) 2012  David V. Christensen
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *********************************************************************************/
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -943,6 +960,10 @@ namespace SrP_ClassroomInq
                         {
                             timer.Enabled = false;
                         }
+                        else
+                        {
+                            PanelNotify.BringToFront();
+                        }
                         PanelPrefs.Focus();
                         this.Text = " Classroom Inquisition  |  Prefs" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                     }
@@ -960,6 +981,10 @@ namespace SrP_ClassroomInq
                     if (!NotifyShowing && !DesireNotify)
                     {
                         timer.Enabled = false;
+                    }
+                    else
+                    {
+                        PanelNotify.BringToFront();
                     }
                     PanelPrefs.Focus();
                     this.Text = " Classroom Inquisition  |  Prefs" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
@@ -1114,7 +1139,7 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations
                 {
-                    PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y + 510,
+                    PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y + 520,
                                        PanelFAQ.Size.Width, PanelFAQ.Size.Height);
                     FAQShowing = true;
                     FAQClicked = false;
@@ -1215,7 +1240,7 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations
                 {
-                    PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y - 510,
+                    PanelFAQ.SetBounds(PanelFAQ.Location.X, PanelFAQ.Location.Y - 520,
                                        PanelFAQ.Size.Width, PanelFAQ.Size.Height);
                     FAQShowing = false;
                     FAQClicked = false;
@@ -1323,6 +1348,8 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations, boo!
                 {
+                    aPanelIsMoving = true;
+                    PanelStudents.BringToFront();
                     PanelStudents.SetBounds(PanelStudents.Location.X, PanelStudents.Location.Y - 520,
                                             PanelStudents.Size.Width, PanelStudents.Size.Height);
                     StuMgmtShowing = true;
@@ -1471,6 +1498,8 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations
                 {
+                    aPanelIsMoving = true;
+                    PanelConvView.BringToFront();
                     PanelConvView.SetBounds(PanelConvView.Location.X, PanelConvView.Location.Y + 530,
                                             PanelConvView.Size.Width, PanelConvView.Size.Height);
                     ConvViewShowing = true;
@@ -1611,6 +1640,8 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations
                 {
+                    aPanelIsMoving = true;
+                    PanelQuizMaker.BringToFront();
                     PanelQuizMaker.SetBounds(PanelQuizMaker.Location.X - 400, PanelQuizMaker.Location.Y,
                                              PanelQuizMaker.Size.Width, PanelQuizMaker.Size.Height);
                     QuizMakerShowing = true;
@@ -1738,6 +1769,8 @@ namespace SrP_ClassroomInq
                 }
                 else //no animations
                 {
+                    aPanelIsMoving = true;
+                    PanelQuizMode.BringToFront();
                     PanelQuizMode.SetBounds(PanelQuizMode.Location.X + 400, PanelQuizMode.Location.Y,
                                             PanelQuizMode.Size.Width, PanelQuizMode.Size.Height);
                     QuizModeShowing = true;
@@ -1859,6 +1892,10 @@ namespace SrP_ClassroomInq
                         {
                             timer.Enabled = false;
                         }
+                        else
+                        {
+                            PanelNotify.BringToFront();
+                        }
                         PanelAttendance.Focus();
                         this.Text = " Classroom Inquisition  |  Attendance" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
                     }
@@ -1874,6 +1911,10 @@ namespace SrP_ClassroomInq
                     if (!NotifyShowing && !DesireNotify)
                     {
                         timer.Enabled = false;
+                    }
+                    else
+                    {
+                        PanelNotify.BringToFront();
                     }
                     PanelAttendance.Focus();
                     this.Text = " Classroom Inquisition  |  Attendance" + (UnreadCount > 0 ? " (" + UnreadCount.ToString() + ")" : "");
@@ -2019,6 +2060,9 @@ namespace SrP_ClassroomInq
                 else //no animations
                 {
                     PanelClassVote.SetBounds(0, 0, 384, 550);
+                    aPanelIsMoving = true;
+                    PanelClassVote.BringToFront();
+                    PanelNotify.BringToFront();
                     PanelClassVote.Show();
                     ClassVoteShowing = true;
                     ClassVoteClicked = false;
@@ -2211,13 +2255,15 @@ namespace SrP_ClassroomInq
                     {
                         PanelNotify.SetBounds(PanelNotify.Location.X, PanelNotify.Location.Y + 35,
                                              PanelNotify.Size.Width, PanelNotify.Size.Height);
+                        if (!aPanelIsMoving)
+                        {
+                            timer.Enabled = false;
+                        }
+                        notif_I = 0;
+                        DesireNotify = false;
+                        NotifyShowing = false;
                     }
-                    if (!aPanelIsMoving)
-                    {
-                        timer.Enabled = false;
-                    }
-                    DesireNotify = false;
-                    NotifyShowing = false;
+                    
                 }
             }
             #endregion
