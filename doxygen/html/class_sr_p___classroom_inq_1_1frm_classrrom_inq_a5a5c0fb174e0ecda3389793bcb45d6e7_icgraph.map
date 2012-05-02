@@ -1,3 +1,22 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#ae97f71a555c40b1051056bf469ae34e7" title="SrP_ClassroomInq.frmClassrromInq.muItmBrdCst_Click" alt="" coords="496,5,848,32"/>
+<area shape="rect" id="node3" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#abce1cb97617c664a4d967eed8c5f9c86" title="SrP_ClassroomInq.frmClassrromInq.PrefsToolStripMenuItem_Click" alt="" coords="523,5,938,32"/>
+<area shape="rect" id="node7" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a9c1ad2d103578bed5a65f1c744124f03" title="SrP_ClassroomInq.frmClassrromInq.directMessageToolStripMenuItem_Click" alt="" coords="496,56,965,83"/>
+<area shape="rect" id="node11" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#ac3c424bfd93cbc8139b68630e94c1317" title="SrP_ClassroomInq.frmClassrromInq.generalFAQToolStripMenuItem_Click" alt="" coords="504,107,957,133"/>
+<area shape="rect" id="node15" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a498e01ce0af00872271b09d5aa621e38" title="SrP_ClassroomInq.frmClassrromInq.btnStuMgmt_Prefs_Click" alt="" coords="539,157,922,184"/>
+<area shape="rect" id="node17" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#aba872e01b5d503de6b2311405850549c" title="SrP_ClassroomInq.frmClassrromInq.btnConvView_Click" alt="" coords="555,208,907,235"/>
+<area shape="rect" id="node25" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a8d440d379253fa5479a3b89ef54db5bf" title="SrP_ClassroomInq.frmClassrromInq.btnQuizMaker_Click" alt="" coords="553,259,908,285"/>
+<area shape="rect" id="node27" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a73354017a84daba6bd3a574274f3904a" title="SrP_ClassroomInq.frmClassrromInq.quizToolStripMenuItem_Click" alt="" coords="527,309,935,336"/>
+<area shape="rect" id="node33" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#af4857322b8c22a02101857224e34e569" title="SrP_ClassroomInq.frmClassrromInq.attedanceToolStripMenuItem_Click" alt="" coords="510,360,951,387"/>
+<area shape="rect" id="node37" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#ac11a0a3ff559ed2ade5c661899ff300a" title="SrP_ClassroomInq.frmClassrromInq.classVoteToolStripMenuItem_Click" alt="" coords="509,411,952,437"/>
+<area shape="rect" id="node41" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#ae97f71a555c40b1051056bf469ae34e7" title="SrP_ClassroomInq.frmClassrromInq.muItmBrdCst_Click" alt="" coords="555,461,907,488"/>
+<area shape="rect" id="node5" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a8d958123049b9831c795fc69846a4361" title="SrP_ClassroomInq.frmClassrromInq.muItmPrefs_Click" alt="" coords="1031,5,1374,32"/>
+<area shape="rect" id="node9" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a98c9af062defe91100614c630cd15e27" title="SrP_ClassroomInq.frmClassrromInq.muItmDM_Click" alt="" coords="1037,56,1369,83"/>
+<area shape="rect" id="node13" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#ab4caa4c9e3362eca229979be7b7ae43a" title="SrP_ClassroomInq.frmClassrromInq.muItmFAQ_Click" alt="" coords="1033,107,1372,133"/>
+<area shape="rect" id="node19" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a47059fedf8a6d360fecf6723d0800aba" title="SrP_ClassroomInq.frmClassrromInq.ConvViewPic_Click" alt="" coords="1026,208,1379,235"/>
+<area shape="rect" id="node21" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a8ae3b3804b16d4c67b8ff652eb5488ed" title="SrP_ClassroomInq.frmClassrromInq.MakeCtrls" alt="" coords="1441,208,1738,235"/>
+<area shape="rect" id="node23" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#af03934d96e1bb39c2a01e4f766ed8702" title="SrP_ClassroomInq.frmClassrromInq.timer_ControlsCreate_Tick" alt="" coords="1787,208,2181,235"/>
+<area shape="rect" id="node29" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#acfcbbf64f2bc2adf94eec18f45d2af2c" title="SrP_ClassroomInq.frmClassrromInq.btnQuizMode_Click" alt="" coords="1027,259,1378,285"/>
+<area shape="rect" id="node31" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#ac5f95d502012ae69fb0b94d64709dbcc" title="SrP_ClassroomInq.frmClassrromInq.muItmQuiz_Click" alt="" coords="1033,309,1372,336"/>
+<area shape="rect" id="node35" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a0901d9ca016f018ca62acc5dc4864171" title="SrP_ClassroomInq.frmClassrromInq.muItmAttendance_Click" alt="" coords="1014,360,1391,387"/>
+<area shape="rect" id="node39" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#aefa97cd598657ba7e2f095570db36a28" title="SrP_ClassroomInq.frmClassrromInq.muItmClassVote_Click" alt="" coords="1017,411,1389,437"/>
 </map>

@@ -34,7 +34,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Classroom Inquisition
-   &#160;<span id="projectnumber">1.7.0</span>
+   &#160;<span id="projectnumber">1.7.3</span>
    </div>
    <div id="projectbrief">Teacher Student Communication</div>
   </td>
@@ -77,6 +77,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div>
@@ -98,24 +99,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/Program.cs</div>  </div>
 </div>
 <div class="contents">
-<a href="_program_8cs.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 ﻿using System;
-<a name="l00002"></a>00002 <span class="keyword">using</span> System.Collections.Generic;
-<a name="l00003"></a>00003 <span class="keyword">using</span> System.Linq;
-<a name="l00004"></a>00004 <span class="keyword">using</span> System.Windows.Forms;
-<a name="l00005"></a>00005 
-<a name="l00006"></a>00006 <span class="keyword">namespace </span>SrP_ClassroomInq
-<a name="l00007"></a>00007 {
-<a name="l00008"></a>00008     <span class="keyword">static</span> <span class="keyword">class </span>Program
-<a name="l00009"></a>00009     {
-<a name="l00013"></a>00013         [STAThread]
-<a name="l00014"></a><a class="code" href="class_sr_p___classroom_inq_1_1_program.html#a5d58fa5768e3b4740d34893dfcf7274c">00014</a>         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_sr_p___classroom_inq_1_1_program.html#a5d58fa5768e3b4740d34893dfcf7274c" title="The main entry point for the application.">Main</a>()
-<a name="l00015"></a>00015         {
-<a name="l00016"></a>00016             Application.EnableVisualStyles();
-<a name="l00017"></a>00017             Application.SetCompatibleTextRenderingDefault(<span class="keyword">false</span>);
-<a name="l00018"></a>00018             Application.Run(<span class="keyword">new</span> <a class="code" href="class_sr_p___classroom_inq_1_1frm_classrrom_inq.html">frmClassrromInq</a>());
-<a name="l00019"></a>00019         }
-<a name="l00020"></a>00020     }
-<a name="l00021"></a>00021 }
+<a href="_program_8cs.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 ﻿<span class="comment">/*******************************************************************************</span>
+<a name="l00002"></a>00002 <span class="comment"> * Copyright (C) 2012  David V. Christensen</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> * This program is free software; you can redistribute it and/or</span>
+<a name="l00005"></a>00005 <span class="comment"> * modify it under the terms of the GNU General Public License</span>
+<a name="l00006"></a>00006 <span class="comment"> * as published by the Free Software Foundation; either version 2</span>
+<a name="l00007"></a>00007 <span class="comment"> * of the License, or (at your option) any later version.</span>
+<a name="l00008"></a>00008 <span class="comment"> *</span>
+<a name="l00009"></a>00009 <span class="comment"> * This program is distributed in the hope that it will be useful,</span>
+<a name="l00010"></a>00010 <span class="comment"> * but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<a name="l00011"></a>00011 <span class="comment"> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<a name="l00012"></a>00012 <span class="comment"> * GNU General Public License for more details.</span>
+<a name="l00013"></a>00013 <span class="comment"> *</span>
+<a name="l00014"></a>00014 <span class="comment"> * You should have received a copy of the GNU General Public License</span>
+<a name="l00015"></a>00015 <span class="comment"> * along with this program; if not, write to the Free Software</span>
+<a name="l00016"></a>00016 <span class="comment"> * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.</span>
+<a name="l00017"></a>00017 <span class="comment"> *********************************************************************************/</span>
+<a name="l00018"></a><a class="code" href="_program_8cs.html#a81a223a02c34d82b47199f08308847f2">00018</a> ﻿using <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>;
+<a name="l00019"></a>00019 <span class="keyword">using</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Collections.Generic;
+<a name="l00020"></a>00020 <span class="keyword">using</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Linq;
+<a name="l00021"></a>00021 <span class="keyword">using</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms;
+<a name="l00022"></a>00022 
+<a name="l00023"></a>00023 <span class="keyword">namespace </span><a class="code" href="_about_box1_8_designer_8cs.html#a5f2a2594873363876586b3e984e8838b">SrP_ClassroomInq</a>
+<a name="l00024"></a>00024 {
+<a name="l00025"></a>00025     <span class="keyword">static</span> <span class="keyword">class </span>Program
+<a name="l00026"></a>00026     {
+<a name="l00030"></a>00030         [STAThread]
+<a name="l00031"></a><a class="code" href="class_sr_p___classroom_inq_1_1_program.html#a5d58fa5768e3b4740d34893dfcf7274c">00031</a>         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_sr_p___classroom_inq_1_1_program.html#a5d58fa5768e3b4740d34893dfcf7274c" title="The main entry point for the application.">Main</a>()
+<a name="l00032"></a>00032         {
+<a name="l00033"></a>00033             Application.EnableVisualStyles();
+<a name="l00034"></a>00034             Application.SetCompatibleTextRenderingDefault(<span class="keyword">false</span>);
+<a name="l00035"></a>00035             Application.Run(<span class="keyword">new</span> <a class="code" href="class_sr_p___classroom_inq_1_1frm_classrrom_inq.html">frmClassrromInq</a>());
+<a name="l00036"></a>00036         }
+<a name="l00037"></a>00037     }
+<a name="l00038"></a>00038 }
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -136,7 +154,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Sun Apr 15 2012 20:29:51 for Classroom Inquisition by
+    <li class="footer">Generated on Wed May 2 2012 09:07:32 for Classroom Inquisition by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5 </li>
    </ul>

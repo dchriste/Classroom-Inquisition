@@ -58,7 +58,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(160, 71);
             this.lblVersion.TabIndex = 0;
-            this.lblVersion.Text = "1.7.2";
+            this.lblVersion.Text = "1.7.3";
             this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FatherTime

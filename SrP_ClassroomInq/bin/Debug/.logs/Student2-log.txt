@@ -143,3 +143,12 @@ asdf
 Student  3 ( 19:35:36  |  4/16/2012 ):
 asdf
 
+Student  3 ( 06:55:55  |  5/2/2012 ):
+You smell
+
+Student  3 ( 06:59:31  |  5/2/2012 ):
+Hey you 
+
+Student  3 ( 07:51:27  |  5/2/2012 ):
+I dislike the color green
+

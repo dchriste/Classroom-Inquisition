@@ -168,6 +168,8 @@
             this.muItmClassVote = new System.Windows.Forms.MenuItem();
             this.muItmQuiz = new System.Windows.Forms.MenuItem();
             this.muItmBrdCst = new System.Windows.Forms.MenuItem();
+            this.muItmMarkAsRead = new System.Windows.Forms.MenuItem();
+            this.muItmMarkAsUnRead = new System.Windows.Forms.MenuItem();
             this.PanelQuizMaker = new System.Windows.Forms.Panel();
             this.btnAddQM = new System.Windows.Forms.Button();
             this.btnQMDel = new System.Windows.Forms.Button();
@@ -1361,6 +1363,18 @@
             this.muItmQuizDelete.Text = "Undo Delete";
             this.muItmQuizDelete.Click += new System.EventHandler(this.muItmQuizDelete_Click);
             // 
+            // muItmMarkAsRead
+            // 
+            this.muItmMarkAsRead.Index = -1;
+            this.muItmMarkAsRead.Text = "Mark as Read";
+            this.muItmMarkAsRead.Click += new System.EventHandler(this.muItmMarkAsRead_Click);
+            // 
+            // muItmMarkAsUnRead
+            // 
+            this.muItmMarkAsUnRead.Index = -1;
+            this.muItmMarkAsUnRead.Text = "Mark as Unread";
+            this.muItmMarkAsUnRead.Click += new System.EventHandler(this.muItmMarkAsUnRead_Click);
+            // 
             // muItmPrefs
             // 
             this.muItmPrefs.Index = -1;
@@ -2012,6 +2026,8 @@
         private System.Windows.Forms.MenuItem muItmQuiz;
         private System.Windows.Forms.MenuItem muItmAttendance;
         private System.Windows.Forms.MenuItem muItmBrdCst;
+        private System.Windows.Forms.MenuItem muItmMarkAsRead;
+        private System.Windows.Forms.MenuItem muItmMarkAsUnRead;
         private System.Windows.Forms.CheckBox chkbxCtrlHide;
         private System.Windows.Forms.Button btnQuizMaker;
         private System.Windows.Forms.Panel PanelQuizMaker;

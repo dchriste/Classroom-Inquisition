@@ -7,7 +7,8 @@ var NAVTREE =
       [ "SrP_ClassroomInq::frmClassrromInq", "class_sr_p___classroom_inq_1_1frm_classrrom_inq.html", null ],
       [ "SrP_ClassroomInq::Program", "class_sr_p___classroom_inq_1_1_program.html", null ],
       [ "SrP_ClassroomInq::Properties::Resources", "class_sr_p___classroom_inq_1_1_properties_1_1_resources.html", null ],
-      [ "SrP_ClassroomInq::Properties::Settings", "class_sr_p___classroom_inq_1_1_properties_1_1_settings.html", null ]
+      [ "SrP_ClassroomInq::Properties::Settings", "class_sr_p___classroom_inq_1_1_properties_1_1_settings.html", null ],
+      [ "SrP_ClassroomInq::Splash", "class_sr_p___classroom_inq_1_1_splash.html", null ]
     ] ],
     [ "Class Index", "classes.html", null ],
     [ "Class Members", "functions.html", null ],
@@ -24,11 +25,14 @@ var NAVTREE =
       [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/Form1.cs", "_form1_8cs.html", null ],
       [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/Form1.Designer.cs", "_form1_8_designer_8cs.html", null ],
       [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/Program.cs", "_program_8cs.html", null ],
+      [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/Splash.cs", "_splash_8cs.html", null ],
+      [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/Splash.Designer.cs", "_splash_8_designer_8cs.html", null ],
       [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/themes.cs", "themes_8cs.html", null ],
       [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/Properties/AssemblyInfo.cs", "_assembly_info_8cs.html", null ],
       [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/Properties/Resources.Designer.cs", "_resources_8_designer_8cs.html", null ],
       [ "/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/Properties/Settings.Designer.cs", "_settings_8_designer_8cs.html", null ]
-    ] ]
+    ] ],
+    [ "File Members", "globals.html", null ]
   ] ]
 ];
 

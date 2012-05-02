@@ -58,6 +58,7 @@ namespace SrP_ClassroomInq
         #region Initialization
 
         public const int classSize = 50;  //will be max questions handled at once
+        public const int MaxQuestions = 250;
         public StreamReader Stream2Print;
         public Font PrintFont;
         public Color ForeColorTheme = Color.DarkGoldenrod;
@@ -74,9 +75,11 @@ namespace SrP_ClassroomInq
                            "\x0B","\x0C","\x0D","\x0E","\x0F","\x10","\x11","\x12","\x13","\x14",
                            "\x15","\x16","\x17","\x18","\x19","\x1A","\x1B","\x1C","\x1D","\x1E",
                             };
-        bool[] Q_status = new bool[classSize]; //records the read status of a question
-        bool[] Q_Replied = new bool[classSize]; //records if the question has been replied to
-        bool[] Q_NameShowing = new bool[classSize];
+        bool[] Q_status = new bool[MaxQuestions]; //records the read status of a question
+        bool[] Q_Replied = new bool[MaxQuestions]; //records if the question has been replied to
+        bool[] Q_NameShowing = new bool[MaxQuestions];
+        bool[] wasQunread = new bool[MaxQuestions];
+
         bool[] StudentPresent = new bool[classSize]; //for attendance mode
         bool[] StudentVoted = new bool[classSize];
         byte PresentStuNum = 250;
@@ -794,7 +797,7 @@ namespace SrP_ClassroomInq
             }
             catch 
             {
-                MessageBox.Show("Stuff's not right....");
+                MessageBox.Show("Stuff's not right... You need permissions to the Program Files Directory.");
             }
 
             try
@@ -830,7 +833,7 @@ namespace SrP_ClassroomInq
             }
             catch 
             {
-                MessageBox.Show("Oh No's....Quiz file reading broke!!");
+                MessageBox.Show("Oh No's.... You need permissions to the Program Files Directory.");
             }
 
             /*Splash Screen Code*/
@@ -1329,17 +1332,24 @@ namespace SrP_ClassroomInq
             {
                 File.Create(PlainData);
             }
-
-            using (StreamWriter sw = new StreamWriter(PlainData))
-            {
-                //build and write the strings for the data file
-                for (int i = 0; i < lstbxStudents.Items.Count; i++)
-                {
-                    sw.WriteLine(Students_Name[i] + ',' + Students_ID[i]);
-                }
-                sw.Flush();
-                sw.Close();
-            }
+	    
+	    try
+	    {
+           	 using (StreamWriter sw = new StreamWriter(PlainData))
+            	{	
+                	//build and write the strings for the data file
+                	for (int i = 0; i < lstbxStudents.Items.Count; i++)
+                	{
+                    	sw.WriteLine(Students_Name[i] + ',' + Students_ID[i]);
+                	}	
+                	sw.Flush();
+                	sw.Close();
+            	}
+	    }
+	    catch
+	    {
+		MessageBox.Show("You need permissions to the Program Files \ndirectory for Classroom Inquisition");
+	    }
             
             ////get key for file encryption
             //SecretKey = GenerateKey();
@@ -1711,7 +1721,7 @@ namespace SrP_ClassroomInq
             catch
             {
                 success = false;
-                MessageBox.Show("Log creation // writing failed!!!");
+                MessageBox.Show("Log creation // writing failed!!!\nYou need permissions to the ClassroomInq Program Files directory.");
             }
             return success;
         }
@@ -2000,6 +2010,21 @@ namespace SrP_ClassroomInq
                 DeleteQuestion = true;
                 Del_ID = (byte)new_lblID;
                 timer.Enabled = true;
+                
+                if (lbl_arr[new_lblID].Text.Contains("***"))
+                {
+                    //this means it is unread
+                    wasQunread[new_lblID] = true;
+                    UnreadCount--;//decrement unread count
+                    if (UnreadCount > 0)
+                    {
+                        this.Text = " Classroom Inquisition  |  Home (" + UnreadCount.ToString() + ")";
+                    }
+                    else
+                    {
+                        this.Text = " Classroom Inquisition  |  Home";
+                    }
+                }
             }
             else
             {
@@ -2016,7 +2041,18 @@ namespace SrP_ClassroomInq
            {
                cntxtMenu.MenuItems.Add(muItmName);//add the toggle name
                cntxtMenu.MenuItems.Add("-");
+               if (!Q_status[new_lblID])
+               {
+                   //it is unread show mark as read
+                   cntxtMenu.MenuItems.Add(muItmMarkAsRead);
+               }
+               else
+               {
+                   cntxtMenu.MenuItems.Add(muItmMarkAsUnRead);
+               }
+               cntxtMenu.MenuItems.Add("-");
                cntxtMenu.MenuItems.Add(muItmDelete); //add context menu for delete
+               
            }
            else if (cntxtMenu.SourceControl == group_arr[new_lblID])
            {
@@ -2134,6 +2170,13 @@ namespace SrP_ClassroomInq
             Request_Undo = true;
             timer.Enabled = true;
             group_arr[Del_ID].Show();
+            
+            if (wasQunread[Del_ID])
+            {
+                //then I need to alter the unread count since this question is returning
+                UnreadCount++;
+                this.Text = " Classroom Inquisition  |  Home (" + UnreadCount.ToString() + ")";
+            }
         }
         
         /*Method for individual name toggling on click of context menu item*/
@@ -2287,7 +2330,7 @@ namespace SrP_ClassroomInq
             }
             catch 
             {
-                MessageBox.Show("He's dead Jim!");
+                MessageBox.Show("He's dead Jim! You need permissions to the Program Files Directory.");
             }
 
             QuizMakerClicked = true;
@@ -2896,6 +2939,31 @@ namespace SrP_ClassroomInq
             lblNotify.Text = "Class Vote reset!";
             DesireNotify = true;
             timer.Enabled = true;
+        }
+
+        private void muItmMarkAsRead_Click(object sender, EventArgs e)
+        {
+            Q_status[new_lblID] = true; // so unread won't get decremented if opened again..
+            UnreadCount--;
+            lbl_arr[new_lblID].Text = lbl_arr[new_lblID].Text.TrimStart('*').TrimStart(' '); //removes unread indicator in the label
+
+            if (UnreadCount > 0)
+            {
+                this.Text = " Classroom Inquisition  |  Home (" + UnreadCount.ToString() + ")";
+            }
+            else
+            {
+                this.Text = " Classroom Inquisition  |  Home";
+            }            
+        }
+
+        private void muItmMarkAsUnRead_Click(object sender, EventArgs e)
+        {
+            Q_status[new_lblID] = false;
+            UnreadCount++;
+            this.Text = " Classroom Inquisition  |  Home (" + UnreadCount.ToString() + ")";
+
+            lbl_arr[new_lblID].Text = "***" + "          " + lbl_arr[new_lblID].Text; //prepend the stars
         }
    } //end of partial class
 } //end of namespace    

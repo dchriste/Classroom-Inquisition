@@ -1,7 +1,8 @@
 <map id="G" name="G">
 <area shape="rect" id="node3" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#af53e6dc60cbe667e6b83a7591ee7678f" title="SrP_ClassroomInq.frmClassrromInq.MakeQuizQuestion" alt="" coords="435,31,783,57"/>
 <area shape="rect" id="node11" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a73354017a84daba6bd3a574274f3904a" title="SrP_ClassroomInq.frmClassrromInq.quizToolStripMenuItem_Click" alt="" coords="405,81,813,108"/>
-<area shape="rect" id="node5" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a62dfbfb357c98095e446b9a617c34ee9" title="SrP_ClassroomInq.frmClassrromInq.btnQuizAsk_Click" alt="" coords="862,31,1205,57"/>
-<area shape="rect" id="node7" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a525504ef91d8a99202dbcbc825a7aac2" title="SrP_ClassroomInq.frmClassrromInq.SendMsg" alt="" coords="1275,5,1567,32"/>
-<area shape="rect" id="node9" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a3571b56a7d0a64193e695447f01f6aa3" title="SrP_ClassroomInq.frmClassrromInq.RecordQuizData" alt="" coords="1254,56,1589,83"/>
+<area shape="rect" id="node5" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a62dfbfb357c98095e446b9a617c34ee9" title="SrP_ClassroomInq.frmClassrromInq.btnQuizAsk_Click" alt="" coords="911,31,1254,57"/>
+<area shape="rect" id="node7" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a525504ef91d8a99202dbcbc825a7aac2" title="SrP_ClassroomInq.frmClassrromInq.SendMsg" alt="" coords="1374,5,1666,32"/>
+<area shape="rect" id="node9" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a3571b56a7d0a64193e695447f01f6aa3" title="SrP_ClassroomInq.frmClassrromInq.RecordQuizData" alt="" coords="1353,56,1687,83"/>
+<area shape="rect" id="node13" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a5a5c0fb174e0ecda3389793bcb45d6e7" title="SrP_ClassroomInq.frmClassrromInq.broadcastToolStripMenuItem_Click" alt="" coords="862,81,1303,108"/>
 </map>

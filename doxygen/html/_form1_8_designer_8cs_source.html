@@ -34,7 +34,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">Classroom Inquisition
-   &#160;<span id="projectnumber">1.7.0</span>
+   &#160;<span id="projectnumber">1.7.3</span>
    </div>
    <div id="projectbrief">Teacher Student Communication</div>
   </td>
@@ -77,6 +77,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div>
@@ -98,17 +99,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">/home/bondslaveofJesus/Documents/SourceCode/Classroom-Inquisition/SrP_ClassroomInq/Form1.Designer.cs</div>  </div>
 </div>
 <div class="contents">
-<a href="_form1_8_designer_8cs.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 ﻿namespace SrP_ClassroomInq
+<a href="_form1_8_designer_8cs.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 ﻿namespace <a class="code" href="_about_box1_8_designer_8cs.html#a5f2a2594873363876586b3e984e8838b">SrP_ClassroomInq</a>
 <a name="l00002"></a>00002 {
 <a name="l00003"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html">00003</a>     <span class="keyword">partial class </span><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html">Form1</a>
 <a name="l00004"></a>00004     {
-<a name="l00008"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#accb63125f3efaee7cf29bc694431d352">00008</a>         <span class="keyword">private</span> System.ComponentModel.IContainer components = null;
+<a name="l00008"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#accb63125f3efaee7cf29bc694431d352">00008</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.ComponentModel.IContainer components = null;
 <a name="l00009"></a>00009 
 <a name="l00014"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#ac653b186a9b7176d47382c35d7474840">00014</a>         <span class="keyword">protected</span> <span class="keyword">override</span> <span class="keywordtype">void</span> Dispose(<span class="keywordtype">bool</span> disposing)
 <a name="l00015"></a>00015         {
 <a name="l00016"></a>00016             <span class="keywordflow">if</span> (disposing &amp;&amp; (components != null))
 <a name="l00017"></a>00017             {
-<a name="l00018"></a>00018                 components.<a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#ac653b186a9b7176d47382c35d7474840" title="Clean up any resources being used.">Dispose</a>();
+<a name="l00018"></a>00018                 components.Dispose();
 <a name="l00019"></a>00019             }
 <a name="l00020"></a>00020             base.Dispose(disposing);
 <a name="l00021"></a>00021         }
@@ -117,31 +118,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00024"></a>00024 <span class="preprocessor"></span>
 <a name="l00029"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#afca6d3960957efcb788ae1396c716dfd">00029</a>         <span class="keyword">private</span> <span class="keywordtype">void</span> InitializeComponent()
 <a name="l00030"></a>00030         {
-<a name="l00031"></a>00031             this.components = <span class="keyword">new</span> System.ComponentModel.Container();
-<a name="l00032"></a>00032             System.ComponentModel.ComponentResourceManager resources = <span class="keyword">new</span> System.ComponentModel.ComponentResourceManager(typeof(<a class="code" href="class_sr_p___classroom_inq_1_1_form1.html">Form1</a>));
-<a name="l00033"></a>00033             this.menuStrip1 = <span class="keyword">new</span> System.Windows.Forms.MenuStrip();
-<a name="l00034"></a>00034             this.sendToolStripMenuItem = <span class="keyword">new</span> System.Windows.Forms.ToolStripMenuItem();
-<a name="l00035"></a>00035             this.broadcastToolStripMenuItem = <span class="keyword">new</span> System.Windows.Forms.ToolStripMenuItem();
-<a name="l00036"></a>00036             this.directMessageToolStripMenuItem = <span class="keyword">new</span> System.Windows.Forms.ToolStripMenuItem();
-<a name="l00037"></a>00037             this.replyToolStripMenuItem = <span class="keyword">new</span> System.Windows.Forms.ToolStripMenuItem();
-<a name="l00038"></a>00038             this.controlsToolStripMenuItem = <span class="keyword">new</span> System.Windows.Forms.ToolStripMenuItem();
-<a name="l00039"></a>00039             this.viewToolStripMenuItem = <span class="keyword">new</span> System.Windows.Forms.ToolStripMenuItem();
-<a name="l00040"></a>00040             this.helpToolStripMenuItem = <span class="keyword">new</span> System.Windows.Forms.ToolStripMenuItem();
-<a name="l00041"></a>00041             this.quitToolStripMenuItem = <span class="keyword">new</span> System.Windows.Forms.ToolStripMenuItem();
-<a name="l00042"></a>00042             this.textBox1 = <span class="keyword">new</span> System.Windows.Forms.TextBox();
-<a name="l00043"></a>00043             this.statusStrip1 = <span class="keyword">new</span> System.Windows.Forms.StatusStrip();
-<a name="l00044"></a>00044             this.sb_send_status = <span class="keyword">new</span> System.Windows.Forms.ToolStripStatusLabel();
-<a name="l00045"></a>00045             this.timer = <span class="keyword">new</span> System.Windows.Forms.Timer(this.components);
-<a name="l00046"></a>00046             this.btnSend = <span class="keyword">new</span> System.Windows.Forms.Button();
-<a name="l00047"></a>00047             this.trayICON = <span class="keyword">new</span> System.Windows.Forms.NotifyIcon(this.components);
-<a name="l00048"></a>00048             this.grpbxFeed = <span class="keyword">new</span> System.Windows.Forms.GroupBox();
-<a name="l00049"></a>00049             this.vScrollBar1 = <span class="keyword">new</span> System.Windows.Forms.VScrollBar();
-<a name="l00050"></a>00050             this.grpbx_Reply = <span class="keyword">new</span> System.Windows.Forms.GroupBox();
-<a name="l00051"></a>00051             this.btnRPL = <span class="keyword">new</span> System.Windows.Forms.Button();
-<a name="l00052"></a>00052             this.btnCLS = <span class="keyword">new</span> System.Windows.Forms.Button();
-<a name="l00053"></a>00053             this.btnCLR = <span class="keyword">new</span> System.Windows.Forms.Button();
-<a name="l00054"></a>00054             this.txtbx_Reply = <span class="keyword">new</span> System.Windows.Forms.TextBox();
-<a name="l00055"></a>00055             this.lbl_question = <span class="keyword">new</span> System.Windows.Forms.Label();
+<a name="l00031"></a>00031             this.components = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.ComponentModel.Container();
+<a name="l00032"></a>00032             <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.ComponentModel.ComponentResourceManager resources = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.ComponentModel.ComponentResourceManager(typeof(<a class="code" href="class_sr_p___classroom_inq_1_1_form1.html">Form1</a>));
+<a name="l00033"></a>00033             this.menuStrip1 = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.MenuStrip();
+<a name="l00034"></a>00034             this.sendToolStripMenuItem = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripMenuItem();
+<a name="l00035"></a>00035             this.broadcastToolStripMenuItem = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripMenuItem();
+<a name="l00036"></a>00036             this.directMessageToolStripMenuItem = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripMenuItem();
+<a name="l00037"></a>00037             this.replyToolStripMenuItem = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripMenuItem();
+<a name="l00038"></a>00038             this.controlsToolStripMenuItem = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripMenuItem();
+<a name="l00039"></a>00039             this.viewToolStripMenuItem = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripMenuItem();
+<a name="l00040"></a>00040             this.helpToolStripMenuItem = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripMenuItem();
+<a name="l00041"></a>00041             this.quitToolStripMenuItem = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripMenuItem();
+<a name="l00042"></a>00042             this.textBox1 = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.TextBox();
+<a name="l00043"></a>00043             this.statusStrip1 = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.StatusStrip();
+<a name="l00044"></a>00044             this.sb_send_status = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripStatusLabel();
+<a name="l00045"></a>00045             this.timer = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.Timer(this.components);
+<a name="l00046"></a>00046             this.btnSend = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.Button();
+<a name="l00047"></a>00047             this.trayICON = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.NotifyIcon(this.components);
+<a name="l00048"></a>00048             this.grpbxFeed = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.GroupBox();
+<a name="l00049"></a>00049             this.vScrollBar1 = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.VScrollBar();
+<a name="l00050"></a>00050             this.grpbx_Reply = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.GroupBox();
+<a name="l00051"></a>00051             this.btnRPL = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.Button();
+<a name="l00052"></a>00052             this.btnCLS = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.Button();
+<a name="l00053"></a>00053             this.btnCLR = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.Button();
+<a name="l00054"></a>00054             this.txtbx_Reply = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.TextBox();
+<a name="l00055"></a>00055             this.lbl_question = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.Label();
 <a name="l00056"></a>00056             this.menuStrip1.SuspendLayout();
 <a name="l00057"></a>00057             this.statusStrip1.SuspendLayout();
 <a name="l00058"></a>00058             this.grpbxFeed.SuspendLayout();
@@ -150,110 +151,110 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00061"></a>00061             <span class="comment">// </span>
 <a name="l00062"></a>00062             <span class="comment">// menuStrip1</span>
 <a name="l00063"></a>00063             <span class="comment">// </span>
-<a name="l00064"></a>00064             this.menuStrip1.BackColor = System.Drawing.SystemColors.Menu;
-<a name="l00065"></a>00065             this.menuStrip1.Items.AddRange(<span class="keyword">new</span> System.Windows.Forms.ToolStripItem[] {
+<a name="l00064"></a>00064             this.menuStrip1.BackColor = <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.SystemColors.Menu;
+<a name="l00065"></a>00065             this.menuStrip1.Items.AddRange(<span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripItem[] {
 <a name="l00066"></a>00066             <span class="keyword">this</span>.sendToolStripMenuItem,
 <a name="l00067"></a>00067             <span class="keyword">this</span>.replyToolStripMenuItem,
 <a name="l00068"></a>00068             <span class="keyword">this</span>.controlsToolStripMenuItem,
 <a name="l00069"></a>00069             <span class="keyword">this</span>.viewToolStripMenuItem,
 <a name="l00070"></a>00070             <span class="keyword">this</span>.helpToolStripMenuItem,
 <a name="l00071"></a>00071             <span class="keyword">this</span>.quitToolStripMenuItem});
-<a name="l00072"></a>00072             this.menuStrip1.Location = <span class="keyword">new</span> System.Drawing.Point(0, 0);
+<a name="l00072"></a>00072             this.menuStrip1.Location = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Point(0, 0);
 <a name="l00073"></a>00073             this.menuStrip1.Name = <span class="stringliteral">&quot;menuStrip1&quot;</span>;
-<a name="l00074"></a>00074             this.menuStrip1.Size = <span class="keyword">new</span> System.Drawing.Size(364, 24);
+<a name="l00074"></a>00074             this.menuStrip1.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(364, 24);
 <a name="l00075"></a>00075             this.menuStrip1.TabIndex = 0;
 <a name="l00076"></a>00076             this.menuStrip1.Text = <span class="stringliteral">&quot;menuStrip1&quot;</span>;
 <a name="l00077"></a>00077             <span class="comment">// </span>
 <a name="l00078"></a>00078             <span class="comment">// sendToolStripMenuItem</span>
 <a name="l00079"></a>00079             <span class="comment">// </span>
-<a name="l00080"></a>00080             this.sendToolStripMenuItem.DropDownItems.AddRange(<span class="keyword">new</span> System.Windows.Forms.ToolStripItem[] {
+<a name="l00080"></a>00080             this.sendToolStripMenuItem.DropDownItems.AddRange(<span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripItem[] {
 <a name="l00081"></a>00081             <span class="keyword">this</span>.broadcastToolStripMenuItem,
 <a name="l00082"></a>00082             <span class="keyword">this</span>.directMessageToolStripMenuItem});
 <a name="l00083"></a>00083             this.sendToolStripMenuItem.Name = <span class="stringliteral">&quot;sendToolStripMenuItem&quot;</span>;
-<a name="l00084"></a>00084             this.sendToolStripMenuItem.Size = <span class="keyword">new</span> System.Drawing.Size(63, 20);
+<a name="l00084"></a>00084             this.sendToolStripMenuItem.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(63, 20);
 <a name="l00085"></a>00085             this.sendToolStripMenuItem.Text = <span class="stringliteral">&quot;Compose&quot;</span>;
 <a name="l00086"></a>00086             <span class="comment">// </span>
 <a name="l00087"></a>00087             <span class="comment">// broadcastToolStripMenuItem</span>
 <a name="l00088"></a>00088             <span class="comment">// </span>
 <a name="l00089"></a>00089             this.broadcastToolStripMenuItem.Name = <span class="stringliteral">&quot;broadcastToolStripMenuItem&quot;</span>;
-<a name="l00090"></a>00090             this.broadcastToolStripMenuItem.Size = <span class="keyword">new</span> System.Drawing.Size(147, 22);
+<a name="l00090"></a>00090             this.broadcastToolStripMenuItem.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(147, 22);
 <a name="l00091"></a>00091             this.broadcastToolStripMenuItem.Text = <span class="stringliteral">&quot;Broadcast&quot;</span>;
 <a name="l00092"></a>00092             <span class="comment">// </span>
 <a name="l00093"></a>00093             <span class="comment">// directMessageToolStripMenuItem</span>
 <a name="l00094"></a>00094             <span class="comment">// </span>
 <a name="l00095"></a>00095             this.directMessageToolStripMenuItem.Name = <span class="stringliteral">&quot;directMessageToolStripMenuItem&quot;</span>;
-<a name="l00096"></a>00096             this.directMessageToolStripMenuItem.Size = <span class="keyword">new</span> System.Drawing.Size(147, 22);
+<a name="l00096"></a>00096             this.directMessageToolStripMenuItem.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(147, 22);
 <a name="l00097"></a>00097             this.directMessageToolStripMenuItem.Text = <span class="stringliteral">&quot;Direct Message&quot;</span>;
 <a name="l00098"></a>00098             <span class="comment">// </span>
 <a name="l00099"></a>00099             <span class="comment">// replyToolStripMenuItem</span>
 <a name="l00100"></a>00100             <span class="comment">// </span>
 <a name="l00101"></a>00101             this.replyToolStripMenuItem.Name = <span class="stringliteral">&quot;replyToolStripMenuItem&quot;</span>;
-<a name="l00102"></a>00102             this.replyToolStripMenuItem.Size = <span class="keyword">new</span> System.Drawing.Size(46, 20);
+<a name="l00102"></a>00102             this.replyToolStripMenuItem.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(46, 20);
 <a name="l00103"></a>00103             this.replyToolStripMenuItem.Text = <span class="stringliteral">&quot;Reply&quot;</span>;
-<a name="l00104"></a>00104             this.replyToolStripMenuItem.Click += <span class="keyword">new</span> System.EventHandler(this.replyToolStripMenuItem_Click);
+<a name="l00104"></a>00104             this.replyToolStripMenuItem.Click += <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.EventHandler(this.replyToolStripMenuItem_Click);
 <a name="l00105"></a>00105             <span class="comment">// </span>
 <a name="l00106"></a>00106             <span class="comment">// controlsToolStripMenuItem</span>
 <a name="l00107"></a>00107             <span class="comment">// </span>
 <a name="l00108"></a>00108             this.controlsToolStripMenuItem.Name = <span class="stringliteral">&quot;controlsToolStripMenuItem&quot;</span>;
-<a name="l00109"></a>00109             this.controlsToolStripMenuItem.Size = <span class="keyword">new</span> System.Drawing.Size(59, 20);
+<a name="l00109"></a>00109             this.controlsToolStripMenuItem.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(59, 20);
 <a name="l00110"></a>00110             this.controlsToolStripMenuItem.Text = <span class="stringliteral">&quot;Controls&quot;</span>;
 <a name="l00111"></a>00111             <span class="comment">// </span>
 <a name="l00112"></a>00112             <span class="comment">// viewToolStripMenuItem</span>
 <a name="l00113"></a>00113             <span class="comment">// </span>
 <a name="l00114"></a>00114             this.viewToolStripMenuItem.Name = <span class="stringliteral">&quot;viewToolStripMenuItem&quot;</span>;
-<a name="l00115"></a>00115             this.viewToolStripMenuItem.Size = <span class="keyword">new</span> System.Drawing.Size(41, 20);
+<a name="l00115"></a>00115             this.viewToolStripMenuItem.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(41, 20);
 <a name="l00116"></a>00116             this.viewToolStripMenuItem.Text = <span class="stringliteral">&quot;View&quot;</span>;
 <a name="l00117"></a>00117             <span class="comment">// </span>
 <a name="l00118"></a>00118             <span class="comment">// helpToolStripMenuItem</span>
 <a name="l00119"></a>00119             <span class="comment">// </span>
 <a name="l00120"></a>00120             this.helpToolStripMenuItem.Name = <span class="stringliteral">&quot;helpToolStripMenuItem&quot;</span>;
-<a name="l00121"></a>00121             this.helpToolStripMenuItem.Size = <span class="keyword">new</span> System.Drawing.Size(40, 20);
+<a name="l00121"></a>00121             this.helpToolStripMenuItem.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(40, 20);
 <a name="l00122"></a>00122             this.helpToolStripMenuItem.Text = <span class="stringliteral">&quot;Help&quot;</span>;
 <a name="l00123"></a>00123             <span class="comment">// </span>
 <a name="l00124"></a>00124             <span class="comment">// quitToolStripMenuItem</span>
 <a name="l00125"></a>00125             <span class="comment">// </span>
-<a name="l00126"></a>00126             this.quitToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+<a name="l00126"></a>00126             this.quitToolStripMenuItem.Alignment = <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripItemAlignment.Right;
 <a name="l00127"></a>00127             this.quitToolStripMenuItem.Name = <span class="stringliteral">&quot;quitToolStripMenuItem&quot;</span>;
-<a name="l00128"></a>00128             this.quitToolStripMenuItem.Size = <span class="keyword">new</span> System.Drawing.Size(39, 20);
+<a name="l00128"></a>00128             this.quitToolStripMenuItem.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(39, 20);
 <a name="l00129"></a>00129             this.quitToolStripMenuItem.Text = <span class="stringliteral">&quot;Quit&quot;</span>;
-<a name="l00130"></a>00130             this.quitToolStripMenuItem.Click += <span class="keyword">new</span> System.EventHandler(this.quitToolStripMenuItem_Click);
+<a name="l00130"></a>00130             this.quitToolStripMenuItem.Click += <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.EventHandler(this.quitToolStripMenuItem_Click);
 <a name="l00131"></a>00131             <span class="comment">// </span>
 <a name="l00132"></a>00132             <span class="comment">// textBox1</span>
 <a name="l00133"></a>00133             <span class="comment">// </span>
-<a name="l00134"></a>00134             this.textBox1.Location = <span class="keyword">new</span> System.Drawing.Point(12, 27);
+<a name="l00134"></a>00134             this.textBox1.Location = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Point(12, 27);
 <a name="l00135"></a>00135             this.textBox1.Multiline = <span class="keyword">true</span>;
 <a name="l00136"></a>00136             this.textBox1.Name = <span class="stringliteral">&quot;textBox1&quot;</span>;
-<a name="l00137"></a>00137             this.textBox1.Size = <span class="keyword">new</span> System.Drawing.Size(340, 45);
+<a name="l00137"></a>00137             this.textBox1.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(340, 45);
 <a name="l00138"></a>00138             this.textBox1.TabIndex = 1;
 <a name="l00139"></a>00139             this.textBox1.Text = <span class="stringliteral">&quot;Enter Message here..&quot;</span>;
-<a name="l00140"></a>00140             this.textBox1.MouseClick += <span class="keyword">new</span> System.Windows.Forms.MouseEventHandler(this.textBox1_MouseClick);
+<a name="l00140"></a>00140             this.textBox1.MouseClick += <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.MouseEventHandler(this.textBox1_MouseClick);
 <a name="l00141"></a>00141             <span class="comment">// </span>
 <a name="l00142"></a>00142             <span class="comment">// statusStrip1</span>
 <a name="l00143"></a>00143             <span class="comment">// </span>
-<a name="l00144"></a>00144             this.statusStrip1.Items.AddRange(<span class="keyword">new</span> System.Windows.Forms.ToolStripItem[] {
+<a name="l00144"></a>00144             this.statusStrip1.Items.AddRange(<span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripItem[] {
 <a name="l00145"></a>00145             <span class="keyword">this</span>.sb_send_status});
-<a name="l00146"></a>00146             this.statusStrip1.Location = <span class="keyword">new</span> System.Drawing.Point(0, 528);
+<a name="l00146"></a>00146             this.statusStrip1.Location = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Point(0, 528);
 <a name="l00147"></a>00147             this.statusStrip1.Name = <span class="stringliteral">&quot;statusStrip1&quot;</span>;
-<a name="l00148"></a>00148             this.statusStrip1.Size = <span class="keyword">new</span> System.Drawing.Size(364, 22);
+<a name="l00148"></a>00148             this.statusStrip1.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(364, 22);
 <a name="l00149"></a>00149             this.statusStrip1.TabIndex = 2;
 <a name="l00150"></a>00150             this.statusStrip1.Text = <span class="stringliteral">&quot;statusStrip1&quot;</span>;
 <a name="l00151"></a>00151             <span class="comment">// </span>
 <a name="l00152"></a>00152             <span class="comment">// sb_send_status</span>
 <a name="l00153"></a>00153             <span class="comment">// </span>
 <a name="l00154"></a>00154             this.sb_send_status.Name = <span class="stringliteral">&quot;sb_send_status&quot;</span>;
-<a name="l00155"></a>00155             this.sb_send_status.Size = <span class="keyword">new</span> System.Drawing.Size(167, 17);
+<a name="l00155"></a>00155             this.sb_send_status.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(167, 17);
 <a name="l00156"></a>00156             this.sb_send_status.Text = <span class="stringliteral">&quot;Welcome to Classroom Inquisition&quot;</span>;
 <a name="l00157"></a>00157             <span class="comment">// </span>
 <a name="l00158"></a>00158             <span class="comment">// timer</span>
 <a name="l00159"></a>00159             <span class="comment">// </span>
 <a name="l00160"></a>00160             this.timer.Interval = 75;
-<a name="l00161"></a>00161             this.timer.Tick += <span class="keyword">new</span> System.EventHandler(this.timer_Tick);
+<a name="l00161"></a>00161             this.timer.Tick += <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.EventHandler(this.timer_Tick);
 <a name="l00162"></a>00162             <span class="comment">// </span>
 <a name="l00163"></a>00163             <span class="comment">// btnSend</span>
 <a name="l00164"></a>00164             <span class="comment">// </span>
-<a name="l00165"></a>00165             this.btnSend.Location = <span class="keyword">new</span> System.Drawing.Point(277, 80);
+<a name="l00165"></a>00165             this.btnSend.Location = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Point(277, 80);
 <a name="l00166"></a>00166             this.btnSend.Name = <span class="stringliteral">&quot;btnSend&quot;</span>;
-<a name="l00167"></a>00167             this.btnSend.Size = <span class="keyword">new</span> System.Drawing.Size(75, 29);
+<a name="l00167"></a>00167             this.btnSend.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(75, 29);
 <a name="l00168"></a>00168             this.btnSend.TabIndex = 4;
 <a name="l00169"></a>00169             this.btnSend.Text = <span class="stringliteral">&quot;Send Msg&quot;</span>;
 <a name="l00170"></a>00170             this.btnSend.UseVisualStyleBackColor = <span class="keyword">true</span>;
@@ -263,113 +264,113 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00174"></a>00174             <span class="comment">// </span>
 <a name="l00175"></a>00175             this.trayICON.BalloonTipText = <span class="stringliteral">&quot;Raising Hands is a thing of the past.&quot;</span>;
 <a name="l00176"></a>00176             this.trayICON.BalloonTipTitle = <span class="stringliteral">&quot;Classroom Inq.&quot;</span>;
-<a name="l00177"></a>00177             this.trayICON.Icon = ((System.Drawing.Icon)(resources.GetObject(<span class="stringliteral">&quot;trayICON.Icon&quot;</span>)));
+<a name="l00177"></a>00177             this.trayICON.Icon = ((<a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Icon)(resources.GetObject(<span class="stringliteral">&quot;trayICON.Icon&quot;</span>)));
 <a name="l00178"></a>00178             this.trayICON.Text = <span class="stringliteral">&quot;Classroom Inq.&quot;</span>;
 <a name="l00179"></a>00179             this.trayICON.Visible = <span class="keyword">true</span>;
-<a name="l00180"></a>00180             this.trayICON.MouseDoubleClick += <span class="keyword">new</span> System.Windows.Forms.MouseEventHandler(this.trayICON_MouseDoubleClick);
+<a name="l00180"></a>00180             this.trayICON.MouseDoubleClick += <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.MouseEventHandler(this.trayICON_MouseDoubleClick);
 <a name="l00181"></a>00181             <span class="comment">// </span>
 <a name="l00182"></a>00182             <span class="comment">// grpbxFeed</span>
 <a name="l00183"></a>00183             <span class="comment">// </span>
-<a name="l00184"></a>00184             this.grpbxFeed.BackColor = System.Drawing.SystemColors.Control;
+<a name="l00184"></a>00184             this.grpbxFeed.BackColor = <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.SystemColors.Control;
 <a name="l00185"></a>00185             this.grpbxFeed.Controls.Add(this.vScrollBar1);
 <a name="l00186"></a>00186             this.grpbxFeed.Controls.Add(this.grpbx_Reply);
-<a name="l00187"></a>00187             this.grpbxFeed.Location = <span class="keyword">new</span> System.Drawing.Point(12, 80);
+<a name="l00187"></a>00187             this.grpbxFeed.Location = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Point(12, 80);
 <a name="l00188"></a>00188             this.grpbxFeed.Name = <span class="stringliteral">&quot;grpbxFeed&quot;</span>;
-<a name="l00189"></a>00189             this.grpbxFeed.Size = <span class="keyword">new</span> System.Drawing.Size(340, 432);
+<a name="l00189"></a>00189             this.grpbxFeed.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(340, 432);
 <a name="l00190"></a>00190             this.grpbxFeed.TabIndex = 5;
 <a name="l00191"></a>00191             this.grpbxFeed.TabStop = <span class="keyword">false</span>;
 <a name="l00192"></a>00192             <span class="comment">// </span>
 <a name="l00193"></a>00193             <span class="comment">// vScrollBar1</span>
 <a name="l00194"></a>00194             <span class="comment">// </span>
-<a name="l00195"></a>00195             this.vScrollBar1.Dock = System.Windows.Forms.DockStyle.Right;
-<a name="l00196"></a>00196             this.vScrollBar1.Location = <span class="keyword">new</span> System.Drawing.Point(321, 16);
+<a name="l00195"></a>00195             this.vScrollBar1.Dock = <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.DockStyle.Right;
+<a name="l00196"></a>00196             this.vScrollBar1.Location = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Point(321, 16);
 <a name="l00197"></a>00197             this.vScrollBar1.Name = <span class="stringliteral">&quot;vScrollBar1&quot;</span>;
-<a name="l00198"></a>00198             this.vScrollBar1.Size = <span class="keyword">new</span> System.Drawing.Size(16, 413);
+<a name="l00198"></a>00198             this.vScrollBar1.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(16, 413);
 <a name="l00199"></a>00199             this.vScrollBar1.TabIndex = 3;
 <a name="l00200"></a>00200             this.vScrollBar1.Visible = <span class="keyword">false</span>;
 <a name="l00201"></a>00201             <span class="comment">// </span>
 <a name="l00202"></a>00202             <span class="comment">// grpbx_Reply</span>
 <a name="l00203"></a>00203             <span class="comment">// </span>
-<a name="l00204"></a>00204             this.grpbx_Reply.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+<a name="l00204"></a>00204             this.grpbx_Reply.BackColor = <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.SystemColors.ControlDarkDark;
 <a name="l00205"></a>00205             this.grpbx_Reply.Controls.Add(this.btnRPL);
 <a name="l00206"></a>00206             this.grpbx_Reply.Controls.Add(this.btnCLS);
 <a name="l00207"></a>00207             this.grpbx_Reply.Controls.Add(this.btnCLR);
 <a name="l00208"></a>00208             this.grpbx_Reply.Controls.Add(this.txtbx_Reply);
 <a name="l00209"></a>00209             this.grpbx_Reply.Controls.Add(this.lbl_question);
-<a name="l00210"></a>00210             this.grpbx_Reply.ForeColor = System.Drawing.SystemColors.HighlightText;
-<a name="l00211"></a>00211             this.grpbx_Reply.Location = <span class="keyword">new</span> System.Drawing.Point(6, 19);
+<a name="l00210"></a>00210             this.grpbx_Reply.ForeColor = <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.SystemColors.HighlightText;
+<a name="l00211"></a>00211             this.grpbx_Reply.Location = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Point(6, 19);
 <a name="l00212"></a>00212             this.grpbx_Reply.Name = <span class="stringliteral">&quot;grpbx_Reply&quot;</span>;
-<a name="l00213"></a>00213             this.grpbx_Reply.Size = <span class="keyword">new</span> System.Drawing.Size(328, 32);
+<a name="l00213"></a>00213             this.grpbx_Reply.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(328, 32);
 <a name="l00214"></a>00214             this.grpbx_Reply.TabIndex = 2;
 <a name="l00215"></a>00215             this.grpbx_Reply.TabStop = <span class="keyword">false</span>;
 <a name="l00216"></a>00216             <span class="comment">// </span>
 <a name="l00217"></a>00217             <span class="comment">// btnRPL</span>
 <a name="l00218"></a>00218             <span class="comment">// </span>
-<a name="l00219"></a>00219             this.btnRPL.Location = <span class="keyword">new</span> System.Drawing.Point(230, 98);
+<a name="l00219"></a>00219             this.btnRPL.Location = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Point(230, 98);
 <a name="l00220"></a>00220             this.btnRPL.Name = <span class="stringliteral">&quot;btnRPL&quot;</span>;
-<a name="l00221"></a>00221             this.btnRPL.Size = <span class="keyword">new</span> System.Drawing.Size(67, 25);
+<a name="l00221"></a>00221             this.btnRPL.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(67, 25);
 <a name="l00222"></a>00222             this.btnRPL.TabIndex = 4;
 <a name="l00223"></a>00223             this.btnRPL.Text = <span class="stringliteral">&quot;Repl&amp;y&quot;</span>;
 <a name="l00224"></a>00224             this.btnRPL.UseVisualStyleBackColor = <span class="keyword">true</span>;
 <a name="l00225"></a>00225             <span class="comment">// </span>
 <a name="l00226"></a>00226             <span class="comment">// btnCLS</span>
 <a name="l00227"></a>00227             <span class="comment">// </span>
-<a name="l00228"></a>00228             this.btnCLS.Location = <span class="keyword">new</span> System.Drawing.Point(129, 98);
+<a name="l00228"></a>00228             this.btnCLS.Location = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Point(129, 98);
 <a name="l00229"></a>00229             this.btnCLS.Name = <span class="stringliteral">&quot;btnCLS&quot;</span>;
-<a name="l00230"></a>00230             this.btnCLS.Size = <span class="keyword">new</span> System.Drawing.Size(67, 25);
+<a name="l00230"></a>00230             this.btnCLS.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(67, 25);
 <a name="l00231"></a>00231             this.btnCLS.TabIndex = 3;
 <a name="l00232"></a>00232             this.btnCLS.Text = <span class="stringliteral">&quot;Clos&amp;e&quot;</span>;
 <a name="l00233"></a>00233             this.btnCLS.UseVisualStyleBackColor = <span class="keyword">true</span>;
-<a name="l00234"></a>00234             this.btnCLS.Click += <span class="keyword">new</span> System.EventHandler(this.btnCLS_Click);
+<a name="l00234"></a>00234             this.btnCLS.Click += <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.EventHandler(this.btnCLS_Click);
 <a name="l00235"></a>00235             <span class="comment">// </span>
 <a name="l00236"></a>00236             <span class="comment">// btnCLR</span>
 <a name="l00237"></a>00237             <span class="comment">// </span>
-<a name="l00238"></a>00238             this.btnCLR.Location = <span class="keyword">new</span> System.Drawing.Point(23, 98);
+<a name="l00238"></a>00238             this.btnCLR.Location = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Point(23, 98);
 <a name="l00239"></a>00239             this.btnCLR.Name = <span class="stringliteral">&quot;btnCLR&quot;</span>;
-<a name="l00240"></a>00240             this.btnCLR.Size = <span class="keyword">new</span> System.Drawing.Size(67, 25);
+<a name="l00240"></a>00240             this.btnCLR.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(67, 25);
 <a name="l00241"></a>00241             this.btnCLR.TabIndex = 2;
 <a name="l00242"></a>00242             this.btnCLR.Text = <span class="stringliteral">&quot;Clea&amp;r&quot;</span>;
 <a name="l00243"></a>00243             this.btnCLR.UseVisualStyleBackColor = <span class="keyword">true</span>;
-<a name="l00244"></a>00244             this.btnCLR.Click += <span class="keyword">new</span> System.EventHandler(this.btnCLR_Click);
+<a name="l00244"></a>00244             this.btnCLR.Click += <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.EventHandler(this.btnCLR_Click);
 <a name="l00245"></a>00245             <span class="comment">// </span>
 <a name="l00246"></a>00246             <span class="comment">// txtbx_Reply</span>
 <a name="l00247"></a>00247             <span class="comment">// </span>
 <a name="l00248"></a>00248             this.txtbx_Reply.AcceptsReturn = <span class="keyword">true</span>;
-<a name="l00249"></a>00249             this.txtbx_Reply.Location = <span class="keyword">new</span> System.Drawing.Point(23, 32);
+<a name="l00249"></a>00249             this.txtbx_Reply.Location = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Point(23, 32);
 <a name="l00250"></a>00250             this.txtbx_Reply.Multiline = <span class="keyword">true</span>;
 <a name="l00251"></a>00251             this.txtbx_Reply.Name = <span class="stringliteral">&quot;txtbx_Reply&quot;</span>;
-<a name="l00252"></a>00252             this.txtbx_Reply.Size = <span class="keyword">new</span> System.Drawing.Size(274, 51);
+<a name="l00252"></a>00252             this.txtbx_Reply.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(274, 51);
 <a name="l00253"></a>00253             this.txtbx_Reply.TabIndex = 1;
 <a name="l00254"></a>00254             <span class="comment">// </span>
 <a name="l00255"></a>00255             <span class="comment">// lbl_question</span>
 <a name="l00256"></a>00256             <span class="comment">// </span>
 <a name="l00257"></a>00257             this.lbl_question.AutoSize = <span class="keyword">true</span>;
-<a name="l00258"></a>00258             this.lbl_question.Location = <span class="keyword">new</span> System.Drawing.Point(62, 13);
+<a name="l00258"></a>00258             this.lbl_question.Location = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Point(62, 13);
 <a name="l00259"></a>00259             this.lbl_question.Name = <span class="stringliteral">&quot;lbl_question&quot;</span>;
-<a name="l00260"></a>00260             this.lbl_question.Size = <span class="keyword">new</span> System.Drawing.Size(191, 13);
+<a name="l00260"></a>00260             this.lbl_question.Size = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(191, 13);
 <a name="l00261"></a>00261             this.lbl_question.TabIndex = 0;
 <a name="l00262"></a>00262             this.lbl_question.Text = <span class="stringliteral">&quot;Why is there evil in the world??\t-Joseph&quot;</span>;
-<a name="l00263"></a>00263             this.lbl_question.Click += <span class="keyword">new</span> System.EventHandler(this.lbl_question_Click);
+<a name="l00263"></a>00263             this.lbl_question.Click += <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.EventHandler(this.lbl_question_Click);
 <a name="l00264"></a>00264             <span class="comment">// </span>
 <a name="l00265"></a>00265             <span class="comment">// Form1</span>
 <a name="l00266"></a>00266             <span class="comment">// </span>
-<a name="l00267"></a>00267             this.AutoScaleDimensions = <span class="keyword">new</span> System.Drawing.SizeF(6F, 13F);
-<a name="l00268"></a>00268             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-<a name="l00269"></a>00269             this.BackColor = System.Drawing.SystemColors.Control;
-<a name="l00270"></a>00270             this.ClientSize = <span class="keyword">new</span> System.Drawing.Size(364, 550);
+<a name="l00267"></a>00267             this.AutoScaleDimensions = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.SizeF(6F, 13F);
+<a name="l00268"></a>00268             this.AutoScaleMode = <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.AutoScaleMode.Font;
+<a name="l00269"></a>00269             this.BackColor = <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.SystemColors.Control;
+<a name="l00270"></a>00270             this.ClientSize = <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Size(364, 550);
 <a name="l00271"></a>00271             this.ControlBox = <span class="keyword">false</span>;
 <a name="l00272"></a>00272             this.Controls.Add(this.grpbxFeed);
 <a name="l00273"></a>00273             this.Controls.Add(this.btnSend);
 <a name="l00274"></a>00274             this.Controls.Add(this.statusStrip1);
 <a name="l00275"></a>00275             this.Controls.Add(this.textBox1);
 <a name="l00276"></a>00276             this.Controls.Add(this.menuStrip1);
-<a name="l00277"></a>00277             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-<a name="l00278"></a>00278             this.Icon = ((System.Drawing.Icon)(resources.GetObject(<span class="stringliteral">&quot;$this.Icon&quot;</span>)));
+<a name="l00277"></a>00277             this.FormBorderStyle = <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.FormBorderStyle.FixedSingle;
+<a name="l00278"></a>00278             this.Icon = ((<a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Drawing.Icon)(resources.GetObject(<span class="stringliteral">&quot;$this.Icon&quot;</span>)));
 <a name="l00279"></a>00279             this.MainMenuStrip = this.menuStrip1;
 <a name="l00280"></a>00280             this.MaximizeBox = <span class="keyword">false</span>;
 <a name="l00281"></a>00281             this.Name = <span class="stringliteral">&quot;Form1&quot;</span>;
 <a name="l00282"></a>00282             this.Text = <span class="stringliteral">&quot; Classroom Inquisition&quot;</span>;
-<a name="l00283"></a>00283             this.Load += <span class="keyword">new</span> System.EventHandler(this.Form1_Load);
+<a name="l00283"></a>00283             this.Load += <span class="keyword">new</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.EventHandler(this.Form1_Load);
 <a name="l00284"></a>00284             this.menuStrip1.ResumeLayout(<span class="keyword">false</span>);
 <a name="l00285"></a>00285             this.menuStrip1.PerformLayout();
 <a name="l00286"></a>00286             this.statusStrip1.ResumeLayout(<span class="keyword">false</span>);
@@ -384,29 +385,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00295"></a>00295 
 <a name="l00296"></a>00296 <span class="preprocessor">        #endregion</span>
 <a name="l00297"></a>00297 <span class="preprocessor"></span>
-<a name="l00298"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a96c0a67f69db0cb7d91c00ec20c57863">00298</a>         <span class="keyword">private</span> System.Windows.Forms.MenuStrip <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a96c0a67f69db0cb7d91c00ec20c57863">menuStrip1</a>;
-<a name="l00299"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#ad2d5fd561e0a7b9572cc591b7056f5c4">00299</a>         <span class="keyword">private</span> System.Windows.Forms.ToolStripMenuItem <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#ad2d5fd561e0a7b9572cc591b7056f5c4">sendToolStripMenuItem</a>;
-<a name="l00300"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#aa80b5939f28addc897e87c70462b022d">00300</a>         <span class="keyword">private</span> System.Windows.Forms.ToolStripMenuItem <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#aa80b5939f28addc897e87c70462b022d">broadcastToolStripMenuItem</a>;
-<a name="l00301"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#ab3a4ceedac3b7ba0985ed1bf2d581848">00301</a>         <span class="keyword">private</span> System.Windows.Forms.ToolStripMenuItem <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#ab3a4ceedac3b7ba0985ed1bf2d581848">directMessageToolStripMenuItem</a>;
-<a name="l00302"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#acc6ff110ce8c8a1171c0a1d30ca10a9c">00302</a>         <span class="keyword">private</span> System.Windows.Forms.ToolStripMenuItem <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#acc6ff110ce8c8a1171c0a1d30ca10a9c">replyToolStripMenuItem</a>;
-<a name="l00303"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a32535c4c872410c0983e3f8978cdbb1e">00303</a>         <span class="keyword">private</span> System.Windows.Forms.ToolStripMenuItem <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a32535c4c872410c0983e3f8978cdbb1e">viewToolStripMenuItem</a>;
-<a name="l00304"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#af2e7406cd9ae537ac3b0c16863a28908">00304</a>         <span class="keyword">private</span> System.Windows.Forms.ToolStripMenuItem <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#af2e7406cd9ae537ac3b0c16863a28908">helpToolStripMenuItem</a>;
-<a name="l00305"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a5e6a7c23f32069d88989c05f205fcf12">00305</a>         <span class="keyword">private</span> System.Windows.Forms.TextBox <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a5e6a7c23f32069d88989c05f205fcf12">textBox1</a>;
-<a name="l00306"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a9d7f098db073a545355aa922cca89b28">00306</a>         <span class="keyword">private</span> System.Windows.Forms.StatusStrip <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a9d7f098db073a545355aa922cca89b28">statusStrip1</a>;
-<a name="l00307"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a97b224eb10412293bdb533c770d8144d">00307</a>         <span class="keyword">private</span> System.Windows.Forms.ToolStripStatusLabel <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a97b224eb10412293bdb533c770d8144d">sb_send_status</a>;
-<a name="l00308"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a06583fd3fb29ebc029293ca162e2848d">00308</a>         <span class="keyword">private</span> System.Windows.Forms.ToolStripMenuItem <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a06583fd3fb29ebc029293ca162e2848d">controlsToolStripMenuItem</a>;
-<a name="l00309"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a21aff2285e9e1a058884bcb1b016b7f5">00309</a>         <span class="keyword">private</span> System.Windows.Forms.ToolStripMenuItem <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a21aff2285e9e1a058884bcb1b016b7f5">quitToolStripMenuItem</a>;
-<a name="l00310"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#adacccc843b86b09e50b25ce543142eff">00310</a>         <span class="keyword">private</span> System.Windows.Forms.Timer <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#adacccc843b86b09e50b25ce543142eff">timer</a>;
-<a name="l00311"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a1e5e8dfae30625b2a45b24a75a966514">00311</a>         <span class="keyword">private</span> System.Windows.Forms.Button <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a1e5e8dfae30625b2a45b24a75a966514">btnSend</a>;
-<a name="l00312"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#aebfca6922fa8221276d0547615f5b93a">00312</a>         <span class="keyword">private</span> System.Windows.Forms.NotifyIcon <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#aebfca6922fa8221276d0547615f5b93a">trayICON</a>;
-<a name="l00313"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#ac6c672057738e4a54824f0c08e61b238">00313</a>         <span class="keyword">private</span> System.Windows.Forms.GroupBox <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#ac6c672057738e4a54824f0c08e61b238">grpbxFeed</a>;
-<a name="l00314"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a0f01472dc53a3c134d543b1a59299a1e">00314</a>         <span class="keyword">private</span> System.Windows.Forms.GroupBox <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a0f01472dc53a3c134d543b1a59299a1e">grpbx_Reply</a>;
-<a name="l00315"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a43f801ebb9c0a215764953588fa9c4f1">00315</a>         <span class="keyword">private</span> System.Windows.Forms.Button <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a43f801ebb9c0a215764953588fa9c4f1">btnCLR</a>;
-<a name="l00316"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#ac823af7ed5a9a4e3fde06b7ab90faa0e">00316</a>         <span class="keyword">private</span> System.Windows.Forms.TextBox <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#ac823af7ed5a9a4e3fde06b7ab90faa0e">txtbx_Reply</a>;
-<a name="l00317"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a885c7aceb5d883641c46d08d97692f4c">00317</a>         <span class="keyword">private</span> System.Windows.Forms.Label <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a885c7aceb5d883641c46d08d97692f4c">lbl_question</a>;
-<a name="l00318"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a92767c7c3fd6f7c6890a4aa3bd2efefa">00318</a>         <span class="keyword">private</span> System.Windows.Forms.Button <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a92767c7c3fd6f7c6890a4aa3bd2efefa">btnRPL</a>;
-<a name="l00319"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a500406f80ad03c1b3fdf9d7cfc75c7f3">00319</a>         <span class="keyword">private</span> System.Windows.Forms.Button <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a500406f80ad03c1b3fdf9d7cfc75c7f3">btnCLS</a>;
-<a name="l00320"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a782e2e05e0a099a77a85c00d4189c762">00320</a>         <span class="keyword">private</span> System.Windows.Forms.VScrollBar <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a782e2e05e0a099a77a85c00d4189c762">vScrollBar1</a>;
+<a name="l00298"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a96c0a67f69db0cb7d91c00ec20c57863">00298</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.MenuStrip <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a96c0a67f69db0cb7d91c00ec20c57863">menuStrip1</a>;
+<a name="l00299"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#ad2d5fd561e0a7b9572cc591b7056f5c4">00299</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripMenuItem <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#ad2d5fd561e0a7b9572cc591b7056f5c4">sendToolStripMenuItem</a>;
+<a name="l00300"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#aa80b5939f28addc897e87c70462b022d">00300</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripMenuItem <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#aa80b5939f28addc897e87c70462b022d">broadcastToolStripMenuItem</a>;
+<a name="l00301"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#ab3a4ceedac3b7ba0985ed1bf2d581848">00301</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripMenuItem <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#ab3a4ceedac3b7ba0985ed1bf2d581848">directMessageToolStripMenuItem</a>;
+<a name="l00302"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#acc6ff110ce8c8a1171c0a1d30ca10a9c">00302</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripMenuItem <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#acc6ff110ce8c8a1171c0a1d30ca10a9c">replyToolStripMenuItem</a>;
+<a name="l00303"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a32535c4c872410c0983e3f8978cdbb1e">00303</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripMenuItem <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a32535c4c872410c0983e3f8978cdbb1e">viewToolStripMenuItem</a>;
+<a name="l00304"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#af2e7406cd9ae537ac3b0c16863a28908">00304</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripMenuItem <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#af2e7406cd9ae537ac3b0c16863a28908">helpToolStripMenuItem</a>;
+<a name="l00305"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a5e6a7c23f32069d88989c05f205fcf12">00305</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.TextBox <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a5e6a7c23f32069d88989c05f205fcf12">textBox1</a>;
+<a name="l00306"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a9d7f098db073a545355aa922cca89b28">00306</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.StatusStrip <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a9d7f098db073a545355aa922cca89b28">statusStrip1</a>;
+<a name="l00307"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a97b224eb10412293bdb533c770d8144d">00307</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripStatusLabel <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a97b224eb10412293bdb533c770d8144d">sb_send_status</a>;
+<a name="l00308"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a06583fd3fb29ebc029293ca162e2848d">00308</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripMenuItem <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a06583fd3fb29ebc029293ca162e2848d">controlsToolStripMenuItem</a>;
+<a name="l00309"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a21aff2285e9e1a058884bcb1b016b7f5">00309</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.ToolStripMenuItem <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a21aff2285e9e1a058884bcb1b016b7f5">quitToolStripMenuItem</a>;
+<a name="l00310"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#adacccc843b86b09e50b25ce543142eff">00310</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.Timer <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#adacccc843b86b09e50b25ce543142eff">timer</a>;
+<a name="l00311"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a1e5e8dfae30625b2a45b24a75a966514">00311</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.Button <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a1e5e8dfae30625b2a45b24a75a966514">btnSend</a>;
+<a name="l00312"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#aebfca6922fa8221276d0547615f5b93a">00312</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.NotifyIcon <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#aebfca6922fa8221276d0547615f5b93a">trayICON</a>;
+<a name="l00313"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#ac6c672057738e4a54824f0c08e61b238">00313</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.GroupBox <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#ac6c672057738e4a54824f0c08e61b238">grpbxFeed</a>;
+<a name="l00314"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a0f01472dc53a3c134d543b1a59299a1e">00314</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.GroupBox <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a0f01472dc53a3c134d543b1a59299a1e">grpbx_Reply</a>;
+<a name="l00315"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a43f801ebb9c0a215764953588fa9c4f1">00315</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.Button <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a43f801ebb9c0a215764953588fa9c4f1">btnCLR</a>;
+<a name="l00316"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#ac823af7ed5a9a4e3fde06b7ab90faa0e">00316</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.TextBox <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#ac823af7ed5a9a4e3fde06b7ab90faa0e">txtbx_Reply</a>;
+<a name="l00317"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a885c7aceb5d883641c46d08d97692f4c">00317</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.Label <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a885c7aceb5d883641c46d08d97692f4c">lbl_question</a>;
+<a name="l00318"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a92767c7c3fd6f7c6890a4aa3bd2efefa">00318</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.Button <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a92767c7c3fd6f7c6890a4aa3bd2efefa">btnRPL</a>;
+<a name="l00319"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a500406f80ad03c1b3fdf9d7cfc75c7f3">00319</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.Button <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a500406f80ad03c1b3fdf9d7cfc75c7f3">btnCLS</a>;
+<a name="l00320"></a><a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a782e2e05e0a099a77a85c00d4189c762">00320</a>         <span class="keyword">private</span> <a class="code" href="_about_box1_8cs.html#a81a223a02c34d82b47199f08308847f2">System</a>.Windows.Forms.VScrollBar <a class="code" href="class_sr_p___classroom_inq_1_1_form1.html#a782e2e05e0a099a77a85c00d4189c762">vScrollBar1</a>;
 <a name="l00321"></a>00321     }
 <a name="l00322"></a>00322 }
 <a name="l00323"></a>00323 
@@ -430,7 +431,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Sun Apr 15 2012 20:29:51 for Classroom Inquisition by
+    <li class="footer">Generated on Wed May 2 2012 09:07:32 for Classroom Inquisition by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5 </li>
    </ul>

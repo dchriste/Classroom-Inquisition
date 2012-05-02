@@ -8,6 +8,12 @@ currently.
 
 CHANGELOG created on 2/22/12
 
+/*** Version 1.7.3 committed 5/02 ***/
+added mark as read context menu for questions
+added mark as unread as well
+added dynamic menu item selection (of them above) based on read status
+fixed unread bugs when deleting unread questions
+
 /*** Version 1.7.2 committed 4/22 ***/
 added splashscreen
 added pref to disable splash
