@@ -42,7 +42,6 @@ namespace SrP_ClassroomInq
         public frmClassrromInq()
 		{
 			InitializeComponent();
-            
             textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys); // so you can send with enter in the main txtbx
             PanelStudents.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
             PanelFAQ.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
@@ -54,6 +53,7 @@ namespace SrP_ClassroomInq
             PanelQuizMode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
             PanelClassVote.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
             pnlBrdCst.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
+            cntxtMenuStrp_tray.Click += new EventHandler(cntxtMenuStrp_tray_Click);
 		}
         #region Initialization
 
@@ -65,6 +65,7 @@ namespace SrP_ClassroomInq
         public Color BackColorTheme = Color.Black;
         public AboutBox_CI About = new AboutBox_CI();
         public Splash SplashScreen = new Splash();
+        public ContextMenuStrip cntxtMenuStrp_tray = new ContextMenuStrip();
 
         #region Variables
         string[] Students_Name = new string[classSize];
@@ -117,6 +118,7 @@ namespace SrP_ClassroomInq
         byte StuMgmtTimesClicked = 0;
         bool SplashScreenShowing = new bool();
         bool aPanelIsMoving = new bool();
+        bool aQuestionIsMoving = new bool();
         bool DesireNotify = new bool();
         bool NotifyShowing = new bool();
         bool DesirePrefs = new bool();
@@ -581,27 +583,46 @@ namespace SrP_ClassroomInq
 		{
             this.Close(); // there is a prompt in form closing
 		}
+
+        /*Allows close from systray*/
+        private void cntxtMenuStrp_tray_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        /*Allows for left and right click of systray icon*/
+        private void trayICON_MouseDown(object sender, MouseEventArgs e)
+        {
+            bool rightClick = (e.Button == System.Windows.Forms.MouseButtons.Right);
+            bool leftClick = (e.Button == System.Windows.Forms.MouseButtons.Left);
+
+            if (rightClick)
+            {
+                //show context menu at mouse click location aligned right
+                trayICON.ContextMenuStrip = cntxtMenuStrp_tray;
+                cntxtMenuStrp_tray.Items.Clear();
+                cntxtMenuStrp_tray.Items.Add("Quit?");
+                trayICON.ContextMenuStrip.Show(e.Location,ToolStripDropDownDirection.Default);
+            }
+            else if (leftClick)
+            {
+                trayICON.BalloonTipTitle = "Classroom Inquistion";
+                trayICON.BalloonTipText = "Raising Hands is a thing of the past";
+
+                if (FormWindowState.Minimized == this.WindowState)
+                {
+                    this.Show();
+                    this.WindowState = FormWindowState.Normal;
+                }
+                else if (FormWindowState.Normal == this.WindowState)
+                {
+                    this.Hide();
+                    trayICON.ShowBalloonTip(500);
+                    this.WindowState = FormWindowState.Minimized;
+                }
+            }
+        }
         
-        /*This method allows for minimize to tray functionality*/
-		private void trayICON_MouseDoubleClick(object sender, MouseEventArgs e)
-		{
-            trayICON.BalloonTipTitle ="Classroom Inquistion";
-            trayICON.BalloonTipText = "Raising Hands is a thing of the past";
-
-			if (FormWindowState.Minimized == this.WindowState)
-			{
-				this.Show();
-				this.WindowState = FormWindowState.Normal;
-			}
-			else if (FormWindowState.Normal == this.WindowState)
-			{
-				this.Hide();
-				trayICON.ShowBalloonTip(500);
-				this.WindowState = FormWindowState.Minimized;
-			}
-
-		}
-
         /*This clears the question repl box of the specifically clicked question*/
 		private void btnCLR_Click(object sender, EventArgs e)
 		{
@@ -696,27 +717,30 @@ namespace SrP_ClassroomInq
                 {
                     UnreadDecrement(sender);
                 }
-                if (timesClicked == 0)
+                if (timesClicked == 0 && !aQuestionIsMoving)
                 {
                     grpbxRPL_WASclicked = true;
                     timesClicked = 1;
                     lbl_ID = new_lblID; //there isn't possibly one open yet
+                    timer.Enabled = true;
                 }
                 else
                 {
-                    if (old_lblID == new_lblID)
+                    if ((old_lblID == new_lblID) && !aQuestionIsMoving)
                     {
                         btnCLS_WASclicked = true; //second click closes question.
                         timesClicked = 0;
+                        timer.Enabled = true;
                     }
-                    else
+                    else if ((old_lblID != new_lblID) && !aQuestionIsMoving)
                     {
                         DesireID = true; //queue dynamic animations
                         btnCLS_WASclicked = true; //second click closes question.
                         //the animation will use lbl_ID which is the old one still
+                        timer.Enabled = true;
                     }
-                }
-                timer.Enabled = true;
+                    //else there is a question moving, don't register the click...
+                }                
             }
 		}
         
@@ -2058,6 +2082,16 @@ namespace SrP_ClassroomInq
            {
                cntxtMenu.MenuItems.Add(muItmName);//add the toggle name
                cntxtMenu.MenuItems.Add("-");
+               if (!Q_status[new_lblID])
+               {
+                   //it is unread show mark as read
+                   cntxtMenu.MenuItems.Add(muItmMarkAsRead);
+               }
+               else
+               {
+                   cntxtMenu.MenuItems.Add(muItmMarkAsUnRead);
+               }
+               cntxtMenu.MenuItems.Add("-");
                cntxtMenu.MenuItems.Add(muItmDelete); //add context menu for delete
            }
            else if (cntxtMenu.SourceControl == grpbxFeed)
@@ -2070,12 +2104,14 @@ namespace SrP_ClassroomInq
                cntxtMenu.MenuItems.Add(muItmBrdCst);
                cntxtMenu.MenuItems.Add(muItmDM);
                cntxtMenu.MenuItems.Add("-");
-               cntxtMenu.MenuItems.Add(muItmFAQ);
                cntxtMenu.MenuItems.Add(muItmPrefs);
+               cntxtMenu.MenuItems.Add(muItmFAQ);
                cntxtMenu.MenuItems.Add("-");
                cntxtMenu.MenuItems.Add(muItmQuiz);
                cntxtMenu.MenuItems.Add(muItmAttendance);
                cntxtMenu.MenuItems.Add(muItmClassVote);
+               cntxtMenu.MenuItems.Add("-");
+               cntxtMenu.MenuItems.Add(muItmMinimize2Tray);
                if (ModifierKeys == System.Windows.Forms.Keys.Shift)
                {
                    cntxtMenu.MenuItems.Add("-");
@@ -2941,6 +2977,7 @@ namespace SrP_ClassroomInq
             timer.Enabled = true;
         }
 
+        /*This allows for marking question read without opening them or hovering*/
         private void muItmMarkAsRead_Click(object sender, EventArgs e)
         {
             Q_status[new_lblID] = true; // so unread won't get decremented if opened again..
@@ -2957,6 +2994,7 @@ namespace SrP_ClassroomInq
             }            
         }
 
+        /*This allows you to reset the unread state if you so desire*/
         private void muItmMarkAsUnRead_Click(object sender, EventArgs e)
         {
             Q_status[new_lblID] = false;
@@ -2965,5 +3003,25 @@ namespace SrP_ClassroomInq
 
             lbl_arr[new_lblID].Text = "***" + "          " + lbl_arr[new_lblID].Text; //prepend the stars
         }
+
+        /*Shortcut to minimize to tray, clicking the tray icon does this too*/
+        private void muItmMinimize2Tray_Click(object sender, EventArgs e)
+        {
+            trayICON.BalloonTipTitle = "Classroom Inquistion";
+            trayICON.BalloonTipText = "Raising Hands is a thing of the past";
+
+            if (FormWindowState.Minimized == this.WindowState)
+            {
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
+            }
+            else if (FormWindowState.Normal == this.WindowState)
+            {
+                this.Hide();
+                trayICON.ShowBalloonTip(500);
+                this.WindowState = FormWindowState.Minimized;
+            }
+        }
+                
    } //end of partial class
 } //end of namespace    

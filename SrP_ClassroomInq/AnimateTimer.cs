@@ -424,7 +424,8 @@ namespace SrP_ClassroomInq
                         {
                             if (k == 0)
                             {
-                                aPanelIsMoving = true;
+                                aQuestionIsMoving = true; //stop the breaking of animation by click happy people
+                                aPanelIsMoving = true; //don't let other panels mess it up either
                             }
                             group_arr[lbl_ID].SetBounds(group_arr[lbl_ID].Location.X, group_arr[lbl_ID].Location.Y,
                                                         group_arr[lbl_ID].Size.Width, group_arr[lbl_ID].Size.Height + 2);
@@ -464,6 +465,7 @@ namespace SrP_ClassroomInq
                                 timer.Enabled = false;
                             }
                             aPanelIsMoving = false;
+                            aQuestionIsMoving = false;
                             grpbxRPL_WASclicked = false;
                             txtbx_reply_arr[lbl_ID].Focus(); //places cursor in question reply box on open
                         }
@@ -507,6 +509,7 @@ namespace SrP_ClassroomInq
                         {
                             if (j == 0)
                             {
+                                aQuestionIsMoving = true;
                                 aPanelIsMoving = true;
                             }
                             group_arr[lbl_ID].SetBounds(group_arr[lbl_ID].Location.X, group_arr[lbl_ID].Location.Y,
@@ -542,6 +545,7 @@ namespace SrP_ClassroomInq
                             j = 0;
                             btnCLS_WASclicked = false;
                             aPanelIsMoving = false;
+                            aQuestionIsMoving = false;
                             if (!DesireID)
                             {
                                 if (!NotifyShowing && !DesireNotify)

@@ -1,11 +1,12 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a5703a99c40db13bca956c2204fbb1205" title="SrP_ClassroomInq.frmClassrromInq.CheckKeys" alt="" coords="390,161,695,188"/>
-<area shape="rect" id="node5" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a525504ef91d8a99202dbcbc825a7aac2" title="SrP_ClassroomInq.frmClassrromInq.SendMsg" alt="" coords="1177,9,1469,36"/>
-<area shape="rect" id="node7" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a65ba92a7bf3839c796abc965f5524b0f" title="SrP_ClassroomInq.frmClassrromInq.btnRepl_Click" alt="" coords="775,60,1094,86"/>
-<area shape="rect" id="node12" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#ad06f37a98dfdb9ea7d37231cf0725836" title="SrP_ClassroomInq.frmClassrromInq.btnCLS_Click_BrdCst" alt="" coords="751,110,1118,137"/>
-<area shape="rect" id="node14" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a7de1b5ffee595dda863be7b2299e0e38" title="SrP_ClassroomInq.frmClassrromInq.btnExitClassVote_Click" alt="" coords="747,161,1123,188"/>
-<area shape="rect" id="node16" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a5df71a30d5e80349884dd26718780e97" title="SrP_ClassroomInq.frmClassrromInq.btnExitAttendance_Click" alt="" coords="744,212,1125,238"/>
-<area shape="rect" id="node18" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a80183bae83a721931c21b4a8764dc289" title="SrP_ClassroomInq.frmClassrromInq.btnExitQuiz_Click" alt="" coords="763,262,1106,289"/>
-<area shape="rect" id="node20" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a6e7cdcc66d0d497b1692085fe08917cd" title="SrP_ClassroomInq.frmClassrromInq.btnQMcls_Click" alt="" coords="769,313,1100,340"/>
-<area shape="rect" id="node10" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a3013595b3a4e7bb6d8c8871d788aad44" title="SrP_ClassroomInq.frmClassrromInq.LogQandA" alt="" coords="1173,60,1472,86"/>
+<area shape="rect" id="node3" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a5703a99c40db13bca956c2204fbb1205" title="SrP_ClassroomInq.frmClassrromInq.CheckKeys" alt="" coords="431,157,737,184"/>
+<area shape="rect" id="node22" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a325bb727a0d57d70b73a2359a575fb17" title="SrP_ClassroomInq.frmClassrromInq.cntxtMenuStrp_tray_Click" alt="" coords="390,208,778,235"/>
+<area shape="rect" id="node5" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a525504ef91d8a99202dbcbc825a7aac2" title="SrP_ClassroomInq.frmClassrromInq.SendMsg" alt="" coords="1259,5,1551,32"/>
+<area shape="rect" id="node7" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a65ba92a7bf3839c796abc965f5524b0f" title="SrP_ClassroomInq.frmClassrromInq.btnRepl_Click" alt="" coords="858,56,1177,83"/>
+<area shape="rect" id="node12" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#ad06f37a98dfdb9ea7d37231cf0725836" title="SrP_ClassroomInq.frmClassrromInq.btnCLS_Click_BrdCst" alt="" coords="834,107,1201,133"/>
+<area shape="rect" id="node14" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a7de1b5ffee595dda863be7b2299e0e38" title="SrP_ClassroomInq.frmClassrromInq.btnExitClassVote_Click" alt="" coords="829,157,1205,184"/>
+<area shape="rect" id="node16" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a5df71a30d5e80349884dd26718780e97" title="SrP_ClassroomInq.frmClassrromInq.btnExitAttendance_Click" alt="" coords="827,208,1208,235"/>
+<area shape="rect" id="node18" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a80183bae83a721931c21b4a8764dc289" title="SrP_ClassroomInq.frmClassrromInq.btnExitQuiz_Click" alt="" coords="846,259,1189,285"/>
+<area shape="rect" id="node20" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a6e7cdcc66d0d497b1692085fe08917cd" title="SrP_ClassroomInq.frmClassrromInq.btnQMcls_Click" alt="" coords="852,309,1183,336"/>
+<area shape="rect" id="node10" href="$class_sr_p___classroom_inq_1_1frm_classrrom_inq.html#a3013595b3a4e7bb6d8c8871d788aad44" title="SrP_ClassroomInq.frmClassrromInq.LogQandA" alt="" coords="1256,56,1555,83"/>
 </map>

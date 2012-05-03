@@ -100,6 +100,7 @@
             this.SerialPort = new System.IO.Ports.SerialPort(this.components);
             this.timer_SerialRead = new System.Windows.Forms.Timer(this.components);
             this.PanelPrefs = new System.Windows.Forms.Panel();
+            this.chkbxSplash = new System.Windows.Forms.CheckBox();
             this.lblNotifyTime = new System.Windows.Forms.Label();
             this.numUpDnNotify = new System.Windows.Forms.NumericUpDown();
             this.lblSerPt = new System.Windows.Forms.Label();
@@ -170,6 +171,7 @@
             this.muItmBrdCst = new System.Windows.Forms.MenuItem();
             this.muItmMarkAsRead = new System.Windows.Forms.MenuItem();
             this.muItmMarkAsUnRead = new System.Windows.Forms.MenuItem();
+            this.muItmMinimize2Tray = new System.Windows.Forms.MenuItem();
             this.PanelQuizMaker = new System.Windows.Forms.Panel();
             this.btnAddQM = new System.Windows.Forms.Button();
             this.btnQMDel = new System.Windows.Forms.Button();
@@ -204,7 +206,6 @@
             this.PanelNotify = new System.Windows.Forms.Panel();
             this.lblNotify = new System.Windows.Forms.Label();
             this.pictureBoxNotify = new System.Windows.Forms.PictureBox();
-            this.chkbxSplash = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.PanelPrefs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDnNotify)).BeginInit();
@@ -653,9 +654,9 @@
             this.trayICON.BalloonTipText = "Raising Hands is a thing of the past.";
             this.trayICON.BalloonTipTitle = "Classroom Inq.";
             this.trayICON.Icon = ((System.Drawing.Icon)(resources.GetObject("trayICON.Icon")));
-            this.trayICON.Text = "Dbl Click to Minimize!";
+            this.trayICON.Text = "Click to Minimize!";
             this.trayICON.Visible = true;
-            this.trayICON.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.trayICON_MouseDoubleClick);
+            this.trayICON.MouseDown += new System.Windows.Forms.MouseEventHandler(this.trayICON_MouseDown);
             // 
             // grpbxFeed
             // 
@@ -701,6 +702,19 @@
             this.PanelPrefs.Name = "PanelPrefs";
             this.PanelPrefs.Size = new System.Drawing.Size(355, 517);
             this.PanelPrefs.TabIndex = 6;
+            // 
+            // chkbxSplash
+            // 
+            this.chkbxSplash.Checked = true;
+            this.chkbxSplash.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkbxSplash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkbxSplash.Location = new System.Drawing.Point(18, 315);
+            this.chkbxSplash.Name = "chkbxSplash";
+            this.chkbxSplash.Size = new System.Drawing.Size(130, 33);
+            this.chkbxSplash.TabIndex = 20;
+            this.chkbxSplash.Text = "Splash Screen";
+            this.chkbxSplash.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkbxSplash.UseVisualStyleBackColor = true;
             // 
             // lblNotifyTime
             // 
@@ -1363,18 +1377,6 @@
             this.muItmQuizDelete.Text = "Undo Delete";
             this.muItmQuizDelete.Click += new System.EventHandler(this.muItmQuizDelete_Click);
             // 
-            // muItmMarkAsRead
-            // 
-            this.muItmMarkAsRead.Index = -1;
-            this.muItmMarkAsRead.Text = "Mark as Read";
-            this.muItmMarkAsRead.Click += new System.EventHandler(this.muItmMarkAsRead_Click);
-            // 
-            // muItmMarkAsUnRead
-            // 
-            this.muItmMarkAsUnRead.Index = -1;
-            this.muItmMarkAsUnRead.Text = "Mark as Unread";
-            this.muItmMarkAsUnRead.Click += new System.EventHandler(this.muItmMarkAsUnRead_Click);
-            // 
             // muItmPrefs
             // 
             this.muItmPrefs.Index = -1;
@@ -1434,6 +1436,24 @@
             this.muItmBrdCst.Index = -1;
             this.muItmBrdCst.Text = "BroadCast";
             this.muItmBrdCst.Click += new System.EventHandler(this.muItmBrdCst_Click);
+            // 
+            // muItmMarkAsRead
+            // 
+            this.muItmMarkAsRead.Index = -1;
+            this.muItmMarkAsRead.Text = "Mark as Read";
+            this.muItmMarkAsRead.Click += new System.EventHandler(this.muItmMarkAsRead_Click);
+            // 
+            // muItmMarkAsUnRead
+            // 
+            this.muItmMarkAsUnRead.Index = -1;
+            this.muItmMarkAsUnRead.Text = "Mark as Unread";
+            this.muItmMarkAsUnRead.Click += new System.EventHandler(this.muItmMarkAsUnRead_Click);
+            // 
+            // muItmMinimize2Tray
+            // 
+            this.muItmMinimize2Tray.Index = -1;
+            this.muItmMinimize2Tray.Text = "Minimize to tray";
+            this.muItmMinimize2Tray.Click += new System.EventHandler(this.muItmMinimize2Tray_Click);
             // 
             // PanelQuizMaker
             // 
@@ -1832,19 +1852,6 @@
             this.pictureBoxNotify.TabStop = false;
             this.pictureBoxNotify.Click += new System.EventHandler(this.pictureBoxNotify_Click);
             // 
-            // chkbxSplash
-            // 
-            this.chkbxSplash.Checked = true;
-            this.chkbxSplash.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkbxSplash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkbxSplash.Location = new System.Drawing.Point(18, 315);
-            this.chkbxSplash.Name = "chkbxSplash";
-            this.chkbxSplash.Size = new System.Drawing.Size(130, 33);
-            this.chkbxSplash.TabIndex = 20;
-            this.chkbxSplash.Text = "Splash Screen";
-            this.chkbxSplash.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chkbxSplash.UseVisualStyleBackColor = true;
-            // 
             // frmClassrromInq
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2028,6 +2035,7 @@
         private System.Windows.Forms.MenuItem muItmBrdCst;
         private System.Windows.Forms.MenuItem muItmMarkAsRead;
         private System.Windows.Forms.MenuItem muItmMarkAsUnRead;
+        private System.Windows.Forms.MenuItem muItmMinimize2Tray;
         private System.Windows.Forms.CheckBox chkbxCtrlHide;
         private System.Windows.Forms.Button btnQuizMaker;
         private System.Windows.Forms.Panel PanelQuizMaker;

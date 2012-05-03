@@ -1,0 +1,12 @@
+F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\bin\Release\ClassroomInq.exe.config
+F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\bin\Release\ClassroomInq.exe
+F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\bin\Release\ClassroomInq.pdb
+F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Release\ResolveAssemblyReference.cache
+F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Release\SrP_ClassroomInq.AboutBox_CI.resources
+F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Release\SrP_ClassroomInq.frmClassrromInq.resources
+F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Release\SrP_ClassroomInq.Properties.Resources.resources
+F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Release\SrP_ClassroomInq.Splash.resources
+F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Release\GenerateResource.read.1.tlog
+F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Release\GenerateResource.write.1.tlog
+F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Release\ClassroomInq.exe
+F:\SourceCode\Classroom-Inquisition\SrP_ClassroomInq\obj\x86\Release\ClassroomInq.pdb

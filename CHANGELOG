@@ -8,6 +8,12 @@ currently.
 
 CHANGELOG created on 2/22/12
 
+/*** Version 1.7.4 committed 5/03 ***/
+fixed issue with click happiness on questions
+added minimize to tray shortcut in context menu
+added single click tray icon to minimize
+added tray icon context menu to quit
+
 /*** Version 1.7.3 committed 5/02 ***/
 added mark as read context menu for questions
 added mark as unread as well
